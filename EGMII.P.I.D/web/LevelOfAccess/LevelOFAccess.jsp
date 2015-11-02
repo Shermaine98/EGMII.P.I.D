@@ -5,7 +5,7 @@
     if (position.equalsIgnoreCase("promo")) {
 %>         <jsp:include page ="/NavBar/nPromoNavBar.jsp" />
 <%
-} else if (position.equalsIgnoreCase("receipthandler")) {
+} else if (position.equalsIgnoreCase("receipt handler")) {
 %>          <jsp:include page ="/NavBar/nReceiptHandlerNavBar.jsp" />
 <%          } else if (position.equalsIgnoreCase("delivery manager")) {
 
