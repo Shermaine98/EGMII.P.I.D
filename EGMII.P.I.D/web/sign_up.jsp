@@ -27,7 +27,7 @@
         <script src="bootstrap/js/jquery.js"></script>
         <script src="bootstrap/js/bootstrap.js"></script>
         <title>Sign Up</title>
-        
+
         <style>
             label{
                 color: #FFF;
@@ -35,8 +35,20 @@
             h1{
                 color: #FFF;
             }
-            .Absolute-Center{
-                width:40%; background-color: #000; opacity: 0.7; margin-top: 50px; margin-bottom:auto; padding: 20px;
+            .form-control{
+                width:160px;
+            }
+            label{
+                display: inline-block;
+                float: left;
+                clear: left;
+                width: 40%;
+                text-align: right;
+                margin-right: 10px;
+            }
+            input {
+                display: inline-block;
+                float: left;
             }
         </style>
 
@@ -62,7 +74,6 @@
                                         <li><a href="index.jsp">Home</a></li>
                                         <li class="active"><a href="#">Sign Up</a></li>
                                         <li><a href="contact.jsp">Contact</a></li>
-
                                     </ul>
                                 </div>
 
@@ -77,10 +88,11 @@
 
         <div align="center">
             <div class="container">
+                <br/>
                 <h1>SIGN UP</h1>
 
                 <form class="form-inline" role="form" action="SignUp" method="POST" name="sign-up">
-                    <label for="firstName" class="">First Name:</label>
+                    <label for="firstName">First Name:</label>
                     <input type="text" name="firstName" placeholder="First Name" class="form-control"/><br/><br/>
                     <label for="lastName">Last Name: </label>
                     <input type="text" name="lastName" placeholder="Last Name" class="form-control"/><br/><br/>
@@ -91,11 +103,11 @@
                     <label for="birthDate">Birthdate:</label>
                     <input type="date" name="birthDate" class="form-control"/><br/><br/>
                     <label for="verCode"></label>
-                    <input type="text" name="verCode" placeholder="Input Valid Verification Code Here" class="form-control"/><br/>
+                    <input type="text" name="verCode" placeholder="Verification Code Here" class="form-control" style=" height:30px;"/><br/>
                     <br/><br/>
-                    <label for="submit"></label>
-                    <input type="submit" name="submit" class="btn btn-danger" value="Sign-up"/>
-                    <a href="redirect.jsp"><button type="button" name="button" class="btn btn-danger"/>Cancel</button></a><br/>
+                    <input type="submit" name="submit" class="btn btn-danger" value="Sign-up" style="float:none;"/>
+                    <a href="redirect.jsp">
+                        <button type="button" name="button" class="btn btn-danger"/>Cancel</button></a><br/>
                 </form>
             </div>
         </div>
