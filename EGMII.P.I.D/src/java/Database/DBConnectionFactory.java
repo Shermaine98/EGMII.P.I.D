@@ -12,7 +12,7 @@ import java.sql.Connection;
  */
 public abstract class DBConnectionFactory {
 
-    String url = "jdbc:mysql://127.0.0.1:3306/egmi";
+    String url = "jdbc:mysql://127.0.0.1:3306/mydb";
     String username = "HammerheadAdmin";
     String password = "DEVWEB";
 
