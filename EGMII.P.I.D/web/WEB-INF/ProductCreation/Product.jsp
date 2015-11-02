@@ -25,8 +25,8 @@
         <title>Bill of Materials</title>
         <script>
             $(document).ready(function () {
-                var prID = '${BoMPrNumber}';
-                document.getElementById('ProductNumber').value = prID;
+                var prID = '${ProductNumber}';
+                document.getElementById('productID').value = prID;
             });
         </script>
     </head>
