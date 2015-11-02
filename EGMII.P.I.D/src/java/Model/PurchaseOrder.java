@@ -14,7 +14,7 @@ import java.text.SimpleDateFormat;
  * @author Gerard
  */
 public class PurchaseOrder {
-    private String poNumber;
+    private int poNumber;
     private boolean isSupplier;
     private int supplierID;
     private int subconID;
@@ -123,14 +123,14 @@ public class PurchaseOrder {
     /**
      * @return the poNumber
      */
-    public String getPoNumber() {
+    public int getPoNumber() {
         return poNumber;
     }
 
     /**
      * @param poNumber the poNumber to set
      */
-    public void setPoNumber(String poNumber) {
+    public void setPoNumber(int poNumber) {
         this.poNumber = poNumber;
     }
 
@@ -138,7 +138,7 @@ public class PurchaseOrder {
      * @return the isSupplier
      */
     public boolean isIsSupplier() {
-        return isSupplier;
+        return true;
     }
 
     /**
