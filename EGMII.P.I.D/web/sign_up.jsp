@@ -50,6 +50,9 @@
                 display: inline-block;
                 float: left;
             }
+            .Absolute-Center{
+                width:40%; background-color: #000; opacity: 0.85; margin-top: 13px; margin-bottom:auto; padding: 10px;
+            }
         </style>
 
     </head>
@@ -87,7 +90,7 @@
         <!-- /HEADER ROW -->
 
         <div align="center">
-            <div class="container">
+            <div class="container Absolute-Center">
                 <br/>
                 <h1>SIGN UP</h1>
 
