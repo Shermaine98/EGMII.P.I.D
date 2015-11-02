@@ -8,16 +8,47 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <!--Bootstrap-->
-        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link href="bootstrap/css/signin.css" rel="stylesheet">
-        <link href="bootstrap/css/style.css" rel="stylesheet"> 
-        <link href="bootstrap/css/EGMI-style-signup.css" rel="stylesheet" type="text/css">
+        <!-- Bootstrap -->
+        <link href="bootstrap/Fornax/css/bootstrap.css" rel="stylesheet">
+        <link href="bootstrap/Fornax/css/bootstrap-responsive.css" rel="stylesheet">
+        <link href="bootstrap/Fornax/css/style.css" rel="stylesheet"> 
+        <link href="bootstrap/css/EGMI-style-home.css" rel="stylesheet" type="text/css">
 
         <!--Font-->
         <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600' rel='stylesheet' type='text/css'>
 
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+          <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+        <!-- SCRIPT 
+        ============================================================-->  
+        <script src="bootstrap/js/jquery.js"></script>
+        <script src="bootstrap/js/bootstrap.js"></script>
         <title>Sign Up</title>
+
+        <style>
+            label{
+                color: #FFF;
+            }
+            
+            .form-control{
+                width:160px;
+            }
+            label{
+                display: inline-block;
+                float: left;
+                clear: left;
+                width: 40%;
+                text-align: right;
+                margin-right: 10px;
+            }
+            input {
+                display: inline-block;
+                float: left;
+            }
+        </style>
 
     </head>
 
@@ -40,8 +71,7 @@
                                     <ul class="nav">
                                         <li><a href="index.jsp">Home</a></li>
                                         <li class="active"><a href="#">Sign Up</a></li>
-                                        <li><a href="contact.html">Contact</a></li>
-
+                                        <li><a href="contact.jsp">Contact</a></li>
                                     </ul>
                                 </div>
 
@@ -55,26 +85,27 @@
         <!-- /HEADER ROW -->
 
         <div align="center">
-            <div class="container">
-                <h2><b>SIGN UP</b></h2>
+            <div class="container Absolute-Center">
+                <br/>
+                <h1>SIGN UP</h1>
 
                 <form class="form-inline" role="form" action="SignUp" method="POST" name="sign-up">
                     <label for="firstName">First Name:</label>
                     <input type="text" name="firstName" placeholder="First Name" class="form-control"/><br/><br/>
                     <label for="lastName">Last Name: </label>
                     <input type="text" name="lastName" placeholder="Last Name" class="form-control"/><br/><br/>
-                    <label for="email">Email: </label>
+                    <label for="email">Email:   </label>
                     <input type="text" name="email" placeholder="Email Address" class="form-control"/><br/><br/>
                     <label for="password">Password: </label>
                     <input type="password" name="newPassword" placeholder="Password" class="form-control"><br/><br/>
                     <label for="birthDate">Birthdate:</label>
                     <input type="date" name="birthDate" class="form-control"/><br/><br/>
                     <label for="verCode"></label>
-                    <input type="text" name="verCode" placeholder="Input Valid Verification Code Here" class="form-control"/><br/>
+                    <input type="text" name="verCode" placeholder="Verification Code Here" class="form-control" style=" height:30px;"/><br/>
                     <br/><br/>
-                    <label for="submit"></label>
-                    <input type="submit" name="submit" class="btn btn-danger width" value="Sign-up"/>
-                    <a href="redirect.jsp"><button type="button" name="button" class="btn btn-danger width"/>Cancel</button></a><br/>
+                    <input type="submit" name="submit" class="btn btn-danger" value="Sign-up" style="float:none;"/>
+                    <a href="redirect.jsp">
+                        <button type="button" name="button" class="btn btn-danger"/>Cancel</button></a><br/>
                 </form>
             </div>
         </div>
@@ -83,10 +114,10 @@
         <!--Footer
         ==========================-->
 
-        <footer >
+        <footer>
             <div class="container">
                 <div class="row">
-                    Copyright &copy 2015 Evergrowth Garments Manufacturing Incorporated | All Rights Reserved <br>
+                    Copyright &copy 2015 Evergrowth Garments Manufacturing Incorporated | All Rights Reserved <br/>
                     <small>Copyright &copy 2013 Shapebootstrap | All Rights Reserved</small>
                 </div>
             </div>

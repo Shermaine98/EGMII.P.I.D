@@ -16,12 +16,22 @@ body{
     background-attachment:fixed;
 }
 footer{
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    height:30px;
+    position: fixed;
+    left:0px;
+    bottom:0px;
+    width:100%;
     color:#555555;
     text-align: center;
+
+}
+.Absolute-Center{
+    width:40%; background-color: #000; opacity: 0.85; margin-top: 5%; margin-bottom:auto; padding: 20px;
+    border-radius: 25px;
 }
 
+p{
+    color: #FFF;
+}
+h1{
+    color: #FFF;
+}

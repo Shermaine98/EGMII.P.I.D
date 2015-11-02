@@ -5,29 +5,29 @@
     if (position.equalsIgnoreCase("promo")) {
 %>         <jsp:include page ="/NavBar/nPromoNavBar.jsp" />
 <%
-} else if (position.equalsIgnoreCase("receipthandler")) {
+} else if (position.equalsIgnoreCase("receipt handler")) {
 %>          <jsp:include page ="/NavBar/nReceiptHandlerNavBar.jsp" />
-<%          } else if (position.equalsIgnoreCase("deliverymanager")) {
+<%          } else if (position.equalsIgnoreCase("delivery manager")) {
 
 %>          <jsp:include page ="/NavBar/nDeliveryManagerNavBar.jsp" />
-<%} else if (position.equalsIgnoreCase("generalmanager")) {
+<%} else if (position.equalsIgnoreCase("general manager")) {
 %>          <jsp:include page ="/NavBar/nGeneralManagerNavBar.jsp" />
-<%          } else if (position.equalsIgnoreCase("productionmanager")) {
+<%          } else if (position.equalsIgnoreCase("production manager")) {
 %>          <jsp:include page ="/NavBar/nProductionManagerNavBar.jsp" />
-<%          } else if (position.equalsIgnoreCase("assistantproductionmanager")) {
+<%          } else if (position.equalsIgnoreCase("assistant production manager")) {
 %>          <jsp:include page ="/NavBar/nAssistantProductionManagerNavBar.jsp" />
-<%          } else if (position.equalsIgnoreCase("cuttingmaster")) {
+<%          } else if (position.equalsIgnoreCase("cutting master")) {
 %>          <jsp:include page="/NavBar/nCuttingMasterNavBar.jsp"/>
-<%          } else if (position.equalsIgnoreCase("promotersupervisor")) {
+<%          } else if (position.equalsIgnoreCase("promoter supervisor")) {
 %>          <jsp:include page="/NavBar/nPromoterSupervisorNavBar.jsp"/>
-<%          } else if (position.equalsIgnoreCase("warehousemanager")) {
+<%          } else if (position.equalsIgnoreCase("warehouse manager")) {
 %>          <jsp:include page="/NavBar/nWarehouseManagerNavBar.jsp"/>
 <%          } else if (position.equalsIgnoreCase("administrator")) {
 %>          <jsp:include page="/NavBar/nadministratorNavBar.jsp"/>
-<%          } else if (position.equalsIgnoreCase("deliveryman")||position.equalsIgnoreCase("employee")) {
+<%          } else if (position.equalsIgnoreCase("delivery man")||position.equalsIgnoreCase("employee")) {
 %>          <jsp:include page="/NavBar/nemployeeNavBar.jsp"/>
 <%          } else {
-        response.sendRedirect("redirect.jsp");
+        response.sendRedirect("index.jsp");
     }
 
 %> 
