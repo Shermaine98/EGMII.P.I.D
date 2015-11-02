@@ -1,6 +1,5 @@
 package Model;
 
-import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -13,7 +12,7 @@ import java.text.SimpleDateFormat;
  * @author Nunez
  *
  */
- public  class  User implements Serializable {
+public class User {
 
     private int employeeNumber;
     private String lastName;
@@ -53,7 +52,7 @@ import java.text.SimpleDateFormat;
      * @param lastName the lastName to set
      */
     public void setLastName(String lastName) {
-        this.lastName = lastName.substring(0, 1).toUpperCase() + lastName.substring(1).toLowerCase();
+        this.lastName = lastName;
     }
 
     /**
@@ -67,7 +66,7 @@ import java.text.SimpleDateFormat;
      * @param firstName the firstName to set
      */
     public void setFirstName(String firstName) {
-        this.firstName = firstName.substring(0, 1).toUpperCase() + firstName.substring(1).toLowerCase();
+        this.firstName = firstName;
     }
 
     /**
