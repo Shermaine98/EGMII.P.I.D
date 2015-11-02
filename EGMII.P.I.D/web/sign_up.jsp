@@ -27,6 +27,18 @@
         <script src="bootstrap/js/jquery.js"></script>
         <script src="bootstrap/js/bootstrap.js"></script>
         <title>Sign Up</title>
+        
+        <style>
+            label{
+                color: #FFF;
+            }
+            h1{
+                color: #FFF;
+            }
+            .Absolute-Center{
+                width:40%; background-color: #000; opacity: 0.7; margin-top: 50px; margin-bottom:auto; padding: 20px;
+            }
+        </style>
 
     </head>
 
@@ -65,14 +77,14 @@
 
         <div align="center">
             <div class="container">
-                <h2><b>SIGN UP</b></h2>
+                <h1>SIGN UP</h1>
 
                 <form class="form-inline" role="form" action="SignUp" method="POST" name="sign-up">
-                    <label for="firstName">First Name:</label>
+                    <label for="firstName" class="">First Name:</label>
                     <input type="text" name="firstName" placeholder="First Name" class="form-control"/><br/><br/>
                     <label for="lastName">Last Name: </label>
                     <input type="text" name="lastName" placeholder="Last Name" class="form-control"/><br/><br/>
-                    <label for="email">Email: </label>
+                    <label for="email">Email:   </label>
                     <input type="text" name="email" placeholder="Email Address" class="form-control"/><br/><br/>
                     <label for="password">Password: </label>
                     <input type="password" name="newPassword" placeholder="Password" class="form-control"><br/><br/>
@@ -82,8 +94,8 @@
                     <input type="text" name="verCode" placeholder="Input Valid Verification Code Here" class="form-control"/><br/>
                     <br/><br/>
                     <label for="submit"></label>
-                    <input type="submit" name="submit" class="btn btn-danger width" value="Sign-up"/>
-                    <a href="redirect.jsp"><button type="button" name="button" class="btn btn-danger width"/>Cancel</button></a><br/>
+                    <input type="submit" name="submit" class="btn btn-danger" value="Sign-up"/>
+                    <a href="redirect.jsp"><button type="button" name="button" class="btn btn-danger"/>Cancel</button></a><br/>
                 </form>
             </div>
         </div>
