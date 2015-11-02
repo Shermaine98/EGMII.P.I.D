@@ -8,6 +8,14 @@
         <servlet-name>Login</servlet-name>
         <servlet-class>Controller_Base.Login</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Logout</servlet-name>
+        <servlet-class>Controller_Base.Logout</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ChangePassword</servlet-name>
+        <servlet-class>Controller_Base.ChangePassword</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>BaseServlet</servlet-name>
         <url-pattern>/BaseServlet</url-pattern>
@@ -15,6 +23,14 @@
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Logout</servlet-name>
+        <url-pattern>/Logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangePassword</servlet-name>
+        <url-pattern>/ChangePassword</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
