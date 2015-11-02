@@ -51,7 +51,12 @@
                 float: left;
             }
             .Absolute-Center{
-                width:40%; background-color: #000; opacity: 0.85; margin-top: 13px; margin-bottom:auto; padding: 10px;
+                width:40%; 
+                background-color: #000; 
+                opacity: 0.85; 
+                margin-top: 2%; 
+                margin-bottom:auto; 
+                padding: 10px;
             }
         </style>
 
@@ -119,10 +124,10 @@
         <!--Footer
         ==========================-->
 
-        <footer >
+        <footer>
             <div class="container">
                 <div class="row">
-                    Copyright &copy 2015 Evergrowth Garments Manufacturing Incorporated | All Rights Reserved <br>
+                    Copyright &copy 2015 Evergrowth Garments Manufacturing Incorporated | All Rights Reserved <br/>
                     <small>Copyright &copy 2013 Shapebootstrap | All Rights Reserved</small>
                 </div>
             </div>

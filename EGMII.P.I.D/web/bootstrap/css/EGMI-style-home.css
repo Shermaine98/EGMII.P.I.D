@@ -16,12 +16,11 @@ body{
     background-attachment:fixed;
 }
 footer{
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    height:30px;
+    position: fixed;
+    left:0px;
+    bottom:0px;
+    height:10px;
+    width:100%;
     color:#555555;
     text-align: center;
 }
-

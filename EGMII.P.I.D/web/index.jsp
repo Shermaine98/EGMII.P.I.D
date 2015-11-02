@@ -26,6 +26,20 @@
         <script src="bootstrap/js/bootstrap.js"></script>
 
 
+        <style>
+            .Absolute-Center{
+                width:35%; 
+                background-color: #000; 
+                opacity: 0.85; 
+                margin-top: 5%; 
+                margin-bottom:auto; 
+                padding: 10px;
+            }
+            h1{
+                color: #FFF;
+            }
+        </style>
+        
     </head>
     <body>
         <!--HEADER ROW-->
@@ -60,8 +74,9 @@
         <!-- /HEADER ROW -->
 
         <div align="center">
-            <div class="container">
-                <br/><br/><br/><br/>
+            <div class="container-fluid Absolute-Center">
+                <br/><br/>
+                <h1>Sign In</h1><br/>
                 <form class="form-signin" role="form" action="Login" method="POST" name="sign-in">
                     <input type="text" name="username" placeholder="Email" class="form-control"/><br/>
                     <input type="password" name="password" placeholder="Password" class="form-control"><br/>

@@ -40,7 +40,7 @@
                 color: #FFF;
             }
             .Absolute-Center{
-                width:40%; background-color: #000; opacity: 0.7; margin-top: 50px; margin-bottom:auto; padding: 20px;
+                width:40%; background-color: #000; opacity: 0.7; margin-top: 5%; margin-bottom:auto; padding: 20px;
             }
         </style>
     </head>
