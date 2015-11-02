@@ -39,7 +39,7 @@
                             <ul class="dropdown-menu" role="menu">
                                 <!--SUB-MENU OF BILL OF MATERIALS-->
                                 <li><a href="#">Bill Of Materials</a>
-                                    <ul class="dropdown-menu sub-menu"><li><a href="/EGMII.P.I.D/SetPIDServlet">Encode Bill Of Materials</a></li></ul>
+                                    <ul class="dropdown-menu sub-menu"><li><a href="/EGMII.P.I.D/SetProductIDServlet">Encode Bill Of Materials</a></li></ul>
                                 </li>
 
                                 <!--SUB-MENU OF CONSUMPTION REPORT-->
