@@ -73,88 +73,78 @@
                             </tbody>
                         </table>
                         <br/>
-                        <!--                        <div id="buttons" style="visibility: hidden">
-                                                    <input type="button" class="btn btn-danger" value="Delete Row" onclick="deleteRow('dataTable')" />
-                                                    <br/><br/>
-                                                    <input type="button" class="btn btn-danger" onclick= "viewModal()" data-toggle="modal" data-target="#myModal" value="Create">
-                                                    <a href="dashboard.jsp"><button type="button" class="btn btn-danger">Cancel</button></a>
-                                                </div>-->
-                    </div>
-                </div>
-
-
-                <!--CHOOSE FABRIC!!!!!!-->
-                <div id="Fabric">
-                    <div class="panel panel-default col-lg-6 col-md-6 col-sm-6">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Choose Fabric</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div class="input-group">
-                                <input type="text" class="form-control" name="itemNameSearch" id="itemNameSearch" onkeypress="autoComplete()" placeholder="Search Item"/>
-                                <input type="hidden" name="itemNameSearch" id ="itemNameSearch" disabled="disabled" style="color: #CCC; position: absolute; background: transparent;"/>
-                                <span class="input-group-btn"><button onClick="getItem()" class="btn btn-default" ><span class="glyphicon glyphicon-search"></span></button></span>
-                            </div>
+                        <div id="buttons" style="visibility: hidden">
+                            <input type="button" class="btn btn-danger" value="Delete Row" onclick="deleteRow('dataTable')" />
                             <br/><br/>
-
-                            <table id="thisTable" class="table table-bordered" style="width:65%">
-                                <colgroup>
-                                    <col style="width:25%" />
-                                    <col style="width:35%" />
-                                    <col style="width:35%" />
-                                </colgroup>
-                                <tbody id="dataTable">
-                                    <!--The fabric table-->
-                                    <tr>
-                                        <th>Size</th>
-                                        <th>Consumption</th>
-                                        <th>Unit Price</th>
-                                    </tr>
-                                    <tr>
-                                        <td>XS</td>
-                                        <td><input type="number" name="consumptionXS" class="transparentBg" style="width:70%" /></td>
-                                        <td>Unit Price here</td>
-                                    </tr>
-                                    <tr>
-                                        <td>S</td>
-                                        <td><input type="number" name="consumptionS" class="transparentBg" style="width:70%" /></td>
-                                        <td>Unit Price here</td>
-                                    </tr>
-                                    <tr>
-                                        <td>M</td>
-                                        <td><input type="number" name="consumptionM" class="transparentBg" style="width:70%" /></td>
-                                        <td>Unit Price here</td>
-                                    </tr>
-                                    <tr>
-                                        <td>L</td>
-                                        <td><input type="number" name="consumptionL" class="transparentBg" style="width:70%" /></td>
-                                        <td>Unit Price here</td>
-                                    </tr>
-                                    <tr>
-                                        <td>XL</td>
-                                        <td><input type="number" name="consumptionXL" class="transparentBg" style="width:70%" /></td>
-                                        <td>Unit Price here</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <br/>
-<!--                            <div id="buttons" style="visibility: hidden">
-                                <input type="button" class="btn btn-danger" value="Delete Row" onclick="deleteRow('dataTable')" />
-                                <br/><br/>
-                                <input type="button" class="btn btn-danger" onclick= "viewModal()" data-toggle="modal" data-target="#myModal" value="Create">
-                                <a href="dashboard.jsp"><button type="button" class="btn btn-danger">Cancel</button></a>
-                            </div>-->
                         </div>
                     </div>
                 </div>
             </div> 
         </div> 
 
-        <div id="buttons" style="visibility: hidden">
-            <input type="button" class="btn btn-danger" value="Delete Row" onclick="deleteRow('dataTable')" />
-            <br/><br/>
-            <input type="button" class="btn btn-danger" onclick= "viewModal()" data-toggle="modal" data-target="#myModal" value="Create">
-            <a href="dashboard.jsp"><button type="button" class="btn btn-danger">Cancel</button></a>
+
+        <!--CHOOSE FABRIC!!!!!!-->
+        <div id="Fabric" class="container">
+            <div class="panel panel-default col-lg-6 col-md-6 col-sm-6 pull-right" style="margin-right: 72px;">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Choose Fabric</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="itemNameSearch" id="itemNameSearch" onkeypress="autoComplete()" placeholder="Search Item"/>
+                        <input type="hidden" name="itemNameSearch" id ="itemNameSearch" disabled="disabled" style="color: #CCC; position: absolute; background: transparent;"/>
+                        <span class="input-group-btn"><button onClick="getItem()" class="btn btn-default" ><span class="glyphicon glyphicon-search"></span></button></span>
+                    </div>
+                    <br/><br/>
+
+                    <table id="thisTable" class="table table-bordered" style="width:65%">
+                        <colgroup>
+                            <col style="width:25%" />
+                            <col style="width:35%" />
+                            <col style="width:35%" />
+                        </colgroup>
+                        <tbody id="dataTable">
+                            <!--The fabric table-->
+                            <tr>
+                                <th>Size</th>
+                                <th>Consumption</th>
+                                <th>Unit Price</th>
+                            </tr>
+                            <tr>
+                                <td>XS</td>
+                                <td><input type="number" name="consumptionXS" class="transparentBg" style="width:70%" /></td>
+                                <td>Unit Price here</td>
+                            </tr>
+                            <tr>
+                                <td>S</td>
+                                <td><input type="number" name="consumptionS" class="transparentBg" style="width:70%" /></td>
+                                <td>Unit Price here</td>
+                            </tr>
+                            <tr>
+                                <td>M</td>
+                                <td><input type="number" name="consumptionM" class="transparentBg" style="width:70%" /></td>
+                                <td>Unit Price here</td>
+                            </tr>
+                            <tr>
+                                <td>L</td>
+                                <td><input type="number" name="consumptionL" class="transparentBg" style="width:70%" /></td>
+                                <td>Unit Price here</td>
+                            </tr>
+                            <tr>
+                                <td>XL</td>
+                                <td><input type="number" name="consumptionXL" class="transparentBg" style="width:70%" /></td>
+                                <td>Unit Price here</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br/>
+                    <!--Should be a different js-->
+                    <div id="buttons" style="visibility: hidden">
+                        <input type="button" class="btn btn-danger" value="Delete Row" onclick="deleteRow('dataTable')" />
+                        <br/><br/>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div  align="center" class="container">
@@ -191,6 +181,9 @@
                     </div>
                 </div>
             </form>
+            <br/><br/>
+            <input type="button" class="btn btn-danger" onclick= "viewModal()" data-toggle="modal" data-target="#myModal" value="Create">
+            <a href="dashboard.jsp"><button type="button" class="btn btn-danger">Cancel</button></a>
         </div>
     </body>
 </html>
