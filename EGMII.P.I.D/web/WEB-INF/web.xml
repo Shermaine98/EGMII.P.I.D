@@ -24,6 +24,10 @@
         <servlet-name>SearchItemServlet</servlet-name>
         <servlet-class>Controller_Json.SearchItemServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SetItemServlet</servlet-name>
+        <servlet-class>Controller_Json.SetItemServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>BaseServlet</servlet-name>
         <url-pattern>/BaseServlet</url-pattern>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>SearchItemServlet</servlet-name>
         <url-pattern>/SearchItemServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SetItemServlet</servlet-name>
+        <url-pattern>/SetItemServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
