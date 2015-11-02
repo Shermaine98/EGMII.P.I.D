@@ -60,7 +60,7 @@
                                 <a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a>
                                 <div class="nav-collapse collapse navbar-responsive-collapse">
                                     <ul class="nav">
-                                        <li><a href="redirect.jsp">Home</a></li>
+                                        <li><a href="index.jsp">Home</a></li>
                                         <li><a href="sign_up.jsp">Sign Up</a></li>
                                         <li class="active"><a href="#">Contact</a></li>
                                     </ul>
