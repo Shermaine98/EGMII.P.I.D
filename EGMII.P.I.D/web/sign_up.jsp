@@ -32,9 +32,7 @@
             label{
                 color: #FFF;
             }
-            h1{
-                color: #FFF;
-            }
+            
             .form-control{
                 width:160px;
             }
@@ -49,14 +47,6 @@
             input {
                 display: inline-block;
                 float: left;
-            }
-            .Absolute-Center{
-                width:40%; 
-                background-color: #000; 
-                opacity: 0.85; 
-                margin-top: 2%; 
-                margin-bottom:auto; 
-                padding: 10px;
             }
         </style>
 

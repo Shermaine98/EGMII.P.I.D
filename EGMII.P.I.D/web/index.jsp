@@ -24,21 +24,6 @@
         ============================================================-->  
         <script src="bootstrap/js/jquery.js"></script>
         <script src="bootstrap/js/bootstrap.js"></script>
-
-
-        <style>
-            .Absolute-Center{
-                width:35%; 
-                background-color: #000; 
-                opacity: 0.85; 
-                margin-top: 5%; 
-                margin-bottom:auto; 
-                padding: 10px;
-            }
-            h1{
-                color: #FFF;
-            }
-        </style>
         
     </head>
     <body>

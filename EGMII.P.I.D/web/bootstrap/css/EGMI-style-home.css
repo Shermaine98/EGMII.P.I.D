@@ -22,4 +22,16 @@ footer{
     width:100%;
     color:#555555;
     text-align: center;
+
+}
+.Absolute-Center{
+    width:40%; background-color: #000; opacity: 0.85; margin-top: 5%; margin-bottom:auto; padding: 20px;
+    border-radius: 25px;
+}
+
+p{
+    color: #FFF;
+}
+h1{
+    color: #FFF;
 }
