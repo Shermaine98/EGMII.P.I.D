@@ -36,6 +36,10 @@
         <servlet-name>SetSubconNumberServlet</servlet-name>
         <servlet-class>Controller_SetFormNumber.SetSubconNumberServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SetConsumptionNumberServlet</servlet-name>
+        <servlet-class>Controller_SetFormNumber.SetConsumptionNumberServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>BaseServlet</servlet-name>
         <url-pattern>/BaseServlet</url-pattern>
@@ -71,6 +75,10 @@
     <servlet-mapping>
         <servlet-name>SetSubconNumberServlet</servlet-name>
         <url-pattern>/SetSubconNumberServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SetConsumptionNumberServlet</servlet-name>
+        <url-pattern>/SetConsumptionNumberServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

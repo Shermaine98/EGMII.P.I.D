@@ -4,6 +4,7 @@
     Author     : Geraldine
 --%>
 
+<%@page import="Model_General.ProductAll"%>
 <%@page import="Model.BillOfMaterials"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Model.ConsumptionReport"%>
@@ -30,8 +31,8 @@
                 <br/><br/>
             </form>
         </div>
-        <%        ArrayList<BillOfMaterials> billOfMaterialspID = (ArrayList<BillOfMaterials>) request.getAttribute("BillofMaterials");
-            if (!billOfMaterialspID.isEmpty()) {
+        <%        ArrayList<ProductAll> ProductAllList = (ArrayList<ProductAll>) request.getAttribute("ProductList");
+            if (!ProductAllList.isEmpty()) {
         %>
 
         <div align="center" class="container">
@@ -52,13 +53,13 @@
                         </div>
                         <div class="panel-body">
                             <label class="" for="productID">Product ID</label>
-                            <input name="productID" class="form-control transparentBg readonlyWhite" readonly value="<%=billOfMaterialspID.get(0).getProductID()%>"/>
+                            <input name="productID" class="form-control transparentBg readonlyWhite" readonly value="<%=ProductAllList.get(0).getProductID()%>"/>
                         </div>
                         </div>
                        
                     </div>
                     <%
-                        if (billOfMaterialspID.get(0).getSizeName().equalsIgnoreCase("Shirt")) {
+                        if (ProductAllList.get(0).getSizeName().equalsIgnoreCase("Shirt")) {
                     %>
                     <div class="panel panel-default col-md-5" style="float:left">
                         <div class="panel-heading">
