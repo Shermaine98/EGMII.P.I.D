@@ -25,7 +25,6 @@ function chk() {
     return x;
 }
 
-
 function getItem() {
     x = true;
     x = chk();
