@@ -26,7 +26,7 @@
         <script>
             $(document).ready(function () {
                 var prID = '${BoMPrNumber}';
-                document.getElementById('productID').value = prID;
+                document.getElementById('ProductNumber').value = prID;
             });
         </script>
     </head>
