@@ -8,15 +8,24 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <!--Bootstrap-->
-        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link href="bootstrap/css/signin.css" rel="stylesheet">
-        <link href="bootstrap/css/style.css" rel="stylesheet"> 
-        <link href="bootstrap/css/EGMI-style-signup.css" rel="stylesheet" type="text/css">
+        <!-- Bootstrap -->
+        <link href="bootstrap/Fornax/css/bootstrap.css" rel="stylesheet">
+        <link href="bootstrap/Fornax/css/bootstrap-responsive.css" rel="stylesheet">
+        <link href="bootstrap/Fornax/css/style.css" rel="stylesheet"> 
+        <link href="bootstrap/css/EGMI-style-home.css" rel="stylesheet" type="text/css">
 
         <!--Font-->
         <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600' rel='stylesheet' type='text/css'>
 
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+          <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+        <!-- SCRIPT 
+        ============================================================-->  
+        <script src="bootstrap/js/jquery.js"></script>
+        <script src="bootstrap/js/bootstrap.js"></script>
         <title>Sign Up</title>
 
     </head>
@@ -40,7 +49,7 @@
                                     <ul class="nav">
                                         <li><a href="index.jsp">Home</a></li>
                                         <li class="active"><a href="#">Sign Up</a></li>
-                                        <li><a href="contact.html">Contact</a></li>
+                                        <li><a href="contact.jsp">Contact</a></li>
 
                                     </ul>
                                 </div>

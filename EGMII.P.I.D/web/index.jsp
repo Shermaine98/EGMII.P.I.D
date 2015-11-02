@@ -45,7 +45,7 @@
                                     <ul class="nav">
                                         <li class="active"><a href="redirect.jsp">Home</a></li>
                                         <li><a href="sign_up.jsp">Sign Up</a></li>
-                                        <li><a href="contact.html">Contact</a></li>
+                                        <li><a href="contact.jsp">Contact</a></li>
 
                                     </ul>
                                 </div>
