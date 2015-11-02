@@ -32,8 +32,8 @@
     </head>
     <body> 
         <br/>
-        <div>
-            <center><h2>Encode Bill of Materials</h2></center>
+        <div align="center">
+            <h2>Encode Bill of Materials</h2>
             <br/>
             <div align="center" class="container-fluid" style="margin-left:50px">
                 <div class="panel panel-default col-md-4">
@@ -41,15 +41,18 @@
                         <h3 class="panel-title">Bill of Materials</h3>
                     </div>
                     <div class="panel-body">
-                        <label class="" for="productID">Product ID</label>
-                        <input type="text" name="productID" class="form-control readonlyWhite" id="productID" readonly /><br/>
-                        <label class="" for="sizeName">Size Name</label>
-                        <select name="sizeName" class="form-control" id="sizeName">
+                        <label class="" for="productName">Product Name</label>
+                        <input type="text" name="productName" class="form-control" id="productName" /><br/>
+                        <label class="" for="productType">Product Type</label>
+                        <select name="productType" class="form-control" id="productType">
                             <option value="Pants">Pants</option>
                             <option value="Shirt">Shirt</option>
-                        </select>
+                        </select><br/>
+                        <label class="" for="color">Color</label>
+                        <input type="text" name="color" class="form-control" id="color" />
                     </div>
                 </div>
+                
                 <div class="panel panel-default col-lg-6 col-md-6 col-sm-6">
                     <div class="panel-heading">
                         <h3 class="panel-title">Add Item</h3>
@@ -78,8 +81,76 @@
                         </div>
                     </div>
                 </div>
+
+                
+                <!--CHOOSE FABRIC!!!!!!-->
+                <div id="Fabric">
+                    <div class="panel panel-default col-lg-6 col-md-6 col-sm-6">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Choose Fabric</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="itemNameSearch" id="itemNameSearch" onkeypress="autoComplete()" placeholder="Search Item"/>
+                                <input type="hidden" name="itemNameSearch" id ="itemNameSearch" disabled="disabled" style="color: #CCC; position: absolute; background: transparent;"/>
+                                <span class="input-group-btn"><button onClick="getItem()" class="btn btn-default" ><span class="glyphicon glyphicon-search"></span></button></span>
+                            </div>
+                            <br/><br/>
+
+                            <table id="thisTable" class="table table-bordered" style="width:65%">
+                                <colgroup>
+                                    <col style="width:25%" />
+                                    <col style="width:35%" />
+                                    <col style="width:35%" />
+                                </colgroup>
+                                <tbody id="dataTable">
+                                    <!--The fabric table-->
+                                    <tr>
+                                        <th>Size</th>
+                                        <th>Consumption</th>
+                                        <th>Unit Price</th>
+                                    </tr>
+                                    <tr>
+                                        <td>XS</td>
+                                        <td><input type="number" name="consumptionXS" class="transparentBg" style="width:70%" /></td>
+                                        <td>Unit Price here</td>
+                                    </tr>
+                                    <tr>
+                                        <td>S</td>
+                                        <td><input type="number" name="consumptionS" class="transparentBg" style="width:70%" /></td>
+                                        <td>Unit Price here</td>
+                                    </tr>
+                                    <tr>
+                                        <td>M</td>
+                                        <td><input type="number" name="consumptionM" class="transparentBg" style="width:70%" /></td>
+                                        <td>Unit Price here</td>
+                                    </tr>
+                                    <tr>
+                                        <td>L</td>
+                                        <td><input type="number" name="consumptionL" class="transparentBg" style="width:70%" /></td>
+                                        <td>Unit Price here</td>
+                                    </tr>
+                                    <tr>
+                                        <td>XL</td>
+                                        <td><input type="number" name="consumptionXL" class="transparentBg" style="width:70%" /></td>
+                                        <td>Unit Price here</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br/>
+                            <div id="buttons" style="visibility: hidden">
+                                <input type="button" class="btn btn-danger" value="Delete Row" onclick="deleteRow('dataTable')" />
+                                <br/><br/>
+                                <input type="button" class="btn btn-danger" onclick= "viewModal()" data-toggle="modal" data-target="#myModal" value="Create">
+                                <a href="dashboard.jsp"><button type="button" class="btn btn-danger">Cancel</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div> 
         </div> 
+        
+        
         <div  align="center" class="container">
             <form method="POST" action="EncodeBillOfMaterialsServlet">
                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
