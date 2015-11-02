@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ConsumptionReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c2c74373-fce2-4589-8b49-269d8f46cdb5">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="152"/>
+	<parameter name="prodNum" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT cr.productionNumber, cr.productID, cr.sizeType, cr.itemCode, cr.sizeName, cr.sizeVolumeQty, cr.preparedBy, cr.dateMade
+                FROM consumption_report cr  where cr.productionNumber = $P{prodNum}
+                Order by cr.productID;]]>
+	</queryString>
+	<field name="productionNumber" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="productID" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sizeType" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="itemCode" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sizeName" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sizeVolumeQty" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="preparedBy" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dateMade" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="360" y="5" width="195" height="74" uuid="4e2885f8-cda4-42a3-b990-f1459d44cf61"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="18" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Consumption Report]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<detail>
+		<band height="296" splitType="Stretch">
+			<textField>
+				<reportElement x="184" y="44" width="100" height="20" uuid="9d07e511-cb1c-45c8-b178-de5a8a927663"/>
+				<textFieldExpression><![CDATA[$F{productID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="184" y="12" width="86" height="20" uuid="67531ffe-fb01-46b0-a255-7eea45f84da7"/>
+				<textFieldExpression><![CDATA[$F{productionNumber}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="72" y="12" width="100" height="20" uuid="28ffe040-cd68-4103-971b-c7d1be46aa2a"/>
+				<text><![CDATA[Production Number]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="72" y="44" width="100" height="20" uuid="512b7c9e-906a-4053-942a-9030a5b530a1"/>
+				<text><![CDATA[Product ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="72" y="74" width="100" height="20" uuid="8b2f916f-f246-4bbf-a23e-c54d6f53c385"/>
+				<text><![CDATA[Size Type]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="184" y="74" width="100" height="20" uuid="00eaf4c2-9519-438a-a709-db1e040fa847"/>
+				<textFieldExpression><![CDATA[$F{sizeType}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="72" y="103" width="100" height="20" uuid="86a3070c-16f6-494d-bbe1-fbd436eb5929"/>
+				<text><![CDATA[Item Code]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="184" y="103" width="100" height="20" uuid="8d4e3830-29c7-40e0-9116-bdd26da9a486"/>
+				<textFieldExpression><![CDATA[$F{itemCode}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="72" y="138" width="100" height="20" uuid="de8971ae-59bb-4c22-ba6c-ef50dbcda616"/>
+				<text><![CDATA[Size Name]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="184" y="138" width="100" height="20" uuid="e622f5be-4197-4c38-bd71-d86fe80f1315"/>
+				<textFieldExpression><![CDATA[$F{sizeName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="72" y="171" width="100" height="20" uuid="d50bf418-c3fd-4b45-8a18-49343b8b202d"/>
+				<text><![CDATA[Volume Quantity]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="184" y="171" width="100" height="20" uuid="81f3a13b-9740-43bc-9794-c942294e1c89"/>
+				<textFieldExpression><![CDATA[$F{sizeVolumeQty}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="72" y="202" width="100" height="20" uuid="1771a06c-5299-4de7-8fee-823643fb2469"/>
+				<text><![CDATA[Prepared By]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="184" y="202" width="100" height="20" uuid="9b15b3c4-99ae-49d0-abb4-1fbbe90b00de"/>
+				<textFieldExpression><![CDATA[$F{preparedBy}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="72" y="232" width="100" height="20" uuid="426c2977-2b87-4fbf-acc6-aa3cad432363"/>
+				<text><![CDATA[Date Made]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="184" y="232" width="100" height="20" uuid="649a0edf-ff7f-40cb-829b-c73aba370d31"/>
+				<textFieldExpression><![CDATA[$F{dateMade}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+</jasperReport>

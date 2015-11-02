@@ -1,0 +1,42 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 10 8, 15, 6:13:36 PM
+    Author     : Geraldine
+*/
+
+body{
+    background-image:url(../../Images/home.jpg);
+    background-repeat:no-repeat;
+    background-size: 100%;
+    background-position: cover;
+    background-attachment:fixed;
+    color:#e6e6e6;
+}
+footer{
+    position: inherit;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height:30px;
+    color:#555555;
+    text-align: center;
+}
+/*Makes all input texts aligned*/
+label { 
+    display: inline-block; 
+    width: 210px; 
+    text-align: right; 
+}
+/*Makes input placeholder italic*/
+::-webkit-input-placeholder {
+   font-style: italic;
+   font-size: 10px;
+}
+h2{
+    padding-left: 35%;
+    color: #e1e1e8;   
+}

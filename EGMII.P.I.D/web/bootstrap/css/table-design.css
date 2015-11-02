@@ -1,0 +1,65 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 10 10, 15, 9:17:37 PM
+    Author     : Geraldine
+*/
+
+
+/*.table{
+    width:45%;
+    vertical-align: middle;
+}*/
+
+.cellWidth{
+    width:70px;
+}
+
+.center1{
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
+
+.readonlyWhite{
+    background-color: white !important;
+}
+
+.transparentBg{
+    background-color: transparent;
+    border: 0px;
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    cursor:default;
+}
+
+.search {
+    width:250px;
+    height:35px;
+    outline: none;
+    padding:5px;
+}
+
+.pantsTable {
+    width:60px;
+    vertical-align: middle;
+    padding:10px;
+}
+
+
+.panel {
+    margin-right:50px;
+}

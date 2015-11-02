@@ -1,0 +1,16 @@
+                            /*
+                             //trying
+                             var table = document.createElement('table');
+                             table.setAttribute("id", "myTable");
+                             var tr = document.createElement('tr');
+                             tr.setAttribute("id", "myTr");
+                             var td = document.createElement('td');
+                             td.setAttribute("id", "myTd");
+                             
+                             var t = document.createTextNode(String.valueOf(data[0].productionNumbers));
+                             document.body.appendChild(table);
+                             document.getElementById("myTable").appendChild(tr);
+                             td.appendChild(t);
+                             document.getElementById("myTr").appendChild(td);
+                             */
+
