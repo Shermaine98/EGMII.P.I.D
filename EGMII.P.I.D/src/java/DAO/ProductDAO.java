@@ -3,10 +3,12 @@ package DAO;
 import Database.DBConnectionFactory;
 import Model.Product;
 import Model.ProductBM;
+import Model_General.ProductAll;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -84,41 +86,48 @@ public class ProductDAO {
     }
  /**
   * Search Product for Consumption Report
+  * @param productName
   * @return
   * @throws SQLException 
   */   
 
-//    public ArrayList<Product> searchProduct(String productID) throws SQLException {
-//        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
-//        Connection conn = myFactory.getConnection();
-//
-//        String search = productID + "%";
-//
-//        PreparedStatement ps = conn.prepareStatement("SELECT *\n"
-//                + "FROM product P \n"
-//                + "JOIN product_bm PBM\n"
-//                + "ON P.itemCode = PBM.productID\n"
-//                + "WHERE productName = ?");
-//        ps.setString(1, search);
-//
-//        ArrayList<Product> ProductList = new ArrayList();
-//        ResultSet rs = ps.executeQuery();
-//        while (rs.next()) {
-//            Product newProduct = new Product();
-//            newProduct.setProductName(rs.getInt("productID"));
-//            newProduct.setItemCode(rs.getInt("itemCode"));
-//            newProduct.setSize(size);
-//            newProduct.(rs.getDouble("itemConsumption"));
-//
-//            ProductList.add(newProduct);
-//
-//        }
-//        ps.close();
-//        rs.close();
-//        conn.close();
-//        return ;
-//
-//    }
+    public ArrayList<ProductAll> searchProduct(String productName) throws SQLException {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+
+        String search = productName + "%";
+
+        PreparedStatement ps = conn.prepareStatement("SELECT *\n"
+                + "FROM product P \n"
+                + "JOIN product_bm PBM\n"
+                + "ON P.itemCode = PBM.productID\n"
+                + "WHERE productName = ?");
+        ps.setString(1, search);
+
+        ArrayList<ProductAll> ProductList = new ArrayList();
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            ProductAll newProduct = new ProductAll();
+            newProduct.setItemCode(rs.getInt("itemCode"));
+            newProduct.setProductName(rs.getString("productName"));
+            newProduct.setProductType(rs.getString("productType"));
+            newProduct.setSize(rs.getString("size"));
+            newProduct.setColor(rs.getString("color"));
+            newProduct.setInventoryType(rs.getString("inventoryType"));
+
+            ProductList.add(newProduct);
+        }
+        ps.close();
+        rs.close();
+        conn.close();
+        return ProductList ;
+
+    }
+   /**
+    * Get last ProductNumber
+    * @return
+    * @throws SQLException 
+    */
 
     public Integer getProductNumber() throws SQLException {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
