@@ -10,9 +10,9 @@
 <%          } else if (position.equalsIgnoreCase("delivery manager")) {
 
 %>          <jsp:include page ="/NavBar/nDeliveryManagerNavBar.jsp" />
-<%} else if (position.equalsIgnoreCase("generalmanager")) {
+<%} else if (position.equalsIgnoreCase("general manager")) {
 %>          <jsp:include page ="/NavBar/nGeneralManagerNavBar.jsp" />
-<%          } else if (position.equalsIgnoreCase("productio nmanager")) {
+<%          } else if (position.equalsIgnoreCase("production manager")) {
 %>          <jsp:include page ="/NavBar/nProductionManagerNavBar.jsp" />
 <%          } else if (position.equalsIgnoreCase("assistant production manager")) {
 %>          <jsp:include page ="/NavBar/nAssistantProductionManagerNavBar.jsp" />
