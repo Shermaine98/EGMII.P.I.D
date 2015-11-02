@@ -25,8 +25,8 @@
         <title>Bill of Materials</title>
         <script>
             $(document).ready(function () {
-                var prID = '${ProductNumber}';
-                document.getElementById('productID').value = prID;
+                var prID = '${BoMPrNumber}';
+                document.getElementById('ProductNumber').value = prID;
             });
         </script>
     </head>
@@ -52,7 +52,7 @@
                         <input type="text" name="color" class="form-control" id="color" />
                     </div>
                 </div>
-                
+
                 <div class="panel panel-default col-lg-6 col-md-6 col-sm-6">
                     <div class="panel-heading">
                         <h3 class="panel-title">Add Item</h3>
@@ -73,16 +73,16 @@
                             </tbody>
                         </table>
                         <br/>
-                        <div id="buttons" style="visibility: hidden">
-                            <input type="button" class="btn btn-danger" value="Delete Row" onclick="deleteRow('dataTable')" />
-                            <br/><br/>
-                            <input type="button" class="btn btn-danger" onclick= "viewModal()" data-toggle="modal" data-target="#myModal" value="Create">
-                            <a href="dashboard.jsp"><button type="button" class="btn btn-danger">Cancel</button></a>
-                        </div>
+                        <!--                        <div id="buttons" style="visibility: hidden">
+                                                    <input type="button" class="btn btn-danger" value="Delete Row" onclick="deleteRow('dataTable')" />
+                                                    <br/><br/>
+                                                    <input type="button" class="btn btn-danger" onclick= "viewModal()" data-toggle="modal" data-target="#myModal" value="Create">
+                                                    <a href="dashboard.jsp"><button type="button" class="btn btn-danger">Cancel</button></a>
+                                                </div>-->
                     </div>
                 </div>
 
-                
+
                 <!--CHOOSE FABRIC!!!!!!-->
                 <div id="Fabric">
                     <div class="panel panel-default col-lg-6 col-md-6 col-sm-6">
@@ -138,19 +138,25 @@
                                 </tbody>
                             </table>
                             <br/>
-                            <div id="buttons" style="visibility: hidden">
+<!--                            <div id="buttons" style="visibility: hidden">
                                 <input type="button" class="btn btn-danger" value="Delete Row" onclick="deleteRow('dataTable')" />
                                 <br/><br/>
                                 <input type="button" class="btn btn-danger" onclick= "viewModal()" data-toggle="modal" data-target="#myModal" value="Create">
                                 <a href="dashboard.jsp"><button type="button" class="btn btn-danger">Cancel</button></a>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                 </div>
             </div> 
         </div> 
-        
-        
+
+        <div id="buttons" style="visibility: hidden">
+            <input type="button" class="btn btn-danger" value="Delete Row" onclick="deleteRow('dataTable')" />
+            <br/><br/>
+            <input type="button" class="btn btn-danger" onclick= "viewModal()" data-toggle="modal" data-target="#myModal" value="Create">
+            <a href="dashboard.jsp"><button type="button" class="btn btn-danger">Cancel</button></a>
+        </div>
+
         <div  align="center" class="container">
             <form method="POST" action="EncodeBillOfMaterialsServlet">
                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -162,10 +168,12 @@
                             </div>
                             <div class="modal-body">
                                 <div align="center" style="width:60%">
-                                    <label class="" for="productIDModal">Product ID</label>
+                                    <label class="" for="productIDModal">Product Name</label>
                                     <input type="text" name="productIDModal" class="form-control readonlyWhite" id="productIDModal" readonly /><br/>
-                                    <label class="" for="sizeTypeModal">Size Name</label>
+                                    <label class="" for="sizeTypeModal">Product Type</label>
                                     <input type="text" class="form-control readonlyWhite" name="sizeTypeModal" id="sizeTypeModal" readonly />
+                                    <label class="" for="colorModal">Color</label>
+                                    <input type="text" class="form-control readonlyWhite" name="colorModal" id="colorModal" readonly />
                                 </div>
                                 <br/><br/>
 
