@@ -44,7 +44,7 @@ public class Login extends HttpServlet {
             user.setUserName(request.getParameter("username"));
             user.setPassword(request.getParameter("password"));
             String action = request.getParameter("action");
-            String viewAccount = request.getParameter("viewaccount");
+       //     String viewAccount = request.getParameter("viewaccount");
 
             UserDAO UserDAO = new UserDAO();
             boolean successful = UserDAO.authenticate(user);

@@ -25,7 +25,7 @@ import org.json.JSONObject;
  *
  * @author shermainesy
  */
-public class SetItemServlet extends HttpServlet {
+public class SetFabricServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,7 +43,7 @@ public class SetItemServlet extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
            
             String itemName = request.getParameter("itemName");
-            ArrayList<RefItem> RefItemList = new RefItemDAO().searchAIitemName(itemName);
+            ArrayList<RefItem> RefItemList = new RefItemDAO().searchPDItemName(itemName);
             JSONArray array = new JSONArray();
             for (int i = 0; i < RefItemList.size(); i++) {
                 JSONObject obj = new JSONObject();

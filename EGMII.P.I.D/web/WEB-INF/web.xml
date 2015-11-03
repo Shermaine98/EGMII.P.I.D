@@ -40,6 +40,26 @@
         <servlet-name>SetConsumptionNumberServlet</servlet-name>
         <servlet-class>Controller_SetFormNumber.SetConsumptionNumberServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchFabricItemServlet</servlet-name>
+        <servlet-class>Controller_Json.SearchFabricItemServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SetFabricServlet</servlet-name>
+        <servlet-class>Controller_Json.SetFabricServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchProductServlet</servlet-name>
+        <servlet-class>Controller_Json.SearchProductServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchProductsSubconServlet</servlet-name>
+        <servlet-class>Controller_Json.SearchProductsSubconServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SearchProductServlet</servlet-name>
+        <url-pattern>/SearchProductServlet</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>BaseServlet</servlet-name>
         <url-pattern>/BaseServlet</url-pattern>
@@ -79,6 +99,18 @@
     <servlet-mapping>
         <servlet-name>SetConsumptionNumberServlet</servlet-name>
         <url-pattern>/SetConsumptionNumberServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchFabricItemServlet</servlet-name>
+        <url-pattern>/SearchFabricItemServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SetFabricServlet</servlet-name>
+        <url-pattern>/SetFabricServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchProductsSubconServlet</servlet-name>
+        <url-pattern>/SearchProductsSubconServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

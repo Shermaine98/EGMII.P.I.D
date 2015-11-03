@@ -98,10 +98,10 @@ public class ProductDAO {
         String search = productName + "%";
 
         PreparedStatement ps = conn.prepareStatement("SELECT *\n"
-                + "FROM product P \n"
-                + "JOIN product_bm PBM\n"
-                + "ON P.itemCode = PBM.productID\n"
-                + "WHERE productName = ?");
+                      + "FROM product P \n"
+                      + "JOIN product_bm PBM\n"
+                      + "ON P.itemCode = PBM.productID\n"
+                      + "WHERE productName = ?");
         ps.setString(1, search);
 
         ArrayList<ProductAll> ProductList = new ArrayList();

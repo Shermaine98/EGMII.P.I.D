@@ -5,7 +5,6 @@
 --%>
 
 <%@page import="Model_General.ProductAll"%>
-<%@page import="Model.BillOfMaterials"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Model.ConsumptionReport"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -59,7 +58,7 @@
                        
                     </div>
                     <%
-                        if (ProductAllList.get(0).getSizeName().equalsIgnoreCase("Shirt")) {
+                        if (ProductAllList.get(0).getProductType().equalsIgnoreCase("Shirt")) {
                     %>
                     <div class="panel panel-default col-md-5" style="float:left">
                         <div class="panel-heading">
@@ -99,7 +98,7 @@
                             <h3 class="panel-title">Size Pants</h3>
                         </div>
                         <div class="panel-body">
-                            <input type="hidden" name="sizeName"  value="<%=billOfMaterialspID.get(0).getSizeName()%>" />
+                            <input type="hidden" name="sizeName"  value="<%=ProductAllList.get(0).getProductType()%>" />
                             <table class="table table-bordered">
                                 <tr>
                                     <th><input name="sizeType" class="transparentBg readonlyWhite" value="29" readonly/></th>
@@ -161,11 +160,11 @@
                                 </thead>
                                 <tbody >
                                     <%
-                                        for (int i = 0; i < billOfMaterialspID.size(); i++) {
+                                        for (int i = 0; i < ProductAllList.size(); i++) {
                                     %>
                                     <tr>
-                                        <td><input type="text" class="transparentBg readonlyWhite" name="itemCode"  value = "<%=billOfMaterialspID.get(i).getItemCode()%>"  readonly/></td>
-                                        <td><input name="itemConsumption" class="transparentBg readonlyWhite" id="itemConsumption[]"   value="<%=billOfMaterialspID.get(i).getItemConsumption()%>" readonly/></td>               
+                                        <td><input type="text" class="transparentBg readonlyWhite" name="itemCode"  value = "<%=ProductAllList.get(i).getItemCode()%>"  readonly/></td>
+                                        <td><input name="itemConsumption" class="transparentBg readonlyWhite" id="itemConsumption[]"   readonly/></td>               
                                         <td><input name="totalConsumption" class="transparentBg readonlyWhite" id="totalConsumption[]" value="0"  readonly/></td>
                                     </tr> 
                                     <%

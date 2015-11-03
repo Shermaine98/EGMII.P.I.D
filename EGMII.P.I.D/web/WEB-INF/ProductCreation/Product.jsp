@@ -4,6 +4,8 @@
     Author     : Geraldine
 --%>
 
+<%@page import="Model.RefColor"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="/LevelOfAccess/LevelOFAccess.jsp"%>
 <!DOCTYPE html>
@@ -25,8 +27,8 @@
         <title>Bill of Materials</title>
         <script>
             $(document).ready(function () {
-                var prID = '${BoMPrNumber}';
-                document.getElementById('ProductNumber').value = prID;
+                var prID = '${ProductNumber}';
+                document.getElementById('productName').value = prID;
             });
         </script>
     </head>
@@ -44,24 +46,28 @@
                         <label class="" for="productName">Product Name</label>
                         <input type="text" name="productName" class="form-control" id="productName" /><br/>
                         <label class="" for="productType">Product Type</label>
-                        <select name="productType" class="form-control" id="productType">
+                        <select name="productType" id="productType" class="form-control" id="productType">
                             <option value="Pants">Pants</option>
                             <option value="Shirt">Shirt</option>
                         </select><br/>
+                        <%ArrayList<RefColor> refColor = (ArrayList<RefColor>) request.getAttribute("ColorList");%>
                         <label class="" for="color">Color</label>
-                        <input type="text" name="color" class="form-control" id="color" />
+                        <select name="color" class="form-control" id="productType">
+                            <%for (int i = 0; i < refColor.size(); i++) {%>
+                            <option value="<%=refColor.get(i).getColor() %>"><%=refColor.get(i).getColor()%></option>
+                            <%}%>
+                        </select><br/>
                     </div>
                 </div>
 
                 <div class="panel panel-default col-lg-6 col-md-6 col-sm-6">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Add Item</h3>
+                        <h3 class="panel-title">Add Accessories Item</h3>
                     </div>
                     <div class="panel-body">
                         <div class="input-group">
                             <input type="text" class="form-control" name="itemNameSearch" id="itemNameSearch" onkeypress="autoComplete()" placeholder="Search Item"/>
-                            <input type="hidden" name="itemNameSearch" id ="itemNameSearch" disabled="disabled" style="color: #CCC; position: absolute; background: transparent;"/>
-                            <span class="input-group-btn"><button onClick="getItem()" class="btn btn-default" ><span class="glyphicon glyphicon-search"></span></button></span>
+                            <span class="input-group-btn"> <button onClick="getItem()" class="btn btn-default" ><span class="glyphicon glyphicon-search"></span></button></span>
                         </div>
                         <br/><br/>
 
@@ -91,21 +97,20 @@
                 </div>
                 <div class="panel-body">
                     <div class="input-group">
-                        <input type="text" class="form-control" name="itemNameSearch" id="itemNameSearch" onkeypress="autoComplete()" placeholder="Search Item"/>
-                        <input type="hidden" name="itemNameSearch" id ="itemNameSearch" disabled="disabled" style="color: #CCC; position: absolute; background: transparent;"/>
-                        <span class="input-group-btn"><button onClick="getItem()" class="btn btn-default" ><span class="glyphicon glyphicon-search"></span></button></span>
+                        <input type="text" class="form-control" name="fabricNameSearch" id="fabricNameSearch" onkeypress="autoCompleteFabric()" placeholder="Search Fabric"/>
+                        <span class="input-group-btn"><button onClick="getFabricItem()" class="btn btn-default" ><span class="glyphicon glyphicon-search"></span></button></span>
                     </div>
                     <br/><br/>
 
-                    <table id="thisTable" class="table table-bordered" style="width:65%">
+                    <table id="thisTableFabric" class="table table-bordered" style="width:65%">
                         <colgroup>
                             <col style="width:25%" />
                             <col style="width:35%" />
                             <col style="width:35%" />
                         </colgroup>
-                        <tbody id="dataTable">
+                        <tbody id="dataTableFabric">
                             <!--The fabric table-->
-                            <tr>
+<!--                            <tr>
                                 <th>Size</th>
                                 <th>Consumption</th>
                                 <th>Unit Price</th>
@@ -134,12 +139,13 @@
                                 <td>XL</td>
                                 <td><input type="number" name="consumptionXL" class="transparentBg" style="width:70%" /></td>
                                 <td>Unit Price here</td>
-                            </tr>
+
+                            </tr>-->
                         </tbody>
                     </table>
                     <br/>
                     <!--Should be a different js-->
-                    <div id="buttons" style="visibility: hidden">
+                    <div id="buttonsFabric" style="visibility: hidden">
                         <input type="button" class="btn btn-danger" value="Delete Row" onclick="deleteRow('dataTable')" />
                         <br/><br/>
                     </div>
