@@ -54,7 +54,7 @@
                         <label class="" for="color">Color</label>
                         <select name="color" class="form-control" id="productType">
                             <%for (int i = 0; i < refColor.size(); i++) {%>
-                            <option value="<%=refColor.get(i).getColor() %>"><%=refColor.get(i).getColor()%></option>
+                            <option value="<%=refColor.get(i).getColor()%>"><%=refColor.get(i).getColor()%></option>
                             <%}%>
                         </select><br/>
                     </div>
@@ -91,7 +91,7 @@
 
         <!--CHOOSE FABRIC!!!!!!-->
         <div id="Fabric" class="container">
-            <div class="panel panel-default col-lg-6 col-md-6 col-sm-6 pull-right" style="margin-right: 72px;">
+            <div class="panel panel-default col-lg-7 col-md-7 col-sm-7 pull-right" style="margin-right: 72px;">
                 <div class="panel-heading">
                     <h3 class="panel-title">Choose Fabric</h3>
                 </div>
@@ -102,47 +102,13 @@
                     </div>
                     <br/><br/>
 
-                    <table id="thisTableFabric" class="table table-bordered" style="width:65%">
-                        <colgroup>
-                            <col style="width:25%" />
-                            <col style="width:35%" />
-                            <col style="width:35%" />
-                        </colgroup>
-                        <tbody id="dataTableFabric">
-                            <!--The fabric table-->
-<!--                            <tr>
-                                <th>Size</th>
-                                <th>Consumption</th>
-                                <th>Unit Price</th>
-                            </tr>
-                            <tr>
-                                <td>XS</td>
-                                <td><input type="number" name="consumptionXS" class="transparentBg" style="width:70%" /></td>
-                                <td>Unit Price here</td>
-                            </tr>
-                            <tr>
-                                <td>S</td>
-                                <td><input type="number" name="consumptionS" class="transparentBg" style="width:70%" /></td>
-                                <td>Unit Price here</td>
-                            </tr>
-                            <tr>
-                                <td>M</td>
-                                <td><input type="number" name="consumptionM" class="transparentBg" style="width:70%" /></td>
-                                <td>Unit Price here</td>
-                            </tr>
-                            <tr>
-                                <td>L</td>
-                                <td><input type="number" name="consumptionL" class="transparentBg" style="width:70%" /></td>
-                                <td>Unit Price here</td>
-                            </tr>
-                            <tr>
-                                <td>XL</td>
-                                <td><input type="number" name="consumptionXL" class="transparentBg" style="width:70%" /></td>
-                                <td>Unit Price here</td>
+                    <div class="table-responsive">
+                        <table id="thisTableFabric" class="table table-bordered">
+                            <tbody id="dataTableFabric">
 
-                            </tr>-->
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                     <br/>
                     <!--Should be a different js-->
                     <div id="buttonsFabric" style="visibility: hidden">

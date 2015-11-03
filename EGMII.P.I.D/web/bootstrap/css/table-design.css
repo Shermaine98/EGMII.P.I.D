@@ -61,5 +61,15 @@ input[type=number]::-webkit-outer-spin-button {
 
 
 .panel {
+    margin-top: 10px;
+    margin-bottom: 10px;
     margin-right:50px;
+}
+
+.inputSize{
+    width: 80px;
+}
+
+input[type=checkbox]{
+    width:20px;
 }
