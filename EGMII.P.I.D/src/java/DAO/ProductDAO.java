@@ -84,27 +84,25 @@ public class ProductDAO {
         }
         return false;
     }
- /**
-  * Search Product for Consumption Report
-  * @param productName
-  * @return
-  * @throws SQLException 
-  */   
 
+    /**
+     * Search Product for Consumption Report
+     *
+     * @param productName
+     * @return
+     * @throws SQLException
+     */
     public ArrayList<ProductAll> searchProduct(String productName) throws SQLException {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
-
-        String search = productName + "%";
-
-        PreparedStatement ps = conn.prepareStatement("SELECT *\n"
-                      + "FROM product P \n"
-                      + "JOIN product_bm PBM\n"
-                      + "ON P.itemCode = PBM.productID\n"
-                      + "WHERE productName = ?");
-        ps.setString(1, search);
-
         ArrayList<ProductAll> ProductList = new ArrayList();
+        String search = productName + "%";
+        PreparedStatement ps = conn.prepareStatement("SELECT * \n"
+                + "FROM product P \n"
+                + "JOIN product_bm PBM\n"
+                + "ON P.itemCode = PBM.productID\n"
+                + "WHERE productName LIKE ? ");
+        ps.setString(1, search);
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
             ProductAll newProduct = new ProductAll();
@@ -114,21 +112,97 @@ public class ProductDAO {
             newProduct.setSize(rs.getString("size"));
             newProduct.setColor(rs.getString("color"));
             newProduct.setInventoryType(rs.getString("inventoryType"));
+            newProduct.setProductID(rs.getInt("productID"));
+            newProduct.setQty(rs.getInt("qty"));
+            ProductList.add(newProduct);
+        }
+        rs.close();
+        return ProductList;
+
+    }
+
+    /**
+     * Get Item Production for Consumption Report
+     *
+     * @param search productName
+     * @return
+     * @throws SQLException
+     */
+    public ArrayList<ProductAll> GetProductionInventory(String productName) throws SQLException {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        ArrayList<ProductAll> ProductList = new ArrayList();
+        PreparedStatement ps = conn.prepareStatement("SELECT P.itemCode, P.productName, P.productType, P.color, P.size, I.itemName, BM.qty, I.unitMeasurement\n"
+                + "FROM product P\n"
+                + "JOIN product_bm BM\n"
+                + "ON P.itemCode = BM.productID\n"
+                + "JOIN ref_item I \n"
+                + "ON BM.itemCode = I.itemCode\n"
+                + "WHERE P.productName = ? AND I.inventoryType = 'production'\n"
+                + "GROUP BY P.size,I.itemName ORDER BY P.itemCode ;");
+        ps.setString(1, productName);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            ProductAll newProduct = new ProductAll();
+            newProduct.setItemCode(rs.getInt("itemCode"));
+            newProduct.setProductName(rs.getString("productName"));
+            newProduct.setProductType(rs.getString("productType"));
+            newProduct.setSize(rs.getString("size"));
+            newProduct.setColor(rs.getString("color"));
+            newProduct.setItemName(rs.getString("itemName"));
+            newProduct.setQty(rs.getDouble("qty"));
+            newProduct.setUnitMeasurement(rs.getString("unitMeasurement"));
+            ProductList.add(newProduct);
+        }
+        rs.close();
+        return ProductList;
+
+    }
+
+    /**
+     * Get Item Accessories for Consumption Report
+     *
+     * @param search productName
+     * @return
+     * @throws SQLException
+     */
+    public ArrayList<ProductAll> GetAccessoriesInventory(String productName) throws SQLException {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        ArrayList<ProductAll> ProductList = new ArrayList();
+        PreparedStatement ps = conn.prepareStatement("SELECT P.itemCode, P.productName, P.productType, P.color, P.size, I.itemName, BM.qty, I.unitMeasurement\n"
+                + "FROM product P\n"
+                + "JOIN product_bm BM\n"
+                + "ON P.itemCode = BM.productID\n"
+                + "JOIN ref_item I \n"
+                + "ON BM.itemCode = I.itemCode\n"
+                + "WHERE P.productName = ? AND I.inventoryType = 'accessories' GROUP BY I.itemName ORDER BY P.itemCode ;");
+        ps.setString(1, productName);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            ProductAll newProduct = new ProductAll();
+            newProduct.setItemCode(rs.getInt("itemCode"));
+            newProduct.setProductName(rs.getString("productName"));
+            newProduct.setProductType(rs.getString("productType"));
+            newProduct.setSize(rs.getString("size"));
+            newProduct.setColor(rs.getString("color"));
+            newProduct.setItemName(rs.getString("itemName"));
+            newProduct.setQty(rs.getDouble("qty"));
+            newProduct.setUnitMeasurement(rs.getString("unitMeasurement"));
 
             ProductList.add(newProduct);
         }
-        ps.close();
         rs.close();
-        conn.close();
-        return ProductList ;
+        return ProductList;
 
     }
-   /**
-    * Get last ProductNumber
-    * @return
-    * @throws SQLException 
-    */
 
+    /**
+     * Get last ProductNumber
+     *
+     * @return
+     * @throws SQLException
+     */
     public Integer getProductNumber() throws SQLException {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Integer i;

@@ -1,38 +1,42 @@
 <%-- 
-    Document   : EncodeConsumptionReport
-    Created on : 08 20, 15, 6:43:37 PM
+    Document   : ConsumptionReport
+    Created on : 11 4, 15, 9:49:49 AM
     Author     : Geraldine
 --%>
 
 <%@page import="Model_General.ProductAll"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="Model.ConsumptionReport"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="/LevelOfAccess/LevelOFAccess.jsp"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="bootstrap/css/table-design.css">
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="bootstrap/css/sub-menu.css">
+        <link href="bootstrap/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript" src="js/jquery.autocomplete.js"></script>
         <title>Encode Consumption Report</title>
     </head>
-    <body>  
+    <body>
         <div align="center">
             <h2>Encode Consumption Report</h2>
             <form method="POST" action="SearchProductServlet">
                 <div class="input-group col-md-3">
                     <input type="text" name="productName1" class="form-control" id="productName1" onkeypress="autoComplete();" placeholder="Search Item"/>
                     <input type="hidden" name="productName1" id="productName1" disabled="disabled" style="color: #CCC; position: absolute; background: transparent;"/>
-                    <span class="input-group-btn"><button onClick="getItem()" class="btn btn-default" ><span class="glyphicon glyphicon-search"></span></button></span>
+                    <span class="input-group-btn"><button class="btn btn-default" ><span class="glyphicon glyphicon-search"></span></button></span>
                 </div>
                 <br/><br/>
             </form>
         </div>
-        <%        ArrayList<ProductAll> ProductAllList = (ArrayList<ProductAll>) request.getAttribute("ProductList");
-            if (!ProductAllList.isEmpty()) {
+        <%             Integer productionNumber = (Integer) request.getAttribute("CRPRNumber");
+            ArrayList<ProductAll> productAll = (ArrayList<ProductAll>) request.getAttribute("ProductList");
+            if (!productAll.isEmpty()) {
         %>
+        <!--IF STATEMENT HERE-->
 
         <div align="center" class="container">
             <form method="POST" action="EncodeConsumptionReportServlet">
@@ -43,29 +47,34 @@
                         </div>
                         <div class="panel-body">
                             <label class="" for="productionNumber">Production Number</label>
-                            <input type="text" name="productionNumber" id="productionNumber" class="form-control readonlyWhite"  readonly /><br/>
-                            <label class="" for="preparedBy">Prepared By</label>
-                            <input type="hidden" name="preparedBy" id="preparedBy" value="<%=user.getEmployeeNumber()%> " />
-                            <input type="text" class="form-control readonlyWhite" value="<%=user.getFirstName()%> <%=user.getLastName()%> " readonly /><br/>
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Bill of Materials</h3>
+                            <input type="text" name="productionNumber" id="productionNumber" class="form-control readonlyWhite" readonly value=<%=productionNumber%>  /><br/>
+                            <label class="" for="productName">Product Name</label>
+                            <input type="hidden" name="productName" id="productName" value="" />
+                            <input type="text" class="form-control readonlyWhite" value="<%=productAll.get(0).getProductName()%>" readonly /><br/>
+                            <label for="productType">Product Type</label>
+                            <input type="text" name="productType"  class="form-control readonlyWhite" readonly id="productType" value="<%=productAll.get(0).getProductType()%>" /><br/>
+                            <label for="color">Color</label>
+                            <input type="text" name="color" class="form-control readonlyWhite" value="<%=productAll.get(0).getColor()%>" readonly /><br/>
+                            <label for="dateMade">Date Made</label>
+                            <input type="date" class="form-control readonlyWhite" value="" /><br/>
                         </div>
-                        <div class="panel-body">
-                            <label class="" for="productID">Product ID</label>
-                            <input name="productID" class="form-control transparentBg readonlyWhite" readonly value="<%=ProductAllList.get(0).getProductID()%>"/>
-                        </div>
-                        </div>
-                       
+
                     </div>
                     <%
-                        if (ProductAllList.get(0).getProductType().equalsIgnoreCase("Shirt")) {
+                        if (productAll.get(0).getProductName().equalsIgnoreCase("Shirt")) {
                     %>
+                    <!--IF STATEMENT AGAIN HERE-->
+
                     <div class="panel panel-default col-md-5" style="float:left">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Size Shirts</h3>
+                            <h3 class="panel-title">Sizes</h3>
                         </div>
                         <div class="panel-body">
                             <table class="table table-bordered">
+                                <tr>
+                                    <th><input name="sizeType" class="transparentBg readonlyWhite" value="XS" readonly/></th>
+                                    <td><input type="number" class="transparentBg" name="volumeQty" id="sizeXS" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalShirt();" value="0" /></td>
+                                </tr>
                                 <tr>
                                     <th><input name="sizeType" class="transparentBg readonlyWhite" value="S" readonly/></th>
                                     <td><input type="number" class="transparentBg" name="volumeQty" id="sizeS" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalShirt();" value="0" /></td>
@@ -89,16 +98,16 @@
                             </table>
                         </div>
                     </div>
-
                     <%
                     } else {
                     %>
+                    <!--ELSE HERE-->
                     <div class="panel panel-default col-md-5">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Size Pants</h3>
+                            <h3 class="panel-title">Sizes</h3>
                         </div>
                         <div class="panel-body">
-                            <input type="hidden" name="sizeName"  value="<%=ProductAllList.get(0).getProductType()%>" />
+                            <input type="hidden" name="sizeName"  value="" />
                             <table class="table table-bordered">
                                 <tr>
                                     <th><input name="sizeType" class="transparentBg readonlyWhite" value="29" readonly/></th>
@@ -140,52 +149,100 @@
                         </div>
                     </div>
                 </div>
-                <%
-                    }
-                %>
+                <%}%>
+                <!--CLOSE BRACKET HERE-->
 
-                <div class="container" align="center" style="margin-top:35px;">
-                    <div class="panel panel-default col-md-6" style="padding:10px; padding-top:10px;">
-                       <div class="panel-heading">
-                            <h3 class="panel-title">Bill of Materials Details</h3>
+                <!--ACCESSORIES-->
+                <div class="container">
+                    <div class="panel panel-default col-md-7 table-responsive pull-right" style="margin-right: 72px;">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Accessories</h3>
                         </div>
                         <div class="panel-body">
                             <table id="dataTable3" class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>Item Name</th>
-                                        <th>Consumption Per Unit</th>
+                                        <th>Consumption</th>
                                         <th>Total Consumption</th>
+                                        <th>Unit Measurement</th>
                                     </tr>
                                 </thead>
                                 <tbody >
                                     <%
-                                        for (int i = 0; i < ProductAllList.size(); i++) {
+                                        ArrayList<ProductAll> productAllAcce = (ArrayList<ProductAll>) request.getAttribute("AccessoriesInventory");
+                                        for (int i = 0; i < productAllAcce.size(); i++) {
                                     %>
+                                    <!--FOR LOOP-->
                                     <tr>
-                                        <td><input type="text" class="transparentBg readonlyWhite" name="itemCode"  value = "<%=ProductAllList.get(i).getItemCode()%>"  readonly/></td>
-                                        <td><input name="itemConsumption" class="transparentBg readonlyWhite" id="itemConsumption[]"   readonly/></td>               
-                                        <td><input name="totalConsumption" class="transparentBg readonlyWhite" id="totalConsumption[]" value="0"  readonly/></td>
+                                        <td><input type="text" class="transparentBg readonlyWhite inputSize" name="itemCode"  value = "<%= productAllAcce.get(i).getItemName()%>"  readonly/>
+                                            <input type="hidden" class="transparentBg readonlyWhite inputSize" name="itemCode"  value = "<%= productAllAcce.get(i).getItemCode()%>"  readonly/></td>
+                                        <td><input name="itemConsumption" class="transparentBg readonlyWhite inputSize" id="itemConsumption[]" value="<%= productAllAcce.get(i).getQty()%>"   readonly/></td> 
+                                        <td><input name="totalConsumption" class="transparentBg readonlyWhite inputSize" id="totalConsumption[]" value="0"  readonly/></td>
+                                        <td><input name="unitMeasurement" class="transparentBg readonlyWhite inputSize" id="unitMeasurement" value="<%= productAllAcce.get(i).getUnitMeasurement()%>"  readonly /></td>
+
                                     </tr> 
                                     <%
                                         }
                                     %>
+                                    <!--close bracket here-->
                                 </tbody>
                             </table>
 
                         </div>
                     </div>
                 </div>  
-             <input type="submit" class="btn btn-danger" value="Submit"/>
-            <a href="\..\..\Accounts\Homepage.jsp"><button type="button" class="btn btn-danger" >Cancel</button></a>
+
+
+                <div id="Fabric" class="container">
+                    <div class="panel panel-default col-lg-7 col-md-7 col-sm-7 pull-right" style="margin-right: 72px;">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Choose Fabric</h3>
+                        </div>
+                        <div class="panel-body">
+
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <tr> 
+                                        <th>Fabric Name</th>     
+                                        <th>Size</th> 
+                                        <th>Consumption</th>
+                                        <th>Unit Measurement</th>
+                                    </tr>
+                                    <%
+                                        ArrayList<ProductAll> productAllproduc = (ArrayList<ProductAll>) request.getAttribute("ProductionInventory");
+                                        for (int i = 0; i < productAllproduc.size(); i++) {
+                                    %>   
+                                    <tr> 
+                                        <td><input type="text" value="<%=productAllproduc.get(i).getItemName()%>" class="transparentBg" readonly/> 
+                                        <td><input type="text" value="<%=productAllproduc.get(i).getSize()%>" class="transparentBg inputSize" readonly/> 
+                                        <td><input type="text" value="<%=productAllproduc.get(i).getQty()%>" class="transparentBg inputSize" readonly/> 
+                                        <td><input type="text" value="<%=productAllproduc.get(i).getUnitMeasurement()%>" class="transparentBg" readonly/> 
+                                    </tr> 
+                                    <%
+                                        }
+                                    %>
+                                </table>
+                            </div>
+                            <br/>
+                            <!--Should be a different js-->
+                            <div id="buttonsFabric" style="visibility: hidden">
+                                <input type="button" class="btn btn-danger" value="Delete Row" onclick="deleteRow('dataTable')" />
+                                <br/><br/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <input type="submit" class="btn btn-danger" value="Create"/>
+                <a href="\..\..\Accounts\Homepage.jsp"><button type="button" class="btn btn-danger" >Cancel</button></a>
             </form>
             <br/><br/>
-           
+
         </div>
+        <!--close bracket here-->
         <%
             }
-        %>      
-
+        %>
         <script>
 
             function autoComplete() {
@@ -239,11 +296,8 @@
             $('form').on('blur', 'input[type=number]', function (e) {
                 $(this).off('mousewheel.disableScroll');
             });
-            
-            $(document).ready(function () {
-                var pdID = '${CRPRNumber}';
-                document.getElementById('productionNumber').value = pdID;
-            });
+
+
         </script>              
     </body>
 </html>

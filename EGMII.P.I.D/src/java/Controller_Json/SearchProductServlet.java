@@ -24,10 +24,11 @@ public class SearchProductServlet extends BaseServlet {
 
     @Override
     public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        ArrayList<ProductAll> productALLAccessories = new ArrayList<ProductAll>();
+         ArrayList<ProductAll> productALLProduction = new ArrayList<ProductAll>();
         String productName = request.getParameter("query");
         String productName1 = request.getParameter("productName1");
-
+        ProductDAO productDAO = new ProductDAO();
         ArrayList<ProductAll> ProductList = new ArrayList<ProductAll>();
         if (productName == null) {
             ServletContext context = getServletContext();
@@ -44,8 +45,16 @@ public class SearchProductServlet extends BaseServlet {
             } catch (SQLException ex) {
                 Logger.getLogger(SearchProductServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-
+            
+            try {
+              productALLAccessories =  productDAO.GetAccessoriesInventory(productName1);
+              productALLProduction =  productDAO.GetProductionInventory(productName1);
+            } catch (SQLException ex) {
+                Logger.getLogger(SearchProductServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
             request.setAttribute("CRPRNumber", numberCR);
+            request.setAttribute("AccessoriesInventory", productALLAccessories);
+            request.setAttribute("ProductionInventory", productALLProduction);
             request.setAttribute("ProductList", ProductList);
             RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/ProductCreation/ConsumptionReport.jsp");
             rd.forward(request, response);
@@ -57,10 +66,10 @@ public class SearchProductServlet extends BaseServlet {
             } catch (SQLException ex) {
                 Logger.getLogger(SearchProductServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            ArrayList<String> productID = new ArrayList<String>();
+            ArrayList<String> productNameFilter = new ArrayList<String>();
             for (int i = 0; i < ProductList.size(); i++) {
-                if (!productID.contains(String.valueOf(ProductList.get(i).getProductID()))) {
-                    productID.add(String.valueOf(ProductList.get(i).getProductID()));
+                if (!productNameFilter.contains(ProductList.get(i).getProductName())) {
+                    productNameFilter.add(ProductList.get(i).getProductName());
                 }
             }
             //Create Production Number
@@ -72,10 +81,18 @@ public class SearchProductServlet extends BaseServlet {
             } catch (SQLException ex) {
                 Logger.getLogger(SearchProductServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
+             try {
+              productALLAccessories =  productDAO.GetAccessoriesInventory(productName);
+              productALLProduction =  productDAO.GetProductionInventory(productName);
+            } catch (SQLException ex) {
+                Logger.getLogger(SearchProductServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
             Gson gson = new Gson();
             request.setAttribute("CRPRNumber", numberCR);
+            request.setAttribute("AccessoriesInventory", productALLAccessories);
+            request.setAttribute("ProductionInventory", productALLProduction);
             request.setAttribute("ProductList", ProductList);
-            String json = gson.toJson(productID);
+            String json = gson.toJson(productNameFilter);
             response.getWriter().write("{\"suggestions\":" + json + "}");
         }
 

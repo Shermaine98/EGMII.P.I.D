@@ -70,8 +70,7 @@ public class RefItemDAO {
                 newRefItem.setItemName(rs.getString("itemName"));
                 newRefItem.setInventoryType(rs.getString("inventoryType"));
                 newRefItem.setUnitMeasurement(rs.getString("unitMeasurement"));
-                
-
+               
                 RefItem.add(newRefItem);
             }
 

@@ -8,6 +8,8 @@ package DAO;
 
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.ArrayList;
+import Model_General.ProductAll;
 
 /**
  *
@@ -15,8 +17,10 @@ import java.text.ParseException;
  */
 public class main {
     public static void main (String args[]) throws SQLException, ParseException{
-    
-     
+    ProductDAO  ProductDAO = new ProductDAO();
+    ArrayList<ProductAll> productAll = new ArrayList<ProductAll>();
+    productAll = ProductDAO.searchProduct("STYLE - 1001");
+     System.out.println(productAll.get(0).getColor() );
     }
     
 }

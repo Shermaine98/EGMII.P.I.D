@@ -11,6 +11,7 @@ package Model_General;
  */
 public class ProductAll {
     private int itemCode;
+    private String itemName;
     private String productName;
     private String productType;
     private String size;
@@ -18,6 +19,7 @@ public class ProductAll {
     private String inventoryType;
     private int productID;
     private double qty;
+    private String unitMeasurement;
 
     /**
      * @return the itemCode
@@ -129,5 +131,33 @@ public class ProductAll {
      */
     public void setQty(double qty) {
         this.qty = qty;
+    }
+
+    /**
+     * @return the itemName
+     */
+    public String getItemName() {
+        return itemName;
+    }
+
+    /**
+     * @param itemName the itemName to set
+     */
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+
+    /**
+     * @return the unitMeasurement
+     */
+    public String getUnitMeasurement() {
+        return unitMeasurement;
+    }
+
+    /**
+     * @param unitMeasurement the unitMeasurement to set
+     */
+    public void setUnitMeasurement(String unitMeasurement) {
+        this.unitMeasurement = unitMeasurement;
     }
 }
