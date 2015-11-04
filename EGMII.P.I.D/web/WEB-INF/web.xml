@@ -56,6 +56,10 @@
         <servlet-name>SearchProductsSubconServlet</servlet-name>
         <servlet-class>Controller_Json.SearchProductsSubconServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EncodeProductServlet</servlet-name>
+        <servlet-class>Controller_Encode.EncodeProductServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SearchProductServlet</servlet-name>
         <url-pattern>/SearchProductServlet</url-pattern>
@@ -111,6 +115,10 @@
     <servlet-mapping>
         <servlet-name>SearchProductsSubconServlet</servlet-name>
         <url-pattern>/SearchProductsSubconServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EncodeProductServlet</servlet-name>
+        <url-pattern>/EncodeProductServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -111,7 +111,6 @@ function getFabricItem() {
     y = chkFabric();
     var itemName = document.getElementById('fabricNameSearch').value;
     var productType = document.getElementById('productType').value;
-    $("#productType").prop("disabled", true);
     if (y == true) {
         $.ajax({
             url: "SetFabricServlet",
@@ -131,83 +130,83 @@ function getFabricItem() {
                                                  </tr>');
                     z++;
                 }
-                if (productType == "Shirt") {
+                if (productType === "shirt") {
                     $('#dataTableFabric').append('<tr> \n\
                                              <td rowspan="6"><input type="checkbox" name="chk" /></td>\n\
                                              <td rowspan="6"><input type="hidden" name = "fabricCode" id="fabricCode[]" value="' + data[0].itemCode + '"/> \n\
-                                             <input type="text" class="transparentBg" readonly id="fabricName[]" name = "fabricName" value="' + data[0].itemName + '"/></td> \n\\n\
+                                             <input type="text" class="transparentBg" readonly id="fabricName[]" name = "itemName" value="' + data[0].itemName + '"/></td> \n\\n\
                                              </tr> \n\
                                              <tr>\n\
-                                                <td><input class="transparentBg inputSize" value="XS" type="text"  name="" readonly /></td>\n\\n\
-                                                 <td><input class="transparentBg inputSize" value="0" type="number" min="1" id="itemConsumption[]" name="itemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
-                                            <td rowspan="5"><input class="transparentBg inputSize" name="unitMeasurement" id="unitMeasurement[]" value="' + data[0].unitMeasurement + '" /> </td>\n\
-</tr>\n\\n\
-                                             <tr>\n\
-                                                <td><input class="transparentBg inputSize" value="S" type="text"  name="" readonly  /></td>\n\\n\
-                                                 <td><input class="transparentBg inputSize" value="0" type="number" min="1" id="itemConsumption[]" name="itemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
+                                                <td><input class="transparentBg inputSize" value="XS" type="text"  name="size" readonly /></td>\n\\n\
+                                                <td><input class="transparentBg inputSize" value="0" type="number"  id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
+                                            <td rowspan="5"><input class="transparentBg inputSize" name="unitMeasurementfabric" id="unitMeasurement[]" value="' + data[0].unitMeasurement + '" /> </td>\n\
                                             </tr>\n\\n\
                                              <tr>\n\
-                                                <td><input class="transparentBg inputSize" value="M" type="text"  name="" readonly  /></td>\n\\n\
-                                                 <td><input class="transparentBg inputSize" value="0" type="number" min="1" id="itemConsumption[]" name="itemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
+                                                <td><input class="transparentBg inputSize" value="S" type="text"  name="size" readonly  /></td>\n\\n\
+                                                 <td><input class="transparentBg inputSize" value="0" type="number"  id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
                                             </tr>\n\\n\
                                              <tr>\n\
-                                                <td><input class="transparentBg inputSize" value="L" type="text"  name="" readonly  /></td>\n\\n\
-                                                 <td><input class="transparentBg inputSize" value="0" type="number" min="1" id="itemConsumption[]" name="itemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
+                                                <td><input class="transparentBg inputSize" value="M" type="text"  name="size" readonly  /></td>\n\\n\
+                                                 <td><input class="transparentBg inputSize" value="0" type="number" id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
+                                            </tr>\n\\n\
+                                             <tr>\n\
+                                                <td><input class="transparentBg inputSize" value="L" type="text"  name="size" readonly  /></td>\n\\n\
+                                                 <td><input class="transparentBg inputSize" value="0" type="number" id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
                                             </tr>\n\\n\
                                             <tr>\n\
-                                                <td><input class="transparentBg inputSize" value="XL" type="text"  name="" readonly  /></td>\n\\n\
-                                                 <td><input class="transparentBg inputSize" value="0" type="number" min="1" id="itemConsumption[]" name="itemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
+                                                <td><input class="transparentBg inputSize" value="XL" type="text"  name="size" readonly  /></td>\n\\n\
+                                                 <td><input class="transparentBg inputSize" value="0" type="number"  id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
                                                   '
                             + '</tr>');
                     document.getElementById("buttonsFabric").style.visibility = 'visible';
                 }
-                else if (productType == "Pants") {
+                else if (productType === "pants") {
                     $('#dataTableFabric').append('\
-<tr> \n\
+                                            <tr> \n\
                                              <td rowspan="11"><input type="checkbox" name="chk" /></td>\n\
                                              <td rowspan="11"><input type="hidden" name = "fabricCode" id="fabricCode[]" value="' + data[0].itemCode + '"/> \n\
                                              <input type="text" class="transparentBg" readonly id="fabricName[]" name = "fabricName" value="' + data[0].itemName + '"/></td> \n\\n\
                                              </tr> \n\
                                              <tr>\n\
-                                                <td><input class="transparentBg inputSize" value="28" type="text"  name="" readonly /></td>\n\\n\
-                                                 <td><input class="transparentBg inputSize" value="0" type="number" min="1" id="itemConsumption[]" name="itemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
-                                            <td rowspan="10"><input class="transparentBg inputSize" name="unitMeasurement" id="unitMeasurement[]" value="' + data[0].unitMeasurement + '" readonly /> </td>\n\
-</tr>\n\\n\
-                                             <tr>\n\
-                                                <td><input class="transparentBg inputSize" value="29" type="text"  name="" readonly  /></td>\n\\n\
-                                                 <td><input class="transparentBg inputSize" value="0" type="number" min="1" id="itemConsumption[]" name="itemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
+                                                <td><input class="transparentBg inputSize" value="28" type="text"  name="size" readonly /></td>\n\\n\
+                                                 <td><input class="transparentBg inputSize" value="0" type="number" min="1" id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
+                                            <td rowspan="10"><input class="transparentBg inputSize" name="unitMeasurementfabric" id="unitMeasurement[]" value="' + data[0].unitMeasurement + '" readonly /> </td>\n\
                                             </tr>\n\\n\
                                              <tr>\n\
-                                                <td><input class="transparentBg inputSize" value="30" type="text"  name="" readonly  /></td>\n\\n\
-                                                 <td><input class="transparentBg inputSize" value="0" type="number" min="1" id="itemConsumption[]" name="itemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
+                                                <td><input class="transparentBg inputSize" value="29" type="text"  name="size" readonly  /></td>\n\\n\
+                                                 <td><input class="transparentBg inputSize" value="0" type="number" min="1" id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
                                             </tr>\n\\n\
                                              <tr>\n\
-                                                <td><input class="transparentBg inputSize" value="31" type="text"  name="" readonly  /></td>\n\\n\
-                                                 <td><input class="transparentBg inputSize" value="0" type="number" min="1" id="itemConsumption[]" name="itemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
+                                                <td><input class="transparentBg inputSize" value="30" type="text"  name="size" readonly  /></td>\n\\n\
+                                                 <td><input class="transparentBg inputSize" value="0" type="number" min="1" id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
+                                            </tr>\n\\n\
+                                             <tr>\n\
+                                                <td><input class="transparentBg inputSize" value="31" type="text"  name="size" readonly  /></td>\n\\n\
+                                                 <td><input class="transparentBg inputSize" value="0" type="number" min="1" id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
                                             </tr>\n\\n\
                                             <tr>\n\
-                                                <td><input class="transparentBg inputSize" value="32" type="text"  name="" readonly  /></td>\n\\n\
-                                                 <td><input class="transparentBg inputSize" value="0" type="number" min="1" id="itemConsumption[]" name="itemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
+                                                <td><input class="transparentBg inputSize" value="32" type="text"  name="size" readonly  /></td>\n\\n\
+                                                 <td><input class="transparentBg inputSize" value="0" type="number" min="1" id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
                                             </tr>\n\
                                             <tr>\n\
-                                                <td><input class="transparentBg inputSize" value="33" type="text"  name="" readonly  /></td>\n\\n\
-                                                 <td><input class="transparentBg inputSize" value="0" type="number" min="1" id="itemConsumption[]" name="itemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
+                                                <td><input class="transparentBg inputSize" value="33" type="text"  name="size" readonly  /></td>\n\\n\
+                                                 <td><input class="transparentBg inputSize" value="0" type="number" min="1" id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
                                             </tr>\n\
                                             <tr>\n\
-                                                <td><input class="transparentBg inputSize" value="34" type="text"  name="" readonly  /></td>\n\\n\
-                                                 <td><input class="transparentBg inputSize" value="0" type="number" min="1" id="itemConsumption[]" name="itemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
+                                                <td><input class="transparentBg inputSize" value="34" type="text"  name="size" readonly  /></td>\n\\n\
+                                                 <td><input class="transparentBg inputSize" value="0" type="number" min="1" id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
                                             </tr>\n\\n\
                                             <tr>\n\
-                                                <td><input class="transparentBg inputSize" value="36" type="text"  name="" readonly  /></td>\n\\n\
-                                                 <td><input class="transparentBg inputSize" value="0" type="number" min="1" id="itemConsumption[]" name="itemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
+                                                <td><input class="transparentBg inputSize" value="36" type="text"  name="size" readonly  /></td>\n\\n\
+                                                 <td><input class="transparentBg inputSize" value="0" type="number" min="1" id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
                                             </tr>\n\\n\
                                             <tr>\n\
-                                                <td><input class="transparentBg inputSize" value="38" type="text"  name="" readonly  /></td>\n\\n\
-                                                 <td><input class="transparentBg inputSize" value="0" type="number" min="1" id="itemConsumption[]" name="itemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
+                                                <td><input class="transparentBg inputSize" value="38" type="text"  name="size" readonly  /></td>\n\\n\
+                                                 <td><input class="transparentBg inputSize" value="0" type="number" min="1" id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
                                             </tr>\n\\n\
                                             <tr>\n\
-                                                <td><input class="transparentBg inputSize" value="40" type="text"  name="" readonly  /></td>\n\\n\
-                                                 <td><input class="transparentBg inputSize" value="0" type="number" min="1" id="itemConsumption[]" name="itemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
+                                                <td><input class="transparentBg inputSize" value="40" type="text"  name="size" readonly  /></td>\n\\n\
+                                                 <td><input class="transparentBg inputSize" value="0" type="number" min="1" id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
                                             </tr>\n\
                                                   ');
                     document.getElementById("buttonsFabric").style.visibility = 'visible';
@@ -229,50 +228,50 @@ function getFabricItem() {
 }
 
 
-function viewModal() {
-    var productID = document.getElementById('productID').value;
-    var sizeName = document.getElementById('sizeName').value;
+//function viewModal() {
+//    var productID = document.getElementById('productID').value;
+//    var sizeName = document.getElementById('sizeName').value;
+//
+//
+//    document.getElementById('productIDModal').value = productID;
+//    document.getElementById('sizeTypeModal').value = sizeName;
+//
+//
+//    eraseModal();
+//
+//    $('#dataTableModal').append('<tr>  \n\
+//                <th style="vertical-align: middle">Item Name</th> \n\
+//                <th style="vertical-align: middle">Consumption</th>\n\
+//                <th style="vertical-align: middle">Unit Measurement</th></tr>');
+//
+//    $("#dataTable tr").each(function () {
+//        var $this = $(this);
+//        var itemCode = $this.find('[id="itemCode\\[\\]"]').val();
+//        var itemName = $this.find('[id="itemName\\[\\]"]').val();
+//        console.log(itemName);
+//        var consume = $this.find('[id="itemConsumption\\[\\]"]').val();
+//        console.log(consume);
+//        var unitMeasurement = $this.find('[id="unitMeasurement\\[\\]"]').val();
+//        console.log(unitMeasurement);
+//
+//
+//        if (!itemName == "") {
+//            $('#dataTableModal').append('<tr>\n\
+//                        <td><input type = "hidden" name = "itemCodeModal" value="' + itemCode + '">\n\
+//                        <input type = "text" name = "itemNameModal" readonly class="transparentBg readonlyWhite" value="' + itemName + '"></td>\n\
+//                        ' + itemName +
+//                    '<td><input type = "text" name="itemConsumptionModal" readonly class="transparentBg readonlyWhite" value="' + consume + '"></td>\n\
+//                        <td><input type = "text" name="unitMeasurementModal" readonly class="transparentBg readonlyWhite" value="' + unitMeasurement + '"></td></tr>');
+//
+//        }
+//
+//    });
+//
+//}
 
-
-    document.getElementById('productIDModal').value = productID;
-    document.getElementById('sizeTypeModal').value = sizeName;
-
-
-    eraseModal();
-
-    $('#dataTableModal').append('<tr>  \n\
-                <th style="vertical-align: middle">Item Name</th> \n\
-                <th style="vertical-align: middle">Consumption</th>\n\
-                <th style="vertical-align: middle">Unit Measurement</th></tr>');
-
-    $("#dataTable tr").each(function () {
-        var $this = $(this);
-        var itemCode = $this.find('[id="itemCode\\[\\]"]').val();
-        var itemName = $this.find('[id="itemName\\[\\]"]').val();
-        console.log(itemName);
-        var consume = $this.find('[id="itemConsumption\\[\\]"]').val();
-        console.log(consume);
-        var unitMeasurement = $this.find('[id="unitMeasurement\\[\\]"]').val();
-        console.log(unitMeasurement);
-
-
-        if (!itemName == "") {
-            $('#dataTableModal').append('<tr>\n\
-                        <td><input type = "hidden" name = "itemCodeModal" value="' + itemCode + '">\n\
-                        <input type = "text" name = "itemNameModal" readonly class="transparentBg readonlyWhite" value="' + itemName + '"></td>\n\
-                        ' + itemName +
-                    '<td><input type = "text" name="itemConsumptionModal" readonly class="transparentBg readonlyWhite" value="' + consume + '"></td>\n\
-                        <td><input type = "text" name="unitMeasurementModal" readonly class="transparentBg readonlyWhite" value="' + unitMeasurement + '"></td></tr>');
-
-        }
-
-    });
-
-}
-
-function eraseModal() {
-    var Parent = document.getElementById('dataTableModal');
-    while (Parent.hasChildNodes()) {
-        Parent.removeChild(Parent.firstChild);
-    }
-}
+//function eraseModal() {
+//    var Parent = document.getElementById('dataTableModal');
+//    while (Parent.hasChildNodes()) {
+//        Parent.removeChild(Parent.firstChild);
+//    }
+//}

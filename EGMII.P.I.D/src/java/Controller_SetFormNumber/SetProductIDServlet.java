@@ -37,15 +37,8 @@ public class SetProductIDServlet extends BaseServlet {
     @Override
     public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-       ProductDAO DAO = new ProductDAO();
        ArrayList<RefColor> refColorList = new ArrayList<RefColor>();
        RefColorDAO refColorDAO = new RefColorDAO();
-        Integer productnumber=0;
-        try {
-            productnumber = DAO.getProductNumber();
-        } catch (SQLException ex) {
-            Logger.getLogger(SetProductIDServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
         try {
             refColorList = refColorDAO.GetAllColor();
         } catch (ParseException ex) {
@@ -55,7 +48,6 @@ public class SetProductIDServlet extends BaseServlet {
         ServletContext context = getServletContext();
         RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/ProductCreation/Product.jsp");
         request.setAttribute("ColorList", refColorList);
-        request.setAttribute("ProductNumber", productnumber);
         rd.forward(request, response);
 
     }
