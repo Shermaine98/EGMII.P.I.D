@@ -22,6 +22,7 @@
         <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
     </head>
     <body>
+
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -29,18 +30,69 @@
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="/EGMI/Login?action=goToHome">Home</a></li>
+                        <li> <a href="/EGMII.P.I.D/Login?action=goToHome">Home</a></li>
+                        <!--Product Creation-->
+                        <li class="dropdown">
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">Product Creation
+                                <span class="caret"></span></a> 
+
+                            <ul class="dropdown-menu" role="menu">
+                                <!--SUB-MENU OF BILL OF MATERIALS-->
+                                <li>
+                                    <a href="/EGMII.P.I.D/SetProductIDServlet">Bill Of Materials</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!--Procurement-->
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Procurement
+                                <span class="caret"></span></a> 
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="">Supplier Purchase Order</a>
+                                    <ul class="dropdown-menu sub-menu">
+                                        <li><a href="/EGMII.P.I.D/SetSPONumberServlet">Encode Supplier Purchase Order</a></li>
+                                        <li><a href="/EGMII.P.I.D/SetSPONumberServlet">Receive Supplier Purchase Order</a></li></ul></li>
+
+                                <li><a href="">Subcontractor Purchase Order</a>
+                                    <ul class="dropdown-menu sub-menu" style="margin-top: 35px;">
+                                        <li><a href="/EGMII.P.I.D.P.I.DMI/SearchProductsSubconServlet">Encode Subcontractor Purchase Order</a></li>
+                                        <li><a href="/EGMII.P.I.D/SetSPONumberServlet">Receive Subcontractor Purchase Order</a></li></ul></li>
+                            </ul>
+                        </li>
+
                         <!--Inventory-->
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Inventory
                                 <span class="caret"></span></a> 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="/EGMI/ReconcileWarehouseServlet">Reconcile Warehouse</a></li>
-                                <li class="divider"></li>
-                                <li><a href="/EGMI/ViewWarehouseInventoryServlet">Warehouse Inventory</a></li>
+                                <li><a href="/EGMII.P.I.D/ViewAccessoriesInventoryServlet">Accessories Inventory</a></li>
+                                <li><a href="/EGMII.P.I.D/ViewProductionInventoryServlet">Production Inventory</a></li>
+                                <li><a href="/EGMII.P.I.D/ViewWarehouseInventoryServlet">Warehouse Inventory</a></li>
+                                
                             </ul>
                         </li>
+
+                        <!--DELIVERY-->
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Delivery
+                                <span class="caret"></span></a> 
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Replenishment Request</a>
+                                    <ul class="dropdown-menu sub-menu">
+                                        <li><a href="">Revise Replenishment Request</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Delivery Invoice</a>
+                                    <ul class="dropdown-menu sub-menu" style="margin-top: 35px;">
+                                        <li><a href="">View Delivery Invoice</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+
                     </ul>
+
 
                     <!--MAIL-->
                     <ul class="nav navbar-nav navbar-right">
@@ -54,15 +106,16 @@
                                 <span class="glyphicon glyphicon-user"></span>
                                 <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="/EGMI/Login?action=viewAccounts">View Account</a></li>
-                                <li><a href="/EGMI/Logout">Log-Out</a></li>
+                                <li><a href="/EGMII.P.I.D/Login?action=viewAccounts">View Account</a></li>
+                                <li><a href="/EGMII.P.I.D/Logout">Log-Out</a></li>
                             </ul>
                         </li>
                     </ul>
 
-                </div><!--/.nav-collapse -->
+                </div>
             </div>
         </nav>
+
         <script>
             function updateClock1( )
             {

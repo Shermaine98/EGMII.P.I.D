@@ -38,13 +38,13 @@
 
                             <ul class="dropdown-menu" role="menu">
                                 <!--SUB-MENU OF BILL OF MATERIALS-->
-                                <li><a href="#">Bill Of Materials</a>
-                                    <ul class="dropdown-menu sub-menu"><li><a href="/EGMII.P.I.D/SetProductIDServlet">Encode Bill Of Materials</a></li></ul>
+                                <li>
+                                    <a href="/EGMII.P.I.D/SetProductIDServlet">Bill Of Materials</a>
                                 </li>
 
                                 <!--SUB-MENU OF CONSUMPTION REPORT-->
                                 <li><a href="">Consumption Report</a>
-                                    <ul class="dropdown-menu sub-menu">
+                                    <ul class="dropdown-menu sub-menu" style="margin-top: 35px;">
                                         <li><a href="/EGMII.P.I.D/SearchProductServlet">Encode Consumption Report</a></li>
                                         <li><a href="/EGMII.P.I.D/ViewConsumptionReportServlet">View Consumption Report</a></li></ul>
                                 </li>
@@ -60,18 +60,18 @@
                                 <li><a href="">Supplier Purchase Order</a>
                                     <ul class="dropdown-menu sub-menu">
                                         <li><a href="/EGMII.P.I.D/SetSPONumberServlet">Encode Supplier Purchase Order</a></li>
-                                        <li><a href="/EGMII.P.I.D/ViewSupplierPurchaseOrderServlet">View Supplier Purchase Order</a></li></ul></li>
+                                        <li><a href="/EGMII.P.I.D/SetSPONumberServlet">Approve Supplier Purchase Order</a></li>
+                                        <li><a href="/EGMII.P.I.D/ViewSupplierPurchaseOrderServlet">View Supplier Purchase Order</a></li>
+                                        <li><a href="/EGMII.P.I.D/SetSPONumberServlet">Receive Supplier Purchase Order</a></li></ul></li>
 
                                 <li><a href="">Subcontractor Purchase Order</a>
-                                    <ul class="dropdown-menu sub-menu">
+                                    <ul class="dropdown-menu sub-menu" style="margin-top: 35px;">
                                         <li><a href="/EGMII.P.I.D.P.I.DMI/SearchProductsSubconServlet">Encode Subcontractor Purchase Order</a></li>
-                                        <li><a href="/EGMII.P.I.D/ViewSubconPurchaseOrderServlet">View Subcontractor Purchase Order</a></li></ul></li>
+                                        <li><a href="/EGMII.P.I.D/SetSPONumberServlet">Approve Subcontractor Purchase Order</a></li>
+                                        <li><a href="/EGMII.P.I.D/ViewSubconPurchaseOrderServlet">View Subcontractor Purchase Order</a></li>
+                                        <li><a href="/EGMII.P.I.D/SetSPONumberServlet">Receive Subcontractor Purchase Order</a></li></ul></li>
 
-                                <li><a href="/EGMI/PurchaseOrderSerlvet">Receiving</a></li>
-                                <li><a href="#">Cutting Report</a>
-                                    <ul class="dropdown-menu sub-menu" style="margin-top: 46%">
-                                        <li><a href="/EGMII.P.I.D/GetDRForCuttingReportServlet">Encode Cutting Report</a></li>
-                                        <li><a href="">View Cutting Report</a></li></ul></li>
+                                <li><a href="/EGMII.P.I.D/GetDRForCuttingReportServlet">Generate Cutting Report</a></li>
                             </ul>
                         </li>
 
@@ -80,15 +80,14 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Inventory
                                 <span class="caret"></span></a> 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="/EGMII.P.I.D/ReconcileProductionServlet">Reconcile Production</a></li>
-                                <li><a href="/EGMII.P.I.D/ReconcileAccessoriesServlet">Reconcile Accessories</a></li>
-                                <li><a href="/EGMII.P.I.D/ReconcileWarehouseServlet">Reconcile Warehouse</a></li>
-                                <li class="divider"></li>
                                 <li><a href="/EGMII.P.I.D/ViewAccessoriesInventoryServlet">Accessories Inventory</a></li>
                                 <li><a href="/EGMII.P.I.D/ViewProductionInventoryServlet">Production Inventory</a></li>
                                 <li><a href="/EGMII.P.I.D/ViewWarehouseInventoryServlet">Warehouse Inventory</a></li>
-                                <li class="divider"></li>
-                                <li><a href="/EGMII.P.I.D/ViewBoutiqueInventoryServlet">Boutique Inventory</a></li>
+                                <li><a href="#">Inventory Report</a>
+                                    <ul class="dropdown-menu sub-menu" style="margin-top:100px;">
+                                        <li><a href="">Encode Inventory Report</a></li>
+                                        <li><a href="">View Inventory Report</a></li>
+                                    </ul></li>
                             </ul>
                         </li>
 
@@ -97,21 +96,22 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Delivery
                                 <span class="caret"></span></a> 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="/EGMII.P.I.D/SetDONumberServlet">Delivery Order</a></li>
-                                <li><a href="">Replenishment Request</a></li>
-                                <li><a href="">Picking Form</a></li>
+                                <li><a href="#">Replenishment Request</a>
+                                    <ul class="dropdown-menu sub-menu">
+                                        <li><a href="">Encode Replenishment Request</a></li>
+                                        <li><a href="">Revise Replenishment Request</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Delivery Invoice</a>
+                                    <ul class="dropdown-menu sub-menu" style="margin-top: 35px;">
+                                        <li><a href="">Encode Delivery Invoice</a></li>
+                                        <li><a href="">View Delivery Invoice</a></li>
+                                        <li><a href="">Approve Delivery Invoice</a></li>
+                                    </ul>
+                                </li>
                             </ul>
                         </li>
-
-                        <!--Vendor-->
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Vendor
-                                <span class="caret"></span></a> 
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="/EGMII.P.I.D/ViewSuppliersAndItemServlet">Suppliers</a></li>
-                                <li><a href="/EGMII.P.I.D/ViewSubcontractorAndServiceServlet">Subcontractor</a></li>
-                            </ul>
-                        </li>
+                        
                     </ul>
 
 

@@ -30,18 +30,37 @@
                     <ul class="nav navbar-nav">
                         <li> <a href="/EGMI/Login?action=goToHome">Home</a></li>
                         
+                        <!--Product Creation-->
+                        <li class="dropdown">
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">Product Creation
+                                <span class="caret"></span></a> 
+
+                            <ul class="dropdown-menu" role="menu">
+                                <!--SUB-MENU OF BILL OF MATERIALS-->
+                                <li>
+                                    <a href="/EGMII.P.I.D/SetProductIDServlet">Bill Of Materials</a>
+                                </li>
+                            </ul>
+                        </li>
+                        
                         <!--Procurement-->
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Procurement
                                 <span class="caret"></span></a> 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">Cutting Report</a>
+                                <li><a href="">Supplier Purchase Order</a>
                                     <ul class="dropdown-menu sub-menu">
-                                        <li><a href="/EGMI/GetDRForCuttingReportServlet">Encode Cutting Report</a></li>
-                                        <li><a href="">View Cutting Report</a></li></ul></li>
+                                        <li><a href="/EGMII.P.I.D/SetSPONumberServlet">Encode Supplier Purchase Order</a></li>
+                                        <li><a href="/EGMII.P.I.D/SetSPONumberServlet">Receive Supplier Purchase Order</a></li></ul></li>
+
+                                <li><a href="">Subcontractor Purchase Order</a>
+                                    <ul class="dropdown-menu sub-menu" style="margin-top: 35px;">
+                                        <li><a href="/EGMII.P.I.D.P.I.DMI/SearchProductsSubconServlet">Encode Subcontractor Purchase Order</a></li>
+                                        <li><a href="/EGMII.P.I.D/SetSPONumberServlet">Receive Subcontractor Purchase Order</a></li></ul></li>
+
+                                <li><a href="/EGMII.P.I.D/GetDRForCuttingReportServlet">Generate Cutting Report</a></li>
                             </ul>
                         </li>
-                        <li><a href="">Receiving Fabrics Alert</a></li>
                     </ul>
 
                     <!--MAIL-->
