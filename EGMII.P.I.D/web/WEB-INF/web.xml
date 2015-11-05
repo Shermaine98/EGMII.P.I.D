@@ -64,6 +64,18 @@
         <servlet-name>EncodeConsumptionReportServlet</servlet-name>
         <servlet-class>Controller_Encode.EncodeConsumptionReportServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchSupplierServlet</servlet-name>
+        <servlet-class>Controller_Json.SearchSupplierServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchItemSupplierServlet</servlet-name>
+        <servlet-class>Controller_Json.SearchItemSupplierServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SetSupplierItemServlet</servlet-name>
+        <servlet-class>Controller_Json.SetSupplierItemServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SearchProductServlet</servlet-name>
         <url-pattern>/SearchProductServlet</url-pattern>
@@ -127,6 +139,18 @@
     <servlet-mapping>
         <servlet-name>EncodeConsumptionReportServlet</servlet-name>
         <url-pattern>/EncodeConsumptionReportServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchSupplierServlet</servlet-name>
+        <url-pattern>/SearchSupplierServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchItemSupplierServlet</servlet-name>
+        <url-pattern>/SearchItemSupplierServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SetSupplierItemServlet</servlet-name>
+        <url-pattern>/SetSupplierItemServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -19,10 +19,11 @@ function autoCompleteSupplierItem() {
                 });
     } else {
         $("#itemNameSupplier").devbridgeAutocomplete({
-            serviceUrl: 'SearchItemSuppliersServlet',
+            serviceUrl: 'SearchItemSupplierServlet',
             dataType: "json",
             params: {
-                supplierName1: supplierName},
+                supplierName1: supplierName
+            },
             type: 'POST',
             showNoSuggestionNotice: true,
             noSuggestionNotice: 'No Exsiting Item',
