@@ -37,7 +37,7 @@ public class ApproveSupplierPurchaseOrderServlet extends BaseServlet {
         ServletContext context = getServletContext();
         RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Procurement/SupplierApproval.jsp");
 //        request.setAttribute("data", "null");
-        request.setAttribute("PurchaseOrderList", PurchaseOrderList);
+        request.setAttribute("SupplierPurchaseOrderList", PurchaseOrderList);
         rd.forward(request, response); 
     }
 }

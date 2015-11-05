@@ -4,6 +4,8 @@
     Author     : Geraldine
 --%>
 
+<%@page import="Model_View.SupplierPurchaseOrderView"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="/LevelOfAccess/LevelOFAccess.jsp"%>
 <!DOCTYPE html>
@@ -15,32 +17,61 @@
         <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="bootstrap/css/sub-menu.css">
         <link href="bootstrap/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" type="text/css" href="bootstrap/css/jquery.dataTables.min.css">
+        <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
         <title>Supplier Purchase Order Approval</title>
-        
+    <script>
+         $(document).ready(function () {
+                $('#dataTable').DataTable({
+                    "paging": false,
+                    "info": false,
+                    "dom": '<"pull-left "f>'
+                });
+
+                $(".SupplierPOView").on("click", (function () {
+                    var purchaseOrderNum = $(this).closest("tr").find(".poNumber").text();
+                    document.getElementById('hiddenValue').value = purchaseOrderNum;
+                    var l = document.getElementById('hiddenValue').value;
+                    console.log(l);
+
+                    document.getElementById("form1").submit();
+
+                }));
+            });
+    </script>
     </head>
+    <%        
+    ArrayList<SupplierPurchaseOrderView> PurchaseOrderList = (ArrayList<SupplierPurchaseOrderView>) request.getAttribute("SupplierPurchaseOrderList");
+    %>
     <body>
         <div class="container" align="center">
             <h2>Approve Supplier Purchase Order</h2><br/>
-
-            <table class="table table-bordered" style="width:60%;">
-                <colgroup>
-                    <col style="width:23%" />
-                    <col style="width:35%" />
-                </colgroup>
+            <table id="dataTable" class="table table-bordered" style="width:60%;">
+                <thead>
                 <tr>
                     <th>Purchase Order No.</th>
                     <th>Supplier</th>
                     <th>Date Made</th>
+                    <th>Delivery Date</th>
                     <th>Prepared By</th>
                 </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                 </thead>
+                 <tbody>
+                <% for(int i =0; i<PurchaseOrderList.size();i++){ %>
+                <tr class="SupplierPOView">
+                    <td class="poNumber"><%=PurchaseOrderList.get(i).getPoNumber()%></td>
+                    <td><%=PurchaseOrderList.get(i).getCompanyName()%></td>
+                    <td><%=PurchaseOrderList.get(i).getDateMade()%></td>
+                    <td><%=PurchaseOrderList.get(i).getDeliveryDate()%></td>
+                    <td><%=PurchaseOrderList.get(i).getPreparedBy()%></td>
                 </tr>
+                
+                <%
+                } 
+                %>
+                </tbody>
             </table>
-
+        <input type="hidden" name="hiddenValue" id="hiddenValue" value=""/>
             <!--Should appear when something is clicked ?-->
             <div>
                 <div class="panel panel-default col-md-4 pull-left" style="padding-bottom:10px;">
