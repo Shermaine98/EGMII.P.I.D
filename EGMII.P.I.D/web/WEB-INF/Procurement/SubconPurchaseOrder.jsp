@@ -1,39 +1,22 @@
 <%-- 
-    Document   : Supplier Purchase Order
-    Created on : 08 20, 15, 6:43:37 PM
+    Document   : SubconPurchaseOrder
+    Created on : 11 4, 15, 10:28:18 AM
     Author     : Geraldine
 --%>
 
-<%@page import="Model.ConsumptionReport"%>
-<%@page import="Model.BillOfMaterials"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="Model.SupplierPurchaseOrder"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@include file="/LevelOfAccess/LevelOFAccess.jsp"%>
 <!DOCTYPE html>
 <html>
-
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script src="js/deleteRow.js"></script>
-        <script type="text/javascript" src="js/jquery.autocomplete.js"></script>
-        <link rel="stylesheet" href="bootstrap/css/jquery-ui-datePicker.css">
-        <script src="bootstrap/js/jquery-ui.js"></script>
-        <script src="js/searchSubcon.js"></script>
-        <title>Encode Subcontractor Purchase Order</title>
-        <script>
-            $(document).ready(function () {
-                var subPONumber = '${SubPONumber}';
-                document.getElementById('poNumber').value = subPONumber;
-
-            });
-
-        </script>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="bootstrap/css/table-design.css">
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="bootstrap/css/sub-menu.css">
+        <link href="bootstrap/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <title>Encode Subconractor Purchase Order</title>
     </head>
-
-    <body>  
+    <body>
         <br/>
         <!--Search product-->
         <form action="SearchProductsServlet" method="POST" >
@@ -47,41 +30,62 @@
                 <br/><br/>
             </div>
         </form>
-        <%        ArrayList<ConsumptionReport> consumptionReport = (ArrayList<ConsumptionReport>) request.getAttribute("ConsumptionReportArray");
-            ArrayList<String> itemsize = (ArrayList<String>) request.getAttribute("itemSize");
-            if (!consumptionReport.isEmpty()) {
-        %>
+
+
         <form method="POST" action="EncodeSubcontractorPurchaseOrderServlet">
             <div align="center" class="container">
 
                 <div class="panel panel-default col-md-4">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Consumption Report</h3>
+                        <h3 class="panel-title">Subcontractor Purchase Order</h3>
                     </div>
                     <div class="panel-body">
                         <label class="" for="poNumber">Purchase Order Number</label>
                         <input type="text" name="poNumber" class="form-control readonlyWhite" id="poNumber" readonly /><br/>
-                        <label class="" for="productionNumber">Production Number</label>
-                        <input type="text" name="productionNumber" class="form-control readonlyWhite"  value="<%=consumptionReport.get(0).getProductionNumber()%>"/><br/>
-                        <label class="" for="preparedBy">Purchase Order Number</label>
-                        <input type="hidden" name="preparedBy" class="form-control readonlyWhite" id="preparedBy" value="<%= user.getEmployeeNumber()%>" /><br/>
-                        <input class="form-control readonlyWhite" value="<%= user.getFirstName()%> <%=user.getLastName()%> " readonly /><br/>
+                        <label class="" for="preparedBy">Prepared By</label>
+                        <input type="text" name="preparedBy" class="form-control readonlyWhite"  value=""/><br/>
+                        <label class="" for="dateMade">Date Made</label>
+                        <input type="hidden" name="dateMade" class="form-control readonlyWhite" id="dateMade" value="" /><br/>
+                        <input class="form-control readonlyWhite" value="" readonly /><br/>
                         <label class="" for="deliveryDate">Delivery Date</label>
                         <input type="text" name="deliveryDate" class="form-control" id="datepicker"  /><br/>
+                        <!--Search Subcon-->
+                        <label for="subconName">Subcontractor</label>
+                        <input type="text" class="form-control" name="subconName" id="subconName" onkeypress="autoCompleteSubcon();" placeholder="Search Subcon"/>
+                        <input type="hidden" name="subcon" id="subcon" disabled="disabled" style="color: #CCC; position: absolute; background: transparent;"/>
+                        <br/>  
+
                     </div>
                 </div>
 
-                <div class="panel panel-default col-md-6" style="padding-top:20px">
+                <div class="panel panel-default col-md-6">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Details</h3>
+                    </div>
                     <div class="panel-body">
-
-                        <!--Search product result-->  
-                        <%
-                            if (consumptionReport.get(0).getSizeName().equalsIgnoreCase("Shirt")) {
-                        %>  
-                        <table class="table table-bordered">
+                        <div style="width:70%">
+                        <label for="productionNumber">Production Number</label>
+                        <input type="text" name="productionNumber" class="form-control readonlyWhite" readonly /><br/>
+                        <label for="productName">Product Name</label>
+                        <input type="text" name="productName" class="form-control readonlyWhite" readonly /><br/>
+                        <label for="productType">Product Type</label>
+                        <input type="text" name="productType" class="form-control readonlyWhite" readonly /><br/>
+                        <label for="color">Color</label>
+                        <input type="text" name="color" class="form-control readonlyWhite" readonly /><br/>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default col-md-6">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Sizes</h3>
+                    </div>
+                    <div class="panel-body">
+                        <!--Search product result--> 
+                        <table class="table table-bordered" style="width:50%">
                             <tr>
-                                <th colspan="2">Product Name: <input type="hidden" name="productID" id="productID" value="<%= consumptionReport.get(0).getProductID()%>"/>
-                                    <input type="text" class="transparentBg readonlyWhite" readonly name="ProductName" id="ProductName" value="<%= consumptionReport.get(0).getProductID()%>"/></th>
+                                <th><input name="sizeType" class="transparentBg readonlyWhite" value="XS" readonly/></th>
+                                <td><input type="number" class="transparentBg" name="volumeQty" id="sizeXS" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalShirt();" value="0" /></td>
                             </tr>
                             <tr>
                                 <th><input name="sizeType" class="transparentBg readonlyWhite" value="S" readonly/></th>
@@ -105,14 +109,8 @@
                             </tr>
                         </table>
 
-                        <%
-                        } else {
-                        %>
-                        <table class="table table-bordered">
-                            <tr>
-                                <th colspan="2">Product Name: <input type="hidden" name="productID" id="productID" value="<%= consumptionReport.get(0).getProductID()%>"/>
-                                    <input type="text" class="transparentBg readonlyWhite" readonly name="ProductName" id="ProductName" value="<%= consumptionReport.get(0).getProductID()%>"/></th>
-                            </tr>
+
+                        <table class="table table-bordered" style="width:50%">
                             <tr>
                                 <th><input name="sizeType" class="transparentBg readonlyWhite" value="29" readonly/></th>
                                 <td><input type="number" class="transparentBg" name="volumeQty" id="size29" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
@@ -150,21 +148,16 @@
                                 <td><input name="TotalP" class="transparentBg" id="TotalP" value="0" readonly/></td>
                             </tr>
                         </table>
-                        <%
-                            }
-                        %>
 
+<!--                        Unit Price:
+                        <input type="number" name="unitPrice" value="" readonly class="form-control readonlyWhite" /><br/>
+                        Total:
+                        <input type="number" name="Total" value="" readonly class="form-control readonlyWhite" /><br/>-->
                     </div>
                 </div>
             </div>
-            <div class="container" align="center">
-                <!--Search Subcon-->
-                <div class="col-md-6" style="margin-top:30px">
-                    <input type="text" class="form-control" name="subconName" id="subconName" onkeypress="autoCompleteSubcon();" placeholder="Search Subcon"/>
-                    <input type="hidden" name="subcon" id="subcon" disabled="disabled" style="color: #CCC; position: absolute; background: transparent;"/>
 
-                </div>
-                <br/><br/>   
+            <div class="container" align="center">
                 <!--Result of Search-->    
                 <table id="dataSubconService" class="table table-bordered">
                     <!--                <thead>Service<thead>
@@ -175,11 +168,8 @@
                 <input type="submit" style="width:77px; height:34px" class="btn btn-danger" value="Submit">
                 <a href="dashboard.jsp"><button type="button" class="btn btn-danger">Cancel</button></a>
 
-        </div>
-                <%
-                    }
-                %>
-          
+            </div>
+
         </form>
 
         <br/><br/>

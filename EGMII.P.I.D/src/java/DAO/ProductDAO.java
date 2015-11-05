@@ -196,6 +196,26 @@ public class ProductDAO {
         return ProductList;
 
     }
+    
+      public ArrayList<String> GetProductNumber(String productName, String Color) throws SQLException {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        ArrayList<String> productNumberList = new ArrayList();
+        PreparedStatement ps = conn.prepareStatement("SELECT p.itemCode FROM product P WHERE P.productName = ? AND P.Color = ?;");
+      
+        ps.setString(1, productName);
+        ps.setString(2, Color);
+        
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            String productNumber;
+            productNumber = rs.getString("itemCode");
+            productNumberList.add(productNumber);
+        }
+        rs.close();
+        return productNumberList;
+
+    }
 
     /**
      * Get last ProductNumber

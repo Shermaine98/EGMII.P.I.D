@@ -1,39 +1,27 @@
 <%-- 
-    Document   : Supplier Purchase Order
-    Created on : 08 20, 15, 6:43:37 PM
+    Document   : SupplierPurchaseOrder
+    Created on : 11 4, 15, 10:21:39 AM
     Author     : Geraldine
 --%>
 
-<%@page import="Model.SupplierPurchaseOrder"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="/LevelOfAccess/LevelOFAccess.jsp"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="bootstrap/css/jquery-ui-datePicker.css">
-        <link rel="stylesheet" type="text/css" href="bootstrap/css/searchStyle.css">
-        <script src="js/jquery.min.js"></script>
-        <script src="js/jquery.mockjax.js"></script>
-        <script type="text/javascript" src="js/jquery.autocomplete.min.js"></script>
-        <script type="text/javascript" src="bootstrap/js/jquery-ui.js"></script>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="bootstrap/css/table-design.css">
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="bootstrap/css/sub-menu.css">
+        <link href="bootstrap/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript" src="js/jquery.autocomplete.js"></script>
         <script src="js/searchSupplier.js"></script>
         <script src="js/deleteRow.js"></script>
-        <script src="bootstrap/js/jquery-ui.js"></script>
+        
         <title>Encode Supplier Purchase Order</title>
-        <script>
-            $(document).ready(function () {
-                var spoNumber = '${SPONumber}';
-                document.getElementById('poNumber').value = spoNumber;
-
-            });
-        </script>
     </head>
-    <body>  
-        <br/>
+    <body>
         <div align="center" class="container-fluid" style="margin-left:40px; margin-right:20px;">
             <h2>Encode Supplier Purchase Order</h2><br/>
             <form method="POST" action="EncodeSupplierPurchaseOrderServlet">
@@ -46,9 +34,11 @@
                         <label class="" for="poNumber">Purchase Order Number</label>
                         <input type="text" name="poNumber" class="form-control readonlyWhite" id="poNumber" readonly /><br/>
                         <label class="" for="preparedBy">Prepared By</label>
-                        <input type="hidden" name="preparedBy" class="form-control readonlyWhite" id="preparedBy" value="<%= user.getEmployeeNumber()%>" />
-                        <input type="text" class="form-control readonlyWhite" readonly value="<%= user.getFirstName()%> <%= user.getLastName()%>" /><br/>
-                        <label class="" for="deliveryDate">Delivery</label>
+                        <input type="hidden" name="preparedBy" class="form-control readonlyWhite" id="preparedBy" value="" />
+                        <input type="text" class="form-control readonlyWhite" readonly value="" /><br/>
+                        <label for="dateMade">Date Made</label>
+                        <input type="text" name="dateMade" class="form-control readonlyWhite" readonly value="" /><br/>
+                        <label class="" for="deliveryDate">Delivery Date</label>
                         <input type="text" name="deliveryDate" class="form-control readonlyWhite" id="datepicker" readonly /><br/>
                         <label class="" for="supplier">Supplier</label>
                         <input type="text" name="supplier" class="form-control" id="supplierName" onkeypress="autoCompleteSupplier()" placeholder="Search Supplier" /><br/>
@@ -58,7 +48,7 @@
 
                 <div class="panel panel-default col-md-7">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Supplier Purchase Order</h3>
+                        <h3 class="panel-title">Details</h3>
                     </div>
                     <div class="panel-body">
 
@@ -77,8 +67,8 @@
 
                         <div id="total" align="center" style="visibility:hidden;">
                             <div style="float:right">
-                            TOTAL:
-                            <input type="text" class="form-control readonlyWhite" name="Total1" id="total1" readonly />
+                                TOTAL:
+                                <input type="text" class="form-control readonlyWhite" name="Total1" id="total1" readonly />
                             </div>
                             <br/><br/><br/>
                             <input type="button" class="btn btn-danger" value="Delete Row" onclick="deleteRow('data')" />

@@ -1,86 +1,114 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controller_Encode;
 
+import Controller_Base.BaseServlet;
+import DAO.ConsumptionReportDAO;
+import DAO.ProductDAO;
+import Model.ConsumptionReport;
+import Model.ConsumptionReportDetails;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author shermainesy
+ * @author Atayan
+ * @author Lapidario
+ * @author Sy
+ * @author Nunez
+ *
  */
-public class EncodeConsumptionReportServlet extends HttpServlet {
+public class EncodeConsumptionReportServlet extends BaseServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    @Override
+    public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet EncodeConsumptionReportServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet EncodeConsumptionReportServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        ProductDAO productDAO = new ProductDAO();
+        boolean x = false;
+        ConsumptionReport consumptionReport = new ConsumptionReport();
+
+        ArrayList<ConsumptionReport> ConsumptionReportArray = new ArrayList<>();
+        ConsumptionReportDAO consumptionReportDAO = new ConsumptionReportDAO();
+
+        ArrayList<ConsumptionReportDetails> ConsumptionReportDetailsArr = new ArrayList<>();
+       // ArrayList<Integer> itemCode1 = new ArrayList<>();
+        // get purpose
+        String productName = request.getParameter("productName");
+        String color = request.getParameter("color");
+        //Header
+        String ProductionNumber = request.getParameter("productionNumber");
+        String preparedBy = request.getParameter("preparedBy");
+        //String dateMade = request.getParameter("dateMade");
+        //status = created
+        //details
+
+     //   String[] size = request.getParameterValues("size");
+        String[] qty = request.getParameterValues("volumeQty");
+       //delvieryqty = 0
+        
+        //header encode
+        try {
+            consumptionReport.setProductionNumber(consumptionReportDAO.getProductionNumber());
+        } catch (SQLException ex) {
+            Logger.getLogger(EncodeConsumptionReportServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
+        consumptionReport.setPreparedBy(Integer.parseInt(preparedBy));
+         consumptionReport.setStatus("created");
+        try {
+            consumptionReport.setDateMade();
+        } catch (ParseException ex) {
+            Logger.getLogger(EncodeConsumptionReportServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
+        if (consumptionReportDAO.EncodeConsumptionReport(consumptionReport)) {
+            x = true;
+            ConsumptionReportArray.add(consumptionReport);
+        }
+        ArrayList<String> productNumber = new ArrayList<String>();
+        try {
+            productNumber = productDAO.GetProductNumber(productName,color);
+            System.out.println(productNumber);
+        } catch (SQLException ex) {
+            Logger.getLogger(EncodeConsumptionReportServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        //encode cr_details
+        if(x == true){
+            for(int y = 0; y < productNumber.size(); y++){
+                ConsumptionReportDetails ConsumptionReportDetails = new ConsumptionReportDetails();
+                ConsumptionReportDetails.setProductionNumber(Integer.parseInt(ProductionNumber));
+                ConsumptionReportDetails.setItemCode(Integer.parseInt(productNumber.get(y)));
+                ConsumptionReportDetails.setQty(Double.parseDouble(qty[y]));
+                ConsumptionReportDetails.setDeliveredQty(0);
+                if(consumptionReportDAO.EncodeConsumptionReportDetails(ConsumptionReportDetails)){
+                    x = true;
+                    ConsumptionReportDetailsArr.add(ConsumptionReportDetails);
+                } else {
+                    x = false;
+                }
+                
+            }
+        }
+   
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
+        if (x) {
+            ServletContext context = getServletContext();
+            RequestDispatcher rd = context.getRequestDispatcher("/index.jsp");
+            request.setAttribute("consumptionReport", consumptionReport);
+            rd.forward(request, response);
+        } else {
+            ServletContext context = getServletContext();
+            RequestDispatcher rd = context.getRequestDispatcher("/Accounts/Homepage.jsp");
+            rd.forward(request, response);
+        }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
+    }
 
 }

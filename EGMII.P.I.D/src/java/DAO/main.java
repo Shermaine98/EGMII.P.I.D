@@ -18,9 +18,9 @@ import Model_General.ProductAll;
 public class main {
     public static void main (String args[]) throws SQLException, ParseException{
     ProductDAO  ProductDAO = new ProductDAO();
-    ArrayList<ProductAll> productAll = new ArrayList<ProductAll>();
-    productAll = ProductDAO.searchProduct("STYLE - 1001");
-     System.out.println(productAll.get(0).getColor() );
+    ArrayList<String> productAll = new ArrayList<String>();
+     productAll = ProductDAO.GetProductNumber("STYLE 001","black");
+     System.out.println(productAll);
     }
     
 }
