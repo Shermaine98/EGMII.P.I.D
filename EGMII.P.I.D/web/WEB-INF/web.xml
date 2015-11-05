@@ -76,6 +76,10 @@
         <servlet-name>SetSupplierItemServlet</servlet-name>
         <servlet-class>Controller_Json.SetSupplierItemServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EncodeSupplierPurchaseOrderServlet</servlet-name>
+        <servlet-class>Controller_Encode.EncodeSupplierPurchaseOrderServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SearchProductServlet</servlet-name>
         <url-pattern>/SearchProductServlet</url-pattern>
@@ -151,6 +155,10 @@
     <servlet-mapping>
         <servlet-name>SetSupplierItemServlet</servlet-name>
         <url-pattern>/SetSupplierItemServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EncodeSupplierPurchaseOrderServlet</servlet-name>
+        <url-pattern>/EncodeSupplierPurchaseOrderServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

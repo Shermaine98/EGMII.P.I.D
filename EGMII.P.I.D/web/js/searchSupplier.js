@@ -73,7 +73,6 @@ function getSupplierItem() {
                 else if (i == 1) {
                     $('#data').append('<tr><th><input type="hidden" name="supplierId" value="' + data[0].supplier + '"/></th><th>Item Name</th> <th> Unit Price</th> <th>Quantity</th> <th>Total Quantity Price </th> <th>Note</th></tr>');
                     i++;
-                    $('#supplierName').attr("disabled", "disabled");
                 }
                 if (data[0] != null) {
                     $('#data').append('<tr class="trclass"><td> <input type="checkbox" name="chk" /> </td>\n\

@@ -18,7 +18,7 @@
         <script type="text/javascript" src="js/jquery.autocomplete.js"></script>
         <script src="js/searchSupplier.js"></script>
         <script src="js/deleteRow.js"></script>
-        
+
         <title>Encode Supplier Purchase Order</title>
     </head>
     <body>
@@ -34,12 +34,10 @@
                         <label class="" for="poNumber">Purchase Order Number</label>
                         <input type="text" name="poNumber" class="form-control readonlyWhite" id="poNumber" readonly /><br/>
                         <label class="" for="preparedBy">Prepared By</label>
-                        <input type="hidden" name="preparedBy" class="form-control readonlyWhite" id="preparedBy" value="" />
-                        <input type="text" class="form-control readonlyWhite" readonly value="" /><br/>
-                        <label for="dateMade">Date Made</label>
-                        <input type="text" name="dateMade" class="form-control readonlyWhite" readonly value="" /><br/>
+                        <input type="hidden" name="preparedBy" class="form-control readonlyWhite" id="preparedBy" value="<%= user.getEmployeeNumber()%>" />
+                        <input type="text" class="form-control readonlyWhite" readonly value="<%= user.getFirstName()%> <%= user.getLastName()%>" /><br/>
                         <label class="" for="deliveryDate">Delivery Date</label>
-                        <input type="date" name="deliveryDate" class="form-control readonlyWhite" readonly /><br/>
+                        <input type="date" name="deliveryDate" class="form-control" /><br/>
                         <label class="" for="supplier">Supplier</label>
                         <input type="text" name="supplier" class="form-control" id="supplierName" onkeypress="autoCompleteSupplier()" placeholder="Search Supplier" /><br/>
                         <input type="hidden" name="supplier" id ="supplierName" disabled="disabled" style="color: #CCC; position: absolute; background: transparent;"/>
@@ -93,7 +91,7 @@
             $('form').on('blur', 'input[type=number]', function (e) {
                 $(this).off('mousewheel.disableScroll');
             });
-            
+
             $(document).ready(function () {
                 var spoNumber = '${SPONumber}';
                 document.getElementById('poNumber').value = spoNumber;
