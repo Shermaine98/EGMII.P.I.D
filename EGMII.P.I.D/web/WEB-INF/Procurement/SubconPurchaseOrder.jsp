@@ -16,6 +16,8 @@
         <link href="bootstrap/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <title>Encode Subconractor Purchase Order</title>
     </head>
+    
+   
     <body>
         <br/>
         <!--Search product-->

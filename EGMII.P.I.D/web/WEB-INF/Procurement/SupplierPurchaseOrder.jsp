@@ -39,7 +39,7 @@
                         <label for="dateMade">Date Made</label>
                         <input type="text" name="dateMade" class="form-control readonlyWhite" readonly value="" /><br/>
                         <label class="" for="deliveryDate">Delivery Date</label>
-                        <input type="text" name="deliveryDate" class="form-control readonlyWhite" id="datepicker" readonly /><br/>
+                        <input type="date" name="deliveryDate" class="form-control readonlyWhite" readonly /><br/>
                         <label class="" for="supplier">Supplier</label>
                         <input type="text" name="supplier" class="form-control" id="supplierName" onkeypress="autoCompleteSupplier()" placeholder="Search Supplier" /><br/>
                         <input type="hidden" name="supplier" id ="supplierName" disabled="disabled" style="color: #CCC; position: absolute; background: transparent;"/>
@@ -85,10 +85,6 @@
             </form>
         </div>
         <script>
-            $(function () {
-                $("#datepicker").datepicker({minDate: 1, maxDate: "+4M +10D", dateFormat: 'yy-mm-dd'});
-
-            });
             $('form').on('focus', 'input[type=number]', function (e) {
                 $(this).on('mousewheel.disableScroll', function (e) {
                     e.preventDefault();
@@ -96,6 +92,12 @@
             });
             $('form').on('blur', 'input[type=number]', function (e) {
                 $(this).off('mousewheel.disableScroll');
+            });
+            
+            $(document).ready(function () {
+                var spoNumber = '${SPONumber}';
+                document.getElementById('poNumber').value = spoNumber;
+
             });
         </script>
     </body>
