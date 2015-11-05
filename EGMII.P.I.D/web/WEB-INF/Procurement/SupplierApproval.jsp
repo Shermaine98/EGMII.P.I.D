@@ -23,9 +23,9 @@
         <script>
             $(document).ready(function () {
                 $('#dataTable').DataTable({
-                    "paging": false,
-                    "info": false,
-                    "dom": '<"pull-left "f>'
+                    "paging": true,
+                    "info": true,
+//                    "dom": '<"pull-left "f>'
                 });
 
                 $(".SupplierPOView").on("click", (function () {
