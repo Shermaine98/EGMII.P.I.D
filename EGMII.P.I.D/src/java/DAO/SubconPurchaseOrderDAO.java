@@ -3,6 +3,7 @@ package DAO;
 import Database.DBConnectionFactory;
 import Model.PurchaseOrder;
 import Model.PurchaseOrderDetails;
+import Model_View.SubconPurchaseOrderView;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -105,6 +106,34 @@ public class SubconPurchaseOrderDAO {
         rs.close();
         return i;
     }
+    
+    public ArrayList<SubconPurchaseOrderView> GetAllSubconPurchaseOrderForApproval() {
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+            ArrayList<SubconPurchaseOrderView> poList = new ArrayList<>();
+            String query = ";";
+            PreparedStatement ps = conn.prepareStatement(query);
+            
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                SubconPurchaseOrderView po = new SubconPurchaseOrderView();
+                po.setPoNumber(rs.getInt("poNumber"));
+                po.setPreparedBy(rs.getInt("preparedBy"));
+                po.setDateMade(rs.getDate("dateMade"));
+                po.setDeliveryDate(rs.getDate("deliveryDate"));
+                po.setCompanyName(rs.getString("companyName"));
+                poList.add(po);
+            }
+            
+            rs.close();
+            return poList;
+        } catch (SQLException ex) {
+            Logger.getLogger(SupplierPurchaseOrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
 //    
 //    public ArrayList<SubconPurchaseOrder> MonitorSubconPurchaseOrder() throws ParseException {
 //        ArrayList<SubconPurchaseOrder> SubconPurchaseOrder = new ArrayList<SubconPurchaseOrder>();

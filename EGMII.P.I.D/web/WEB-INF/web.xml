@@ -84,6 +84,10 @@
         <servlet-name>ApproveSupplierPurchaseOrderServlet</servlet-name>
         <servlet-class>Controller_Approve.ApproveSupplierPurchaseOrderServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ApproveSubconPurchaseOrderServlet</servlet-name>
+        <servlet-class>Controller_Approve.ApproveSubconPurchaseOrderServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SearchProductServlet</servlet-name>
         <url-pattern>/SearchProductServlet</url-pattern>
@@ -167,6 +171,10 @@
     <servlet-mapping>
         <servlet-name>ApproveSupplierPurchaseOrderServlet</servlet-name>
         <url-pattern>/ApproveSupplierPurchaseOrderServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ApproveSubconPurchaseOrderServlet</servlet-name>
+        <url-pattern>/ApproveSubconPurchaseOrderServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
