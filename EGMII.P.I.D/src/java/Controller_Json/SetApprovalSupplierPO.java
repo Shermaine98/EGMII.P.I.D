@@ -36,9 +36,12 @@ public class SetApprovalSupplierPO extends BaseServlet {
         String poNumber = request.getParameter("hiddenValue");
         System.out.println("this" + poNumber);
         SupplierPurchaseOrderList = SupplierPurchaseOrderDAO.getSupplierPurchaseNumber(Integer.parseInt(poNumber));
+         ArrayList<SupplierPurchaseOrderView> PurchaseOrderList = new ArrayList<>();
 
+        PurchaseOrderList = SupplierPurchaseOrderDAO.GetAllSupplierPurchaseOrderForApproval();
         ServletContext context = getServletContext();
         RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Procurement/SupplierApproval.jsp");
+        request.setAttribute("SupplierPurchaseOrderList", PurchaseOrderList);
         request.setAttribute("data", "supplier");
         request.setAttribute("SupplierPurchaseOrderSpecific", SupplierPurchaseOrderList);
         rd.forward(request, response);
