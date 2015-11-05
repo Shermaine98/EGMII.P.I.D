@@ -43,6 +43,7 @@
     <%        ArrayList<SupplierPurchaseOrderView> PurchaseOrderList = (ArrayList<SupplierPurchaseOrderView>) request.getAttribute("SupplierPurchaseOrderList");
     %>
     <body>
+         <form id="form1" method="POST" action="SetApprovalSupplierPO">
         <div class="container" align="center">
             <h2>Approve Supplier Purchase Order</h2><br/>
             <div style="width:60%;">
@@ -74,9 +75,10 @@
             </div>
             <input type="hidden" name="hiddenValue" id="hiddenValue" value=""/>
         </div>
+   </form>
         <%
             String data = (String) request.getAttribute("data");
-            if (!data.equalsIgnoreCase("null")) {
+            if (data.equalsIgnoreCase("supplier")) {
         %>
 
         <div class="container" align="center">
