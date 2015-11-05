@@ -110,12 +110,47 @@ public class RefSupplierDAO {
     public ArrayList<RefSupplier> searchSupplierItem(String itemName, String company) throws SQLException {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
-
+        String search = itemName + "%";
         PreparedStatement ps = conn.prepareStatement("SELECT *\n"
                 + "FROM ref_supplier S\n"
                 + "JOIN ref_item I\n"
                 + "ON S.itemCode = I.itemCode\n"
                 + "WHERE S.companyName = ? AND I.itemName LIKE ?;");
+        ps.setString(1, company);
+        ps.setString(2, search);
+        ArrayList<RefSupplier> RefSupplierList = new ArrayList();
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            RefSupplier RefSupplierN = new RefSupplier();
+            RefSupplierN.setSupplierID(rs.getInt("supplierID"));
+            RefSupplierN.setItemCode(rs.getInt("itemCode"));
+             RefSupplierN.setItemName(rs.getString("itemName"));
+            RefSupplierN.setUnitPrice(rs.getInt("unitPrice"));
+            RefSupplierN.setCompanyName(rs.getString("companyName"));
+            RefSupplierN.setCompanyAddress(rs.getString("companyAddress"));
+            RefSupplierN.setContactPerson(rs.getString("contactPerson"));
+            RefSupplierN.setContactNumber(rs.getFloat("contactNumber"));
+
+            RefSupplierList.add(RefSupplierN);
+        }
+        rs.close();
+        return RefSupplierList;
+
+    }
+    
+    public ArrayList<RefSupplier> setSupplierItem(String itemName, String company) throws SQLException {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        String search = itemName + "%";
+        PreparedStatement ps = conn.prepareStatement("SELECT *\n"
+                + "FROM ref_supplier S\n"
+                + "JOIN ref_item I\n"
+                + "ON S.itemCode = I.itemCode\n"
+                + "WHERE S.companyName = ? AND I.itemName = ?;");
+        
+        ps.setString(1, company);
+        ps.setString(2, itemName);
+        
         ArrayList<RefSupplier> RefSupplierList = new ArrayList();
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {

@@ -43,7 +43,7 @@ public class SetSupplierItemServlet extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
            String itemName = request.getParameter("itemNameSupplier");
             String supplierName = request.getParameter("supplierName");
-            ArrayList<RefSupplier> RefSupplierItem = new RefSupplierDAO().searchSupplierItem(itemName, supplierName);
+            ArrayList<RefSupplier> RefSupplierItem = new RefSupplierDAO().setSupplierItem(itemName, supplierName);
             JSONArray array = new JSONArray();
             for (int i = 0; i < RefSupplierItem.size(); i++) {
                 JSONObject obj = new JSONObject();
