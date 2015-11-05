@@ -23,20 +23,21 @@ import java.text.ParseException;
  */
 public class SubconPurchaseOrderDAO {
 
-  /**
- * Subcontractor Purchase Order
- * @param newSubconPurchaseOrder
- * @return 
- */
+    /**
+     * Subcontractor Purchase Order
+     *
+     * @param newSubconPurchaseOrder
+     * @return
+     */
     public boolean EncodeSubconPurchaseOrder(PurchaseOrder newSubconPurchaseOrder) {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
-            String query = "INSERT INTO purchase_order\n" +
-                           "(poNumber,isSupplier, subconID, productionNumber, dateMade, deliveryDate, preparedBy, isCompleted)\n" +
-                           "VALUES(?,?,?,?,?,?,?);";
+            String query = "INSERT INTO purchase_order\n"
+                    + "(poNumber,isSupplier, subconID, productionNumber, dateMade, deliveryDate, preparedBy, isCompleted)\n"
+                    + "VALUES(?,?,?,?,?,?,?);";
             PreparedStatement pstmt = conn.prepareStatement(query);
-            
+
             pstmt.setInt(1, newSubconPurchaseOrder.getPoNumber());
             pstmt.setBoolean(1, newSubconPurchaseOrder.isIsSupplier());
             pstmt.setInt(2, newSubconPurchaseOrder.getSubconID());
@@ -55,18 +56,19 @@ public class SubconPurchaseOrderDAO {
         return false;
     }
 
- /**
- * Subcontractor Purchase Order details
- * @param newSubconPurchaseOrder
- * @return 
- */
+    /**
+     * Subcontractor Purchase Order details
+     *
+     * @param newSubconPurchaseOrder
+     * @return
+     */
     public boolean EncodeSubconPurchaseOrderDeatils(PurchaseOrderDetails newPurchaseOrderDetails) {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
-            String query = "INSERT INTO purchase_order_details\n" +
-                           "(poNumber, itemCode, qty, deliveredQty)\n" +
-                           "VALUES (?,?,?,?);";
+            String query = "INSERT INTO purchase_order_details\n"
+                    + "(poNumber, itemCode, qty, deliveredQty)\n"
+                    + "VALUES (?,?,?,?);";
             PreparedStatement pstmt = conn.prepareStatement(query);
 
             pstmt.setInt(1, newPurchaseOrderDetails.getPoNumber());
@@ -82,8 +84,7 @@ public class SubconPurchaseOrderDAO {
         }
         return false;
     }
-    
-    
+
     public Integer getSubconPurchaseOrderNumber() throws SQLException {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -97,24 +98,28 @@ public class SubconPurchaseOrderDAO {
         }
         if (i == 0) {
             i = 50000000;
-        } else if (i==59999999)
-            i=-1;
-        else {
+        } else if (i == 59999999) {
+            i = -1;
+        } else {
             i += 1;
         }
 
         rs.close();
         return i;
     }
-    
+
     public ArrayList<SubconPurchaseOrderView> GetAllSubconPurchaseOrderForApproval() {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
             ArrayList<SubconPurchaseOrderView> poList = new ArrayList<>();
-            String query = ";";
+            String query = "SELECT PO.poNumber, S.companyName, PO.dateMade, PO.deliveryDate, PO.preparedBy\n"
+                    + "FROM purchase_order PO\n"
+                    + "JOIN ref_supplier S \n"
+                    + "ON PO.supplierID = S.supplierID\n"
+                    + "WHERE PO.isSupplier = FALSE AND PO.approvedBy IS NULL;";
             PreparedStatement ps = conn.prepareStatement(query);
-            
+
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 SubconPurchaseOrderView po = new SubconPurchaseOrderView();
@@ -125,7 +130,7 @@ public class SubconPurchaseOrderDAO {
                 po.setCompanyName(rs.getString("companyName"));
                 poList.add(po);
             }
-            
+
             rs.close();
             return poList;
         } catch (SQLException ex) {
@@ -133,7 +138,7 @@ public class SubconPurchaseOrderDAO {
         }
         return null;
     }
-    
+
 //    
 //    public ArrayList<SubconPurchaseOrder> MonitorSubconPurchaseOrder() throws ParseException {
 //        ArrayList<SubconPurchaseOrder> SubconPurchaseOrder = new ArrayList<SubconPurchaseOrder>();
@@ -215,5 +220,4 @@ public class SubconPurchaseOrderDAO {
 //        return null;
 //    }
 //    
-    
 }
