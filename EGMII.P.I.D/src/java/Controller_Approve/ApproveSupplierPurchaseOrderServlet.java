@@ -31,13 +31,13 @@ public class ApproveSupplierPurchaseOrderServlet extends BaseServlet {
     @Override
     public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         SupplierPurchaseOrderDAO PurchaseOrderDAO = new SupplierPurchaseOrderDAO();
-        ArrayList<SupplierPurchaseOrderView> PurchaseOrderList = new  ArrayList<> ();
-        
+        ArrayList<SupplierPurchaseOrderView> PurchaseOrderList = new ArrayList<>();
+
         PurchaseOrderList = PurchaseOrderDAO.GetAllSupplierPurchaseOrderForApproval();
         ServletContext context = getServletContext();
         RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Procurement/SupplierApproval.jsp");
-//        request.setAttribute("data", "null");
+        request.setAttribute("data", "null");
         request.setAttribute("SupplierPurchaseOrderList", PurchaseOrderList);
-        rd.forward(request, response); 
+        rd.forward(request, response);
     }
 }
