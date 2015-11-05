@@ -14,7 +14,7 @@ import java.text.SimpleDateFormat;
  * @author Gerard
  */
 public class SupplierPurchaseOrderView {
-    private String poNumber;
+    private int poNumber;
     private int preparedBy;
     private int approvedBy;
     private java.sql.Date dateMade;
@@ -124,14 +124,14 @@ public class SupplierPurchaseOrderView {
     /**
      * @return the poNumber
      */
-    public String getPoNumber() {
+    public int getPoNumber() {
         return poNumber;
     }
 
     /**
      * @param poNumber the poNumber to set
      */
-    public void setPoNumber(String poNumber) {
+    public void setPoNumber(int poNumber) {
         this.poNumber = poNumber;
     }
 
