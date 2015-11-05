@@ -32,7 +32,7 @@ public class ApproveSubconPurchaseOrderServlet extends BaseServlet {
         PurchaseOrderList = PurchaseOrderDAO.GetAllSubconPurchaseOrderForApproval();
         ServletContext context = getServletContext();
         RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Procurement/SubconApproval.jsp");
-//        request.setAttribute("data", "null");
+        request.setAttribute("data", "null");
         request.setAttribute("PurchaseOrderList", PurchaseOrderList);
         rd.forward(request, response); 
     }
