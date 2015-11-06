@@ -180,6 +180,49 @@ public class SupplierPurchaseOrderDAO {
         }
         return null;
     }
+            
+         public ArrayList<SupplierPurchaseOrderView> getSPOReceiving(int poNumber) {
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+            ArrayList<SupplierPurchaseOrderView> poList = new ArrayList<>();
+            
+            String query = "SELECT PO.poNumber, PO.preparedBy, PO.dateMade, PO.deliveryDate, S.companyName, PO.isSupplier,\n"
+                    + "I.itemName, I.itemCode, S.unitPrice, POD.qty, PO.approvedBy, PO.isCompleted\n"
+                    + "FROM purchase_order PO\n"
+                    + "JOIN purchase_order_details POD\n"
+                    + "ON PO.poNumber  =POD.poNumber\n"
+                    + "JOIN ref_item I \n"
+                    + "ON POD.itemCode = I.itemCode\n"
+                    + "JOIN ref_supplier S \n"
+                    + "ON I.itemCode = S.itemCode\n"
+                    + "AND PO.supplierID = S.supplierID\n"
+                    + "WHERE PO.poNumber = ? AND PO.isSupplier = TRUE;";
+            
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setInt(1, poNumber);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                SupplierPurchaseOrderView po = new SupplierPurchaseOrderView();
+                po.setPoNumber(rs.getInt("poNumber"));
+                po.setPreparedBy(rs.getInt("preparedBy"));
+                po.setDateMade(rs.getDate("dateMade"));
+                po.setDeliveryDate(rs.getDate("deliveryDate"));
+                po.setCompanyName(rs.getString("companyName"));
+                po.setItemName(rs.getString("itemName"));
+                po.setItemCode(rs.getInt("itemCode"));
+                po.setUnitPrice(rs.getDouble("unitPrice"));
+                po.setQty(rs.getDouble("qty"));
+                poList.add(po);
+            }
+            
+            rs.close();
+            return poList;
+        } catch (SQLException ex) {
+            Logger.getLogger(SupplierPurchaseOrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }   
           
           public boolean updateApproval(PurchaseOrder newSupplierPurchaseOrder) throws ParseException {
         try {

@@ -100,6 +100,14 @@
         <servlet-name>SetSupplierReceivingServlet</servlet-name>
         <servlet-class>Controller_Json.SetSupplierReceivingServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SetSupplierSpecificReceivingServlet</servlet-name>
+        <servlet-class>Controller_Json.SetSupplierSpecificReceivingServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EncodeSupplierDRServlet</servlet-name>
+        <servlet-class>Controller_Encode.EncodeSupplierDRServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SearchProductServlet</servlet-name>
         <url-pattern>/SearchProductServlet</url-pattern>
@@ -199,6 +207,14 @@
     <servlet-mapping>
         <servlet-name>SetSupplierReceivingServlet</servlet-name>
         <url-pattern>/SetSupplierReceivingServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SetSupplierSpecificReceivingServlet</servlet-name>
+        <url-pattern>/SetSupplierSpecificReceivingServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EncodeSupplierDRServlet</servlet-name>
+        <url-pattern>/EncodeSupplierDRServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

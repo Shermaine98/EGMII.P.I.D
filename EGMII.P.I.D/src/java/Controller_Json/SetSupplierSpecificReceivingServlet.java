@@ -25,24 +25,36 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Geraldine
+ * @author shermainesy
  */
-public class SetSupplierReceivingServlet extends BaseServlet {
+public class SetSupplierSpecificReceivingServlet extends BaseServlet {
 
     @Override
     public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        ArrayList<SupplierPurchaseOrderView> SupplierPurchaseOrderList = new ArrayList<>();
+        SupplierPurchaseOrderDAO SupplierPurchaseOrderDAO = new SupplierPurchaseOrderDAO();
         SupplierDeliveryReceiptDAO SupplierDeliveryReceiptDAO = new SupplierDeliveryReceiptDAO();
-        ArrayList<SupplierPurchaseOrderView> SupplierPurchaseOrderView = new ArrayList<>();
+        String poNumber = request.getParameter("hiddenValueReceiving");
+       
+        SupplierPurchaseOrderList = SupplierPurchaseOrderDAO.getSPOReceiving(Integer.parseInt(poNumber));
+        ArrayList<SupplierPurchaseOrderView> PurchaseOrderList = new ArrayList<>();
 
         try {
-            SupplierPurchaseOrderView = SupplierDeliveryReceiptDAO.GetPurchaseOrderForReceiving();
+            PurchaseOrderList = SupplierDeliveryReceiptDAO.GetPurchaseOrderForReceiving();
         } catch (ParseException ex) {
-            Logger.getLogger(SetSupplierReceivingServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SetSupplierSpecificReceivingServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         ServletContext context = getServletContext();
         RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Procurement/SupplierReceiving.jsp");
-        request.setAttribute("receivingData", "null");
-        request.setAttribute("Receiving", SupplierPurchaseOrderView);
+      
+        request.setAttribute("Receiving", PurchaseOrderList);
+        request.setAttribute("receivingData", "receiving");
+        request.setAttribute("SupplierPurchaseOrderReceiving", SupplierPurchaseOrderList);
+        
         rd.forward(request, response);
+
     }
+
 }

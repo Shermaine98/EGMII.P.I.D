@@ -45,8 +45,8 @@ public class EncodeSupplierPurchaseOrderServlet extends BaseServlet {
         String deliveryDate = request.getParameter("deliveryDate");
         String supplier = request.getParameter("supplierId");
 
-        Boolean isSupplier = true;
-        Boolean isCompleted = false;
+        boolean isSupplier = true;
+        boolean isCompleted = false;
 
         //details
         String[] itemCode = request.getParameterValues("itemCode");

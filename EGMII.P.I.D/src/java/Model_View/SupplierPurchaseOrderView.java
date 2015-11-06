@@ -25,6 +25,8 @@ public class SupplierPurchaseOrderView {
     private double unitPrice;
     private double qty;
     private boolean isCompleted;
+    private String preparedbyname;
+    private int itemCode;
 
     private DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
     /**
@@ -238,5 +240,47 @@ public class SupplierPurchaseOrderView {
      */
     public void setUnitPrice(double unitPrice) {
         this.unitPrice = unitPrice;
+    }
+
+    /**
+     * @return the name
+     */
+    public String getPreparedByName() {
+        return getPreparedbyname();
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setPreparedByName(String preparedbyname) {
+        this.setPreparedbyname(preparedbyname);
+    }
+
+    /**
+     * @return the preparedbyname
+     */
+    public String getPreparedbyname() {
+        return preparedbyname;
+    }
+
+    /**
+     * @param preparedbyname the preparedbyname to set
+     */
+    public void setPreparedbyname(String preparedbyname) {
+        this.preparedbyname = preparedbyname;
+    }
+
+    /**
+     * @return the itemCode
+     */
+    public int getItemCode() {
+        return itemCode;
+    }
+
+    /**
+     * @param itemCode the itemCode to set
+     */
+    public void setItemCode(int itemCode) {
+        this.itemCode = itemCode;
     }
 }
