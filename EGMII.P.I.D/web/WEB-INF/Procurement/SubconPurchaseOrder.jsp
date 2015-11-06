@@ -4,7 +4,10 @@
     Author     : Geraldine
 --%>
 
+<%@page import="Model_View.ConsumptionReportView"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="/LevelOfAccess/LevelOFAccess.jsp"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,26 +17,64 @@
         <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="bootstrap/css/sub-menu.css">
         <link href="bootstrap/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" type="text/css" href="bootstrap/css/jquery.dataTables.min.css">
+        <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
         <title>Encode Subconractor Purchase Order</title>
     </head>
-    
-   
+    <script>
+        $(document).ready(function () {
+            $('#dataTable').DataTable({
+                "paging": true,
+                "info": true,
+//                    "dom": '<"pull-left "f>'
+            });
+
+            $(".SubconPO").on("click", (function () {
+                var purchaseOrderNum = $(this).closest("tr").find(".poNumber").text();
+                document.getElementById('hiddenValue').value = purchaseOrderNum;
+                document.getElementById("form1").submit();
+            }));
+        });
+        //          $('#run').ready(function(){
+        //         document.getElementById("run").addEventListener("load", SolveTQP);
+        //          });
+
+    </script>
     <body>
         <br/>
-        <!--Search product-->
-        <form action="SearchProductsServlet" method="POST" >
-            <div align="center" class="container">
-                <h2>Encode Subcontractor Purchase Order</h2>
-                <div class="input-group col-md-6">
-                    <input type="text" class="form-control" name="productName" id="productName" onkeypress="autoComplete();" placeholder="Search Item"/>
-                    <input type="hidden" name="productName1" id="productName1" disabled="disabled" style="color: #CCC; position: absolute; background: transparent;"/>
-                    <span class="input-group-btn"><button class="btn btn-default" ><span class="glyphicon glyphicon-search"></span></button></span>
-                </div>
-                <br/><br/>
+        <% ArrayList<ConsumptionReportView> ConsumptionReportView = (ArrayList<ConsumptionReportView>) request.getAttribute("ConsumptionList");%>
+        <div class="container" align="center">
+            <h2>Search Consumption Report</h2><br/>
+            <div style="width:60%;">
+                <table id="dataTable" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Production Number</th>
+                            <th>Product Name</th>
+                            <th>Product Type</th>
+                            <th>Color</th>
+                            <th>Prepared By</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%for (int i = 0; i < ConsumptionReportView.size(); i++) {%>
+                        <tr class="SubconPO">  
+                            <td class="poNumber"><%=ConsumptionReportView.get(i).getProductionNumber()%></td>
+                            <td><%=ConsumptionReportView.get(i).getProductName()%></td>
+                            <td><%=ConsumptionReportView.get(i).getProductType()%></td>
+                            <td><%=ConsumptionReportView.get(i).getColor()%></td>
+                            <td><%=ConsumptionReportView.get(i).getPreparedBy()%></td>
+                        </tr> 
+                        <%}%>
+                    </tbody>
+                </table>
             </div>
-        </form>
-
-
+            <input type="hidden" name="hiddenValue" id="hiddenValue" value=""/>
+        </div>
+        <% String data = (String) request.getAttribute("subconData");
+            if (data.equalsIgnoreCase("consumption")) {
+                //ArrayList<ConsumptionReportView> PurchaseOrderSpecific = (ArrayList<ConsumptionReportView>) request.getAttribute("SupplierPurchaseOrderSpecific");
+        %>
         <form method="POST" action="EncodeSubcontractorPurchaseOrderServlet">
             <div align="center" class="container">
 
@@ -66,18 +107,18 @@
                     </div>
                     <div class="panel-body">
                         <div style="width:70%">
-                        <label for="productionNumber">Production Number</label>
-                        <input type="text" name="productionNumber" class="form-control readonlyWhite" readonly /><br/>
-                        <label for="productName">Product Name</label>
-                        <input type="text" name="productName" class="form-control readonlyWhite" readonly /><br/>
-                        <label for="productType">Product Type</label>
-                        <input type="text" name="productType" class="form-control readonlyWhite" readonly /><br/>
-                        <label for="color">Color</label>
-                        <input type="text" name="color" class="form-control readonlyWhite" readonly /><br/>
+                            <label for="productionNumber">Production Number</label>
+                            <input type="text" name="productionNumber" class="form-control readonlyWhite" readonly /><br/>
+                            <label for="productName">Product Name</label>
+                            <input type="text" name="productName" class="form-control readonlyWhite" readonly /><br/>
+                            <label for="productType">Product Type</label>
+                            <input type="text" name="productType" class="form-control readonlyWhite" readonly /><br/>
+                            <label for="color">Color</label>
+                            <input type="text" name="color" class="form-control readonlyWhite" readonly /><br/>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="panel panel-default col-md-6">
                     <div class="panel-heading">
                         <h3 class="panel-title">Sizes</h3>
@@ -151,10 +192,10 @@
                             </tr>
                         </table>
 
-<!--                        Unit Price:
-                        <input type="number" name="unitPrice" value="" readonly class="form-control readonlyWhite" /><br/>
-                        Total:
-                        <input type="number" name="Total" value="" readonly class="form-control readonlyWhite" /><br/>-->
+                        <!--                        Unit Price:
+                                                <input type="number" name="unitPrice" value="" readonly class="form-control readonlyWhite" /><br/>
+                                                Total:
+                                                <input type="number" name="Total" value="" readonly class="form-control readonlyWhite" /><br/>-->
                     </div>
                 </div>
             </div>
@@ -173,7 +214,7 @@
             </div>
 
         </form>
-
+        <%}%>
         <br/><br/>
         <script>
             $(function () {

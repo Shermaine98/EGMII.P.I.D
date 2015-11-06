@@ -17,7 +17,6 @@
         <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="bootstrap/css/sub-menu.css">
         <link href="bootstrap/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link rel="stylesheet" type="text/css" href="bootstrap/css/jquery.dataTables.min.css">
         <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
         <script src="js/searchSupplier.js"></script>
         <title>Supplier Purchase Order Approval</title>
@@ -68,7 +67,6 @@
                             <td><%=PurchaseOrderList.get(i).getDeliveryDate()%></td>
                             <td><%=PurchaseOrderList.get(i).getPreparedBy()%></td>
                         </tr>
-
                         <%
                             }
                         %>

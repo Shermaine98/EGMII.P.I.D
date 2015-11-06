@@ -7,13 +7,9 @@ package Controller_Encode;
 
 import Controller_Base.BaseServlet;
 import DAO.SupplierDeliveryReceiptDAO;
-import DAO.SupplierPurchaseOrderDAO;
 import Model.DeliveryReceipt;
 import Model.DeliveryReceiptDetails;
-import Model.PurchaseOrder;
-import Model.PurchaseOrderDetails;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -76,8 +72,6 @@ public class EncodeSupplierDRServlet extends BaseServlet {
         }
    
        
-       
-
         //encode supplierdetails
         if (x == true) {
             for (int y = 0; y < itemCode.length; y++) {

@@ -66,12 +66,12 @@
 
                                 <li><a href="">Subcontractor Purchase Order</a>
                                     <ul class="dropdown-menu sub-menu" style="margin-top: 35px;">
-                                        <li><a href="/EGMII.P.I.D.P.I.DMI/SearchProductsSubconServlet">Encode Subcontractor Purchase Order</a></li>
+                                        <li><a href="/EGMII.P.I.D/SetSubconNumberServlet">Encode Subcontractor Purchase Order</a></li>
                                         <li><a href="/EGMII.P.I.D/ApproveSubconPurchaseOrderServlet">Approve Subcontractor Purchase Order</a></li>
                                         <li><a href="/EGMII.P.I.D/ViewSubconPurchaseOrderServlet">View Subcontractor Purchase Order</a></li>
-                                        <li><a href="/EGMII.P.I.D/SetSPONumberServlet">Receive Subcontractor Purchase Order</a></li></ul></li>
+                                        <li><a href="/EGMII.P.I.D/SetSubconPOReceivingServlet">Receive Subcontractor Purchase Order</a></li></ul></li>
 
-                                <li><a href="/EGMII.P.I.D/GetDRForCuttingReportServlet">Generate Cutting Report</a></li>
+                                <li><a href="/EGMII.P.I.D/SetConsumptionCuttingServlet">Generate Cutting Report</a></li>
                             </ul>
                         </li>
 

@@ -108,6 +108,18 @@
         <servlet-name>EncodeSupplierDRServlet</servlet-name>
         <servlet-class>Controller_Encode.EncodeSupplierDRServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SetSubconPOSpecificSerlvet</servlet-name>
+        <servlet-class>Controller_Json.SetSubconPOSpecificSerlvet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SetSubconPOReceivingServlet</servlet-name>
+        <servlet-class>Controller_Json.SetSubconPOReceivingServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SetConsumptionCuttingServlet</servlet-name>
+        <servlet-class>Controller_Json.SetConsumptionCuttingServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SearchProductServlet</servlet-name>
         <url-pattern>/SearchProductServlet</url-pattern>
@@ -215,6 +227,18 @@
     <servlet-mapping>
         <servlet-name>EncodeSupplierDRServlet</servlet-name>
         <url-pattern>/EncodeSupplierDRServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SetSubconPOSpecificSerlvet</servlet-name>
+        <url-pattern>/SetSubconPOSpecificSerlvet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SetSubconPOReceivingServlet</servlet-name>
+        <url-pattern>/SetSubconPOReceivingServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SetConsumptionCuttingServlet</servlet-name>
+        <url-pattern>/SetConsumptionCuttingServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

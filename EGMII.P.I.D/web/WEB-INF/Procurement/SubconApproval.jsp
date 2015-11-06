@@ -4,6 +4,9 @@
     Author     : Geraldine
 --%>
 
+<%@page import="Model_View.SupplierPurchaseOrderView"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="/LevelOfAccess/LevelOFAccess.jsp"%>
 <!DOCTYPE html>
@@ -17,15 +20,26 @@
         <link href="bootstrap/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" type="text/css" href="bootstrap/css/jquery.dataTables.min.css">
         <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
-        <title>Subcontractor Purchase Order Approval</title><script>
-            $(document).ready(function () {
-            $('#dataTable').DataTable({
-            "paging": true,
+        <title>Subcontractor Purchase Order Approval</title>
+        <script>
+           $(document).ready(function () {
+                $('#dataTable').DataTable({
+                    "paging": true,
                     "info": true,
 //                    "dom": '<"pull-left "f>'
+                });
+
+                $(".SubconPoView").on("click", (function () {
+                    var purchaseOrderNum = $(this).closest("tr").find(".poNumber").text();
+                    document.getElementById('hiddenValue').value = purchaseOrderNum;
+                    document.getElementById("form1").submit();
+                }));
             });</script>
     </head>
     <body>
+          <%        
+    ArrayList<SupplierPurchaseOrderView> PurchaseOrderList = (ArrayList<SupplierPurchaseOrderView>) request.getAttribute("PurchaseOrderList");
+    %>
         <div class="container" align="center">
             <h2>Approve Subcontractor Purchase Order</h2><br/>
 
@@ -35,25 +49,35 @@
                         <col style="width:23%" />
                         <col style="width:35%" />
                     </colgroup>
+                    <thead>
                     <tr>
                         <th>Purchase Order No.</th>
                         <th>Subcontractor</th>
                         <th>Date Made</th>
+                        <th>Delivery Date</th>
                         <th>Prepared By</th>
                     </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                    </thead>
+                    <tbody>
+                         <% for (int i = 0; i < PurchaseOrderList.size(); i++) {%>
+                        <tr class="SubconPoView">
+                            <td class="poNumber"><%=PurchaseOrderList.get(i).getPoNumber()%></td>
+                            <td><%=PurchaseOrderList.get(i).getCompanyName()%></td>
+                            <td><%=PurchaseOrderList.get(i).getDateMade()%></td>
+                            <td><%=PurchaseOrderList.get(i).getDeliveryDate()%></td>
+                            <td><%=PurchaseOrderList.get(i).getPreparedBy()%></td>
+                        </tr>
+                         <%
+                            }
+                        %>
+                  </tbody>
                 </table>
             </div>
         </div>
 
         <%
             String data = (String) request.getAttribute("data");
-            if (!data.equalsIgnoreCase("null")) {
+            if (data.equalsIgnoreCase("subcon")) {
         %>
 
         <div class="container" align="center">

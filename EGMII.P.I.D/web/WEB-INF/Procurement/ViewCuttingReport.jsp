@@ -4,7 +4,10 @@
     Author     : shermainesy
 --%>
 
+<%@page import="Model_View.ConsumptionReportView"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="/LevelOfAccess/LevelOFAccess.jsp"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,15 +15,10 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="bootstrap/css/jquery-ui-datePicker.css">
-        <link rel="stylesheet" type="text/css" href="bootstrap/css/searchStyle.css">
-        <script src="js/jquery.min.js"></script>
-        <script src="js/jquery.mockjax.js"></script>
-        <script type="text/javascript" src="js/jquery.autocomplete.min.js"></script>
-        <script type="text/javascript" src="bootstrap/js/jquery-ui.js"></script>
-        <script type="text/javascript" src="js/jquery.autocomplete.js"></script>
-        <script src="js/searchSupplier.js"></script>
-        <script src="js/deleteRow.js"></script>
-        <script src="bootstrap/js/jquery-ui.js"></script>
+        
+        <link href="bootstrap/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" type="text/css" href="bootstrap/css/jquery.dataTables.min.css">
+        <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
         <title>Approve Cutting Report</title>
         <style>
             input[type=number]::-webkit-inner-spin-button, 
@@ -29,9 +27,53 @@
                 margin: 0; 
             }
         </style>
+        <script> $(document).ready(function () {
+            $('#dataTable').DataTable({
+                "paging": true,
+                "info": true,
+//                    "dom": '<"pull-left "f>'
+            });
+
+            $(".cuttingReport").on("click", (function () {
+                var purchaseOrderNum = $(this).closest("tr").find(".poNumber").text();
+                document.getElementById('hiddenValue').value = purchaseOrderNum;
+                document.getElementById("form1").submit();
+            }));
+        });</script>
     </head>
     <body>
-        <<div align="center" class="container">
+        <% ArrayList<ConsumptionReportView> ConsumptionReportView = (ArrayList<ConsumptionReportView>) request.getAttribute("consumptionReportCutting");%>
+        <div class="container" align="center">
+            <h2>Approve Supplier Purchase Order</h2><br/>
+            <div style="width:60%;">
+                <table id="dataTable" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Purchase Order No.</th>
+                            <th>Product Name</th>
+                            <th>Date Made</th>
+                            <th>Color</th>
+                            <th>Prepared By</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for (int i = 0; i < ConsumptionReportView.size(); i++) {%>
+                        <tr class="SupplierPOView">
+                            <td class="poNumber"><%=ConsumptionReportView.get(i).getProductionNumber()%></td>
+                            <td><%=ConsumptionReportView.get(i).getProductName()%></td>
+                            <td><%=ConsumptionReportView.get(i).getDateMade()%></td>
+                            <td><%=ConsumptionReportView.get(i).getColor()%></td>
+                            <td><%=ConsumptionReportView.get(i).getPreparedBy()%></td>
+                        </tr>
+                        <%
+                            }
+                        %>
+                    </tbody>
+                </table>
+            </div>
+            <input type="hidden" name="hiddenValue" id="hiddenValue" value=""/>
+        </div>
+        <div align="center" class="container">
             <h2>Approve Cutting Report</h2><br/>
             <form method="POST" action="EncodeSupplierPurchaseOrderServlet">
 

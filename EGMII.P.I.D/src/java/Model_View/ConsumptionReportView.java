@@ -21,12 +21,13 @@ public class ConsumptionReportView {
     private String status;
     private int itemCode;
     private double qty;
-    
+    private String name;
     private String productName;
     private String color;
     private String size;
     private String itemName;
     private String unitMeasurement;
+    private String productType;
     
    
 
@@ -211,5 +212,33 @@ public class ConsumptionReportView {
      */
     public void setUnitMeasurement(String unitMeasurement) {
         this.unitMeasurement = unitMeasurement;
+    }
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * @return the productType
+     */
+    public String getProductType() {
+        return productType;
+    }
+
+    /**
+     * @param productType the productType to set
+     */
+    public void setProductType(String productType) {
+        this.productType = productType;
     }
 }
