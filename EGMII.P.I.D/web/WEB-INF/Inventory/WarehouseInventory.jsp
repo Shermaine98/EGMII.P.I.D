@@ -4,7 +4,7 @@
     Author     : Geraldine
 --%>
 
-<%@page import="Model.WarehouseInventory"%>
+<%@page import="Model_View.WarehouseInventoryView"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="/LevelOfAccess/LevelOFAccess.jsp"%>
@@ -31,7 +31,7 @@
     </head>
     <body>  
     <%            
-     ArrayList<WarehouseInventory> WarehouseInventory = (ArrayList<WarehouseInventory>) request.getAttribute("WarehouseInventoryList");
+     ArrayList<WarehouseInventoryView> WarehouseInventory = (ArrayList<WarehouseInventoryView>) request.getAttribute("WarehouseInventoryList");
     %>
     <center><h2>Warehouse Inventory</h2></center>
     <div align="center" class="container">
@@ -51,14 +51,8 @@
             <tbody>
                 <%for (int i = 0; i < WarehouseInventory.size(); i++) {%>
                 <tr>
-                    <td><%=WarehouseInventory.get(i).getDrNumber()%></td>
-                    <td><%=WarehouseInventory.get(i).getPoNumber()%></td>
-                    <td><%=WarehouseInventory.get(i).getProductionNumber()%></td>
-                    <td><%=WarehouseInventory.get(i).getProductID()%></td>
-                    <td><%=WarehouseInventory.get(i).getSizeType()%></td>
-                    <td><%=WarehouseInventory.get(i).getDateUpdated()%></td>
+                    <td><%=WarehouseInventory.get(i).getProductName()%></td>
                     <td><%=WarehouseInventory.get(i).getQty()%></td>
-                    <td><%=WarehouseInventory.get(i).getUpdatedBy()%></td>
                 </tr>
                 <%
                     }

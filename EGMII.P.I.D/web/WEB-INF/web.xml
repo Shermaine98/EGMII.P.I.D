@@ -132,6 +132,10 @@
         <servlet-name>ViewWarehouseInventoryServlet</servlet-name>
         <servlet-class>Controller_View.ViewWarehouseInventoryServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SetInventoryReportServlet</servlet-name>
+        <servlet-class>Controller_Json.SetInventoryReportServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SearchProductServlet</servlet-name>
         <url-pattern>/SearchProductServlet</url-pattern>
@@ -263,6 +267,10 @@
     <servlet-mapping>
         <servlet-name>ViewWarehouseInventoryServlet</servlet-name>
         <url-pattern>/ViewWarehouseInventoryServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SetInventoryReportServlet</servlet-name>
+        <url-pattern>/SetInventoryReportServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

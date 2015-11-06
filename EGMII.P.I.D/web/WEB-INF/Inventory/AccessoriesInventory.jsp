@@ -4,7 +4,7 @@
     Author     : Geraldine
 --%>
 
-<%@page import="Model.AccessoriesInventory"%>
+<%@page import="Model_View.RawMaterialsInventoryView"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="/LevelOfAccess/LevelOFAccess.jsp"%>
@@ -30,7 +30,7 @@
     </head>
     <body>  
         <br/><br/><br/>
-        <%            ArrayList<AccessoriesInventory> AccessoriesInventory = (ArrayList<AccessoriesInventory>) request.getAttribute("AccessoriesInventoryList");
+        <%            ArrayList<RawMaterialsInventoryView> AccessoriesInventory = (ArrayList<RawMaterialsInventoryView>) request.getAttribute("AccessoriesInventoryList");
         %>
     <center><h2>Accessories Inventory</h2></center>
     <div align="center" class="container">
@@ -52,11 +52,7 @@
                     %>
                     <tr>
                         <td><%=AccessoriesInventory.get(i).getItemCode()%></td>
-                        <td><%=AccessoriesInventory.get(i).getDrNumber()%></td>
-                        <td><%=AccessoriesInventory.get(i).getPoNumber()%></td>
-                        <td><%=AccessoriesInventory.get(i).getDateUpdated()%></td>
                         <td><%=AccessoriesInventory.get(i).getQty()%></td>
-                        <td><%=AccessoriesInventory.get(i).getUpdatedBy()%></td>
                     </tr>
                     <%
                         }

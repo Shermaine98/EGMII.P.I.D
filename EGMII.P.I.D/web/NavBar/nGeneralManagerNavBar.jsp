@@ -85,7 +85,7 @@
                                 <li><a href="/EGMII.P.I.D/ViewWarehouseInventoryServlet">Warehouse Inventory</a></li>
                                 <li><a href="#">Inventory Report</a>
                                     <ul class="dropdown-menu sub-menu" style="margin-top:100px;">
-                                        <li><a href="">Encode Inventory Report</a></li>
+                                        <li><a href="SetInventoryReportServlet">Encode Inventory Report</a></li>
                                         <li><a href="">View Inventory Report</a></li>
                                     </ul></li>
                             </ul>
