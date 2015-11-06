@@ -84,7 +84,7 @@ function getSupplierItem() {
                      <td><input type="hidden" class="transparentBg cellWidth" name="receivingStatus" value="pending" />\n\
                      <input type="hidden" name = "reconcileStatus" value="pending" />\n\
                       <input type="text" class="transparentBg cellWidth" name = "note"/></td>' + '</tr>');
-                    document.getElementById("total").style.visibility = 'visible';
+                    document.getElementById("total1").style.visibility = 'visible';
                 }
 
             }, error: function (XMLHttpRequest, textStatus, exception) {
@@ -121,7 +121,7 @@ function SolveTotal() {
         var $this = $(this);
         var TQP = parseInt($this.find('[id="TQP\\[\\]"]').val());
         STotal = STotal + TQP;
-        document.getElementById('total1').value = STotal;
+        document.getElementById('total').value = STotal;
     }
     );
 

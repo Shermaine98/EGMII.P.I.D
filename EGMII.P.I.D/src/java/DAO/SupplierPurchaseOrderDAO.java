@@ -113,16 +113,10 @@ public class SupplierPurchaseOrderDAO {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
             ArrayList<SupplierPurchaseOrderView> poList = new ArrayList<>();
-            String query = "SELECT PO.poNumber, PO.preparedBy, PO.dateMade, PO.deliveryDate, S.companyName, PO.isSupplier,\n"
-                    + "I.itemName, S.unitPrice, POD.qty, PO.approvedBy, PO.isCompleted\n"
+            String query = "SELECT DISTINCT PO.poNumber, PO.preparedBy, PO.dateMade, PO.deliveryDate, S.companyName\n"
                     + "FROM purchase_order PO\n"
-                    + "JOIN purchase_order_details POD\n"
-                    + "ON PO.poNumber  =POD.poNumber\n"
-                    + "JOIN ref_item I \n"
-                    + "ON POD.itemCode = I.itemCode\n"
                     + "JOIN ref_supplier S \n"
-                    + "ON I.itemCode = S.itemCode\n"
-                    + "AND PO.supplierID = S.supplierID\n"
+                    + "ON PO.supplierID = S.supplierID\n"
                     + "WHERE PO.isSupplier = TRUE AND PO.approvedBy IS NULL;";
             PreparedStatement ps = conn.prepareStatement(query);
             
@@ -173,6 +167,9 @@ public class SupplierPurchaseOrderDAO {
                 po.setDateMade(rs.getDate("dateMade"));
                 po.setDeliveryDate(rs.getDate("deliveryDate"));
                 po.setCompanyName(rs.getString("companyName"));
+                po.setItemName(rs.getString("itemName"));
+                po.setUnitPrice(rs.getDouble("unitPrice"));
+                po.setQty(rs.getDouble("qty"));
                 poList.add(po);
             }
             
@@ -182,6 +179,29 @@ public class SupplierPurchaseOrderDAO {
             Logger.getLogger(SupplierPurchaseOrderDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+          
+          public boolean updateApproval(PurchaseOrder newSupplierPurchaseOrder) throws ParseException {
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+            ArrayList<PurchaseOrder> poList = new ArrayList<>();
+            
+            String query = "UPDATE purchase_order\n" +
+"                           SET approvedBy = ?\n" +
+"                           WHERE poNumber = ?;";
+            
+             PreparedStatement pstmt = conn.prepareStatement(query);
+             pstmt.setInt(1, newSupplierPurchaseOrder.getApprovedBy());
+             pstmt.setInt(2, newSupplierPurchaseOrder.getPoNumber());
+            
+            int rows = pstmt.executeUpdate();
+            conn.close();
+            return rows == 1;
+        } catch (SQLException ex) {
+            Logger.getLogger(SupplierPurchaseOrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 //
 //    public ArrayList<SupplierPurchaseOrder> GetAllSupplierPurchaseOrder() throws ParseException {

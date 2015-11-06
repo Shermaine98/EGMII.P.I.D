@@ -92,6 +92,14 @@
         <servlet-name>SetApprovalSupplierPO</servlet-name>
         <servlet-class>Controller_Json.SetApprovalSupplierPO</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ApproveRejectSPOServlet</servlet-name>
+        <servlet-class>Controller_Approve.ApproveRejectSPOServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SetSupplierReceivingServlet</servlet-name>
+        <servlet-class>Controller_Json.SetSupplierReceivingServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SearchProductServlet</servlet-name>
         <url-pattern>/SearchProductServlet</url-pattern>
@@ -183,6 +191,14 @@
     <servlet-mapping>
         <servlet-name>SetApprovalSupplierPO</servlet-name>
         <url-pattern>/SetApprovalSupplierPO</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ApproveRejectSPOServlet</servlet-name>
+        <url-pattern>/ApproveRejectSPOServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SetSupplierReceivingServlet</servlet-name>
+        <url-pattern>/SetSupplierReceivingServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

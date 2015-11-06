@@ -63,10 +63,10 @@
                         <table id="data" class="table table-bordered">
                         </table>
 
-                        <div id="total" align="center" style="visibility:hidden;">
+                        <div id="total1" align="center" style="visibility:hidden;">
                             <div style="float:right">
                                 TOTAL:
-                                <input type="text" class="form-control readonlyWhite" name="Total1" id="total1" readonly />
+                                <input type="text" class="form-control readonlyWhite" name="Total" id="total" readonly />
                             </div>
                             <br/><br/><br/>
                             <input type="button" class="btn btn-danger" value="Delete Row" onclick="deleteRow('data')" />

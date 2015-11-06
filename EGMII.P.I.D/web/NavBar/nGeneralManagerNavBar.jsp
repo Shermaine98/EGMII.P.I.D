@@ -62,7 +62,7 @@
                                         <li><a href="/EGMII.P.I.D/SetSPONumberServlet">Encode Supplier Purchase Order</a></li>
                                         <li><a href="/EGMII.P.I.D/ApproveSupplierPurchaseOrderServlet">Approve Supplier Purchase Order</a></li>
                                         <li><a href="/EGMII.P.I.D/ViewSupplierPurchaseOrderServlet">View Supplier Purchase Order</a></li>
-                                        <li><a href="/EGMII.P.I.D/SetSPONumberServlet">Receive Supplier Purchase Order</a></li></ul></li>
+                                        <li><a href="/EGMII.P.I.D/SetSupplierReceivingServlet">Receive Supplier Purchase Order</a></li></ul></li>
 
                                 <li><a href="">Subcontractor Purchase Order</a>
                                     <ul class="dropdown-menu sub-menu" style="margin-top: 35px;">

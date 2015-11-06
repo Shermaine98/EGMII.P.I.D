@@ -6,6 +6,7 @@
 package Controller_Json;
 
 import Controller_Base.BaseServlet;
+import DAO.SupplierDeliveryReceiptDAO;
 import DAO.SupplierPurchaseOrderDAO;
 import Model.PurchaseOrder;
 import Model_View.SupplierPurchaseOrderView;
@@ -14,6 +15,7 @@ import java.io.PrintWriter;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -23,29 +25,23 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author shermainesy
+ * @author Geraldine
  */
-public class SetApprovalSupplierPO extends BaseServlet {
+public class SetSupplierReceivingServlet extends BaseServlet {
 
     @Override
     public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        SupplierDeliveryReceiptDAO SupplierDeliveryReceiptDAO = new SupplierDeliveryReceiptDAO();
+        ArrayList<SupplierPurchaseOrderView> SupplierPurchaseOrderView = new ArrayList<>();
 
-        ArrayList<SupplierPurchaseOrderView> SupplierPurchaseOrderList = new ArrayList<>();
-        SupplierPurchaseOrderDAO SupplierPurchaseOrderDAO = new SupplierPurchaseOrderDAO();
-
-        String poNumber = request.getParameter("hiddenValue");
-        System.out.println("this" + poNumber);
-        SupplierPurchaseOrderList = SupplierPurchaseOrderDAO.getSupplierPurchaseNumber(Integer.parseInt(poNumber));
-        ArrayList<SupplierPurchaseOrderView> PurchaseOrderList = new ArrayList<>();
-
-        PurchaseOrderList = SupplierPurchaseOrderDAO.GetAllSupplierPurchaseOrderForApproval();
+        try {
+            SupplierPurchaseOrderView = SupplierDeliveryReceiptDAO.GetPurchaseOrderForReceiving();
+        } catch (ParseException ex) {
+            Logger.getLogger(SetSupplierReceivingServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
         ServletContext context = getServletContext();
-        RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Procurement/SupplierApproval.jsp");
-        request.setAttribute("SupplierPurchaseOrderList", PurchaseOrderList);
-        request.setAttribute("data", "supplier");
-        request.setAttribute("SupplierPurchaseOrderSpecific", SupplierPurchaseOrderList);
+        RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Procurement/SupplierReceiving.jsp");
+        request.setAttribute("Receiving", SupplierPurchaseOrderView);
         rd.forward(request, response);
-
     }
-
 }
