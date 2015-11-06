@@ -120,6 +120,18 @@
         <servlet-name>SetConsumptionCuttingServlet</servlet-name>
         <servlet-class>Controller_Json.SetConsumptionCuttingServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewAccessoriesInventoryServlet</servlet-name>
+        <servlet-class>Controller_View.ViewAccessoriesInventoryServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewProductionInventoryServlet</servlet-name>
+        <servlet-class>Controller_View.ViewProductionInventoryServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewWarehouseInventoryServlet</servlet-name>
+        <servlet-class>Controller_View.ViewWarehouseInventoryServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SearchProductServlet</servlet-name>
         <url-pattern>/SearchProductServlet</url-pattern>
@@ -239,6 +251,18 @@
     <servlet-mapping>
         <servlet-name>SetConsumptionCuttingServlet</servlet-name>
         <url-pattern>/SetConsumptionCuttingServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewAccessoriesInventoryServlet</servlet-name>
+        <url-pattern>/ViewAccessoriesInventoryServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewProductionInventoryServlet</servlet-name>
+        <url-pattern>/ViewProductionInventoryServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewWarehouseInventoryServlet</servlet-name>
+        <url-pattern>/ViewWarehouseInventoryServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
