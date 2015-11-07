@@ -1,39 +1,175 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ConsumptionReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c2c74373-fce2-4589-8b49-269d8f46cdb5">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ConsumptionReport" language="groovy" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c2c74373-fce2-4589-8b49-269d8f46cdb5">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="152"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="dataset1" uuid="fc809268-b666-46d6-be41-f6658de327b8"/>
 	<parameter name="prodNum" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT *
-                FROM consumption_report cr  where cr.productionNumber = $P{prodNum};]]>
+		<![CDATA[SELECT CR.productionNumber,
+CR.dateMade, CR.status, CRD.itemCode,
+CRD.qty as 'VolumeQty', CONCAT(u.firstName," ",u.lastName) as 'name', P.productType, P.productName ,P.color, P.size, I.itemName,I.unitMeasurement, PBM.qty as 'ConsumptionQty'
+FROM consumption_report CR
+JOIN cr_details CRD
+ON CR.productionNumber = CRD.productionNumber
+JOIN product P
+ON CRD.itemCode =  P.itemCode
+JOIN product_bm PBM
+ON P.itemCode = PBM.productID
+JOIN ref_item I
+ON PBM.itemCode = I.itemCode
+JOIN user u ON CR.preparedBy = u.employeeID
+WHERE CR.productionNumber = $P{prodNum}]]>
 	</queryString>
-	
+	<field name="productionNumber" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dateMade" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="status" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="itemCode" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="VolumeQty" class="java.lang.Double"/>
+	<field name="name" class="java.lang.String"/>
+	<field name="productType" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="productName" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="color" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="size" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="itemName" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="unitMeasurement" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ConsumptionQty" class="java.lang.Double"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
 		<band height="79" splitType="Stretch">
-			<staticText>
-				<reportElement x="360" y="5" width="195" height="74" uuid="4e2885f8-cda4-42a3-b990-f1459d44cf61"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial" size="18" isBold="false"/>
-				</textElement>
-				
-			</staticText>
+			<rectangle>
+				<reportElement x="-21" y="0" width="612" height="79" backcolor="#F0F0F0" uuid="ffc5e206-4681-4adc-bcfd-b3550afa4e41"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<image>
+				<reportElement x="0" y="0" width="454" height="79" uuid="4fd19782-4a57-43ae-845d-2d997e3c0f5e"/>
+				<imageExpression><![CDATA["D:\\Din\\EGMII.P.I.D\\web\\Images\\logo.png"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="35" splitType="Stretch"/>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="213" y="7" width="195" height="28" uuid="4e2885f8-cda4-42a3-b990-f1459d44cf61"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Unicode MS" size="18" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Consumption Report]]></text>
+			</staticText>
+		</band>
 	</pageHeader>
 	<detail>
-		<band height="296" splitType="Stretch">
-			
+		<band height="350" splitType="Stretch">
+			<staticText>
+				<reportElement x="79" y="28" width="100" height="20" uuid="e5684a9b-f276-4238-9d4d-a79dc179efe7"/>
+				<textElement>
+					<font fontName="Arial Unicode MS" size="12"/>
+				</textElement>
+				<text><![CDATA[Production Number]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="213" y="28" width="100" height="20" uuid="5d6f7141-b29e-470c-8d5e-c5ffa2f4eaf0"/>
+				<textElement>
+					<font fontName="Arial Unicode MS" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{productionNumber}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="79" y="65" width="100" height="20" uuid="c3822d13-2ea8-482b-a284-162ec611dae7"/>
+				<textElement>
+					<font fontName="Arial Unicode MS" size="12"/>
+				</textElement>
+				<text><![CDATA[Product Name]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="213" y="65" width="100" height="20" uuid="0d3ef323-e0c6-4b9f-8c3f-2c1a0147fa73"/>
+				<textElement>
+					<font fontName="Arial Unicode MS" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{productName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="79" y="100" width="100" height="20" uuid="ef89c955-534b-481e-bb37-4aa8872e4826"/>
+				<textElement>
+					<font fontName="Arial Unicode MS" size="12"/>
+				</textElement>
+				<text><![CDATA[Product Type]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="213" y="100" width="100" height="20" uuid="e0101950-8732-4d34-b2c7-ee4cdf5b0f9f"/>
+				<textElement>
+					<font fontName="Arial Unicode MS" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{productType}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="79" y="130" width="100" height="20" uuid="eb403e4f-0c24-460d-9ef7-8d3f0c80dc7e"/>
+				<textElement>
+					<font fontName="Arial Unicode MS" size="12"/>
+				</textElement>
+				<text><![CDATA[Date Made]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="213" y="130" width="100" height="20" uuid="bfabeb62-79a3-4d01-b24f-2cbc41cbde98"/>
+				<textElement>
+					<font fontName="Arial Unicode MS" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dateMade}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="79" y="166" width="100" height="20" uuid="baf2553d-a818-4a76-84a2-004edff3a8c9"/>
+				<textElement>
+					<font fontName="Arial Unicode MS" size="12"/>
+				</textElement>
+				<text><![CDATA[Color]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="213" y="166" width="100" height="20" uuid="17a944ef-3828-48c8-95fe-23b304cdcc32"/>
+				<textElement>
+					<font fontName="Arial Unicode MS" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{color}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="79" y="205" width="100" height="20" uuid="30a8da58-d812-4ae8-aea4-1469d248cc65"/>
+				<textElement>
+					<font fontName="Arial Unicode MS" size="12"/>
+				</textElement>
+				<text><![CDATA[Prepared By]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="213" y="205" width="100" height="20" uuid="019fe137-d032-49b9-8cb4-e9ff930b4ee4"/>
+				<textElement>
+					<font fontName="Arial Unicode MS" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
-	<columnFooter>
-		<band height="45" splitType="Stretch"/>
-	</columnFooter>
 </jasperReport>

@@ -57,7 +57,7 @@ public class ViewConsumptionReportServlet extends BaseServlet {
             ServletContext context = getServletContext();
             RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/ProductCreation/ViewConsumptionReport.jsp");
             request.setAttribute("data", "ViewConsumptionReportSpecific");
-           request.setAttribute("crListSpecific", crListSpecific);
+            request.setAttribute("crListSpecific", crListSpecific);
             request.setAttribute("crList", crList);
             rd.forward(request, response);
             
