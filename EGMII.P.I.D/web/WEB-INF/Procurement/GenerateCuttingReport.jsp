@@ -45,7 +45,7 @@
             <% String data = (String) request.getAttribute("data");
                 ArrayList<ConsumptionReportView> ConsumptionReportView = (ArrayList<ConsumptionReportView>) request.getAttribute("CuttingReport");%>
             <div class="container" align="center">
-                <h2>Approve Supplier Purchase Order</h2><br/>
+                <h2>Supplier Purchase Order</h2><br/>
                 <div style="width:60%;">
                     <table id="dataTable" class="table table-bordered">
                         <thead>
@@ -79,63 +79,58 @@
         <%
             if (data.equalsIgnoreCase("CuttingReportSpecific")) {
                 ArrayList<ConsumptionReportView> ConsumptionReportSpecific = (ArrayList<ConsumptionReportView>) request.getAttribute("CuttingReportSpecific");%>                    
-        <div align="center" class="container">
-            <h2>Approve Cutting Report</h2><br/>
-            <form method="POST" action="EncodeSupplierPurchaseOrderServlet">
+        <form method="POST" action="EncodeSupplierPurchaseOrderServlet">
+            <div align="center" class="container">
+                <h2>Approve Cutting Report</h2><br/>
 
-                <table class="table table-bordered" style="width:40%">
-                    <colgroup>
-                        <col style="width:40%"/>
-                    </colgroup>
-                    <thead>
-                        <tr>
-                            <th>Production No.</th>
-                            <td class="value"><input class="input" type="text" name="productionNo" id="productionNo" value="<%=ConsumptionReportSpecific.get(0).getProductionNumber()%>"readonly /></td>
-                        </tr>
-                        <tr>
-                            <th>Purchase Order No.</th>
-                            <td class="value"><input class="input" type="text" name="poNumber" id="poNumber" readonly /></td>
-                        </tr>
-                        <tr>
-                            <th>Delivery Receipt No.</th>
-                            <td class="value"><input class="input" type="text" name="drNumber" id="drNumber" readonly /></td>
-                        </tr>
-                        <tr>
-                            <th>Cutting Master</th>
-                            <td><input type="hidden" name="preparedBy" value="0000"></td>
-                        </tr><tr>
-                            <th>Date Made </th>
-                            <td><input type="text" class="input" name="deliveryDate" id="datepicker"></td>                 
-                        </tr>
-                    </thead>
-                </table>
-                <table  id="dataTable3" class="table detailsWidth table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Item Code</th>
-                            <th>Size</th>
-                            <th>Calculated Quantity</th>
-                            <th>Actual Quantity</th>
-                            <th>Unit Measurement</th>
-                            <th>Note</th>
-                        </tr>
-                    </thead>
-                    <tbody >
-                        <tr>
-                            <td><input type="text" class="input" name="itemCode"  value = ""  readonly/></td>
-                            <td><input type="text" class="input" name="size"  value = ""  readonly/></td>
-                            <td><input type="text" class="input" name="calculatedQty"  value = ""  readonly/></td>
-                            <td><input type="text" class="input" name="actualQty"  value = ""  readonly/></td>
-                            <td><input type="text" class="input" name="unitMeasurement"  value = ""  readonly/></td>
-                            <td><input type="text" class="input" name="note"  value = ""  readonly/></td>
-                        </tr> 
-                    </tbody>
-                </table>
-            </form>
-            <input type="submit" style="width:77px; height:34px" class="btn btn-danger" value="Approve"/>
-            <button type="button" class="btn btn-danger" >Resend</button>
-            <a href="\..\..\Accounts\Homepage.jsp"><button type="button" class="btn btn-danger" >Cancel</button></a>
-        </div>
-        <%}%>
+                <div class="panel panel-default col-md-3">
+                    <div class="panel-body">
+                        <label>Production Number</label>
+                        <input class="form-control readonlyWhite" type="text" name="productionNo" id="productionNo" value="<%=ConsumptionReportSpecific.get(0).getProductionNumber()%>"readonly /><br/>
+                        <label>Purchase Order Number</label>
+                        <input class="form-control readonlyWhite" type="text" name="poNumber" id="poNumber" readonly /><br/>
+                        <label>Delivery Receipt Number</label>
+                        <input class="form-control readonlyWhite" type="text" name="drNumber" id="drNumber" readonly /><br/>
+                        <input type="hidden" name="preparedBy" value="0000" />
+                        <label>Delivery Date</label>
+                        <input type="date" class="form-control readonlyWhite" name="deliveryDate" id="datepicker" readonly /><br/>
+                    </div>
+                </div>
+
+                <div class="panel panel-default col-md-7">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Supplier Purchase Order</h3>
+                    </div>
+                    <div class="panel-body table-responsive">
+                        <table id="dataTable3" class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Item Code</th>
+                                    <th>Size</th>
+                                    <th>Calculated Quantity</th>
+                                    <th>Actual Quantity</th>
+                                    <th>Unit Measurement</th>
+                                    <th>Note</th>
+                                </tr>
+                            </thead>
+                            <tbody >
+                                <tr>
+                                    <td><input type="text" class="transparentBg inputSize" name="itemCode"  value = ""  readonly/></td>
+                                    <td><input type="text" class="transparentBg inputSize" name="size"  value = ""  readonly/></td>
+                                    <td><input type="number" class="transparentBg inputSize" name="calculatedQty"  value = ""  readonly/></td>
+                                    <td><input type="number" class="transparentBg inputSize" name="actualQty"  value = ""  readonly/></td>
+                                    <td><input type="text" class="transparentBg inputSize" name="unitMeasurement"  value = ""  readonly/></td>
+                                    <td><input type="text" class="transparentBg" name="note"  value = ""  readonly/></td>
+                                </tr> 
+                            </tbody>
+                        </table>
+                        <br/><br/>
+                        <input type="submit" class="btn btn-danger" value="Approve"/>
+                        <button type="button" class="btn btn-danger" >Resend</button>
+                        <a href="\..\..\Accounts\Homepage.jsp"><button type="button" class="btn btn-danger" >Cancel</button></a>
+                    </div>
+                </div>
+            </div></form>
+            <%}%>
     </body>
 </html>

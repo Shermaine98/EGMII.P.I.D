@@ -16,12 +16,14 @@
         <link rel="stylesheet" href="bootstrap/css/sub-menu.css">
         <link href="bootstrap/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <title>Replenishment Request</title>
+        <style>
+        </style>
     </head>
     <body>
         <div class="container" align="center">
             <h2>Replenishment Request</h2>
 
-            <div class="panel panel-default col-md-4" style="padding-bottom:10px; margin-left: 60px;">
+            <div class="panel panel-default col-md-3">
                 <div class="panel-body">
                     <label for="outlet">Outlet</label>
                     <input type="text" class="form-control readonlyWhite" readonly name="outlet" value="" /><br/>
@@ -36,7 +38,7 @@
                 </div>
             </div>
 
-            <div class="panel panel-default col-md-6" style="padding-bottom:10px;">
+            <div class="panel panel-default col-md-7">
                 <div class="panel-body">
                     <table class="table table-bordered">
                         <tr>
@@ -50,23 +52,23 @@
                                 <input type="text" class="transparentBg" name="productName" />  
                             </td>
                             <td>
-                                <select name="color" >
+                                <select name="color" class="transparentBg">
                                     <option value="sample">Sample</option>
                                 </select>  
                             </td>
                             <td>
-                                <select name="size" >
+                                <select name="size" class="transparentBg">
                                     <option value="sample">Sample</option>
                                 </select>  
                             </td>
                             <td>
-                                <input type="number" class="transparentBg" name="quantity" />  
+                                <input type="number" class="transparentBg inputSize" name="quantity" />  
                             </td>
                         </tr>
                     </table>
                 </div>
             </div>
-            
+
         </div>
         <!--Buttons-->
         <div id="buttonz" align="center">

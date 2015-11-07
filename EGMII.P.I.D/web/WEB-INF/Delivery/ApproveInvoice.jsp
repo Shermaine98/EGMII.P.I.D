@@ -43,7 +43,7 @@
             </table>
 
 
-            <div class="panel panel-default col-md-4" style="padding-bottom:10px; margin-left: 60px;">
+            <div class="panel panel-default col-md-3" style="padding-bottom:10px; margin-left: 60px;">
                 <div class="panel-body">
                     <label for="invoiceNum">Invoice Number</label>
                     <input type="text" class="form-control readonlyWhite" readonly name="invoiceNum" value="" /><br/>
@@ -62,7 +62,7 @@
                 </div>
             </div>
 
-            <div class="panel panel-default col-md-6" style="padding-top:10px;padding-bottom:5px;">
+            <div class="panel panel-default col-md-7" style="padding-top:10px;padding-bottom:5px;">
                 <div class="panel-body">
                     <table class="table table-bordered">
                         <tr>

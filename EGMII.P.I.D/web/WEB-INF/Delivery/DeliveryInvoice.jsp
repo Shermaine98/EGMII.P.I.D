@@ -21,7 +21,7 @@
         <div class="container" align="center">
             <h2>Delivery Invoice</h2>
 
-            <div class="panel panel-default col-md-4" style="padding-bottom:10px; margin-left: 60px;">
+            <div class="panel panel-default col-md-3" style="padding-bottom:10px; margin-left: 60px;">
                 <div class="panel-body">
                     <label for="invoiceNum">Invoice No.</label>
                     <input type="text" class="form-control readonlyWhite" readonly name="invoiceNum" value="" /><br/>
@@ -40,7 +40,7 @@
                 </div>
             </div>
 
-            <div class="panel panel-default col-md-6" style="padding-bottom:10px;">
+            <div class="panel panel-default col-md-7" style="padding-bottom:10px;">
                 <div class="panel-body">
 
                     <!--SEARCH BOX COPY PASTE HERE?-->

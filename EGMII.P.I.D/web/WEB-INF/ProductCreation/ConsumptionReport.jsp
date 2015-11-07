@@ -155,7 +155,7 @@
                                 %>
                                 <!--FOR LOOP-->
                                 <tr>
-                                    <td><input type="text" class="transparentBg readonlyWhite inputSize" name="itemName"  value = "<%= productAllAcce.get(i).getItemName()%>"  readonly/>
+                                    <td><input type="text" class="transparentBg readonlyWhite" name="itemName"  value = "<%= productAllAcce.get(i).getItemName()%>"  readonly/>
                                         <input type="hidden" class="transparentBg readonlyWhite inputSize" name="itemCode"  value = "<%= productAllAcce.get(i).getItemCode()%>"  readonly/></td>
                                     <td><input name="itemConsumption" class="transparentBg readonlyWhite inputSize" id="itemConsumption[]" value="<%= productAllAcce.get(i).getQty()%>"   readonly/></td> 
                                     <td><input name="totalConsumption" class="transparentBg readonlyWhite inputSize" id="totalConsumption[]" value="0"  readonly/></td>
@@ -195,7 +195,7 @@
                                     <td><input type="text" value="<%=productAllproduc.get(i).getSize()%>" class="transparentBg inputSize" readonly/> 
                                     <td><input type="text" id="fabricItemConsumption[]" value="<%=productAllproduc.get(i).getQty()%>" class="transparentBg inputSize" readonly/> 
                                     <td><input name="totalConsumption" class="transparentBg readonlyWhite inputSize" id="totalConsumptionFabric[]" value="0"  readonly/></td>
-                                    <td><input type="text" value="<%=productAllproduc.get(i).getUnitMeasurement()%>" class="transparentBg" readonly/> 
+                                    <td><input type="text" value="<%=productAllproduc.get(i).getUnitMeasurement()%>" class="transparentBg inputSize" readonly/> 
                                 </tr> 
                                 <%
                                     }

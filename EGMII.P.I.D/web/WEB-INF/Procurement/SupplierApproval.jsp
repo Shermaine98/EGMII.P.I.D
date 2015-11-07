@@ -76,7 +76,7 @@
                 <input type="hidden" name="hiddenValue" id="hiddenValue" value=""/>
             </div>
         </form>
-                        <br/><br/>
+        <br/><br/>
         <%
             String data = (String) request.getAttribute("data");
             if (data.equalsIgnoreCase("supplier")) {
@@ -137,12 +137,15 @@
             <div id="buttonz" align="center">
                 <!--Buttons-->
                 <input type="submit" value="Approve" class="btn btn-danger" />
+                <button class="btn btn-danger">Reject</button><br/><br/>
             </div>
         </form> 
-        <div align="center">            
-            <input type="submit" value="Reject" class="btn btn-danger"/><br/><br/>
-            <button class="btn btn-danger">Print</button>
+        <div align="center"> 
+            <form>
+                <button class="btn btn-danger">Print</button>
+            </form>
         </div>
+
         <%
             }%>
 
