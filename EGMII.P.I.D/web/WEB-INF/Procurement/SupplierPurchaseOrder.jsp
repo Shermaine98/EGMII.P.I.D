@@ -22,11 +22,11 @@
         <title>Encode Supplier Purchase Order</title>
     </head>
     <body>
-        <div align="center" class="container-fluid" style="margin-left:40px; margin-right:20px;">
+        <div align="center" class="container">
             <h2>Encode Supplier Purchase Order</h2><br/>
             <form method="POST" action="EncodeSupplierPurchaseOrderServlet">
 
-                <div class="panel panel-default col-md-4">
+                <div class="panel panel-default col-md-3">
                     <div class="panel-heading">
                         <h3 class="panel-title">Supplier Purchase Order</h3>
                     </div>
@@ -49,7 +49,6 @@
                         <h3 class="panel-title">Details</h3>
                     </div>
                     <div class="panel-body">
-
                         <div class="input-group">
                             <input type="text" class="form-control" name="itemNameSupplier" id="itemNameSupplier" onkeypress="autoCompleteSupplierItem()" placeholder="Search Item"/>
                             <input type="hidden" name="itemNameSupplier" id="itemNameSupplier" disabled="disabled" style="color: #CCC; position: absolute; background: transparent;"/>
