@@ -7,6 +7,7 @@ package DAO;
 
 import Database.DBConnectionFactory;
 import Model.InventoryReport;
+import Model.InventoryReportDetails;
 import Model.RetailInventory;
 import Model_View.InventoryReportView;
 import java.sql.Connection;
@@ -73,4 +74,107 @@ public class InventoryReportDAO {
         }
         return null;
     }
+
+//    public ArrayList<RetailInventory> InventoryReportCreateView() throws ParseException {
+//        ArrayList<RetailInventory> InventoryReport = new ArrayList<>();
+//
+//        try {
+//            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+//            try (Connection conn = myFactory.getConnection();
+//                    PreparedStatement pstmt = conn.prepareStatement("Select L.locationID, L.branchName, L.address, RI.itemCode, RI.qty, p.productName\n"
+//                            + "from ref_location L \n"
+//                            + "join retail_inventory RI \n"
+//                            + "on L.locationID = RI.locationID \n"
+//                            + "join product P \n"
+//                            + "on RI.itemCode = P.itemCode")) {
+//
+//                ResultSet rs = pstmt.executeQuery();
+//
+//                while (rs.next()) {
+//                    RetailInventory newIRetailInventory = new RetailInventory();
+//
+//                  
+//                    newIRetailInventory.setBranchName(rs.getString("branchName"));
+//                    newIRetailInventory.setPromo(rs.getInt("promo"));
+//                    newIRetailInventory.setDateMade(rs.getDate("dateMade"));
+//                    newIRetailInventory.setProductName(rs.getString("productName"));
+//                    newIRetailInventory.setColor(rs.getString("color"));
+//                    newIRetailInventory.setSize(rs.getString("size"));
+//                    newIRetailInventory.setQty(rs.getDouble("qty"));
+//                    newIRetailInventory.setPulledOutQty(rs.getDouble("pulledOutQty"));
+//                    newIRetailInventory.setSoldQty(rs.getDouble("soldQty"));
+//                    InventoryReport.add(newIRetailInventory);
+//                }
+//
+//            }
+//
+//            return InventoryReport;
+//        } catch (SQLException ex) {
+//            Logger.getLogger(InventoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return null;
+//    }
+//
+//    /**
+//     * Encode Inventory Report
+//     *
+//     * @param newBillOfMaterials
+//     * @return
+//     */
+//    public boolean EncodeInventoryReport(InventoryReport newInventoryReport) {
+//        try {
+//            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+//            Connection conn = myFactory.getConnection();
+//            String query = "";
+//            PreparedStatement pstmt = conn.prepareStatement(query);
+//
+//            pstmt.setInt(1, newInventoryReport.getItemCode());
+//            pstmt.setString(2, newInventoryReport.getProductName());
+//            pstmt.setString(3, newInventoryReport.getProductType());
+//            pstmt.setString(4, newInventoryReport.getSize());
+//            pstmt.setString(5, newInventoryReport.getColor());
+//            pstmt.setString(6, newInventoryReport.getInventoryType());
+//
+//            int rows = pstmt.executeUpdate();
+//            pstmt.close();
+//            conn.close();
+//
+//            return rows == 1;
+//        } catch (SQLException ex) {
+//            Logger.getLogger(InventoryReportDAO.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return false;
+//    }
+//
+//    /**
+//     * Encode Product details
+//     *
+//     * @param newBillOfMaterials
+//     * @return
+//     */
+//    public boolean EncodeInventoryReportDetials(InventoryReportDetails newInventoryReportDetails) {
+//        try {
+//            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+//            Connection conn = myFactory.getConnection();
+//            String query = "";
+//            PreparedStatement pstmt = conn.prepareStatement(query);
+//
+//            pstmt.setInt(1, newInventoryReportDetails.getItemCode());
+//            pstmt.setString(2, newInventoryReportDetails.getProductName());
+//            pstmt.setString(3, newInventoryReportDetails.getProductType());
+//            pstmt.setString(4, newInventoryReportDetails.getSize());
+//            pstmt.setString(5, newInventoryReportDetails.getColor());
+//            pstmt.setString(6, newInventoryReportDetails.getInventoryType());
+//
+//            int rows = pstmt.executeUpdate();
+//            pstmt.close();
+//            conn.close();
+//
+//            return rows == 1;
+//        } catch (SQLException ex) {
+//            Logger.getLogger(InventoryReportDAO.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return false;
+//    }
+
 }

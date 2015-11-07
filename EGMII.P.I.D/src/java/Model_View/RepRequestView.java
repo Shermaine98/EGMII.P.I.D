@@ -19,6 +19,13 @@ public class RepRequestView {
     private String branchName;
     private int supervisor;
     private java.sql.Date dateMade;
+    private String productName;
+    private int productID;
+    private String color;
+    private String size;
+    private double qty;
+    
+    
     
     private DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
     
@@ -121,6 +128,76 @@ public class RepRequestView {
      */
     public void setRepID(int repID) {
         this.repID = repID;
+    }
+
+    /**
+     * @return the productName
+     */
+    public String getProductName() {
+        return productName;
+    }
+
+    /**
+     * @param productName the productName to set
+     */
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    /**
+     * @return the productID
+     */
+    public int getProductID() {
+        return productID;
+    }
+
+    /**
+     * @param productID the productID to set
+     */
+    public void setProductID(int productID) {
+        this.productID = productID;
+    }
+
+    /**
+     * @return the color
+     */
+    public String getColor() {
+        return color;
+    }
+
+    /**
+     * @param color the color to set
+     */
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    /**
+     * @return the size
+     */
+    public String getSize() {
+        return size;
+    }
+
+    /**
+     * @param size the size to set
+     */
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    /**
+     * @return the qty
+     */
+    public double getQty() {
+        return qty;
+    }
+
+    /**
+     * @param qty the qty to set
+     */
+    public void setQty(double qty) {
+        this.qty = qty;
     }
 
 }

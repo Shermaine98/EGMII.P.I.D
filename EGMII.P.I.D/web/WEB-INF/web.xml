@@ -152,6 +152,14 @@
         <servlet-name>ViewInventoryReportServlet</servlet-name>
         <servlet-class>Controller_View.ViewInventoryReportServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewReplenishmentServlet</servlet-name>
+        <servlet-class>Controller_View.ViewReplenishmentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewDeliveryInvoiceServlet</servlet-name>
+        <servlet-class>Controller_View.ViewDeliveryInvoiceServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SearchProductServlet</servlet-name>
         <url-pattern>/SearchProductServlet</url-pattern>
@@ -303,6 +311,14 @@
     <servlet-mapping>
         <servlet-name>ViewInventoryReportServlet</servlet-name>
         <url-pattern>/ViewInventoryReportServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewReplenishmentServlet</servlet-name>
+        <url-pattern>/ViewReplenishmentServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewDeliveryInvoiceServlet</servlet-name>
+        <url-pattern>/ViewDeliveryInvoiceServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
