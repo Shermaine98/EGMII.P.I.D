@@ -12,6 +12,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import static java.lang.System.out;
 import java.sql.Connection;
 import java.util.HashMap;
 import java.util.Map;
@@ -44,7 +45,7 @@ public class PrintConsumptionReport extends BaseServlet {
         Map map = new HashMap();
         map.put("prodNum", productionNumberInt);
 
-        String path = getServletContext().getRealPath("Reports/ProductionCreationReport/");
+        String path = getServletContext().getRealPath("Reports/ProductCreation/");
         // jasperDesign = JRXmlLoader.load(path + "ConsumptionReport.jrxml");
         InputStream f = new FileInputStream(new File(path + "/ConsumptionReport.jrxml"));
         try {
