@@ -31,8 +31,8 @@
             <div align="center">
                 <h2>Encode Bill of Materials</h2>
                 <br/>
-                <div align="center" class="container-fluid" style="margin-left:50px">
-                    <div class="panel panel-default col-md-4">
+                <div align="center" class="container">
+                    <div class="panel panel-default col-md-3">
                         <div class="panel-heading">
                             <h3 class="panel-title">Bill of Materials</h3>
                         </div>
@@ -55,7 +55,7 @@
                         </div>
                     </div>
 
-                    <div class="panel panel-default col-lg-6 col-md-6 col-sm-6">
+                    <div class="panel panel-default col-md-7">
                         <div class="panel-heading">
                             <h3 class="panel-title">Add Accessories Item</h3>
                         </div>
@@ -80,44 +80,42 @@
                             </div>
                         </div>
                     </div>
+
+                    <!--CHOOSE FABRIC!!!!!!-->
+                    <div class="panel panel-default col-md-7 pull-right" style="margin-right: 140px;">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Choose Fabric</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="fabricNameSearch" id="fabricNameSearch" onkeypress="autoCompleteFabric()" placeholder="Search Fabric"/>
+                                <span class="input-group-btn"><button type="button" onClick="getFabricItem()" class="btn btn-default" ><span class="glyphicon glyphicon-search"></span></button></span>
+                            </div>
+                            <br/><br/>
+
+                            <div class="table-responsive">
+                                <table id="thisTableFabric" class="table table-bordered">
+                                    <tbody id="dataTableFabric">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <br/>
+                            <!--Should be a different js-->
+                            <div id="buttonsFabric" style="visibility: hidden">
+                                <input type="button" class="btn btn-danger" value="Delete Row" onclick="deleteRow('dataTable')" />
+                                <br/><br/>
+                            </div>
+                        </div>
+                    </div>
                 </div> 
             </div> 
 
-
-            <!--CHOOSE FABRIC!!!!!!-->
-            <div id="Fabric" class="container">
-                <div class="panel panel-default col-lg-7 col-md-7 col-sm-7 pull-right" style="margin-right: 72px;">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Choose Fabric</h3>
-                    </div>
-                    <div class="panel-body">
-                        <div class="input-group">
-                            <input type="text" class="form-control" name="fabricNameSearch" id="fabricNameSearch" onkeypress="autoCompleteFabric()" placeholder="Search Fabric"/>
-                            <span class="input-group-btn"><button type="button" onClick="getFabricItem()" class="btn btn-default" ><span class="glyphicon glyphicon-search"></span></button></span>
-                        </div>
-                        <br/><br/>
-
-                        <div class="table-responsive">
-                            <table id="thisTableFabric" class="table table-bordered">
-                                <tbody id="dataTableFabric">
-
-                                </tbody>
-                            </table>
-                        </div>
-                        <br/>
-                        <!--Should be a different js-->
-                        <div id="buttonsFabric" style="visibility: hidden">
-                            <input type="button" class="btn btn-danger" value="Delete Row" onclick="deleteRow('dataTable')" />
-                            <br/><br/>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
+            <div align="center">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Edit</button>
                 <input type="submit" class="btn btn-danger" value="Create">
             </div>
-</form>
+        </form>
         <!--        <div  align="center" class="container">
                     <form method="POST" action="EncodeBillOfMaterialsServlet">
                         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

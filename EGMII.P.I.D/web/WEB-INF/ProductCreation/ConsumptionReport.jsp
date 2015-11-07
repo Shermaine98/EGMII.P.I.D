@@ -29,7 +29,7 @@
         <div align="center">
             <h2>Encode Consumption Report</h2>
             <form method="POST" action="SearchProductServlet">
-                <div class="input-group col-md-3">
+                <div class="input-group col-md-4">
                     <input type="text" name="productName1" class="form-control" id="productName1" onkeypress="autoComplete();" placeholder="Search Item"/>
                     <input type="hidden" name="productName1" id="productName1" disabled="disabled" style="color: #CCC; position: absolute; background: transparent;"/>
                     <span class="input-group-btn"><button class="btn btn-default" ><span class="glyphicon glyphicon-search"></span></button></span>
@@ -174,41 +174,37 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">Choose Fabric</h3>
                     </div>
-                    <div class="panel-body">
-
-                        <div class="table-responsive">
-                            <table id="dataTable4" class="table table-bordered">
-                                <thead>
-                                    <tr> 
-                                        <th>Fabric Name</th>     
-                                        <th>Size</th> 
-                                        <th>Consumption</th>
-                                        <th>Total Consumption</th>
-                                        <th>Unit Measurement</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <%
-                                        ArrayList<ProductAll> productAllproduc = (ArrayList<ProductAll>) request.getAttribute("ProductionInventory");
-                                        for (int i = 0; i < productAllproduc.size(); i++) {
-                                    %>   
-                                    <tr> 
-                                        <td><input type="text" value="<%=productAllproduc.get(i).getItemName()%>" class="transparentBg" readonly/> 
-                                        <td><input type="text" value="<%=productAllproduc.get(i).getSize()%>" class="transparentBg inputSize" readonly/> 
-                                        <td><input type="text" id="fabricItemConsumption[]" value="<%=productAllproduc.get(i).getQty()%>" class="transparentBg inputSize" readonly/> 
-                                        <td><input name="totalConsumption" class="transparentBg readonlyWhite inputSize" id="totalConsumptionFabric[]" value="0"  readonly/></td>
-                                        <td><input type="text" value="<%=productAllproduc.get(i).getUnitMeasurement()%>" class="transparentBg" readonly/> 
-                                    </tr> 
-                                    <%
-                                        }
-                                    %>
-                                </tbody>
-                            </table>
-                        </div>
-                        <br/>
+                    <div class="panel-body table-responsive">
+                        <table id="dataTable4" class="table table-bordered">
+                            <thead>
+                                <tr> 
+                                    <th>Fabric Name</th>     
+                                    <th>Size</th> 
+                                    <th>Consumption</th>
+                                    <th>Total Consumption</th>
+                                    <th>Unit Measurement</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <%
+                                    ArrayList<ProductAll> productAllproduc = (ArrayList<ProductAll>) request.getAttribute("ProductionInventory");
+                                    for (int i = 0; i < productAllproduc.size(); i++) {
+                                %>   
+                                <tr> 
+                                    <td><input type="text" value="<%=productAllproduc.get(i).getItemName()%>" class="transparentBg" readonly/> 
+                                    <td><input type="text" value="<%=productAllproduc.get(i).getSize()%>" class="transparentBg inputSize" readonly/> 
+                                    <td><input type="text" id="fabricItemConsumption[]" value="<%=productAllproduc.get(i).getQty()%>" class="transparentBg inputSize" readonly/> 
+                                    <td><input name="totalConsumption" class="transparentBg readonlyWhite inputSize" id="totalConsumptionFabric[]" value="0"  readonly/></td>
+                                    <td><input type="text" value="<%=productAllproduc.get(i).getUnitMeasurement()%>" class="transparentBg" readonly/> 
+                                </tr> 
+                                <%
+                                    }
+                                %>
+                            </tbody>
+                        </table>
                     </div>
+                    <br/>
                 </div>
-
             </div>
             <div align="center">
                 <input type="submit" class="btn btn-danger" value="Create"/>
