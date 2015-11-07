@@ -148,6 +148,10 @@
         <servlet-name>PrintConsumptionReport</servlet-name>
         <servlet-class>Controller_Print.PrintConsumptionReport</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewInventoryReportServlet</servlet-name>
+        <servlet-class>Controller_View.ViewInventoryReportServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SearchProductServlet</servlet-name>
         <url-pattern>/SearchProductServlet</url-pattern>
@@ -295,6 +299,10 @@
     <servlet-mapping>
         <servlet-name>PrintConsumptionReport</servlet-name>
         <url-pattern>/PrintConsumptionReport</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewInventoryReportServlet</servlet-name>
+        <url-pattern>/ViewInventoryReportServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
