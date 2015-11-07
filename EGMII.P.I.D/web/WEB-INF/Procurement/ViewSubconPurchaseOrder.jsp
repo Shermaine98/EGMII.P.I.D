@@ -4,7 +4,7 @@
     Author     : Geraldine
 --%>
 
-<%@page import="Model.SubconPurchaseOrder"%>
+<%@page import="Model_View.SubconPurchaseOrderView"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="/LevelOfAccess/LevelOFAccess.jsp"%>
@@ -33,8 +33,8 @@
     <center><h2>View Subcontractor Purchase Order</h2></center>
 
     <br/><br/>
-    <%        
-    ArrayList<SubconPurchaseOrder> SubconPurchaseOrderList = (ArrayList<SubconPurchaseOrder>) request.getAttribute("SubconPurchaseOrderList");
+    <%        ArrayList<SubconPurchaseOrderView> SubconPurchaseOrderList = (ArrayList<SubconPurchaseOrderView>) request.getAttribute("SubconPurchaseOrderList");
+        if (!SubconPurchaseOrderList.isEmpty()) {
     %>
     <div align="center" class="container">
         <table id="dataTable" class="table table-bordered" style="width:80%">
@@ -61,16 +61,9 @@
                 <tr>
                     <td><input type="text" value="<%= SubconPurchaseOrderList.get(i).getPoNumber()%>"/></td>
                     <td><input type="text" value="<%= SubconPurchaseOrderList.get(i).getProductionNumber()%>"/></td>
-                    <td><input type="text" value="<%= SubconPurchaseOrderList.get(i).getProductID()%>"/></td>
-                    <td><input type="text" value="<%= SubconPurchaseOrderList.get(i).getSize()%>"/></td>
-                    <td><input type="text" value="<%= SubconPurchaseOrderList.get(i).getSubcon()%>"/></td>
-                    <td><input type="text" value="<%= SubconPurchaseOrderList.get(i).getService()%>"/></td>
                     <td><input type="text" value="<%= SubconPurchaseOrderList.get(i).getDateMade()%>"/></td>
                     <td><input type="text" value="<%= SubconPurchaseOrderList.get(i).getDeliveryDate()%>"/></td>
-                    <td><input type="text" value="<%= SubconPurchaseOrderList.get(i).getPreparedBy()%>"/></td>
-                    <td><input type="text" value="<%= SubconPurchaseOrderList.get(i).getApprovedby()%>"/></td>
-                    <td><input type="text" value="<%= SubconPurchaseOrderList.get(i).getReceivingStatus()%>"/></td>
-                    <td><input type="text" value="<%= SubconPurchaseOrderList.get(i).getReconcileStatus()%>"/></td>                    
+                    <td><input type="text" value="<%= SubconPurchaseOrderList.get(i).getPreparedBy()%>"/></td>                 
                 </tr>
                 <%
                     }
@@ -78,6 +71,7 @@
             </tbody>
         </table>
     </div>
+    <%}%>
     <script></script>
 </body>
 

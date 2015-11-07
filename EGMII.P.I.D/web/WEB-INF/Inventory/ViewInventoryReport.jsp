@@ -4,6 +4,8 @@
     Author     : Geraldine
 --%>
 
+<%@page import="Model_View.InventoryReportView"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="/LevelOfAccess/LevelOFAccess.jsp"%>
 <!DOCTYPE html>
@@ -18,7 +20,10 @@
         <title>View Inventory Report</title>
     </head>
     <body>
-        
+        <%            ArrayList<InventoryReportView> InventoryReportView = (ArrayList<InventoryReportView>) request.getAttribute("InventoryReportList");
+            if (!InventoryReportView.isEmpty()) {
+                
+        %>      
         <div class="container" align="center">
 
             <h2>View Inventory Report</h2>
@@ -35,9 +40,9 @@
                             <th>Date</th>
                         </tr>
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td><%=InventoryReportView.get(0).getBranchName()%></td>
+                            <td><%=InventoryReportView.get(0).getPromo()%></td>
+                            <td><%=InventoryReportView.get(0).getDateMade()%></td>
                         </tr>
                     </table>
                 </div>
@@ -49,6 +54,7 @@
                         <colgroup>
                             <col style="width:25%" />
                         </colgroup>
+                        <thead>
                         <tr>
                             <th>Product Name</th>
                             <th>Color</th>
@@ -58,15 +64,20 @@
                             <th>Sold Out</th>
                             <th>Ending Inventory</th>
                         </tr>
+                        </thead>
+                        <tbody>
+                     <%for(int i=0; i<InventoryReportView.size();i++) {%>
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td><%=InventoryReportView.get(0).getProductName()%></td>
+                            <td><%=InventoryReportView.get(0).getColor()%></td>
+                            <td><%=InventoryReportView.get(0).getSize()%></td>
+                            <td><%=InventoryReportView.get(0).getQty()%></td>
+                            <td><%=InventoryReportView.get(0).getPulledOutQty()%></td>
+                            <td><%=InventoryReportView.get(0).getSoldQty()%></td>
+                            <td>ending solve</td>
                         </tr>
+                        <%}%>
+                        </tbody>
                     </table>
 
                 </div>
@@ -78,5 +89,6 @@
             <button class="btn btn-danger">Print</button>
             <button class="btn btn-danger" style="width:130px">Create Request</button>
         </div>
+        <%}%>
     </body>
 </html>

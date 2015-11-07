@@ -4,6 +4,8 @@
     Author     : Geraldine
 --%>
 
+<%@page import="Model_View.RetailInventoryView"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="/LevelOfAccess/LevelOFAccess.jsp"%>
 <!DOCTYPE html>
@@ -18,59 +20,67 @@
         <title>Inventory Report</title>
     </head>
     <body>
+        <form method="post" action="EncodeInventoryReport">
+            <div class="container" align="center">
 
-        <div class="container" align="center">
+                <h2>Inventory Report</h2>
+                <% ArrayList<RetailInventoryView> retailInventoryView = (ArrayList<RetailInventoryView>) request.getAttribute("retailInventoryView");
+                if (retailInventoryView.size() > 0) {%>
 
-            <h2>Inventory Report</h2>
-
-            <div class="panel panel-default col-md-3 pull-left" style="padding-bottom:10px; margin-left: 60px;">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Inventory Report</h3>
+                <div class="panel panel-default col-md-3 pull-left" style="padding-bottom:10px; margin-left: 60px;">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Inventory Report</h3>
+                    </div>
+                    <div class="panel-body">
+                        <label for="outlet">Outlet</label>
+                        <input type="text" class="form-control readonlyWhite" readonly name="outlet" value="<%=retailInventoryView.get(0).getBranchName()%>"/><br/>
+                        <label for="promo">Promo</label>
+                        <input type="hidden" class="form-control readonlyWhite" readonly name="promo" value="<%=user.getEmployeeNumber()%>"/>
+                        <input type="text" class="form-control readonlyWhite" readonly name="promo" value="<%=user.getFirstName()%> <%=user.getLastName()%>"/><br/>
+                    </div>
                 </div>
-                <div class="panel-body">
-                    <label for="outlet">Outlet</label>
-                    <input type="text" class="form-control readonlyWhite" readonly name="outlet" value="" /><br/>
-                    <label for="promo">Promo</label>
-                    <input type="text" class="form-control readonlyWhite" readonly name="promo" value="" /><br/>
-                    <label for="date">Date</label>
-                    <input type="text" class="form-control readonlyWhite" readonly name="date" value="" /><br/>
+
+
+                <div class="panel panel-default col-md-6" style="padding-bottom: 10px;">
+                    <div class="panel-body">
+                        <table class="table table-bordered">
+                            <colgroup>
+                                <col style="width:25%" />
+                            </colgroup>
+                            <tr>
+                                <th>Product Name</th>
+                                <th>Color</th>
+                                <th>Size</th>
+                                <th>Beginning Inventory</th>
+                                <th>Pulled Out</th>
+                                <th>Sold Out</th>
+                                <th>Ending Inventory</th>
+                            </tr>
+                            <%for (int i = 0; i < retailInventoryView.size(); i++) {%>
+                            <tr>
+                                <td><%=retailInventoryView.get(i).getProductName()%></td>
+                                <td><%=retailInventoryView.get(i).getColor()%></td>
+                                <td><%=retailInventoryView.get(i).getSize()%></td>
+                                <td><input type="text" id="bgQty" value="<%=retailInventoryView.get(0).getQty()%>"</td>
+                                <td><input type="number" id="pulledQty" name="pulledQty" value="0" min="0"></td>
+                                <td><input type="number" id="soldQty" name="pulledQty" value="0" min="0"></td>
+                                <td><input type="number" id="endingT" value="0" readonly></td>
+                            </tr>
+                            <%}%>
+                        </table>
+
+                    </div>
                 </div>
+
             </div>
-
-            <div class="panel panel-default col-md-6" style="padding-bottom: 10px;">
-                <div class="panel-body">
-                    <table class="table table-bordered">
-                        <colgroup>
-                            <col style="width:25%" />
-                        </colgroup>
-                        <tr>
-                            <th>Product Name</th>
-                            <th>Color</th>
-                            <th>Size</th>
-                            <th>Beginning Inventory</th>
-                            <th>Pulled Out</th>
-                            <th>Sold Out</th>
-                            <th>Ending Inventory</th>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </table>
-
-                </div>
+            <!--Buttons-->
+            <div id="buttonz" align="center">
+                <input type="submit" value="send" class="btn btn-danger"/>
+                <button class="btn btn-danger">Cancel</button>
             </div>
-
-        </div>
-        <!--Buttons-->
-        <div id="buttonz" align="center">
-            <button class="btn btn-danger">Send</button>
-            <button class="btn btn-danger">Cancel</button>
-        </div>
+        </form>
+          <%}else{ %>
+                    <h3>NO INVENTORY RECORD FOR THIS RETAIL STORE</h3>
+        <%}%>
     </body>
 </html>
