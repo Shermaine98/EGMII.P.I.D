@@ -3,11 +3,10 @@ package Controller_View;
 import Controller_Base.BaseServlet;
 import DAO.ConsumptionReportDAO;
 import DAO.InventoryReportDAO;
-import DAO.ReplenishmentDAO;
 import Model.ConsumptionReport;
 import Model_View.ConsumptionReportView;
 import Model_View.InventoryReportView;
-import Model_View.RepRequestView;
+import Model_View.RetailInventoryView;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
@@ -31,30 +30,19 @@ import org.json.JSONObject;
  * @author Nunez
  *
  */
-public class ViewReplenishmentServlet extends BaseServlet {
+public class ViewSubconPurchaseOrderServlet extends BaseServlet {
 
     @Override
     public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ReplenishmentDAO ReplenishmentDAO = new ReplenishmentDAO();
-        ArrayList<RepRequestView> RepRequestView = new   ArrayList<RepRequestView> ();
+       
+
         String action = request.getParameter("action");
         ServletContext context = getServletContext();
         
-        if (action.equalsIgnoreCase("create")) {
-            RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Delivery/ReplenishmentRequest.jsp");
-            request.setAttribute("", "");
+            RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Procurement/ViewSubconPurchaseOrder.jsp");
+            request.setAttribute("SubconPurchaseOrderList","SubconPurchaseOrderList" );
             rd.forward(request, response);
-            
-        } else if (action.equalsIgnoreCase("revise")) {
-            try {
-                RepRequestView =  ReplenishmentDAO.ReplenishmentReportView();
-            } catch (ParseException ex) {
-                Logger.getLogger(ViewInventoryReportServlet.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Delivery/ViewReplenishmentRequest.jsp");
-            request.setAttribute("RepRequestView", RepRequestView);
-            rd.forward(request, response);
-        }
         
+
     }
 }

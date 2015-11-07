@@ -176,6 +176,10 @@
         <servlet-name>ApproveDeliveryInvoiceSerlvet</servlet-name>
         <servlet-class>Controller_Approve.ApproveDeliveryInvoiceSerlvet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewSubconPurchaseOrderServlet</servlet-name>
+        <servlet-class>Controller_View.ViewSubconPurchaseOrderServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SearchProductServlet</servlet-name>
         <url-pattern>/SearchProductServlet</url-pattern>
@@ -351,6 +355,10 @@
     <servlet-mapping>
         <servlet-name>ApproveDeliveryInvoiceSerlvet</servlet-name>
         <url-pattern>/ApproveDeliveryInvoiceSerlvet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewSubconPurchaseOrderServlet</servlet-name>
+        <url-pattern>/ViewSubconPurchaseOrderServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

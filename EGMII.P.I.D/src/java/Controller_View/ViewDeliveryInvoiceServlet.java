@@ -53,7 +53,7 @@ public class ViewDeliveryInvoiceServlet extends BaseServlet {
             } catch (ParseException ex) {
                 Logger.getLogger(ViewInventoryReportServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Inventory/ApproveInvoice.jsp");
+            RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Delivery/ApproveInvoice.jsp");
             //request.setAttribute("InventoryReportList", inventoryReportView);
             rd.forward(request, response);
         }else if (action.equalsIgnoreCase("view")) {
@@ -62,7 +62,7 @@ public class ViewDeliveryInvoiceServlet extends BaseServlet {
             } catch (ParseException ex) {
                 Logger.getLogger(ViewInventoryReportServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Inventory/ViewDeliveryInvoice.jsp");
+            RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Delivery/ViewDeliveryInvoice.jsp");
             request.setAttribute("DeliveryInvoiceView", DeliveryInvoiceView);
             rd.forward(request, response);
         }
