@@ -40,7 +40,7 @@ public class ViewInventoryReportServlet extends BaseServlet {
         if (action.equalsIgnoreCase("create")) {
             
             
-            RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Inventory/ViewInventoryReport.jsp");
+            RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Inventory/InventoryReport.jsp");
             request.setAttribute("ProductionInventoryList", "");
             rd.forward(request, response);
         } else if (action.equalsIgnoreCase("view")) {
@@ -49,7 +49,7 @@ public class ViewInventoryReportServlet extends BaseServlet {
             } catch (ParseException ex) {
                 Logger.getLogger(ViewInventoryReportServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Inventory/EncodeInventoryReport.jsp");
+            RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Inventory/ViewInventoryReport.jsp");
             request.setAttribute("InventoryReportList", inventoryReportView);
             rd.forward(request, response);
         }
