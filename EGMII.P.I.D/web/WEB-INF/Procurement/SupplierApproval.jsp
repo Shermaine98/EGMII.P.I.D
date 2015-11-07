@@ -18,13 +18,14 @@
         <link rel="stylesheet" href="bootstrap/css/sub-menu.css">
         <link href="bootstrap/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="bootstrap/css/jquery.dataTables.min.css">
         <script src="js/searchSupplier.js"></script>
         <title>Supplier Purchase Order Approval</title>
         <script>
             $(document).ready(function () {
                 $('#dataTable').DataTable({
                     "paging": true,
-                    "info": true,
+                    "info": true
 //                    "dom": '<"pull-left "f>'
                 });
 
@@ -34,108 +35,116 @@
                     document.getElementById("form1").submit();
                 }));
             });
-  //          $('#run').ready(function(){
-    //         document.getElementById("run").addEventListener("load", SolveTQP);
-      //          });
-                    
+            //          $('#run').ready(function(){
+            //         document.getElementById("run").addEventListener("load", SolveTQP);
+            //          });
+
         </script>
     </head>
-    <%        
-    ArrayList<SupplierPurchaseOrderView> PurchaseOrderList = (ArrayList<SupplierPurchaseOrderView>) request.getAttribute("SupplierPurchaseOrderList");
+    <%        ArrayList<SupplierPurchaseOrderView> PurchaseOrderList = (ArrayList<SupplierPurchaseOrderView>) request.getAttribute("SupplierPurchaseOrderList");
     %>
     <body>
-         <form id="form1" method="POST" action="SetApprovalSupplierPO">
-        <div class="container" align="center">
-            <h2>Approve Supplier Purchase Order</h2><br/>
-            <div style="width:60%;">
-                <table id="dataTable" class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Purchase Order No.</th>
-                            <th>Supplier</th>
-                            <th>Date Made</th>
-                            <th>Delivery Date</th>
-                            <th>Prepared By</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% for (int i = 0; i < PurchaseOrderList.size(); i++) {%>
-                        <tr class="SupplierPOView">
-                            <td class="poNumber"><%=PurchaseOrderList.get(i).getPoNumber()%></td>
-                            <td><%=PurchaseOrderList.get(i).getCompanyName()%></td>
-                            <td><%=PurchaseOrderList.get(i).getDateMade()%></td>
-                            <td><%=PurchaseOrderList.get(i).getDeliveryDate()%></td>
-                            <td><%=PurchaseOrderList.get(i).getPreparedBy()%></td>
-                        </tr>
-                        <%
-                            }
-                        %>
-                    </tbody>
-                </table>
+        <form id="form1" method="POST" action="SetApprovalSupplierPO">
+            <div class="container" align="center">
+                <h2>Approve Supplier Purchase Order</h2><br/>
+                <div style="width:60%;">
+                    <table id="dataTable" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Purchase Order No.</th>
+                                <th>Supplier</th>
+                                <th>Date Made</th>
+                                <th>Delivery Date</th>
+                                <th>Prepared By</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for (int i = 0; i < PurchaseOrderList.size(); i++) {%>
+                            <tr class="SupplierPOView">
+                                <td class="poNumber"><%=PurchaseOrderList.get(i).getPoNumber()%></td>
+                                <td><%=PurchaseOrderList.get(i).getCompanyName()%></td>
+                                <td><%=PurchaseOrderList.get(i).getDateMade()%></td>
+                                <td><%=PurchaseOrderList.get(i).getDeliveryDate()%></td>
+                                <td><%=PurchaseOrderList.get(i).getPreparedBy()%></td>
+                            </tr>
+                            <%
+                                }
+                            %>
+                        </tbody>
+                    </table>
+                </div>
+                <input type="hidden" name="hiddenValue" id="hiddenValue" value=""/>
             </div>
-            <input type="hidden" name="hiddenValue" id="hiddenValue" value=""/>
-        </div>
-   </form>
+        </form>
+                        <br/><br/>
         <%
             String data = (String) request.getAttribute("data");
             if (data.equalsIgnoreCase("supplier")) {
-               ArrayList<SupplierPurchaseOrderView> PurchaseOrderSpecific = (ArrayList<SupplierPurchaseOrderView>) request.getAttribute("SupplierPurchaseOrderSpecific"); 
+                ArrayList<SupplierPurchaseOrderView> PurchaseOrderSpecific = (ArrayList<SupplierPurchaseOrderView>) request.getAttribute("SupplierPurchaseOrderSpecific");
         %>
         <form method="POST" action="ApproveRejectSPOServlet">
-        <div class="container" align="center">
-            <div class="panel panel-default col-md-4 pull-left" style="padding-bottom:10px;">
-                <div class="panel-body">
-                    <label for="poNumber">Purchase Order No.</label>
-                    <input type="text" class="form-control readonlyWhite" readonly name="poNumber" value ="<%=PurchaseOrderSpecific.get(0).getPoNumber()%>" />
-                    <label for="preparedBy">Prepared By</label>
-                    <input type="text" class="form-control readonlyWhite" readonly name="preparedBy" value="<%=PurchaseOrderSpecific.get(0).getPreparedBy() %>"/>
-                    <label for="dateMade">Date Made</label>
-                    <input type="text" class="form-control readonlyWhite" readonly name="dateMade" value="<%=PurchaseOrderSpecific.get(0).getDateMade() %>"/>
-                    <label for="deliveryDate">Delivery Date</label>
-                    <input type="date" class="form-control" id="datepicker" name="deliveryDate" value="<%=PurchaseOrderSpecific.get(0).getDeliveryDate() %>"/>
-                    <label for="supplier">Supplier</label>
-                    <input type="text" class="form-control readonlyWhite" readonly name="supplier" value="<%=PurchaseOrderSpecific.get(0).getCompanyName() %>"/>
-                    <input type="text" class="form-control readonlyWhite" readonly name="employeeNumber" value="<%=user.getEmployeeNumber()%>"/>
+            <div class="container" align="center">
+                <div class="panel panel-default col-md-3">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Supplier Purchase Order</h3>
+                    </div>
+                    <div class="panel-body">
+                        <label for="poNumber">Purchase Order No.</label>
+                        <input type="text" class="form-control readonlyWhite" readonly name="poNumber" value ="<%=PurchaseOrderSpecific.get(0).getPoNumber()%>" /><br/>
+                        <label for="preparedBy">Prepared By</label>
+                        <input type="text" class="form-control readonlyWhite" readonly name="preparedBy" value="<%=PurchaseOrderSpecific.get(0).getPreparedBy()%>"/><br/>
+                        <label for="dateMade">Date Made</label>
+                        <input type="text" class="form-control readonlyWhite" readonly name="dateMade" value="<%=PurchaseOrderSpecific.get(0).getDateMade()%>"/><br/>
+                        <label for="deliveryDate">Delivery Date</label>
+                        <input type="date" class="form-control readonlyWhite" id="datepicker" readonly name="deliveryDate" value="<%=PurchaseOrderSpecific.get(0).getDeliveryDate()%>"/><br/>
+                        <label for="supplier">Supplier</label>
+                        <input type="text" class="form-control readonlyWhite" readonly name="supplier" value="<%=PurchaseOrderSpecific.get(0).getCompanyName()%>"/><br/>
+                        <input type="text" class="hidden" readonly name="employeeNumber" value="<%=user.getEmployeeNumber()%>"/>
+                    </div>
                 </div>
-            </div>
-            <div class="panel panel-default col-md-6" style="padding-top: 10px;">
-                <div class="panel-body">
-                    <table class="table table-bordered">
-                        <tr>
-                            <th>Item Name</th>
-                            <th>Unit Price</th>
-                            <th>Quantity</th>
-                            <th>Total Price</th>
-                        </tr>
-                        <%for(int x = 0; x < PurchaseOrderSpecific.size(); x++)
-                        { %>
-                        <tr class="trclass">
-                            <td><%=PurchaseOrderSpecific.get(x).getItemName()%></td>
-                            <td><input type="text" value ="<%=PurchaseOrderSpecific.get(x).getUnitPrice()%>" id="unitPrice[]"/></td>
-                            <td><input type="text" value="<%=PurchaseOrderSpecific.get(x).getQty()%>" id="volumeQty[]"/></td>
-                            <td><input type="text" class="transparentBg cellWidth readonlyWhite" readonly id="TQP[]"/></td>   
-                        </tr>
-                        <% } %>
-                    </table>
+                <div class="panel panel-default col-md-7">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Details</h3>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-bordered">
+                            <colgroup>
+                                <col style="width: 40%" />
+                            </colgroup>
+                            <tr>
+                                <th>Item Name</th>
+                                <th>Unit Price</th>
+                                <th>Quantity</th>
+                                <th>Total Price</th>
+                            </tr>
+                            <%for (int x = 0; x < PurchaseOrderSpecific.size(); x++) {%>
+                            <tr class="trclass">
+                                <td><%=PurchaseOrderSpecific.get(x).getItemName()%></td>
+                                <td><input type="text" class="transparentBg inputSize readonlyWhite" readonly value ="<%=PurchaseOrderSpecific.get(x).getUnitPrice()%>" id="unitPrice[]"/></td>
+                                <td><input type="text" class="transparentBg inputSize readonlyWhite" readonly value="<%=PurchaseOrderSpecific.get(x).getQty()%>" id="volumeQty[]"/></td>
+                                <td><input type="text" class="transparentBg inputSize readonlyWhite" readonly id="TQP[]"/></td>   
+                            </tr>
+                            <% } %>
+                        </table>
 
-                    <div id="run" class="form-inline pull-right">
-                        <label for="total">Total:</label>
-                        <input type="number" class="form-control readonlyWhite" name="total" id="total" readonly /> 
+                        <div id="run" class="form-inline pull-right">
+                            <label for="total">Total:</label>
+                            <input type="number" class="form-control readonlyWhite" name="total" id="total" readonly /> 
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div id="buttonz" align="center">
-            <!--Buttons-->
-            <input type="submit" value="Approve" class="btn btn-danger" />
-        </div>
+            <div id="buttonz" align="center">
+                <!--Buttons-->
+                <input type="submit" value="Approve" class="btn btn-danger" />
+            </div>
         </form> 
         <div align="center">            
             <input type="submit" value="Reject" class="btn btn-danger"/><br/><br/>
             <button class="btn btn-danger">Print</button>
         </div>
         <%
-                }%>
-       
+            }%>
+
     </body>
 </html>
