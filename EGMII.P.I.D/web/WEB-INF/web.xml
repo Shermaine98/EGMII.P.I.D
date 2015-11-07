@@ -144,6 +144,10 @@
         <servlet-name>GenerateCuttingReportServlet</servlet-name>
         <servlet-class>Controller_Generate.GenerateCuttingReportServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PrintConsumptionReport</servlet-name>
+        <servlet-class>Controller_Print.PrintConsumptionReport</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SearchProductServlet</servlet-name>
         <url-pattern>/SearchProductServlet</url-pattern>
@@ -287,6 +291,10 @@
     <servlet-mapping>
         <servlet-name>GenerateCuttingReportServlet</servlet-name>
         <url-pattern>/GenerateCuttingReportServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PrintConsumptionReport</servlet-name>
+        <url-pattern>/PrintConsumptionReport</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
