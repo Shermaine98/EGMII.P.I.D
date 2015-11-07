@@ -6,6 +6,7 @@ import DAO.InventoryReportDAO;
 import Model.ConsumptionReport;
 import Model_View.ConsumptionReportView;
 import Model_View.InventoryReportView;
+import Model_View.RetailInventoryView;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
@@ -34,18 +35,23 @@ public class ViewInventoryReportServlet extends BaseServlet {
     @Override
     public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         InventoryReportDAO inventoryReportDAO = new InventoryReportDAO();
-        ArrayList<InventoryReportView> inventoryReportView = new   ArrayList<InventoryReportView> ();
+
         String action = request.getParameter("action");
         ServletContext context = getServletContext();
         if (action.equalsIgnoreCase("create")) {
-            
-            
+            ArrayList<RetailInventoryView> retailInventoryView = new ArrayList<>();
+            try {
+                retailInventoryView = inventoryReportDAO.InventoryReportCreateView();
+            } catch (ParseException ex) {
+                Logger.getLogger(ViewInventoryReportServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
             RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Inventory/InventoryReport.jsp");
-            request.setAttribute("ProductionInventoryList", "");
+            request.setAttribute("retailInventoryView", retailInventoryView);
             rd.forward(request, response);
         } else if (action.equalsIgnoreCase("view")) {
+            ArrayList<InventoryReportView> inventoryReportView = new ArrayList<InventoryReportView>();
             try {
-                inventoryReportView =  inventoryReportDAO.InventoryReportView();
+                inventoryReportView = inventoryReportDAO.InventoryReportView();
             } catch (ParseException ex) {
                 Logger.getLogger(ViewInventoryReportServlet.class.getName()).log(Level.SEVERE, null, ex);
             }

@@ -160,6 +160,22 @@
         <servlet-name>ViewDeliveryInvoiceServlet</servlet-name>
         <servlet-class>Controller_View.ViewDeliveryInvoiceServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EncodeInventoryReportServlet</servlet-name>
+        <servlet-class>Controller_Encode.EncodeInventoryReportServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EncodeReplenishementRequestServlet</servlet-name>
+        <servlet-class>Controller_Encode.EncodeReplenishementRequestServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EncodeDeliveryInvoiceServlet</servlet-name>
+        <servlet-class>Controller_Encode.EncodeDeliveryInvoiceServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ApproveDeliveryInvoiceSerlvet</servlet-name>
+        <servlet-class>Controller_Approve.ApproveDeliveryInvoiceSerlvet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SearchProductServlet</servlet-name>
         <url-pattern>/SearchProductServlet</url-pattern>
@@ -319,6 +335,22 @@
     <servlet-mapping>
         <servlet-name>ViewDeliveryInvoiceServlet</servlet-name>
         <url-pattern>/ViewDeliveryInvoiceServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EncodeInventoryReportServlet</servlet-name>
+        <url-pattern>/EncodeInventoryReportServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EncodeReplenishementRequestServlet</servlet-name>
+        <url-pattern>/EncodeReplenishementRequestServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EncodeDeliveryInvoiceServlet</servlet-name>
+        <url-pattern>/EncodeDeliveryInvoiceServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ApproveDeliveryInvoiceSerlvet</servlet-name>
+        <url-pattern>/ApproveDeliveryInvoiceSerlvet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
