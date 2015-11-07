@@ -138,8 +138,39 @@ public class SupplierPurchaseOrderDAO {
         }
         return null;
     }
+    
+    public ArrayList<SupplierPurchaseOrderView> GetAllSupplierPurchaseView() {
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+            ArrayList<SupplierPurchaseOrderView> poList = new ArrayList<>();
+            String query = "SELECT DISTINCT PO.poNumber, PO.preparedBy, PO.dateMade, PO.deliveryDate, S.companyName\n"
+                    + "FROM purchase_order PO\n"
+                    + "JOIN ref_supplier S \n"
+                    + "ON PO.supplierID = S.supplierID\n"
+                    + "WHERE PO.isSupplier = TRUE AND PO.approvedBy IS NOT NULL AND PO.isCompleted = true;";
+            PreparedStatement ps = conn.prepareStatement(query);
             
-            public ArrayList<SupplierPurchaseOrderView> getSupplierPurchaseNumber(int poNumber) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                SupplierPurchaseOrderView po = new SupplierPurchaseOrderView();
+                po.setPoNumber(rs.getInt("poNumber"));
+                po.setPreparedBy(rs.getInt("preparedBy"));
+                po.setDateMade(rs.getDate("dateMade"));
+                po.setDeliveryDate(rs.getDate("deliveryDate"));
+                po.setCompanyName(rs.getString("companyName"));
+                poList.add(po);
+            }
+            
+            rs.close();
+            return poList;
+        } catch (SQLException ex) {
+            Logger.getLogger(SupplierPurchaseOrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+            
+     public ArrayList<SupplierPurchaseOrderView> getSupplierPurchaseNumber(int poNumber) {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();

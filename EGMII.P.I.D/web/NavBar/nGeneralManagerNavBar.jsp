@@ -71,7 +71,7 @@
                                         <li><a href="/EGMII.P.I.D/ViewSubconPurchaseOrderServlet">View Subcontractor Purchase Order</a></li>
                                         <li><a href="/EGMII.P.I.D/SetSubconPOReceivingServlet">Receive Subcontractor Purchase Order</a></li></ul></li>
 
-                                <li><a href="/EGMII.P.I.D/SetConsumptionCuttingServlet">Generate Cutting Report</a></li>
+                                <li><a href="/EGMII.P.I.D/GenerateCuttingReportServlet">Generate Cutting Report</a></li>
                             </ul>
                         </li>
 

@@ -15,7 +15,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="bootstrap/css/jquery-ui-datePicker.css">
-        
+
         <link href="bootstrap/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" type="text/css" href="bootstrap/css/jquery.dataTables.min.css">
         <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
@@ -28,51 +28,57 @@
             }
         </style>
         <script> $(document).ready(function () {
-            $('#dataTable').DataTable({
-                "paging": true,
-                "info": true,
-//                    "dom": '<"pull-left "f>'
-            });
+                $('#dataTable').DataTable({
+                    "paging": true,
+                    "info": true
+                });
 
-            $(".cuttingReport").on("click", (function () {
-                var purchaseOrderNum = $(this).closest("tr").find(".poNumber").text();
-                document.getElementById('hiddenValue').value = purchaseOrderNum;
-                document.getElementById("form1").submit();
-            }));
-        });</script>
+                $(".cuttingReport").on("click", (function () {
+                    var purchaseOrderNum = $(this).closest("tr").find(".poNumber").text();
+                    document.getElementById('hiddenValue').value = purchaseOrderNum;
+                    document.getElementById("form1").submit();
+                }));
+            });</script>
     </head>
     <body>
-        <% ArrayList<ConsumptionReportView> ConsumptionReportView = (ArrayList<ConsumptionReportView>) request.getAttribute("consumptionReportCutting");%>
-        <div class="container" align="center">
-            <h2>Approve Supplier Purchase Order</h2><br/>
-            <div style="width:60%;">
-                <table id="dataTable" class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Purchase Order No.</th>
-                            <th>Product Name</th>
-                            <th>Date Made</th>
-                            <th>Color</th>
-                            <th>Prepared By</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% for (int i = 0; i < ConsumptionReportView.size(); i++) {%>
-                        <tr class="SupplierPOView">
-                            <td class="poNumber"><%=ConsumptionReportView.get(i).getProductionNumber()%></td>
-                            <td><%=ConsumptionReportView.get(i).getProductName()%></td>
-                            <td><%=ConsumptionReportView.get(i).getDateMade()%></td>
-                            <td><%=ConsumptionReportView.get(i).getColor()%></td>
-                            <td><%=ConsumptionReportView.get(i).getPreparedBy()%></td>
-                        </tr>
-                        <%
-                            }
-                        %>
-                    </tbody>
-                </table>
+        <form id="form1" method="post" action="GenerateCuttingReportServlet">
+            <% String data = (String) request.getAttribute("data");
+                ArrayList<ConsumptionReportView> ConsumptionReportView = (ArrayList<ConsumptionReportView>) request.getAttribute("CuttingReport");%>
+            <div class="container" align="center">
+                <h2>Approve Supplier Purchase Order</h2><br/>
+                <div style="width:60%;">
+                    <table id="dataTable" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Purchase Order No.</th>
+                                <th>Product Name</th>
+                                <th>Date Made</th>
+                                <th>Color</th>
+                                <th>Prepared By</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for (int i = 0; i < ConsumptionReportView.size(); i++) {%>
+                            <tr class="cuttingReport">
+                                <td class="poNumber"><%=ConsumptionReportView.get(i).getProductionNumber()%></td>
+                                <td><%=ConsumptionReportView.get(i).getProductName()%></td>
+                                <td><%=ConsumptionReportView.get(i).getDateMade()%></td>
+                                <td><%=ConsumptionReportView.get(i).getColor()%></td>
+                                <td><%=ConsumptionReportView.get(i).getPreparedBy()%></td>
+                            </tr>
+                            <%
+                                }
+                            %>
+                        </tbody>
+                    </table>
+                </div>
+                <input type="hidden" name="poNumber" id="hiddenValue" value=""/>
             </div>
-            <input type="hidden" name="hiddenValue" id="hiddenValue" value=""/>
-        </div>
+        </form>
+
+        <%
+            if (data.equalsIgnoreCase("CuttingReportSpecific")) {
+                ArrayList<ConsumptionReportView> ConsumptionReportSpecific = (ArrayList<ConsumptionReportView>) request.getAttribute("CuttingReportSpecific");%>                    
         <div align="center" class="container">
             <h2>Approve Cutting Report</h2><br/>
             <form method="POST" action="EncodeSupplierPurchaseOrderServlet">
@@ -84,7 +90,7 @@
                     <thead>
                         <tr>
                             <th>Production No.</th>
-                            <td class="value"><input class="input" type="text" name="productionNo" id="productionNo" readonly /></td>
+                            <td class="value"><input class="input" type="text" name="productionNo" id="productionNo" value="<%=ConsumptionReportSpecific.get(0).getProductionNumber()%>"readonly /></td>
                         </tr>
                         <tr>
                             <th>Purchase Order No.</th>
@@ -130,5 +136,6 @@
             <button type="button" class="btn btn-danger" >Resend</button>
             <a href="\..\..\Accounts\Homepage.jsp"><button type="button" class="btn btn-danger" >Cancel</button></a>
         </div>
+        <%}%>
     </body>
 </html>

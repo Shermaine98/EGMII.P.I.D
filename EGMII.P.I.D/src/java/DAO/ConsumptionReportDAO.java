@@ -81,6 +81,12 @@ public class ConsumptionReportDAO {
         return false;
     }
 
+    /**
+     * Get Consumption Form Number
+     *
+     * @return - Consumption Number
+     * @throws SQLException
+     */
     public Integer getProductionNumber() throws SQLException {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -104,6 +110,11 @@ public class ConsumptionReportDAO {
         return i;
     }
 
+    /**
+     * Get All Consumption Report with ProductName and Detials - HEADER
+     * @return @throws ParseException
+     */
+
     public ArrayList<ConsumptionReportView> GetAllConsumptionReportGroupBy() throws ParseException {
 
         ArrayList<ConsumptionReportView> ConsumptionReport = new ArrayList<ConsumptionReportView>();
@@ -111,13 +122,18 @@ public class ConsumptionReportDAO {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement("SELECT CR.productionNumber, CONCAT(u.firstName,\" \",u.lastName) as 'name', CR.dateMade, "
-                    + "CR.status, P.productName ,P.color, P.productType\n"
+            PreparedStatement pstmt = conn.prepareStatement(""
+                    + "SELECT CR.productionNumber, "
+                    + "CR.dateMade, CR.status, \n"
+                    + "CONCAT(u.firstName,\" \",u.lastName) as 'name', "
+                    + "P.productType, P.productName ,P.color, P.itemCode "
                     + "FROM consumption_report CR\n"
                     + "JOIN cr_details CRD\n"
                     + "ON CR.productionNumber = CRD.productionNumber\n"
                     + "JOIN product P \n"
-                    + "ON CRD.itemCode =  P.itemCode \n"
+                    + "ON CRD.itemCode =  P.itemCode\n"
+                    + "JOIN product_bm PBM\n"
+                    + "ON P.itemCode = PBM.productID\n"
                     + "JOIN user u \n"
                     + "ON CR.preparedBy = u.employeeID\n"
                     + "group by CR.productionNumber;");
@@ -126,12 +142,13 @@ public class ConsumptionReportDAO {
             while (rs.next()) {
                 ConsumptionReportView temp = new ConsumptionReportView();
                 temp.setProductionNumber(rs.getInt("productionNumber"));
-                temp.setName(rs.getString("name"));
                 temp.setDateMade(rs.getDate("dateMade"));
                 temp.setStatus(rs.getString("status"));
+                temp.setName(rs.getString("name"));
+                temp.setProductType(rs.getString("productType"));
                 temp.setProductName(rs.getString("productName"));
                 temp.setColor(rs.getString("color"));
-                temp.setProductType(rs.getString("productType"));
+                temp.setProductNumber(rs.getInt("itemCode"));
                 ConsumptionReport.add(temp);
             }
             pstmt.close();
@@ -142,53 +159,26 @@ public class ConsumptionReportDAO {
         }
         return null;
     }
+    /**
+     * Get Sepecific Consumption Report with All information - Details
+     * @param productionNumber
+     * @return
+     * @throws ParseException 
+     */
 
-    public ArrayList<ConsumptionReportView> GetAllConsumptionReportSpecific() throws ParseException {
+    public ArrayList<ConsumptionReportView> GetAllConsumptionReportSpecific(int productionNumber) throws ParseException {
 
         ArrayList<ConsumptionReportView> ConsumptionReport = new ArrayList<ConsumptionReportView>();
 
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement("SELECT CR.productionNumber, CONCAT(u.firstName,\" \",u.lastName) as 'name', CR.dateMade, "
-                    + "CR.status, P.productName ,P.color, P.productType\n"
-                    + "FROM consumption_report CR\n"
-                    + "JOIN cr_details CRD\n"
-                    + "ON CR.productionNumber = CRD.productionNumber\n"
-                    + "JOIN product P \n"
-                    + "ON CRD.itemCode =  P.itemCode \n"
-                    + "JOIN user u \n"
-                    + "ON CR.preparedBy = u.employeeID\n"
-                    + "group by CR.productionNumber;");
-            ResultSet rs = pstmt.executeQuery();
-
-            while (rs.next()) {
-                ConsumptionReportView temp = new ConsumptionReportView();
-                temp.setProductionNumber(rs.getInt("productionNumber"));
-                temp.setName(rs.getString("name"));
-                temp.setDateMade(rs.getDate("dateMade"));
-                temp.setStatus(rs.getString("status"));
-                temp.setProductName(rs.getString("productName"));
-                temp.setColor(rs.getString("color"));
-                temp.setProductType(rs.getString("productType"));
-                ConsumptionReport.add(temp);
-            }
-            pstmt.close();
-            conn.close();
-            return ConsumptionReport;
-        } catch (SQLException ex) {
-            Logger.getLogger(ConsumptionReportDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
-    }
-
-    public ArrayList<ConsumptionReportView> GetConsumptionReportForCutting() throws ParseException {
-        try {
-            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
-            ArrayList<ConsumptionReportView> ConsumptionReport = new ArrayList<ConsumptionReportView>();
-            Connection conn = myFactory.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement("SELECT CR.productionNumber, CR.preparedBy, CR.dateMade, CR.status, CRD.itemCode, \n"
-                    + "CRD.qty, P.productName ,P.color, P.size\n"
+            PreparedStatement pstmt = conn.prepareStatement(""
+                    + "SELECT CR.productionNumber,"
+                    + "CR.dateMade, CR.status, CRD.itemCode, \n"
+                    + "CRD.qty as 'VolumeQty', CONCAT(u.firstName,\" \",u.lastName) as 'name', "
+                    + "P.productType, P.productName ,P.color, P.size, I.itemName, "
+                    + "I.unitMeasurement, PBM.qty as 'ConsumptionQty'\n"
                     + "FROM consumption_report CR\n"
                     + "JOIN cr_details CRD\n"
                     + "ON CR.productionNumber = CRD.productionNumber\n"
@@ -198,17 +188,27 @@ public class ConsumptionReportDAO {
                     + "ON P.itemCode = PBM.productID\n"
                     + "JOIN ref_item I \n"
                     + "ON PBM.itemCode = I.itemCode\n"
-                    + "WHERE I.inventoryType = \"production\"\n"
-                    + "group by CR.productionNumber;");
+                    + "JOIN user u \n"
+                    + "ON CR.preparedBy = u.employeeID\n"
+                    + "WHERE CR.productionNumber = ?;");
+            pstmt.setInt(1, productionNumber);
+
             ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) {
                 ConsumptionReportView temp = new ConsumptionReportView();
                 temp.setProductionNumber(rs.getInt("productionNumber"));
-                 temp.setProductName(rs.getString("productName"));
-                temp.setPreparedBy(rs.getInt("preparedBy"));
                 temp.setDateMade(rs.getDate("dateMade"));
+                temp.setStatus(rs.getString("status"));
+                temp.setItemCode(rs.getInt("itemCode"));
+                temp.setVolumeQty(rs.getInt("VolumeQty"));
+                temp.setName(rs.getString("name"));
+                temp.setProductType(rs.getString("productType"));
+                temp.setProductName(rs.getString("productName"));
                 temp.setColor(rs.getString("color"));
+                temp.setSize(rs.getString("size"));
+                temp.setUnitMeasurement(rs.getString("unitMeasurement"));
+                temp.setConsumptionQty(rs.getInt("ConsumptionQty"));
                 ConsumptionReport.add(temp);
             }
             pstmt.close();
@@ -219,4 +219,5 @@ public class ConsumptionReportDAO {
         }
         return null;
     }
+    
 }

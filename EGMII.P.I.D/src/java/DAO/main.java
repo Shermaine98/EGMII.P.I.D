@@ -19,8 +19,7 @@ public class main {
     public static void main (String args[]) throws SQLException, ParseException{
     ConsumptionReportDAO  ConsumptionReportDAO = new ConsumptionReportDAO();
     ArrayList<String> productAll = new ArrayList<String>();
-      ConsumptionReportDAO.GetConsumptionReportForCutting();
-     System.out.println(ConsumptionReportDAO.GetConsumptionReportForCutting());
+      
     }
     
 }

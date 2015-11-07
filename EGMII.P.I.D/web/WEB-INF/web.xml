@@ -117,10 +117,6 @@
         <servlet-class>Controller_Json.SetSubconPOReceivingServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>SetConsumptionCuttingServlet</servlet-name>
-        <servlet-class>Controller_Json.SetConsumptionCuttingServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>ViewAccessoriesInventoryServlet</servlet-name>
         <servlet-class>Controller_View.ViewAccessoriesInventoryServlet</servlet-class>
     </servlet>
@@ -135,6 +131,18 @@
     <servlet>
         <servlet-name>SetInventoryReportServlet</servlet-name>
         <servlet-class>Controller_Json.SetInventoryReportServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewConsumptionReportServlet</servlet-name>
+        <servlet-class>Controller_View.ViewConsumptionReportServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewSupplierPurchaseOrderServlet</servlet-name>
+        <servlet-class>Controller_View.ViewSupplierPurchaseOrderServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GenerateCuttingReportServlet</servlet-name>
+        <servlet-class>Controller_Generate.GenerateCuttingReportServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>SearchProductServlet</servlet-name>
@@ -253,10 +261,6 @@
         <url-pattern>/SetSubconPOReceivingServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>SetConsumptionCuttingServlet</servlet-name>
-        <url-pattern>/SetConsumptionCuttingServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>ViewAccessoriesInventoryServlet</servlet-name>
         <url-pattern>/ViewAccessoriesInventoryServlet</url-pattern>
     </servlet-mapping>
@@ -271,6 +275,18 @@
     <servlet-mapping>
         <servlet-name>SetInventoryReportServlet</servlet-name>
         <url-pattern>/SetInventoryReportServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewConsumptionReportServlet</servlet-name>
+        <url-pattern>/ViewConsumptionReportServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewSupplierPurchaseOrderServlet</servlet-name>
+        <url-pattern>/ViewSupplierPurchaseOrderServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GenerateCuttingReportServlet</servlet-name>
+        <url-pattern>/GenerateCuttingReportServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

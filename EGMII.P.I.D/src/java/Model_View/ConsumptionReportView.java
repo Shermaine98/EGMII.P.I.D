@@ -20,7 +20,8 @@ public class ConsumptionReportView {
     private java.sql.Date dateMade;
     private String status;
     private int itemCode;
-    private double qty;
+    private double VolumeQty;
+    private double ConsumptionQty;
     private String name;
     private String productName;
     private String color;
@@ -28,6 +29,7 @@ public class ConsumptionReportView {
     private String itemName;
     private String unitMeasurement;
     private String productType;
+    private int productNumber;
     
    
 
@@ -133,15 +135,15 @@ public class ConsumptionReportView {
     /**
      * @return the qty
      */
-    public double getQty() {
-        return qty;
+    public double getVolumeQty() {
+        return VolumeQty;
     }
 
     /**
      * @param qty the qty to set
      */
-    public void setQty(double qty) {
-        this.qty = qty;
+    public void setVolumeQty(double VolumeQty) {
+        this.VolumeQty = VolumeQty;
     }
 
     /**
@@ -240,5 +242,33 @@ public class ConsumptionReportView {
      */
     public void setProductType(String productType) {
         this.productType = productType;
+    }
+
+    /**
+     * @return the ConsumptionQty
+     */
+    public double getConsumptionQty() {
+        return ConsumptionQty;
+    }
+
+    /**
+     * @param ConsumptionQty the ConsumptionQty to set
+     */
+    public void setConsumptionQty(double ConsumptionQty) {
+        this.ConsumptionQty = ConsumptionQty;
+    }
+
+    /**
+     * @return the productNumber
+     */
+    public int getProductNumber() {
+        return productNumber;
+    }
+
+    /**
+     * @param productNumber the productNumber to set
+     */
+    public void setProductNumber(int productNumber) {
+        this.productNumber = productNumber;
     }
 }

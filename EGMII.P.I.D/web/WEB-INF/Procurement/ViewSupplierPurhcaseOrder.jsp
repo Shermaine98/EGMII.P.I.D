@@ -4,7 +4,7 @@
     Author     : Geraldine
 --%>
 
-<%@page import="Model.SupplierPurchaseOrder"%>
+<%@page import="Model_View.SupplierPurchaseOrderView"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="/LevelOfAccess/LevelOFAccess.jsp"%>
@@ -25,7 +25,15 @@
                     "info": false,
                     "dom": '<"pull-left "f>'
                 });
+                
+                
+               $(".SPO").on("click", (function () {
+                var productionNumber = $(this).closest("tr").find(".poNumber").text();
+                document.getElementById('hiddenValue').value = productionNumber;
+                document.getElementById("form1").submit();
+            }));
             });
+            
         </script>
     </head>
     <body>  
@@ -34,8 +42,10 @@
 
     <br/><br/>
     <%        
-    ArrayList<SupplierPurchaseOrder> SupplierPurchaseOrderList = (ArrayList<SupplierPurchaseOrder>) request.getAttribute("SupplierPurchaseOrderList");
+    String data = (String) request.getAttribute("data");
+    ArrayList<SupplierPurchaseOrderView> SupplierPurchaseOrderList = (ArrayList<SupplierPurchaseOrderView>) request.getAttribute("SupplierPurchaseOrder");
     %>
+    <form form="1" method="post" action="ViewSupplierPurchaseOrderServlet">
     <div align="center" class="container">
         <table id="dataTable" class="table table-bordered" style="width:80%">
             <thead>
@@ -57,25 +67,38 @@
                 <%
                     for (int i = 0; i < SupplierPurchaseOrderList.size(); i++) {
                 %> 
-                <tr>
-                    <td><input type="text" value="<%= SupplierPurchaseOrderList.get(i).getPoNumber()%>"/></td>
-                    <td><input type="text" value="<%= SupplierPurchaseOrderList.get(i).getItemCode()%>"/></td>
-                    <td><input type="text" value="<%= SupplierPurchaseOrderList.get(i).getSupplier()%>"/></td>
-                    <td><input type="text" value="<%= SupplierPurchaseOrderList.get(i).getVolumeQty()%>"/></td>
+                <tr clas="SPO">
+                    <td clas="poNumber"><%= SupplierPurchaseOrderList.get(i).getPoNumber()%></td>
+                    <td><input type="text" value="<%= SupplierPurchaseOrderList.get(i).getCompanyName()%>"/></td>
                     <td><input type="text" value="<%= SupplierPurchaseOrderList.get(i).getDateMade()%>"/></td>
                     <td><input type="text" value="<%= SupplierPurchaseOrderList.get(i).getDeliveryDate()%>"/></td>
                     <td><input type="text" value="<%= SupplierPurchaseOrderList.get(i).getPreparedBy()%>"/></td>
-                    <td><input type="text" value="<%= SupplierPurchaseOrderList.get(i).getApprovedBy()%>"/></td>
-                    <td><input type="text" value="<%= SupplierPurchaseOrderList.get(i).getReceivingStatus()%>"/></td>
-                    <td><input type="text" value="<%= SupplierPurchaseOrderList.get(i).getReconcileStatus()%>"/></td>
-                    <td><input type="text" value="<%= SupplierPurchaseOrderList.get(i).getNote()%>"/></td>                   
+                    <td><input type="text" value="<%= SupplierPurchaseOrderList.get(i).getApprovedBy()%>"/></td>        
                 </tr>
                 <%
                     }
                 %>
             </tbody>
         </table>
+             <input type="hidden" name="poNumber" id="hiddenValue" value=""/>
     </div>
+     </form>
+            
+            
+      <div>
+        <%
+         if (data.equalsIgnoreCase("SupplierPurchaseOrderSpecific")) {
+            ArrayList<SupplierPurchaseOrderView> spo1 = (ArrayList<SupplierPurchaseOrderView>) request.getAttribute("SupplierPurchaseOrderSpecific");
+
+        %>
+        <!--Consumption Report View From Encode of Bill of Materials-->
+
+        <table><td><%= spo1.get(0).getPoNumber()%></td></table>
+                <%
+                    }
+                %>
+                <br/><br/>
+        </div>
     <script></script>
 </body>
 
