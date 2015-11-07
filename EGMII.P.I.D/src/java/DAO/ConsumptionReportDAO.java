@@ -205,6 +205,7 @@ public class ConsumptionReportDAO {
                 temp.setName(rs.getString("name"));
                 temp.setProductType(rs.getString("productType"));
                 temp.setProductName(rs.getString("productName"));
+                temp.setItemName(rs.getString("itemName"));
                 temp.setColor(rs.getString("color"));
                 temp.setSize(rs.getString("size"));
                 temp.setUnitMeasurement(rs.getString("unitMeasurement"));
