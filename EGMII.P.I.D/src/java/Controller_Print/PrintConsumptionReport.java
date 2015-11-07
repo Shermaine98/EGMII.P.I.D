@@ -45,7 +45,7 @@ public class PrintConsumptionReport extends BaseServlet {
         Map map = new HashMap();
         map.put("prodNum", productionNumberInt);
 
-        String path = getServletContext().getRealPath("Reports/ProductCreation/");
+        String path = getServletContext().getRealPath("Reports/ProductionCreationReport/");
         // jasperDesign = JRXmlLoader.load(path + "ConsumptionReport.jrxml");
         InputStream f = new FileInputStream(new File(path + "/ConsumptionReport.jrxml"));
         try {
