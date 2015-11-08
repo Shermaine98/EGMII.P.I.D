@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.context.FacesContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,16 +37,24 @@ public class PrintConsumptionReport extends BaseServlet {
     public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
-
+       
         JasperReport jasperReport = null;
-        //  JasperDesign jasperDesign = null;
         String productionNumber = request.getParameter("printPONumber");
         int productionNumberInt = Integer.parseInt(productionNumber);
-
+        
+        
+        String path = getServletContext().getRealPath("Reports/ProductionCreationReport/");
+        
+        //images
+        String pathImage = getServletContext().getRealPath("Images/");
+        File reportsDir = new File(pathImage);
+        
         Map map = new HashMap();
         map.put("prodNum", productionNumberInt);
+        //image
+        map.put("realpath", reportsDir);
+      
 
-        String path = getServletContext().getRealPath("Reports/ProductionCreationReport/");
         // jasperDesign = JRXmlLoader.load(path + "ConsumptionReport.jrxml");
         InputStream f = new FileInputStream(new File(path + "/ConsumptionReport.jrxml"));
         try {
@@ -53,7 +62,7 @@ public class PrintConsumptionReport extends BaseServlet {
         } catch (JRException ex) {
             Logger.getLogger(PrintConsumptionReport.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
         byte[] byteStream = null;
         try {
             byteStream = JasperRunManager.runReportToPdf(jasperReport, map, conn);
