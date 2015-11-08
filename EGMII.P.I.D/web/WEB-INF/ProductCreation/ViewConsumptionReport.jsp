@@ -199,7 +199,7 @@
                             %>
                             <!--FOR LOOP-->
                             <tr>
-                                <td><input type="text" class="transparentBg readonlyWhite inputSize" name="itemName"  value = "<%= productAllAcce.get(i).getItemName()%>"  readonly/>
+                                <td><input type="text" class="transparentBg readonlyWhite " name="itemName"  value = "<%= productAllAcce.get(i).getItemName()%>"  readonly/>
                                     <input type="hidden" class="transparentBg readonlyWhite inputSize" name="itemCode"  value = "<%= productAllAcce.get(i).getItemCode()%>"  readonly/></td>
                                 <td><input name="itemConsumption" class="transparentBg readonlyWhite inputSize" id="itemConsumption[]" value="<%= productAllAcce.get(i).getVolumeQty()%>"   readonly/></td> 
                                 <td><input name="totalConsumption" class="transparentBg readonlyWhite inputSize" id="totalConsumption[]" value="<%=productAllAcce.get(i).getConsumptionQty()%>"  readonly/></td>
