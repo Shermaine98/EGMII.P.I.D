@@ -93,7 +93,7 @@
 
                         <div class="form-inline">
                             <label for="drNumber">Delivery Receipt Number</label>
-                            <input type="text" class="form-control" name="drNumber" />
+                            <input type="text" class="form-control" name="drNumber" pattern=".{8,}" required title="Please Input Delivery Receipt Number." />
                         </div>
                         <br/>
 
@@ -112,7 +112,7 @@
                                 <td><%=PurchaseOrderSpecific.get(x).getItemName()%><input type="hidden" name="itemCode" value="<%=PurchaseOrderSpecific.get(x).getItemCode()%>" /></td>
                                 <td><input type="text" value="<%=PurchaseOrderSpecific.get(x).getQty()%>" id="volumeQty[]" name ="QtyOrdered" readonly class="transparentBg inputSize" /></td>
                                 <td><input type="text" value="<%=PurchaseOrderSpecific.get(x).getDeliveredQty()%>" name ="deliveredQty" readonly class="transparentBg inputSize" /></td>
-                                <td><input type="number" name="receivedqty" class="transparentBg inputSize" /></td>
+                                <td><input type="number" name="receivedqty" class="transparentBg inputSize" min="0" required title="Please Input Received Quantity." /></td>
                             </tr>
                             <% } %>
                         </table>

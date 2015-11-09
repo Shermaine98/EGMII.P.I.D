@@ -43,7 +43,7 @@
                         <input type="hidden" name="preparedBy" class="form-control readonlyWhite" id="preparedBy" value="<%=user.getEmployeeNumber()%>" />
                         <input type="text" class="form-control readonlyWhite" readonly value="<%= user.getFirstName()%> <%= user.getLastName()%>" /><br/>
                         <label class="" for="deliveryDate">Delivery Date</label>
-                        <input type="text" name="deliveryDate" class="form-control" id="datepicker" /><br/>
+                        <input type="text" name="deliveryDate" class="form-control" id="datepicker" pattern=".{1,}" required title="Please Input Delivery Date" /><br/>
                         <label class="" for="supplier">Supplier</label>
                         <input type="text" name="supplier" class="form-control" id="supplierName" onkeypress="autoCompleteSupplier()" placeholder="Search Supplier" /><br/>
                         <input type="hidden" name="supplier" id ="supplierName" disabled="disabled" style="color: #CCC; position: absolute; background: transparent;"/>
