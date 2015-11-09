@@ -20,21 +20,19 @@
         <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
         <title>Warehouse Inventory</title>
         <script>
-             $(document).ready(function () {
+            $(document).ready(function () {
                 $('#WarehouseInventory').DataTable({
-                    "paging": false,
-                    "info": false,
-                    "dom": '<"pull-left "f>'
+                    "paging": true,
+                    "info": true
                 });
             });
         </script>
     </head>
     <body>  
-    <%            
-     ArrayList<WarehouseInventoryView> WarehouseInventory = (ArrayList<WarehouseInventoryView>) request.getAttribute("WarehouseInventoryList");
-    %>
-    <center><h2>Warehouse Inventory</h2></center>
+        <%        ArrayList<WarehouseInventoryView> WarehouseInventory = (ArrayList<WarehouseInventoryView>) request.getAttribute("WarehouseInventoryList");
+        %>
     <div align="center" class="container">
+        <h2>Warehouse Inventory</h2>
         <table id="WarehouseInventory" class="table table-bordered table-hover">
             <thead>
                 <tr>
@@ -42,23 +40,29 @@
                     <th>Purchase Order Number</th>
                     <th>Production Number</th>
                     <th>Product ID</th>
-                    <th>Size Type</th>
+                    <th>Size</th>
                     <th>Date Updated</th>
                     <th>Quantity</th>
                     <th>Updated by</th>
                 </tr>
             </thead>
             <tbody>
-                <%for (int i = 0; i < WarehouseInventory.size(); i++) {%>
+                <% //for (int i = 0; i < WarehouseInventory.size(); i++) {%>
                 <tr>
-                    <td><%=WarehouseInventory.get(i).getProductName()%></td>
-                    <td><%=WarehouseInventory.get(i).getQty()%></td>
+                    <td>90000000</td>
+                    <td>70000000</td>
+                    <td>30000000</td>
+                    <td>20000011</td>
+                    <td>XS</td>
+                    <td>2015-11-01</td>
+                    <td>100</td>
+                    <td>Benjamin Yung</td>
                 </tr>
                 <%
-                    }
+                   // }
                 %>
             </tbody>
         </table>
-       </div>
+    </div>
 </body>
 </html>

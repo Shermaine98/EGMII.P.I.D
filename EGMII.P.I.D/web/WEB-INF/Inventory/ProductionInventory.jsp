@@ -21,9 +21,8 @@
         <script>
             $(document).ready(function () {
                 $('#productionInventory').DataTable({
-                    "paging": false,
-                    "info": false,
-                    "dom": '<"pull-left "f>'
+                    "paging": true,
+                    "info": true
                 });
             });
         </script>
@@ -39,7 +38,7 @@
                 <tr>
                     <th>Production Number</th>
                     <th>Product ID</th>
-                    <th>Size Type</th>
+                    <th>Size</th>
                     <th>Delivery Number</th>
                     <th>Purchase Number</th>
                     <th>Item Code</th>
@@ -51,9 +50,15 @@
             <tbody>
                 <%for (int i = 0; i < ProductionInventory.size(); i++) {%>
                 <tr>
-                   
+                    <td>30000001</td>
+                    <td>2000000<%= i+1 %></td>
+                    <td>XS</td>
+                    <td>80000001</td>
+                    <td>91000000</td>
                     <td><%=ProductionInventory.get(i).getItemCode()%></td>
+                    <td>2015-11-10</td>
                     <td><%=ProductionInventory.get(i).getQty()%></td>
+                    <td>Benjamin Yung</td>
                 </tr>
                 <%
                     }
