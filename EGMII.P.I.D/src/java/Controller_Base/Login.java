@@ -44,7 +44,6 @@ public class Login extends HttpServlet {
             user.setUserName(request.getParameter("username"));
             user.setPassword(request.getParameter("password"));
             String action = request.getParameter("action");
-       //     String viewAccount = request.getParameter("viewaccount");
 
             UserDAO UserDAO = new UserDAO();
             boolean successful = UserDAO.authenticate(user);
@@ -53,10 +52,16 @@ public class Login extends HttpServlet {
                 ServletContext context = getServletContext();
                 RequestDispatcher rd = context.getRequestDispatcher("/Accounts/Homepage.jsp");
                 HttpSession session = request.getSession();
+                request.setAttribute("message", "Success");
                 session.setAttribute("login", user);
                 session.setAttribute("successful", "successful");
                 rd.forward(request, response);
-            } else if (action.equals("goToHome")) {
+            } else if(!successful){
+                ServletContext context = getServletContext();
+                RequestDispatcher rd = context.getRequestDispatcher("/index.jsp");
+                request.setAttribute("message", "Wrong Password");
+                rd.forward(request, response);
+            }else if (action.equals("goToHome")) {
                 ServletContext context = getServletContext();
                 RequestDispatcher rd = context.getRequestDispatcher("/Accounts/Homepage.jsp");
                 rd.forward(request, response);
@@ -68,6 +73,7 @@ public class Login extends HttpServlet {
                 ServletContext context = getServletContext();
                 RequestDispatcher rd = context.getRequestDispatcher("/index.jsp");
                 rd.forward(request, response);
+                out.print("Wrong Password!");
             }
         } finally {
             out.close();
