@@ -24,7 +24,6 @@
                 $('#view').DataTable({
                     "paging": true,
                     "info": true
-//                    "dom": '<"pull-left "f>'
                 });
 
                 $(".production").on("click", (function () {
