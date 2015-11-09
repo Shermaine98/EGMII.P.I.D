@@ -177,7 +177,7 @@ public class ConsumptionReportDAO {
                     + "SELECT CR.productionNumber,"
                     + "CR.dateMade, CR.status, CRD.itemCode, \n"
                     + "CRD.qty as 'VolumeQty', CONCAT(u.firstName,\" \",u.lastName) as 'name', "
-                    + "P.productType, P.productName ,P.color, P.size, I.itemName, "
+                    + "P.productType, P.productName ,P.color, P.size, I.itemName, I.inventoryType, "
                     + "I.unitMeasurement, PBM.qty as 'ConsumptionQty'\n"
                     + "FROM consumption_report CR\n"
                     + "JOIN cr_details CRD\n"
@@ -206,6 +206,7 @@ public class ConsumptionReportDAO {
                 temp.setProductType(rs.getString("productType"));
                 temp.setProductName(rs.getString("productName"));
                 temp.setItemName(rs.getString("itemName"));
+                temp.setInventoryType(rs.getString("inventoryType"));
                 temp.setColor(rs.getString("color"));
                 temp.setSize(rs.getString("size"));
                 temp.setUnitMeasurement(rs.getString("unitMeasurement"));

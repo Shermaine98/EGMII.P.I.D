@@ -93,7 +93,7 @@
         <div class="container">
             <div class="panel panel-default col-md-3" style="float:left">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Encode Consumption Report</h3>
+                    <h3 class="panel-title">Consumption Report</h3>
                 </div>
                 <div class="panel-body">
                     <label class="" for="productionNumber">Production Number</label>
@@ -110,7 +110,7 @@
 
             </div>
             <%
-                if (cr1.get(0).getProductName().equalsIgnoreCase("Shirt")) {
+                if (cr1.get(0).getProductType().equalsIgnoreCase("Shirt")) {
             %>
             <div class="panel panel-default col-md-7" style="float:left">
                 <div class="panel-heading">
@@ -196,6 +196,7 @@
                             <%
                                 ArrayList<ConsumptionReportView> productAllAcce = (ArrayList<ConsumptionReportView>) request.getAttribute("crListSpecific");
                                 for (int i = 0; i < productAllAcce.size(); i++) {
+                                    if (productAllAcce.get(i).getInventoryType().equalsIgnoreCase("accessories")) {
                             %>
                             <!--FOR LOOP-->
                             <tr>
@@ -206,6 +207,7 @@
                                 <td><input name="unitMeasurement" class="transparentBg readonlyWhite inputSize" id="unitMeasurement" value="<%= productAllAcce.get(i).getUnitMeasurement()%>"  readonly /></td>
                             </tr> 
                             <%
+                                    }
                                 }
                             %>
                             <!--close bracket here-->
@@ -234,6 +236,7 @@
                             <%
                                 ArrayList<ConsumptionReportView> productAllproduc = (ArrayList<ConsumptionReportView>) request.getAttribute("crListSpecific");
                                 for (int i = 0; i < productAllproduc.size(); i++) {
+                                    if (productAllproduc.get(i).getInventoryType().equalsIgnoreCase("production")) {
                             %>   
                             <tr> 
                                 <td><input type="text" value="<%=productAllproduc.get(i).getItemName()%>" class="transparentBg" readonly/> 
@@ -243,6 +246,7 @@
                                 <td><input type="text" value="<%=productAllproduc.get(i).getUnitMeasurement()%>" class="transparentBg" readonly/> 
                             </tr> 
                             <%
+                                    }
                                 }
                             %>
                         </tbody>
