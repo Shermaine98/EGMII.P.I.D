@@ -83,11 +83,6 @@
                                 <li><a href="/EGMII.P.I.D/ViewAccessoriesInventoryServlet">Accessories Inventory</a></li>
                                 <li><a href="/EGMII.P.I.D/ViewProductionInventoryServlet">Production Inventory</a></li>
                                 <li><a href="/EGMII.P.I.D/ViewWarehouseInventoryServlet">Warehouse Inventory</a></li>
-                                <li><a href="#">Inventory Report</a>
-                                    <ul class="dropdown-menu sub-menu" style="margin-top:100px;">
-                                        <li><a href="/EGMII.P.I.D/ViewInventoryReportServlet?action=create">Encode Inventory Report</a></li>
-                                        <li><a href="/EGMII.P.I.D/ViewInventoryReportServlet?action=view">View Inventory Report</a></li>
-                                    </ul></li>
                             </ul>
                         </li>
 

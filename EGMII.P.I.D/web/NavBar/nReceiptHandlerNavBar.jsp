@@ -71,8 +71,8 @@
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="#">Delivery Invoice</a>
                                     <ul class="dropdown-menu sub-menu">
-                                        <li><a href="">Encode Delivery Invoice</a></li>
-                                        <li><a href="">View Delivery Invoice</a></li>
+                                        <li><a href="/EGMII.P.I.D/ViewDeliveryInvoiceServlet?action=create">Encode Delivery Invoice</a></li>
+                                        <li><a href="/EGMII.P.I.D/ViewDeliveryInvoiceServlet?action=view">View Delivery Invoice</a></li>
                                     </ul>
                                 </li>
                             </ul>

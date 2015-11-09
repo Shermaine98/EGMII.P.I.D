@@ -69,7 +69,7 @@
                                 <li><a href="/EGMII.P.I.D/ViewAccessoriesInventoryServlet">Accessories Inventory</a></li>
                                 <li><a href="/EGMII.P.I.D/ViewProductionInventoryServlet">Production Inventory</a></li>
                                 <li><a href="/EGMII.P.I.D/ViewWarehouseInventoryServlet">Warehouse Inventory</a></li>
-                                
+
                             </ul>
                         </li>
 
@@ -80,12 +80,12 @@
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="#">Replenishment Request</a>
                                     <ul class="dropdown-menu sub-menu">
-                                        <li><a href="">Revise Replenishment Request</a></li>
+                                        <li><a href="/EGMII.P.I.D/ViewReplenishmentServlet?action=revise">Revise Replenishment Request</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="#">Delivery Invoice</a>
                                     <ul class="dropdown-menu sub-menu" style="margin-top: 35px;">
-                                        <li><a href="">View Delivery Invoice</a></li>
+                                        <li><a href="/EGMII.P.I.D/ViewDeliveryInvoiceServlet?action=view">View Delivery Invoice</a></li>
                                     </ul>
                                 </li>
                             </ul>
