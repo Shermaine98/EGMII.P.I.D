@@ -174,11 +174,11 @@ public class ConsumptionReportDAO {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(""
-                    + "SELECT CR.productionNumber,"
+                    + "SELECT DISTINCT CR.productionNumber,"
                     + "CR.dateMade, CR.status, CRD.itemCode, \n"
-                    + "CRD.qty as 'VolumeQty', CONCAT(u.firstName,\" \",u.lastName) as 'name', "
+                    + "SUM(CRD.qty) as 'VolumeQty', CONCAT(u.firstName,\" \",u.lastName) as 'name', "
                     + "P.productType, P.productName ,P.color, P.size, I.itemName, I.inventoryType, "
-                    + "I.unitMeasurement, PBM.qty as 'ConsumptionQty'\n"
+                    + "I.unitMeasurement, SUM(PBM.qty) as 'ConsumptionQty'\n"
                     + "FROM consumption_report CR\n"
                     + "JOIN cr_details CRD\n"
                     + "ON CR.productionNumber = CRD.productionNumber\n"
@@ -190,7 +190,7 @@ public class ConsumptionReportDAO {
                     + "ON PBM.itemCode = I.itemCode\n"
                     + "JOIN user u \n"
                     + "ON CR.preparedBy = u.employeeID\n"
-                    + "WHERE CR.productionNumber = ?;");
+                    + "WHERE CR.productionNumber = ? GROUP BY I.itemCode;");
             pstmt.setInt(1, productionNumber);
 
             ResultSet rs = pstmt.executeQuery();
