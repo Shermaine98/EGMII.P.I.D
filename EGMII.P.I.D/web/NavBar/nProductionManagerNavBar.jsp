@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="bootstrap/css/table-design.css">
         <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="bootstrap/css/sub-menu.css">
+        <link rel="stylesheet" href="bootstrap/css/jquery-ui-datePicker.css">
         <link href="bootstrap/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <!--JQUERY LIBRARIES-->
         <script type="text/javascript" src="bootstrap/js/jquery.js"></script>

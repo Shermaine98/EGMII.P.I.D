@@ -77,6 +77,7 @@
                 <input type="hidden" name="hiddenValue" id="hiddenValue" value=""/>
             </div>
         </form>
+                        <br/>
         <% String data = (String) request.getAttribute("subconData");
             if (data.equalsIgnoreCase("consumption")) {
                 Integer poNumber = (Integer) request.getAttribute("poNumber");
@@ -95,21 +96,18 @@
                         <label class="" for="preparedBy">Prepared By</label>
                         <input type="hidden" name="preparedBy" class="form-control readonlyWhite"  value="<%=user.getEmployeeNumber()%>"/><br/>
                         <input type="text" class="form-control readonlyWhite"  value="<%=user.getFirstName()%> <%=user.getLastName()%>"/><br/>
-                        <label class="" for="dateMade">Date Made</label>
-                        <input type="hidden" name="dateMade" class="form-control readonlyWhite" id="dateMade" value="" /><br/>
-                        <input class="form-control readonlyWhite" value="" readonly /><br/>
                         <label class="" for="deliveryDate">Delivery Date</label>
-                        <input type="date" name="deliveryDate" class="form-control"  /><br/>
+                        <input type="text" name="deliveryDate" id="datepicker" class="form-control"  /><br/>
                         <!--Search Subcon-->
                         <label for="subconName">Subcontractor</label>
-                        <input type="text" class="form-control" name="subconName" id="subconName" onkeypress="autoCompleteSubcon();" placeholder="Search Subcon"/>
+                        <input type="text" class="form-control" name="subconName" id="subconName" pattern=".{1,}" required title="Please Input Subcontractor" onkeypress="autoCompleteSubcon();" placeholder="Search Subcon"/>
                         <input type="hidden" name="subcon" id="subcon" disabled="disabled" style="color: #CCC; position: absolute; background: transparent;"/>
                         <br/>  
 
                     </div>
                 </div>
 
-                <div class="panel panel-default col-md-7">
+                <div class="panel panel-default col-md-7 ">
                     <div class="panel-heading">
                         <h3 class="panel-title">Details</h3>
                     </div>
@@ -127,7 +125,7 @@
                     </div>
                 </div>
 
-                <div class="panel panel-default col-md-7">
+                <div class="panel panel-default col-md-7 pull-right" style="margin-right:140px">
                     <div class="panel-heading">
                         <h3 class="panel-title">Sizes</h3>
                     </div>

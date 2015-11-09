@@ -15,7 +15,6 @@
         <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="bootstrap/css/sub-menu.css">
         <link href="bootstrap/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link rel="stylesheet" href="bootstrap/css/jquery-ui-datePicker.css">
         <script type="text/javascript" src="js/jquery.autocomplete.js"></script>
         <script src="js/searchSupplier.js"></script>
         <script src="js/deleteRow.js"></script>

@@ -40,7 +40,7 @@
                 <h2><%= user.getEmail()%></h2>
                 <br/>
                 <br/>
-                <button class="btn btn-default" data-toggle="modal" data-target="#myModal">Change Password</button>
+                <button class="btn btn-default" style="width:160px;" data-toggle="modal" data-target="#myModal">Change Password</button>
 
                 <!-- Modal -->
                 <div id="myModal" class="modal fade" role="dialog">
