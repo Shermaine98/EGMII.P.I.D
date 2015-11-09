@@ -20,14 +20,15 @@
         <title>Inventory Report</title>
     </head>
     <body>
-        <form method="post" action="EncodeInventoryReport">
+        <form method="post" action="EncodeInventoryReportServlet">
             <div class="container" align="center">
 
                 <h2>Inventory Report</h2>
                 <% ArrayList<RetailInventoryView> retailInventoryView = (ArrayList<RetailInventoryView>) request.getAttribute("retailInventoryView");
-                if (retailInventoryView.size() > 0) {%>
+                    if (retailInventoryView.size() > 0) {%>
+                
 
-                <div class="panel panel-default col-md-3 pull-left" style="padding-bottom:10px; margin-left: 60px;">
+                <div class="panel panel-default col-md-3" style="padding-bottom:10px;">
                     <div class="panel-heading">
                         <h3 class="panel-title">Inventory Report</h3>
                     </div>
@@ -41,12 +42,9 @@
                 </div>
 
 
-                <div class="panel panel-default col-md-6" style="padding-bottom: 10px;">
+                <div class="panel panel-default col-md-7" style="padding-bottom: 10px;">
                     <div class="panel-body">
                         <table class="table table-bordered">
-                            <colgroup>
-                                <col style="width:25%" />
-                            </colgroup>
                             <tr>
                                 <th>Product Name</th>
                                 <th>Color</th>
@@ -58,13 +56,14 @@
                             </tr>
                             <%for (int i = 0; i < retailInventoryView.size(); i++) {%>
                             <tr>
-                                <td><%=retailInventoryView.get(i).getProductName()%></td>
+                                <td><%=retailInventoryView.get(i).getProductName()%>
+                                <input type="hidden" value="<%= retailInventoryView.get(i).getItemCode()%>" name="itemCode" /></td>
                                 <td><%=retailInventoryView.get(i).getColor()%></td>
                                 <td><%=retailInventoryView.get(i).getSize()%></td>
-                                <td><input type="text" id="bgQty" value="<%=retailInventoryView.get(0).getQty()%>"</td>
-                                <td><input type="number" id="pulledQty" name="pulledQty" value="0" min="0"></td>
-                                <td><input type="number" id="soldQty" name="pulledQty" value="0" min="0"></td>
-                                <td><input type="number" id="endingT" value="0" readonly></td>
+                                <td><input type="text" class="transparentBg inputSize" id="bgQty" value="<%=retailInventoryView.get(i).getQty()%>"</td>
+                                <td><input type="number" class="transparentBg inputSize" id="pulledQty" name="pulledQty" value="0" min="0"></td>
+                                <td><input type="number" class="transparentBg inputSize" id="soldQty" name="soldQty" value="0" min="0"></td>
+                                <td><input type="number" class="transparentBg inputSize" id="endingT" value="0" /></td>
                             </tr>
                             <%}%>
                         </table>
@@ -75,12 +74,12 @@
             </div>
             <!--Buttons-->
             <div id="buttonz" align="center">
-                <input type="submit" value="send" class="btn btn-danger"/>
+                <input type="submit" value="Send" class="btn btn-danger"/>
                 <button class="btn btn-danger">Cancel</button>
             </div>
         </form>
-          <%}else{ %>
-                    <h3>NO INVENTORY RECORD FOR THIS RETAIL STORE</h3>
+        <%} else { %>
+        <h3>NO INVENTORY RECORD FOR THIS RETAIL STORE</h3>
         <%}%>
     </body>
 </html>

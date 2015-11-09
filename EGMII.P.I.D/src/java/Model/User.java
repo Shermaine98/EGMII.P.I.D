@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 public class User {
 
     private int employeeNumber;
+    private int locationID;
     private String lastName;
     private String firstName;
     private String position;
@@ -27,6 +28,15 @@ public class User {
 
     DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
+    
+    public int getLocationID() {
+        return locationID;
+    }
+
+    public void setLocationID(int locationID) {
+        this.locationID = locationID;
+    }
+    
     /**
      * @return the employeeNumber
      */

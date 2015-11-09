@@ -135,7 +135,7 @@ public class UserDAO {
                User.setEntryDate(rs.getString("entryDate"));
                User.setUserName(rs.getString("email"));
                User.setPassword(rs.getString("password"));
-
+               User.setLocationID(rs.getInt("locationID"));
             }
 
             pstmt.close();
