@@ -38,7 +38,7 @@
                         </div>
                         <div class="panel-body">
                             <label class="" for="productName">Product Name</label>
-                            <input type="text" name="productName" class="form-control" id="productName" /><br/>
+                            <input type="text" name="productName" class="form-control" id="productName" pattern=".{1,}" required title="Please Input Product Name"/><br/>
                             <label class="" for="productType">Product Type</label>
                             <select name="productType" id="productType" class="form-control">
                                 <option value="pants">Pants</option>
@@ -104,7 +104,7 @@
                             <br/>
                             <!--Should be a different js-->
                             <div id="buttonsFabric" style="visibility: hidden">
-                                <input type="button" class="btn btn-danger" value="Delete Row" onclick="deleteRow('dataTable')" />
+                                <input type="button" class="btn btn-danger" value="Delete Row" onclick="deleteRowF('thisTableFabric')" />
                                 <br/><br/>
                             </div>
                         </div>
