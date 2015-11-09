@@ -6,10 +6,12 @@
 package Controller_Encode;
 
 import Controller_Base.BaseServlet;
+import DAO.InventoryDAO;
 import DAO.SupplierDeliveryReceiptDAO;
 import DAO.SupplierPurchaseOrderDAO;
 import Model.DeliveryReceipt;
 import Model.DeliveryReceiptDetails;
+import Model_View.RawMaterialsInventoryView;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -39,22 +41,21 @@ public class EncodeSupplierDRServlet extends BaseServlet {
         ArrayList<DeliveryReceiptDetails> DeliveryReceiptDetails = new ArrayList<>();
         DeliveryReceipt DeliveryReceipt = new DeliveryReceipt();
         SupplierDeliveryReceiptDAO SupplierDeliveryReceiptDAO = new SupplierDeliveryReceiptDAO();
-        SupplierPurchaseOrderDAO  SupplierPurchaseOrderDAO = new SupplierPurchaseOrderDAO();
+        SupplierPurchaseOrderDAO SupplierPurchaseOrderDAO = new SupplierPurchaseOrderDAO();
+        InventoryDAO inventoryDAO = new InventoryDAO();
+        
         //header
         String drNumber = request.getParameter("drNumber");
         String poNumber = request.getParameter("poNumber");
         String receivedBy = request.getParameter("receivedBy");
         //dateReceived
 
-      
-        
         //details
         String[] itemCode = request.getParameterValues("itemCode");
         String[] qty = request.getParameterValues("receivedqty");
         String[] QtyOrdered = request.getParameterValues("QtyOrdered");
         String[] deliveredQty = request.getParameterValues("deliveredQty");
-        
-      
+
         boolean x = false;
 
         DeliveryReceipt.setDrNumber(Integer.parseInt(drNumber));
@@ -66,13 +67,13 @@ public class EncodeSupplierDRServlet extends BaseServlet {
         } catch (ParseException ex) {
             Logger.getLogger(EncodeSupplierDRServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-         if (SupplierDeliveryReceiptDAO.EncodeSupplierDeliveryReceipt(DeliveryReceipt)) {
+        if (SupplierDeliveryReceiptDAO.EncodeSupplierDeliveryReceipt(DeliveryReceipt)) {
             x = true;
         } else {
             x = false;
         }
-   
-       boolean complete = false;
+
+        boolean complete = false;
         //encode supplierdetails
         if (x == true) {
             for (int y = 0; y < itemCode.length; y++) {
@@ -82,13 +83,18 @@ public class EncodeSupplierDRServlet extends BaseServlet {
                 deliveryReceiptDetails.setQty(Double.parseDouble(qty[y]));
                 if (SupplierDeliveryReceiptDAO.EncodeSupplierDeliveryReceiptDetails(deliveryReceiptDetails)) {
                     try {
-                        double currentDeliveredQty = Double.parseDouble(deliveredQty[y]) +  Double.parseDouble(qty[y]);
-                        if(SupplierDeliveryReceiptDAO.updateDeliveredQty(currentDeliveredQty, Integer.parseInt(poNumber), Integer.parseInt(itemCode[y]))){
+                        double currentDeliveredQty = Double.parseDouble(deliveredQty[y]) + Double.parseDouble(qty[y]);
+                        if (SupplierDeliveryReceiptDAO.updateDeliveredQty(currentDeliveredQty, Integer.parseInt(poNumber), Integer.parseInt(itemCode[y]))) {
                             x = true;
-                            if(Double.parseDouble(QtyOrdered[y])==currentDeliveredQty){
+
+                            RawMaterialsInventoryView rm = new RawMaterialsInventoryView();
+                            rm = inventoryDAO.GetAccessoriesInventorySpecific(deliveryReceiptDetails.getItemCode());
+                            inventoryDAO.updateInventory(currentDeliveredQty + rm.getQty(), rm.getItemCode());
+                            
+                            if (Double.parseDouble(QtyOrdered[y]) == currentDeliveredQty) {
                                 complete = true;
                             }
-                        }else{
+                        } else {
                             x = false;
                         }
                     } catch (ParseException ex) {
@@ -101,7 +107,7 @@ public class EncodeSupplierDRServlet extends BaseServlet {
                 }
             }
         }
-        
+
         try {
             x = SupplierPurchaseOrderDAO.updateIsComplete(complete, Integer.parseInt(poNumber));
         } catch (ParseException ex) {
