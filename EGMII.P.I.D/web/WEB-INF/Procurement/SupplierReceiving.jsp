@@ -44,7 +44,7 @@
         <form method="post" action="SetSupplierSpecificReceivingServlet" id="form1">
             <div class="container" align="center" style="width:60%;">
                 <h2>Supplier Purchase Order Receiving</h2><br/>
-                <table id ="dataTable" class="table table-bordered">
+                <table id ="dataTable" class="table table-bordered table-hover">
                     <thead>
                         <tr>
                             <th>Purchase Order No.</th>
