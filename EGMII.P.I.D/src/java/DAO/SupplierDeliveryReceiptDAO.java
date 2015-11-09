@@ -1,29 +1,30 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DAO;
 
 import Database.DBConnectionFactory;
 import Model.DeliveryReceipt;
 import Model.DeliveryReceiptDetails;
-import Model_View.SupplierPurchaseOrderView;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
  *
- * @author shermainesy
+ * @author Atayan
+ * @author Lapidario
+ * @author Sy
+ * @author Nunez
+ * @author Dimaandal
+ *
  */
 public class SupplierDeliveryReceiptDAO {
-
+/**
+ * Encode Supplier Delivery Receipt
+ * @param newDeliveryReceipt
+ * @return 
+ */
    
 
     public boolean EncodeSupplierDeliveryReceipt(DeliveryReceipt newDeliveryReceipt) {
@@ -42,6 +43,7 @@ public class SupplierDeliveryReceiptDAO {
             pstmt.setDate(5, newDeliveryReceipt.getDateReceived());
 
             int rows = pstmt.executeUpdate();
+            pstmt.close();
             conn.close();
             return rows == 1;
         } catch (SQLException ex) {
@@ -49,7 +51,11 @@ public class SupplierDeliveryReceiptDAO {
         }
         return false;
     }
-
+/**
+ * Encode Supplier Delivery ReceiptDetails
+ * @param newDeliveryReceiptDetails
+ * @return 
+ */
     public boolean EncodeSupplierDeliveryReceiptDetails(DeliveryReceiptDetails newDeliveryReceiptDetails) {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -64,6 +70,7 @@ public class SupplierDeliveryReceiptDAO {
             pstmt.setDouble(3, newDeliveryReceiptDetails.getQty());
 
             int rows = pstmt.executeUpdate();
+            pstmt.close();
             conn.close();
             return rows == 1;
         } catch (SQLException ex) {
@@ -72,6 +79,14 @@ public class SupplierDeliveryReceiptDAO {
         return false;
     }
 
+    /**
+     * update Delivered Qty
+     * @param qty
+     * @param poNumber
+     * @param itemCode
+     * @return
+     * @throws ParseException 
+     */
      public boolean updateDeliveredQty(double qty, int poNumber, int itemCode) throws ParseException {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -86,8 +101,9 @@ public class SupplierDeliveryReceiptDAO {
             pstmt.setDouble(1,qty);
             pstmt.setInt(2, poNumber);
             pstmt.setInt(3, itemCode);
-
+            
             int rows = pstmt.executeUpdate();
+            pstmt.close();
             conn.close();
             return true;
         } catch (SQLException ex) {

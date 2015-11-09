@@ -1,11 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DAO;
 
 import Database.DBConnectionFactory;
+import Model.CuttingReport;
+import Model.CuttingReportDetails;
 import Model_View.ConsumptionReportView;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,8 +15,14 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author shermainesy
+ * @author Atayan
+ * @author Lapidario
+ * @author Sy
+ * @author Nunez
+ * @author Dimaandal
+ *
  */
+
 public class CuttingReportDAO {
       /**
      * Get All RECEVIDE PRODUCTION 
@@ -71,7 +74,11 @@ public class CuttingReportDAO {
         }
         return null;
     }
-    
+    /**
+     * Get Cutting Report Number
+     * @return
+     * @throws SQLException 
+     */
     public Integer getCuttingReportNumber() throws SQLException {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Integer i;
@@ -95,6 +102,69 @@ public class CuttingReportDAO {
             rs.close();
         }
         return i;
+    }
+    
+    /**
+     * Encode Inventory Report
+     *
+     * @param newCuttingReport
+     * @return
+     */
+    public boolean EncodeCuttingReport(CuttingReport newCuttingReport) {
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+            String query = "INSERT INTO cutting_report"
+                    + "(cuttingNumber, productionNumber, cuttingMaster, dateMade)"
+                    + "VALUES (?, ?, ?, ?);";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+
+            pstmt.setInt(1, newCuttingReport.getCuttingNumber());
+            pstmt.setInt(2, newCuttingReport.getProductionNumber());
+            pstmt.setInt(3, newCuttingReport.getCuttingMaster());
+            pstmt.setDate(4, newCuttingReport.getDateMade());
+
+            int rows = pstmt.executeUpdate();
+            pstmt.close();
+            conn.close();  
+            return rows == 1;
+         
+        } catch (SQLException ex) {
+            Logger.getLogger(CuttingReportDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
+    /**
+     * Encode Cutting Report details
+     *
+     * @param newCuttingReportDetails
+     * @return
+     */
+    public boolean EncodeCuttingReportDetails(CuttingReportDetails newCuttingReportDetails) {
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+            String query = "INSERT INTO cutting_report_details"
+                    + "(cuttingNumber, poNumber, itemCode, Qty, notes) "
+                    + "VALUES (?, ?, ?, ?, ?);";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+
+            pstmt.setInt(1, newCuttingReportDetails.getCuttingNumber());
+            pstmt.setInt(2, newCuttingReportDetails.getPoNumber());
+            pstmt.setDouble(3, newCuttingReportDetails.getItemCode());
+            pstmt.setDouble(4, newCuttingReportDetails.getQty());
+            pstmt.setString(4, newCuttingReportDetails.getNotes());
+
+            int rows = pstmt.executeUpdate();
+            pstmt.close();
+            conn.close();
+
+            return rows == 1;
+        } catch (SQLException ex) {
+            Logger.getLogger(CuttingReportDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
     
     

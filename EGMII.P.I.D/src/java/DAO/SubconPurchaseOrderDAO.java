@@ -11,7 +11,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.text.ParseException;
 
 /**
  *
@@ -19,6 +18,7 @@ import java.text.ParseException;
  * @author Lapidario
  * @author Sy
  * @author Nunez
+ * @author Dimaandal
  *
  */
 public class SubconPurchaseOrderDAO {
@@ -49,6 +49,7 @@ public class SubconPurchaseOrderDAO {
 
             int rows = pstmt.executeUpdate();
             conn.close();
+            pstmt.close();
             return rows == 1;
         } catch (SQLException ex) {
             Logger.getLogger(SubconPurchaseOrderDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -59,7 +60,7 @@ public class SubconPurchaseOrderDAO {
     /**
      * Subcontractor Purchase Order details
      *
-     * @param newSubconPurchaseOrder
+     * @param newPurchaseOrderDetails
      * @return
      */
     public boolean EncodeSubconPurchaseOrderDeatils(PurchaseOrderDetails newPurchaseOrderDetails) {
@@ -78,12 +79,18 @@ public class SubconPurchaseOrderDAO {
 
             int rows = pstmt.executeUpdate();
             conn.close();
+            pstmt.close();
             return rows == 1;
         } catch (SQLException ex) {
             Logger.getLogger(SubconPurchaseOrderDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
+    /**
+     * Get Subcon PurchaseOrderNumber
+     * @return
+     * @throws SQLException 
+     */
 
     public Integer getSubconPurchaseOrderNumber() throws SQLException {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -103,10 +110,14 @@ public class SubconPurchaseOrderDAO {
         } else {
             i += 1;
         }
-
+        conn.close();
         rs.close();
         return i;
     }
+    /**
+     * Get All SubconPurchase for Approval
+     * @return 
+     */
 
     public ArrayList<SubconPurchaseOrderView> GetAllSubconPurchaseOrderForApproval() {
         try {
@@ -130,94 +141,13 @@ public class SubconPurchaseOrderDAO {
                 po.setCompanyName(rs.getString("companyName"));
                 poList.add(po);
             }
-
+            ps.close();
+            conn.close();
             rs.close();
             return poList;
         } catch (SQLException ex) {
-            Logger.getLogger(SupplierPurchaseOrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SubconPurchaseOrderDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
-
-//    
-//    public ArrayList<SubconPurchaseOrder> MonitorSubconPurchaseOrder() throws ParseException {
-//        ArrayList<SubconPurchaseOrder> SubconPurchaseOrder = new ArrayList<SubconPurchaseOrder>();
-//
-//        try {
-//            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
-//            Connection conn = myFactory.getConnection();
-//            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM subcon_purchase_order");
-//
-//            ResultSet rs = pstmt.executeQuery();
-//            while (rs.next()) {
-//                SubconPurchaseOrder newSubconPurchaseOrder = new SubconPurchaseOrder();
-//
-//                newSubconPurchaseOrder.setPoNumber(rs.getInt("poNumber"));
-//                newSubconPurchaseOrder.setProductionNumber(rs.getInt("productionNumber"));
-//                newSubconPurchaseOrder.setProductID(rs.getInt("productID"));
-//                newSubconPurchaseOrder.setSize(rs.getString("sizeType"));
-//                newSubconPurchaseOrder.setDateMade(rs.getDate("dateMade"));
-//                newSubconPurchaseOrder.setDeliveryDate(rs.getString("deliveryDate"));
-//                newSubconPurchaseOrder.setPreparedBy(rs.getInt("preparedBy"));
-//                newSubconPurchaseOrder.setApprovedby(rs.getInt("approvedBy"));
-//                newSubconPurchaseOrder.setReceivingStatus(rs.getString("receivingStatus"));
-//                newSubconPurchaseOrder.setReconcileStatus(rs.getString("reconcileStatus"));
-//                newSubconPurchaseOrder.setSubcon(rs.getInt("subcon"));
-//                newSubconPurchaseOrder.setService(rs.getString("service"));
-//
-//                SubconPurchaseOrder.add(newSubconPurchaseOrder);
-//
-//            }
-//
-//            pstmt.close();
-//            rs.close();
-//            conn.close();
-//
-//            return SubconPurchaseOrder;
-//        } catch (SQLException ex) {
-//            Logger.getLogger(SubconPurchaseOrderDAO.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        return null;
-//    }
-//    
-//      public ArrayList<SubconPurchaseOrder> getSubconPurchaseOrder(String poNumber) throws ParseException {
-//        ArrayList<SubconPurchaseOrder> SubconPurchaseOrder = new ArrayList<SubconPurchaseOrder>();
-//
-//        try {
-//            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
-//            Connection conn = myFactory.getConnection();
-//            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM subcon_purchase_order where poNumber = ?");
-//            pstmt.setString(1, poNumber);
-//            ResultSet rs = pstmt.executeQuery();
-//            while (rs.next()) {
-//                SubconPurchaseOrder newSubconPurchaseOrder = new SubconPurchaseOrder();
-//
-//                newSubconPurchaseOrder.setPoNumber(rs.getInt("poNumber"));
-//                newSubconPurchaseOrder.setProductionNumber(rs.getInt("productionNumber"));
-//                newSubconPurchaseOrder.setProductID(rs.getInt("productID"));
-//                newSubconPurchaseOrder.setSize(rs.getString("sizeType"));
-//                newSubconPurchaseOrder.setDateMade(rs.getDate("dataMade"));
-//                newSubconPurchaseOrder.setDeliveryDate(rs.getString("deliveryDate"));
-//                newSubconPurchaseOrder.setPreparedBy(rs.getInt("preparedBy"));
-//                newSubconPurchaseOrder.setApprovedby(rs.getInt("approvedBy"));
-//                newSubconPurchaseOrder.setReceivingStatus(rs.getString("receivingStatus"));
-//                newSubconPurchaseOrder.setReconcileStatus(rs.getString("reconcilingStatus"));
-//                newSubconPurchaseOrder.setSubcon(rs.getInt("subcon"));
-//                newSubconPurchaseOrder.setService(rs.getString("service"));
-//
-//                SubconPurchaseOrder.add(newSubconPurchaseOrder);
-//
-//            }
-//
-//            pstmt.close();
-//            rs.close();
-//            conn.close();
-//
-//            return SubconPurchaseOrder;
-//        } catch (SQLException ex) {
-//            Logger.getLogger(SubconPurchaseOrderDAO.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        return null;
-//    }
-//    
 }

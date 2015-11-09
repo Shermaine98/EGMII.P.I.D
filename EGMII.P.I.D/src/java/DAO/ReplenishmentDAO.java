@@ -1,12 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DAO;
 
 import Database.DBConnectionFactory;
-import Model_View.ConsumptionReportView;
+import Model.RepRequest;
+import Model.RepRequestDetails;
 import Model_View.RepRequestView;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,10 +15,19 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author shermainesy
+ * @author Atayan
+ * @author Lapidario
+ * @author Sy
+ * @author Nunez
+ * @author Dimaandal
+ *
  */
 public class ReplenishmentDAO {
-
+/**
+ * Get Replenishment View
+ * @return
+ * @throws ParseException 
+ */
     public ArrayList<RepRequestView> ReplenishmentReportView() throws ParseException {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -57,9 +62,69 @@ public class ReplenishmentDAO {
             conn.close();
             return ConsumptionReport;
         } catch (SQLException ex) {
-            Logger.getLogger(ConsumptionReportDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ReplenishmentDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+    
+    /**
+     * Encode Replenishment Request
+     *
+     * @param newRepRequest
+     * @return
+     */
+    public boolean EncodeReplenishmentRequest(RepRequest newRepRequest) {
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+            String query = "INSERT INTO rep_request"
+                    + "(repID, location, supervisor, dateMade)"
+                    + "VALUES (?, ?, ?, ?);";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+
+            pstmt.setInt(1, newRepRequest.getRepID());
+            pstmt.setInt(2, newRepRequest.getLocation());
+            pstmt.setInt(3, newRepRequest.getSupervisor());
+            pstmt.setDate(4, newRepRequest.getDateMade());
+
+            int rows = pstmt.executeUpdate();
+            pstmt.close();
+            conn.close();
+            return rows == 1;
+        } catch (SQLException ex) {
+            Logger.getLogger(ReplenishmentDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
+    /**
+     * Encode Replenishment RequestDetails
+     *
+     * @param newRepRequestDetails
+     * @return
+     */
+    public boolean EncodeReplenishmentRequestDetails(RepRequestDetails newRepRequestDetails) {
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+            String query = "INSERT INTO rep_request_details"
+                    + "(version, repID, itemCode, qty) "
+                    + "VALUES (?, ?, ?, ?) ";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+
+            pstmt.setInt(1, newRepRequestDetails.getVersion());
+            pstmt.setDouble(2, newRepRequestDetails.getRepID());
+            pstmt.setDouble(3, newRepRequestDetails.getItemCode());
+             pstmt.setDouble(4, newRepRequestDetails.getQty());
+
+            int rows = pstmt.executeUpdate();
+            pstmt.close();
+            conn.close();
+            return rows == 1;
+        } catch (SQLException ex) {
+            Logger.getLogger(ReplenishmentDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 
 }

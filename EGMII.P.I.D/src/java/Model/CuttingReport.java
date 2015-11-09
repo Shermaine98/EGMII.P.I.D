@@ -16,6 +16,7 @@ import java.text.SimpleDateFormat;
 public class CuttingReport {
     private int cuttingNumber;
     private int cuttingMaster;
+    private int productionNumber;
     private java.sql.Date dateMade;
     
     private DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -91,6 +92,20 @@ public class CuttingReport {
      */
     public void setFormatter(DateFormat formatter) {
         this.formatter = formatter;
+    }
+
+    /**
+     * @return the productionNumber
+     */
+    public int getProductionNumber() {
+        return productionNumber;
+    }
+
+    /**
+     * @param productionNumber the productionNumber to set
+     */
+    public void setProductionNumber(int productionNumber) {
+        this.productionNumber = productionNumber;
     }
 
     

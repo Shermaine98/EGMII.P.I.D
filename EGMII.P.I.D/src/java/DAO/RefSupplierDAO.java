@@ -16,10 +16,17 @@ import java.util.logging.Logger;
  * @author Lapidario
  * @author Sy
  * @author Nunez
+ * @author Dimaandal
  *
  */
 public class RefSupplierDAO {
 
+    /**
+     * Encode new Supplier
+     *
+     * @param newRefSupplier
+     * @return
+     */
     public boolean EncodeRefSupplier(RefSupplier newRefSupplier) {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -45,6 +52,11 @@ public class RefSupplierDAO {
         return false;
     }
 
+    /**
+     * Get All Suplier
+     *
+     * @return
+     */
     public ArrayList<RefSupplier> MonitorRefSupplier() {
         ArrayList<RefSupplier> refSupplier = new ArrayList<RefSupplier>();
 
@@ -80,6 +92,13 @@ public class RefSupplierDAO {
         return null;
     }
 
+    /**
+     * Search Supplier
+     *
+     * @param supplierName
+     * @return
+     * @throws SQLException
+     */
     public ArrayList<RefSupplier> searchSupplier(String supplierName) throws SQLException {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -102,11 +121,20 @@ public class RefSupplierDAO {
 
             RefSupplierList.add(RefSupplierN);
         }
+        conn.close();
         rs.close();
         return RefSupplierList;
 
     }
 
+    /**
+     * Search Supplier Item
+     *
+     * @param itemName
+     * @param company
+     * @return
+     * @throws SQLException
+     */
     public ArrayList<RefSupplier> searchSupplierItem(String itemName, String company) throws SQLException {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -124,7 +152,7 @@ public class RefSupplierDAO {
             RefSupplier RefSupplierN = new RefSupplier();
             RefSupplierN.setSupplierID(rs.getInt("supplierID"));
             RefSupplierN.setItemCode(rs.getInt("itemCode"));
-             RefSupplierN.setItemName(rs.getString("itemName"));
+            RefSupplierN.setItemName(rs.getString("itemName"));
             RefSupplierN.setUnitPrice(rs.getInt("unitPrice"));
             RefSupplierN.setCompanyName(rs.getString("companyName"));
             RefSupplierN.setCompanyAddress(rs.getString("companyAddress"));
@@ -133,31 +161,39 @@ public class RefSupplierDAO {
 
             RefSupplierList.add(RefSupplierN);
         }
+        conn.close();
         rs.close();
         return RefSupplierList;
 
     }
-    
+
+    /**
+     * Search Supplier Item
+     *
+     * @param itemName
+     * @param company
+     * @return
+     * @throws SQLException
+     */
     public ArrayList<RefSupplier> setSupplierItem(String itemName, String company) throws SQLException {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
-        String search = itemName + "%";
         PreparedStatement ps = conn.prepareStatement("SELECT *\n"
                 + "FROM ref_supplier S\n"
                 + "JOIN ref_item I\n"
                 + "ON S.itemCode = I.itemCode\n"
                 + "WHERE S.companyName = ? AND I.itemName = ?;");
-        
+
         ps.setString(1, company);
         ps.setString(2, itemName);
-        
+
         ArrayList<RefSupplier> RefSupplierList = new ArrayList();
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
             RefSupplier RefSupplierN = new RefSupplier();
             RefSupplierN.setSupplierID(rs.getInt("supplierID"));
             RefSupplierN.setItemCode(rs.getInt("itemCode"));
-             RefSupplierN.setItemName(rs.getString("itemName"));
+            RefSupplierN.setItemName(rs.getString("itemName"));
             RefSupplierN.setUnitPrice(rs.getInt("unitPrice"));
             RefSupplierN.setCompanyName(rs.getString("companyName"));
             RefSupplierN.setCompanyAddress(rs.getString("companyAddress"));
@@ -166,6 +202,7 @@ public class RefSupplierDAO {
 
             RefSupplierList.add(RefSupplierN);
         }
+        conn.close();
         rs.close();
         return RefSupplierList;
 

@@ -18,6 +18,7 @@ import java.util.logging.Logger;
  * @author Lapidario
  * @author Sy
  * @author Nunez
+ * @author Dimaandal
  *
  */
 public class ProductDAO {
@@ -25,7 +26,7 @@ public class ProductDAO {
     /**
      * Encode Product Bill of Materials
      *
-     * @param newBillOfMaterials
+     * @param newProduct
      * @return
      */
     public boolean EncodeProduct(Product newProduct) {
@@ -47,7 +48,6 @@ public class ProductDAO {
             int rows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
-
             return rows == 1;
         } catch (SQLException ex) {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -58,7 +58,7 @@ public class ProductDAO {
     /**
      * Encode Product details
      *
-     * @param newBillOfMaterials
+     * @param newProductBM
      * @return
      */
     public boolean EncodeProductBM(ProductBM newProductBM) {
@@ -116,6 +116,7 @@ public class ProductDAO {
             newProduct.setQty(rs.getInt("qty"));
             ProductList.add(newProduct);
         }
+        conn.close();
         rs.close();
         return ProductList;
 
@@ -154,6 +155,7 @@ public class ProductDAO {
             newProduct.setUnitMeasurement(rs.getString("unitMeasurement"));
             ProductList.add(newProduct);
         }
+        conn.close();
         rs.close();
         return ProductList;
 
@@ -192,10 +194,18 @@ public class ProductDAO {
 
             ProductList.add(newProduct);
         }
+        conn.close();
         rs.close();
         return ProductList;
 
     }
+    /**
+     * Get Product Code for item Name
+     * @param productName
+     * @param Color
+     * @return
+     * @throws SQLException 
+     */
     
       public ArrayList<String> GetProductNumber(String productName, String Color) throws SQLException {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -212,6 +222,7 @@ public class ProductDAO {
             productNumber = rs.getString("itemCode");
             productNumberList.add(productNumber);
         }
+        conn.close();
         rs.close();
         return productNumberList;
 

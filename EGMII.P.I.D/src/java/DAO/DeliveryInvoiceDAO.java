@@ -1,13 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DAO;
 
 import Database.DBConnectionFactory;
+import Model.DeliveryInvoice;
+import Model.DeliveryInvoiceDetails;
 import Model_View.DeliveryInvoiceView;
-import Model_View.RepRequestView;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,10 +15,20 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author shermainesy
+ * @author Atayan
+ * @author Lapidario
+ * @author Sy
+ * @author Nunez
+ * @author Dimaandal
+ *
  */
-public class DeliveryInvoiceDAO {
 
+public class DeliveryInvoiceDAO {
+/**
+ * View ReplenishmentReport All
+ * @return
+ * @throws ParseException 
+ */
     public ArrayList<DeliveryInvoiceView> ReplenishmentReportView() throws ParseException {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -60,8 +66,71 @@ public class DeliveryInvoiceDAO {
             conn.close();
             return DeliveryInvoiceView;
         } catch (SQLException ex) {
-            Logger.getLogger(ConsumptionReportDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DeliveryInvoiceDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+    
+    /**
+     * Encode Delivery Invoice Details
+     *
+     * @param newDeliveryInvoice
+     * @return
+     */
+    public boolean EncodeDeliveryInvoice(DeliveryInvoice newDeliveryInvoice) {
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+            String query = "INSERT INTO delivery_invoice"
+                    + "(diNumber, location, madeby, approvedby, dateMade, deliveryDate)"
+                    + "VALUES (?, ?, ?, ?, ?, ?);";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+
+            pstmt.setInt(1, newDeliveryInvoice.getDiNumber());
+            pstmt.setInt(2, newDeliveryInvoice.getLocation());
+            pstmt.setInt(3, newDeliveryInvoice.getMadeBy());
+            pstmt.setInt(4, newDeliveryInvoice.getApprovedBy());
+            pstmt.setDate(5, newDeliveryInvoice.getDateMade());
+            pstmt.setDate(6, newDeliveryInvoice.getDeliveryDate());
+
+            int rows = pstmt.executeUpdate();
+            pstmt.close();
+            conn.close();
+
+            return rows == 1;
+        } catch (SQLException ex) {
+            Logger.getLogger(DeliveryInvoiceDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
+    /**
+     * Encode Product details
+     *
+     * @param newDeliveryInvoiceDetails
+     * @return
+     */
+    public boolean EncodeDeliveryInvoiceDetails(DeliveryInvoiceDetails newDeliveryInvoiceDetails) {
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+            String query = "INSERT INTO delivery_invoice_details"
+                    + "(diNUmber, itemCoce, qty) "
+                    + "VALUES (?, ?, ?);";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+
+            pstmt.setInt(1, newDeliveryInvoiceDetails.getDiNumber());
+            pstmt.setDouble(3, newDeliveryInvoiceDetails.getItemCode());
+            pstmt.setDouble(4, newDeliveryInvoiceDetails.getQty());
+
+            int rows = pstmt.executeUpdate();
+            pstmt.close();
+            conn.close();
+
+            return rows == 1;
+        } catch (SQLException ex) {
+            Logger.getLogger(DeliveryInvoiceDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 }

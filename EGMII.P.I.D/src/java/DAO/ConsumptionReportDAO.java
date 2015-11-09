@@ -16,8 +16,10 @@ import java.util.logging.Logger;
  * @author Lapidario
  * @author Sy
  * @author Nunez
+ * @author Dimaandal
  *
  */
+
 public class ConsumptionReportDAO {
 
     /**
@@ -42,7 +44,7 @@ public class ConsumptionReportDAO {
 
             int rows = pstmt.executeUpdate();
             conn.close();
-
+            pstmt.close();
             return rows == 1;
         } catch (SQLException ex) {
             Logger.getLogger(ConsumptionReportDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -73,7 +75,7 @@ public class ConsumptionReportDAO {
 
             int rows = pstmt.executeUpdate();
             conn.close();
-
+            pstmt.close();
             return rows == 1;
         } catch (SQLException ex) {
             Logger.getLogger(ConsumptionReportDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -105,16 +107,17 @@ public class ConsumptionReportDAO {
         } else {
             i += 1;
         }
-
+        ps.close();
+        conn.close();
         rs.close();
         return i;
     }
 
     /**
-     * Get All Consumption Report with ProductName and Detials - HEADER
+     * Get All Consumption Report with ProductName and Details - HEADER
+     *
      * @return @throws ParseException
      */
-
     public ArrayList<ConsumptionReportView> GetAllConsumptionReportGroupBy() throws ParseException {
 
         ArrayList<ConsumptionReportView> ConsumptionReport = new ArrayList<ConsumptionReportView>();
@@ -159,11 +162,13 @@ public class ConsumptionReportDAO {
         }
         return null;
     }
+
     /**
-     * Get Sepecific Consumption Report with All information - Details
+     * Get Specific Consumption Report with All information - Details
+     *
      * @param productionNumber
      * @return
-     * @throws ParseException 
+     * @throws ParseException
      */
 
     public ArrayList<ConsumptionReportView> GetAllConsumptionReportSpecific(int productionNumber) throws ParseException {
@@ -221,5 +226,5 @@ public class ConsumptionReportDAO {
         }
         return null;
     }
-    
+
 }

@@ -18,13 +18,18 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author shermainesy
+ * @author Atayan
+ * @author Lapidario
+ * @author Sy
+ * @author Nunez
+ * @author Dimaandal
+ *
  */
 public class RefSizesDAO {
     
     /**
- * Add Product type to database
- * @param newRefColor
+ * Inset Sizes
+ * @param newProductTypeSize
  * @return 
  */
     public boolean InsertSizes(ProductTypeSize newProductTypeSize) {
@@ -45,7 +50,8 @@ public class RefSizesDAO {
         return false;
     }
 /**
- * Get All Items
+ * Get All Sizes
+ * @param productType
  * @return
  * @throws ParseException 
  */

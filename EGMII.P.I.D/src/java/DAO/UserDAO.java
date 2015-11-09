@@ -16,9 +16,15 @@ import java.util.logging.Logger;
  * @author Lapidario
  * @author Sy
  * @author Nunez
+ * @author Dimaandal
  *
  */
 public class UserDAO {
+    /**
+     * Register User
+     * @param newUser
+     * @return 
+     */
 
     public boolean register(User newUser) {
         try {
@@ -47,6 +53,11 @@ public class UserDAO {
         }
         return false;
     }
+  /**
+   * Authenticate
+   * @param User
+   * @return 
+   */
 
     public boolean authenticate(User User) {
         boolean valid = false;
@@ -71,6 +82,12 @@ public class UserDAO {
         }
         return valid;
     }
+    /**
+     * change password
+     * @param user
+     * @param password
+     * @return 
+     */
     
     public boolean changePassword(User user, String password){
         try {
@@ -91,6 +108,10 @@ public class UserDAO {
         return false;
     }
 
+    /**
+     * Get last Employee number
+     * @return 
+     */
     public int getLastEmpNumber() {
         int lastEmployeeNumber = 0;
         try {
@@ -115,6 +136,13 @@ public class UserDAO {
         return -1;
     }
 
+   /**
+    * Setting User
+    * @param username
+    * @param password
+    * @return
+    * @throws ParseException 
+    */
     public User getUser(String username, String password) throws ParseException {
         User User = new User();
 
