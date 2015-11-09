@@ -21,23 +21,28 @@
         <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
         <title>Encode Subcontractor Purchase Order</title>
         <script>
-        $(document).ready(function () {
-            $('#dataTable').DataTable({
-                "paging": true,
-                "info": true
+            $(document).ready(function () {
+                $('#dataTable').DataTable({
+                    "paging": true,
+                    "info": true
+                });
+
+                $(".SubconPO").on("click", (function () {
+                    var purchaseOrderNum = $(this).closest("tr").find(".productionNumber").text();
+                    document.getElementById('hiddenValue').value = purchaseOrderNum;
+                    document.getElementById("form1").submit();
+                }));
             });
+            //          $('#run').ready(function(){
+            //         document.getElementById("run").addEventListener("load", SolveTQP);
+            //          });
 
-            $(".SubconPO").on("click", (function () {
-                var purchaseOrderNum = $(this).closest("tr").find(".productionNumber").text();
-                document.getElementById('hiddenValue').value = purchaseOrderNum;
-                document.getElementById("form1").submit();
-            }));
-        });
-        //          $('#run').ready(function(){
-        //         document.getElementById("run").addEventListener("load", SolveTQP);
-        //          });
-
-    </script>
+        </script>
+        <style>
+            .input{
+                width:20px;
+            }
+        </style>
     </head>
     <body>
         <br/>
@@ -74,13 +79,13 @@
         </form>
         <% String data = (String) request.getAttribute("subconData");
             if (data.equalsIgnoreCase("consumption")) {
-             Integer poNumber = (Integer) request.getAttribute("poNumber");
-             ArrayList<ConsumptionReportView> PurchaseOrderSpecific = (ArrayList<ConsumptionReportView>) request.getAttribute("ConsumptionSpecific");
+                Integer poNumber = (Integer) request.getAttribute("poNumber");
+                ArrayList<ConsumptionReportView> PurchaseOrderSpecific = (ArrayList<ConsumptionReportView>) request.getAttribute("ConsumptionSpecific");
         %>
         <form method="POST" action="EncodeSubcontractorPurchaseOrderServlet">
             <div align="center" class="container">
 
-                <div class="panel panel-default col-md-4">
+                <div class="panel panel-default col-md-3">
                     <div class="panel-heading">
                         <h3 class="panel-title">Subcontractor Purchase Order</h3>
                     </div>
@@ -94,7 +99,7 @@
                         <input type="hidden" name="dateMade" class="form-control readonlyWhite" id="dateMade" value="" /><br/>
                         <input class="form-control readonlyWhite" value="" readonly /><br/>
                         <label class="" for="deliveryDate">Delivery Date</label>
-                        <input type="text" name="deliveryDate" class="form-control" id="datepicker"  /><br/>
+                        <input type="date" name="deliveryDate" class="form-control"  /><br/>
                         <!--Search Subcon-->
                         <label for="subconName">Subcontractor</label>
                         <input type="text" class="form-control" name="subconName" id="subconName" onkeypress="autoCompleteSubcon();" placeholder="Search Subcon"/>
@@ -104,7 +109,7 @@
                     </div>
                 </div>
 
-                <div class="panel panel-default col-md-6">
+                <div class="panel panel-default col-md-7">
                     <div class="panel-heading">
                         <h3 class="panel-title">Details</h3>
                     </div>
@@ -122,76 +127,58 @@
                     </div>
                 </div>
 
-                <div class="panel panel-default col-md-6">
+                <div class="panel panel-default col-md-7">
                     <div class="panel-heading">
                         <h3 class="panel-title">Sizes</h3>
                     </div>
-                    <div class="panel-body">
+                    <div class="panel-body table-responsive">
                         <!--Search product result--> 
-                        <table class="table table-bordered" style="width:50%">
+                        <table class="table table-bordered">
                             <tr>
-                                <th><input name="sizeType" class="transparentBg readonlyWhite" value="XS" readonly/></th>
-                                <td><input type="number" class="transparentBg" name="volumeQty" id="sizeXS" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalShirt();" value="0" /></td>
-                            </tr>
-                            <tr>
-                                <th><input name="sizeType" class="transparentBg readonlyWhite" value="S" readonly/></th>
-                                <td><input type="number" class="transparentBg" name="volumeQty" id="sizeS" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalShirt();" value="0" /></td>
-                            </tr>
-                            <tr>
-                                <th><input name="sizeType" class="transparentBg readonlyWhite" value="M" readonly/></th>
-                                <td><input type="number" class="transparentBg" name="volumeQty" id="sizeM" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalShirt();" value="0" /></td>
-                            </tr>
-                            <tr>
-                                <th><input name="sizeType" class="transparentBg readonlyWhite" value="L" readonly/></th>
-                                <td><input type="number" class="transparentBg" name="volumeQty" id="sizeL" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalShirt();" value="0" /></td>
-                            </tr>
-                            <tr>
-                                <th><input name="sizeType" class="transparentBg readonlyWhite" value="XL" readonly/></th>
-                                <td><input type="number" class="transparentBg" name="volumeQty" id="sizeXL" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalShirt();" value="0" /></td>
-                            </tr>
-                            <tr>
+                                <th><input name="sizeType" class="transparentBg readonlyWhite input" value="XS" readonly/></th>
+                                <th><input name="sizeType" class="transparentBg readonlyWhite input" value="S" readonly/></th>
+                                <th><input name="sizeType" class="transparentBg readonlyWhite input" value="M" readonly/></th>
+                                <th><input name="sizeType" class="transparentBg readonlyWhite input" value="L" readonly/></th>
+                                <th><input name="sizeType" class="transparentBg readonlyWhite input" value="XL" readonly/></th>
                                 <th>Total</th>
-                                <td><input name="TotalS" class="transparentBg" id="TotalS" value="0" readonly/></td>
+                            </tr>
+                            <tr>
+                                <td><input type="number" class="transparentBg input" name="volumeQty" id="sizeXS" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalShirt();" value="0" /></td>
+                                <td><input type="number" class="transparentBg input" name="volumeQty" id="sizeS" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalShirt();" value="0" /></td>
+                                <td><input type="number" class="transparentBg input" name="volumeQty" id="sizeM" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalShirt();" value="0" /></td>
+                                <td><input type="number" class="transparentBg input" name="volumeQty" id="sizeL" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalShirt();" value="0" /></td>
+                                <td><input type="number" class="transparentBg input" name="volumeQty" id="sizeXL" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalShirt();" value="0" /></td>
+                                <td><input name="TotalS" class="transparentBg input" id="TotalS" value="0" readonly/></td>
                             </tr>
                         </table>
 
 
-                        <table class="table table-bordered" style="width:50%">
+                        <table class="table table-bordered">
                             <tr>
-                                <th><input name="sizeType" class="transparentBg readonlyWhite" value="29" readonly/></th>
-                                <td><input type="number" class="transparentBg" name="volumeQty" id="size29" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
-                            </tr>
-                            <tr>
-                                <th><input name="sizeType" class="transparentBg readonlyWhite" value="30" readonly/></th>
-                                <td><input type="number" class="transparentBg" name="volumeQty" id="size30" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
-                            </tr>
-                            <tr>
-                                <th><input name="sizeType" class="transparentBg readonlyWhite" value="31" readonly/></th>
-                                <td><input type="number" class="transparentBg" name="volumeQty" id="size31" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
-                            </tr>
-                            <tr>
-                                <th><input name="sizeType" class="transparentBg readonlyWhite" value="32" readonly/></th>
-                                <td><input type="number" class="transparentBg" name="volumeQty" id="size32" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
-                            </tr>
-                            <tr>
-                                <th><input name="sizeType" class="transparentBg readonlyWhite" value="33" readonly/></th>
-                                <td><input type="number" class="transparentBg" name="volumeQty" id="size33" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
-                            </tr>
-                            <tr>
-                                <th><input name="sizeType" class="transparentBg readonlyWhite" value="34" readonly/></th>
-                                <td><input type="number" class="transparentBg" name="volumeQty" id="size34" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
-                            </tr>
-                            <tr>
-                                <th><input name="sizeType" class="transparentBg readonlyWhite" value="36" readonly/></th>
-                                <td><input type="number" class="transparentBg" name="volumeQty" id="size36" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
-                            </tr>
-                            <tr>
-                                <th><input name="sizeType" class="transparentBg readonlyWhite" value="38" readonly/></th>
-                                <td><input type="number" class="transparentBg" name="volumeQty" id="size38" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
-                            </tr>
-                            <tr>
+                                <th><input name="sizeType" class="transparentBg readonlyWhite input" value="28" readonly/></th>
+                                <th><input name="sizeType" class="transparentBg readonlyWhite input" value="29" readonly/></th>
+                                <th><input name="sizeType" class="transparentBg readonlyWhite input" value="30" readonly/></th>
+                                <th><input name="sizeType" class="transparentBg readonlyWhite input" value="31" readonly/></th>
+                                <th><input name="sizeType" class="transparentBg readonlyWhite input" value="32" readonly/></th>
+                                <th><input name="sizeType" class="transparentBg readonlyWhite input" value="33" readonly/></th>
+                                <th><input name="sizeType" class="transparentBg readonlyWhite input" value="34" readonly/></th>
+                                <th><input name="sizeType" class="transparentBg readonlyWhite input" value="36" readonly/></th>
+                                <th><input name="sizeType" class="transparentBg readonlyWhite input" value="38" readonly/></th>
+                                <th><input name="sizeType" class="transparentBg readonlyWhite input" value="40" readonly/></th>
                                 <th>Total</th>
-                                <td><input name="TotalP" class="transparentBg" id="TotalP" value="0" readonly/></td>
+                            </tr>
+                            <!--2-->  
+                            <tr><td><input type="number" class="transparentBg readonlyWhite input" name="volumeQty" id="size29" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
+                                <td><input type="number" class="transparentBg readonlyWhite input" name="volumeQty" id="size28" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
+                                <td><input type="number" class="transparentBg readonlyWhite input" name="volumeQty" id="size30" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
+                                <td><input type="number" class="transparentBg readonlyWhite input" name="volumeQty" id="size31" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
+                                <td><input type="number" class="transparentBg readonlyWhite input" name="volumeQty" id="size32" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
+                                <td><input type="number" class="transparentBg readonlyWhite input" name="volumeQty" id="size33" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
+                                <td><input type="number" class="transparentBg readonlyWhite input" name="volumeQty" id="size34" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
+                                <td><input type="number" class="transparentBg readonlyWhite input" name="volumeQty" id="size36" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
+                                <td><input type="number" class="transparentBg readonlyWhite input" name="volumeQty" id="size38" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
+                                <td><input type="number" class="transparentBg readonlyWhite input" name="volumeQty" id="size40" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
+                                <td><input name="TotalP" class="transparentBg readonlyWhite input" id="TotalP" value="0" readonly/></td>
                             </tr>
                         </table>
 
@@ -211,8 +198,8 @@
                     -->
                 </table>
                 <br/><br/>
-                <input type="submit" style="width:77px; height:34px" class="btn btn-danger" value="Submit">
-                <a href="dashboard.jsp"><button type="button" class="btn btn-danger">Cancel</button></a>
+                <input type="submit" class="btn btn-danger" value="Submit">
+                <a href="Homepage.jsp"><button type="button" class="btn btn-danger">Cancel</button></a>
 
             </div>
 
