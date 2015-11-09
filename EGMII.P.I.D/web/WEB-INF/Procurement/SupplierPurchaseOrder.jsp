@@ -19,6 +19,11 @@
         <script src="js/searchSupplier.js"></script>
         <script src="js/deleteRow.js"></script>
 
+        <style>
+            .input{
+                width:25px;
+            }
+        </style>
         <title>Encode Supplier Purchase Order</title>
     </head>
     <body>
@@ -48,7 +53,7 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">Details</h3>
                     </div>
-                    <div class="panel-body">
+                    <div class="panel-body table-responsive">
                         <div class="input-group">
                             <input type="text" class="form-control" name="itemNameSupplier" id="itemNameSupplier" onkeypress="autoCompleteSupplierItem()" placeholder="Search Item"/>
                             <input type="hidden" name="itemNameSupplier" id="itemNameSupplier" disabled="disabled" style="color: #CCC; position: absolute; background: transparent;"/>
@@ -62,6 +67,7 @@
                         <table id="data" class="table table-bordered">
                         </table>
 
+                        <br/>
                         <div id="total1" align="center" style="visibility:hidden;">
                             <div style="float:right">
                                 TOTAL:
