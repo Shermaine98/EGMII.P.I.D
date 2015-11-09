@@ -51,7 +51,8 @@
                                 <option value="<%=refColor.get(i).getColor()%>"><%=refColor.get(i).getColor()%></option>
                                 <%}%>
                             </select><br/>
-                            <input type="text" name="inventoryType" class="form-control" value="warehouse" /><br/>
+                            <label class="" for="inventoryType">Inventory Type</label>
+                            <input type="text" name="inventoryType" class="form-control" value="Warehouse" /><br/>
                         </div>
                     </div>
 
@@ -112,7 +113,7 @@
             </div> 
 
             <div align="center">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Edit</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Edit</button>
                 <input type="submit" class="btn btn-danger" value="Create">
             </div>
         </form>
