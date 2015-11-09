@@ -74,19 +74,19 @@
                     <div class="panel-body">
                         <table class="table table-bordered table-responsive">
                             <tr>
-                                <th><input name="sizeType" class="transparentBg readonlyWhite" value="XS" readonly/></th>
-                                <th><input name="sizeType" class="transparentBg readonlyWhite" value="S" readonly/></th>
-                                <th><input name="sizeType" class="transparentBg readonlyWhite" value="M" readonly/></th>
-                                <th><input name="sizeType" class="transparentBg readonlyWhite" value="L" readonly/></th>
-                                <th><input name="sizeType" class="transparentBg readonlyWhite" value="XL" readonly/></th>
+                                <th><input name="sizeType" class="transparentBg readonlyWhite input" value="XS" readonly/></th>
+                                <th><input name="sizeType" class="transparentBg readonlyWhite input" value="S" readonly/></th>
+                                <th><input name="sizeType" class="transparentBg readonlyWhite input" value="M" readonly/></th>
+                                <th><input name="sizeType" class="transparentBg readonlyWhite input" value="L" readonly/></th>
+                                <th><input name="sizeType" class="transparentBg readonlyWhite input" value="XL" readonly/></th>
                                 <th>Total</th></tr>
                             <tr>
-                                <td><input type="number" class="transparentBg" name="volumeQty" id="sizeXS" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalShirt();" value="0" /></td>
-                                <td><input type="number" class="transparentBg" name="volumeQty" id="sizeS" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalShirt();" value="0" /></td>
-                                <td><input type="number" class="transparentBg" name="volumeQty" id="sizeM" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalShirt();" value="0" /></td>
-                                <td><input type="number" class="transparentBg" name="volumeQty" id="sizeL" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalShirt();" value="0" /></td>
-                                <td><input type="number" class="transparentBg" name="volumeQty" id="sizeXL" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalShirt();" value="0" /></td>
-                                <td><input name="TotalS" class="transparentBg" id="TotalS" value="0" readonly/></td>
+                                <td><input type="number" class="transparentBg input" name="volumeQty" id="sizeXS" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalShirt();" value="0" /></td>
+                                <td><input type="number" class="transparentBg input" name="volumeQty" id="sizeS" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalShirt();" value="0" /></td>
+                                <td><input type="number" class="transparentBg input" name="volumeQty" id="sizeM" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalShirt();" value="0" /></td>
+                                <td><input type="number" class="transparentBg input" name="volumeQty" id="sizeL" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalShirt();" value="0" /></td>
+                                <td><input type="number" class="transparentBg input" name="volumeQty" id="sizeXL" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalShirt();" value="0" /></td>
+                                <td><input name="TotalS" class="transparentBg input" id="TotalS" value="0" readonly/></td>
                             </tr>
                         </table>
                     </div>
@@ -156,7 +156,7 @@
                                 <!--FOR LOOP-->
                                 <tr>
                                     <td><input type="text" class="transparentBg readonlyWhite" name="itemName"  value = "<%= productAllAcce.get(i).getItemName()%>"  readonly/>
-                                        <input type="hidden" class="transparentBg readonlyWhite inputSize" name="itemCode"  value = "<%= productAllAcce.get(i).getItemCode()%>"  readonly/></td>
+                                        <input type="hidden" class="transparentBg readonlyWhite inputSize" name="itemCode"  value = "<%= productAllAcce.get(i).getItemCode()%>"  /></td>
                                     <td><input name="itemConsumption" class="transparentBg readonlyWhite inputSize" id="itemConsumption[]" value="<%= productAllAcce.get(i).getQty()%>"   readonly/></td> 
                                     <td><input name="totalConsumption" class="transparentBg readonlyWhite inputSize" id="totalConsumption[]" value="0"  readonly/></td>
                                     <td><input name="unitMeasurement" class="transparentBg readonlyWhite inputSize" id="unitMeasurement" value="<%= productAllAcce.get(i).getUnitMeasurement()%>"  readonly /></td>

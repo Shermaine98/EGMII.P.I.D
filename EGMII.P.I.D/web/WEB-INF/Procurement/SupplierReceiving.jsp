@@ -76,7 +76,7 @@
         %>
         <form method="post" action="EncodeSupplierDRServlet">
             <div class="container" align="center">
-                <div class="panel panel-default col-md-4 pull-left" style="padding-bottom:10px; margin-left: 60px;">
+                <div class="panel panel-default col-md-3" style="padding-bottom:10px; margin-left: 60px;">
                     <div class="panel-body">
                         <label for="poNumber">Purchase Order No.</label>
                         <input type="text" class="form-control readonlyWhite" readonly name="poNumber" value="<%=PurchaseOrderSpecific.get(0).getPoNumber()%>" /><br/>
@@ -86,13 +86,13 @@
                         <input type="hidden" class="form-control readonlyWhite" name="receivedBy" value="<%=user.getEmployeeNumber()%>" /><br/>
                         <input type="text" class="form-control readonlyWhite" readonly  value="<%=user.getFirstName()%> <%=user.getLastName()%>" /><br/>
                         <label for="deliveryDate">Delivery Date</label>
-                        <input type="text" class="form-control"  name="deliveryDate" value="<%=PurchaseOrderSpecific.get(0).getDeliveryDate()%>"/><br/>
+                        <input type="text" class="form-control readonlyWhite"  name="deliveryDate" readonly value="<%=PurchaseOrderSpecific.get(0).getDeliveryDate()%>"/><br/>
                         <label for="supplier">Supplier</label>
                         <input type="text" class="form-control readonlyWhite" readonly name="supplier" value="<%=PurchaseOrderSpecific.get(0).getCompanyName()%>" /><br/>
                     </div>
                 </div>
 
-                <div class="panel panel-default col-md-6 pull-left" style="padding-bottom:10px;">
+                <div class="panel panel-default col-md-7" style="padding-bottom:10px;">
                     <div class="panel-body">
 
                         <div class="form-inline">
@@ -101,7 +101,7 @@
                         </div>
                         <br/>
 
-                        <table class="table table-bordered" >
+                        <table class="table table-bordered">
                             <colgroup>
                                 <col style="width:60%" />
                             </colgroup>
@@ -113,7 +113,7 @@
                             <%for (int x = 0; x < PurchaseOrderSpecific.size(); x++) {%>
                             <tr class="trclass">
                                 <td><%=PurchaseOrderSpecific.get(x).getItemName()%><input type="hidden" name="itemCode" value="<%=PurchaseOrderSpecific.get(x).getItemCode()%>" /></td>
-                                <td><input type="text" value="<%=PurchaseOrderSpecific.get(x).getQty()%>" id="volumeQty[]"/></td>  
+                                <td><input type="text" value="<%=PurchaseOrderSpecific.get(x).getQty()%>" id="volumeQty[]" readonly class="transparentBg inputSize" /></td>  
                                 <td><input type="number" name="receivedqty" class="transparentBg inputSize" /></td>
                             </tr>
                             <% } %>
