@@ -75,7 +75,7 @@ public class InventoryReportDAO {
         return null;
     }
 
-    public ArrayList<RetailInventoryView> InventoryReportCreateView() throws ParseException {
+    public ArrayList<RetailInventoryView> InventoryReportCreateView(int locationId) throws ParseException {
         ArrayList<RetailInventoryView> RetailInventoryView = new ArrayList<>();
 
         try {
@@ -89,8 +89,10 @@ public class InventoryReportDAO {
                             + "join retail_inventory RI \n"
                             + "on L.locationID = RI.locationID \n"
                             + "join product P \n"
-                            + "on RI.itemCode = P.itemCode")) {
+                            + "on RI.itemCode = P.itemCode"
+                            + " WHERE L.locationID = ?;")) {
 
+                pstmt.setInt(1, locationId);
                 ResultSet rs = pstmt.executeQuery();
 
                 while (rs.next()) {
@@ -178,4 +180,27 @@ public class InventoryReportDAO {
         return false;
     }
 
+    public Integer getReportId() throws SQLException {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        Integer i = 0;
+        String query = "SELECT MAX(reportID) from inventory_report";
+        PreparedStatement ps = conn.prepareStatement(query);
+
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            i = rs.getInt("MAX(reportID)");
+        }
+        if (i == 0) {
+            i = 800000000;
+        } else if (i == 899999999) {
+            i = -1;
+        } else {
+            i += 1;
+        }
+
+        rs.close();
+        return i;
+    }
+    
 }

@@ -2,7 +2,7 @@
 <%
    User user = (User) session.getAttribute("login");
    String position = user.getPosition().toLowerCase().trim();
-    if (position.equalsIgnoreCase("promo")) {
+    if (position.equalsIgnoreCase("promoter")) {
 %>         <jsp:include page ="/NavBar/nPromoNavBar.jsp" />
 <%
 } else if (position.equalsIgnoreCase("receipt handler")) {
