@@ -77,13 +77,13 @@ function getSupplierItem() {
                 if (data[0] != null) {
                     $('#data').append('<tr class="trclass"><td> <input type="checkbox" name="chk" /> </td>\n\
                     <td> <input type="hidden" name ="itemCode" value="' + data[0].itemCode + '" />\n\
-                      <input type="text" class="transparentBg cellWidth readonlyWhite" readonly id= "itemName[]" value="' + data[0].itemName + '"/> </td>\n\
-                    <td><input type="text" class="transparentBg readonlyWhite" readonly style="width:60px;" id="unitPrice[]" name = "unitPrice" value="' + data[0].unitPrice + '"/></td>\n\
-                     <td> <input type="number" class="transparentBg" style="width:60px;" id="volumeQty[]" name="volumeQty" onChange="SolveTQP();"  onkeypress="return event.charCode >= 48 && event.charCode <= 57"/> </td>\n\
-                     <td><input type="text" class="transparentBg cellWidth readonlyWhite" readonly name="Total Quantity Price" id="TQP[]"  /></td>\n\
+                      <input type="text" class="transparentBg readonlyWhite" readonly id= "itemName[]" value="' + data[0].itemName + '"/> </td>\n\
+                    <td><input type="text" class="transparentBg readonlyWhite input" readonly style="width:60px;" id="unitPrice[]" name = "unitPrice" value="' + data[0].unitPrice + '"/></td>\n\
+                     <td> <input type="number" class="transparentBg input" style="width:60px;" id="volumeQty[]" name="volumeQty" onChange="SolveTQP();"  onkeypress="return event.charCode >= 48 && event.charCode <= 57"/> </td>\n\
+                     <td><input type="text" class="transparentBg inputSize readonlyWhite" readonly name="Total Quantity Price" id="TQP[]"  /></td>\n\
                      <td><input type="hidden" class="transparentBg cellWidth" name="receivingStatus" value="pending" />\n\
                      <input type="hidden" name = "reconcileStatus" value="pending" />\n\
-                      <input type="text" class="transparentBg cellWidth" name = "note"/></td>' + '</tr>');
+                      <input type="text" class="transparentBg" name = "note"/></td>' + '</tr>');
                     document.getElementById("total1").style.visibility = 'visible';
                 }
 
