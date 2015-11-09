@@ -105,7 +105,7 @@
                     <label for="color">Color</label>
                     <input type="text" name="color" class="form-control readonlyWhite" value="<%=cr1.get(0).getColor()%>" readonly /><br/>
                     <label for="preparedBy">Prepared By</label>
-                    <input type="hidden" name="preparedBy" class="form-control readonlyWhite" value="<%= cr1.get(0).getName()%>" readonly /> <input type="text" name="preparedBy" class="form-control readonlyWhite" value="<%=user.getFirstName()%> <%=user.getLastName()%>" readonly /><br/>
+                    <input type="hidden" name="preparedBy" class="form-control readonlyWhite" value="<%= cr1.get(0).getName()%>" /> <input type="text" name="preparedBy" class="form-control readonlyWhite" value="<%=user.getFirstName()%> <%=user.getLastName()%>" readonly /><br/>
                 </div>
 
             </div>
@@ -200,7 +200,7 @@
                             <!--FOR LOOP-->
                             <tr>
                                 <td><input type="text" class="transparentBg readonlyWhite " name="itemName"  value = "<%= productAllAcce.get(i).getItemName()%>"  readonly/>
-                                    <input type="hidden" class="transparentBg readonlyWhite inputSize" name="itemCode"  value = "<%= productAllAcce.get(i).getItemCode()%>"  readonly/></td>
+                                    <input type="hidden" class="transparentBg readonlyWhite inputSize" name="itemCode"  value = "<%= productAllAcce.get(i).getItemCode()%>" /></td>
                                 <td><input name="itemConsumption" class="transparentBg readonlyWhite inputSize" id="itemConsumption[]" value="<%= productAllAcce.get(i).getVolumeQty()%>"   readonly/></td> 
                                 <td><input name="totalConsumption" class="transparentBg readonlyWhite inputSize" id="totalConsumption[]" value="<%=productAllAcce.get(i).getConsumptionQty()%>"  readonly/></td>
                                 <td><input name="unitMeasurement" class="transparentBg readonlyWhite inputSize" id="unitMeasurement" value="<%= productAllAcce.get(i).getUnitMeasurement()%>"  readonly /></td>
