@@ -65,7 +65,7 @@
 
                 </div>
                 <%
-                    if (productAll.get(0).getProductName().equalsIgnoreCase("Shirt")) {
+                    if (productAll.get(0).getProductType().equalsIgnoreCase("shirt")) {
                 %>
                 <div class="panel panel-default col-md-7" style="float:left">
                     <div class="panel-heading">
@@ -81,8 +81,8 @@
                                 <th><input name="sizeType" class="transparentBg readonlyWhite" value="XL" readonly/></th>
                                 <th>Total</th></tr>
                             <tr>
-                                <td><input type="number" class="transparentBg" name="volumeQty" id="sizeS" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalShirt();" value="0" /></td>
                                 <td><input type="number" class="transparentBg" name="volumeQty" id="sizeXS" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalShirt();" value="0" /></td>
+                                <td><input type="number" class="transparentBg" name="volumeQty" id="sizeS" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalShirt();" value="0" /></td>
                                 <td><input type="number" class="transparentBg" name="volumeQty" id="sizeM" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalShirt();" value="0" /></td>
                                 <td><input type="number" class="transparentBg" name="volumeQty" id="sizeL" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalShirt();" value="0" /></td>
                                 <td><input type="number" class="transparentBg" name="volumeQty" id="sizeXL" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalShirt();" value="0" /></td>
@@ -192,7 +192,7 @@
                                 %>   
                                 <tr> 
                                     <td><input type="text" value="<%=productAllproduc.get(i).getItemName()%>" class="transparentBg" readonly/> 
-                                    <td><input type="text" value="<%=productAllproduc.get(i).getSize()%>" class="transparentBg inputSize" readonly/> 
+                                    <td><input type="text" id="FabricName[]" value="<%=productAllproduc.get(i).getSize()%>" class="transparentBg inputSize" readonly/> 
                                     <td><input type="text" id="fabricItemConsumption[]" value="<%=productAllproduc.get(i).getQty()%>" class="transparentBg inputSize" readonly/> 
                                     <td><input name="totalConsumption" class="transparentBg readonlyWhite inputSize" id="totalConsumptionFabric[]" value="0"  readonly/></td>
                                     <td><input type="text" value="<%=productAllproduc.get(i).getUnitMeasurement()%>" class="transparentBg inputSize" readonly/> 
@@ -216,23 +216,26 @@
             }
         %>
         <script>
-
+            var x = false;
             function autoComplete() {
                 $("#productName1").devbridgeAutocomplete({
                     serviceUrl: 'SearchProductServlet',
                     type: 'POST',
                     showNoSuggestionNotice: true,
-                    noSuggestionNotice: 'No Exsiting Item'
+                    noSuggestionNotice: 'No Exsiting Product'
                 });
             }
             function calculateTotalShirt() {
+                var sizeXS = parseInt(document.getElementById('sizeXS').value);
                 var sizeS = parseInt(document.getElementById('sizeS').value);
                 var sizeM = parseInt(document.getElementById('sizeM').value);
                 var sizeL = parseInt(document.getElementById('sizeL').value);
                 var sizeXL = parseInt(document.getElementById('sizeXL').value);
-                var totalS = sizeS + sizeM + sizeL + sizeXL;
+                var totalS = sizeXS + sizeS + sizeM + sizeL + sizeXL;
                 document.getElementById('TotalS').value = totalS;
+                 x = true;
                 SolveTotal(totalS);
+               
             }
             function calculateTotalPants() {
                 var size28 = parseInt(document.getElementById('size28').value);
@@ -248,10 +251,29 @@
 
                 var totalP = size28 + size29 + size30 + size31 + size32 + size33 + size34 + size36 + size38 + size40;
                 document.getElementById('TotalP').value = totalP;
+                  x = false;
                 SolveTotal(totalP);
             }
 
             function SolveTotal(Total) {
+                if (x===true) {
+                    var sizeXS = parseInt(document.getElementById('sizeXS').value);
+                    var sizeS = parseInt(document.getElementById('sizeS').value);
+                    var sizeM = parseInt(document.getElementById('sizeM').value);
+                    var sizeL = parseInt(document.getElementById('sizeL').value);
+                    var sizeXL = parseInt(document.getElementById('sizeXL').value);
+                } else {
+                    var size28 = parseInt(document.getElementById('size28').value);
+                    var size29 = parseInt(document.getElementById('size29').value);
+                    var size30 = parseInt(document.getElementById('size30').value);
+                    var size31 = parseInt(document.getElementById('size31').value);
+                    var size32 = parseInt(document.getElementById('size32').value);
+                    var size33 = parseInt(document.getElementById('size33').value);
+                    var size34 = parseInt(document.getElementById('size34').value);
+                    var size36 = parseInt(document.getElementById('size36').value);
+                    var size38 = parseInt(document.getElementById('size38').value);
+                    var size40 = parseInt(document.getElementById('size40').value);
+                }
 
                 $("#dataTable3 tbody tr").each(function () {
                     var $this = $(this);
@@ -259,14 +281,43 @@
                     var STotal = (CPU * Total);
                     $this.find('[id="totalConsumption\\[\\]"]').val(STotal);
                 });
-
+//solve per fabric
                 $("#dataTable4 tbody tr").each(function () {
-                    if(){
-                    var $this = $(this);
-                    var CPU = parseInt($this.find('[id="fabricItemConsumption\\[\\]"]').val());
-                    var STotal = (CPU * Total);
-                    $this.find('[id="totalConsumptionFabric\\[\\]"]').val(STotal);
+                    var $this = $(this); 
+                    var size = $this.find('[id="FabricName\\[\\]"]').val();
+                    console.log(size);
+                    if (x === true) {
+                        if (size === "xs") {
+                            console.log(size);
+                            var CPU = parseInt($this.find('[id="fabricItemConsumption\\[\\]"]').val());
+                            var temp = (sizeXS * CPU);
+                           var STotal = STotal + temp;
+                           $this.find('[id="totalConsumptionFabric\\[\\]"]').val(temp);
+                        } else if (size === "s") {
+                            console.log(size);
+                            var CPU = parseInt($this.find('[id="fabricItemConsumption\\[\\]"]').val());
+                            var temp = (sizeS * CPU);
+                           var STotal = STotal + temp;
+                           $this.find('[id="totalConsumptionFabric\\[\\]"]').val(temp);
+                        } else if (size === "m") {
+                            console.log(size);
+                            var CPU = parseInt($this.find('[id="fabricItemConsumption\\[\\]"]').val());
+                            var temp = (sizeM * CPU);
+                            var  STotal = STotal + temp;
+                            $this.find('[id="totalConsumptionFabric\\[\\]"]').val(temp);
+                        } else if (size === "l") {
+                            var CPU = parseInt($this.find('[id="fabricItemConsumption\\[\\]"]').val());
+                            var temp = (sizeL * CPU);
+                            var STotal = STotal + temp;
+                            $this.find('[id="totalConsumptionFabric\\[\\]"]').val(temp);
+                        } else if (size === "xl") {
+                            var CPU = parseInt($this.find('[id="fabricItemConsumption\\[\\]"]').val());
+                            var temp = (sizeXL * CPU);
+                            var STotal = STotal + temp;
+                            $this.find('[id="totalConsumptionFabric\\[\\]"]').val(temp);
+                        }
                     }
+                    
                 });
                 return false;
             }
