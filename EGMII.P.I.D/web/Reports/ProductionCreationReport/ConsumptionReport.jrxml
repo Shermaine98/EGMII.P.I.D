@@ -1,14 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ConsumptionReport" language="groovy" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c2c74373-fce2-4589-8b49-269d8f46cdb5">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ConsumptionReport" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c2c74373-fce2-4589-8b49-269d8f46cdb5">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="151"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
 	<subDataset name="dataset1" uuid="fc809268-b666-46d6-be41-f6658de327b8"/>
-	<parameter name="prodNum" class="java.lang.Integer">
-		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
-	</parameter>
-	<queryString>
-		<![CDATA[SELECT CR.productionNumber,
+	<subDataset name="ConsumptionReportDataSet" uuid="e2b40800-c139-411a-9650-6dd90bd2936e">
+		<queryString language="SQL">
+			<![CDATA[SELECT DISTINCT CR.productionNumber,
 CR.dateMade, CR.status, CRD.itemCode,
 CRD.qty as 'VolumeQty', CONCAT(u.firstName," ",u.lastName) as 'name', P.productType, P.productName ,P.color, P.size, I.itemName,I.unitMeasurement, PBM.qty as 'ConsumptionQty'
 FROM consumption_report CR
@@ -20,8 +38,46 @@ JOIN product_bm PBM
 ON P.itemCode = PBM.productID
 JOIN ref_item I
 ON PBM.itemCode = I.itemCode
+JOIN user u ON CR.preparedBy = u.employeeID]]>
+		</queryString>
+		<field name="itemCode" class="java.math.BigDecimal">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="itemName" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="unitMeasurement" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="VolumeQty" class="java.lang.Double"/>
+		<field name="ConsumptionQty" class="java.lang.Double"/>
+		<group name="itemCode">
+			<groupExpression><![CDATA[$F{itemCode}]]></groupExpression>
+		</group>
+		<group name="itemName">
+			<groupExpression><![CDATA[$F{itemName}]]></groupExpression>
+		</group>
+	</subDataset>
+	<parameter name="prodNum" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\Geraldine\\Desktop\\EGMII.P.I.D\\EGMII.P.I.D\\web\\Reports\\ProductionCreationReport\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT DISTINCT CR.productionNumber,
+CR.dateMade, CONCAT(u.firstName," ",u.lastName) as 'name', P.productType, P.color, P.productName
+FROM consumption_report CR
+JOIN cr_details CRD
+ON CR.productionNumber = CRD.productionNumber
+JOIN product P
+ON CRD.itemCode =  P.itemCode
+JOIN product_bm PBM
+ON P.itemCode = PBM.productID
+JOIN ref_item I
+ON PBM.itemCode = I.itemCode
 JOIN user u ON CR.preparedBy = u.employeeID
-WHERE CR.productionNumber = $P{prodNum}]]>
+WHERE CR.productionNumber = $P{prodNum};]]>
 	</queryString>
 	<field name="productionNumber" class="java.math.BigDecimal">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -29,33 +85,16 @@ WHERE CR.productionNumber = $P{prodNum}]]>
 	<field name="dateMade" class="java.sql.Date">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="status" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="itemCode" class="java.math.BigDecimal">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="VolumeQty" class="java.lang.Double"/>
 	<field name="name" class="java.lang.String"/>
 	<field name="productType" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="productName" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="color" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="size" class="java.lang.String">
+	<field name="productName" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="itemName" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="unitMeasurement" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="ConsumptionQty" class="java.lang.Double"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -96,7 +135,7 @@ WHERE CR.productionNumber = $P{prodNum}]]>
 				</textElement>
 				<text><![CDATA[Production Number]]></text>
 			</staticText>
-			<textField>
+			<textField pattern="">
 				<reportElement x="213" y="28" width="100" height="20" uuid="5d6f7141-b29e-470c-8d5e-c5ffa2f4eaf0"/>
 				<textElement>
 					<font fontName="Arial Unicode MS" size="12"/>
@@ -173,6 +212,103 @@ WHERE CR.productionNumber = $P{prodNum}]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
 			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="472" y="0" width="100" height="20" uuid="2f5a1501-4ca5-4e04-b1ba-fd357e9ff680"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement key="table" style="table" x="26" y="245" width="514" height="91" uuid="8598dac7-0344-4cd9-88bc-f027a2dd3aaa"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="ConsumptionReportDataSet" uuid="8a481be4-c4bd-4651-b439-cb54e4f87e88">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="90" uuid="3639cc6f-90c7-4b85-a28d-7ae5fdf88975">
+						<jr:tableHeader style="table_TH" height="30" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="67ad46a9-b17d-43ca-a389-34d9f9f86944"/>
+								<text><![CDATA[itemCode]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="9810df48-4ec3-4d2d-b503-6e7a3f6475e1"/>
+								<textFieldExpression><![CDATA[$F{itemCode}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="ba54d390-755e-493c-8344-35eaafed552c">
+						<jr:tableHeader style="table_TH" height="30" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="c8db3863-f0f0-4d51-a299-67909a1b5088"/>
+								<text><![CDATA[itemName]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="ad1368d3-18fe-4b68-8ee9-dee5cbb7856a"/>
+								<textFieldExpression><![CDATA[$F{itemName}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="105" uuid="f9414b08-655f-4994-a02e-ff87e30a496a">
+						<jr:tableHeader style="table_TH" height="30" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="72377785-75f6-4071-96fa-16c9f91110fa"/>
+								<text><![CDATA[unitMeasurement]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="183be101-a2be-4715-9755-86522f764b92"/>
+								<textFieldExpression><![CDATA[$F{unitMeasurement}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="113" uuid="acd675b3-5ef3-4b48-a2f9-631c8ff6a823">
+						<jr:tableHeader style="table_TH" height="30" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="cf94655a-9326-487e-8cfb-f153306adcb3"/>
+								<text><![CDATA[VolumeQty]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="982d4938-6510-4712-ba32-9bc44894fdbf"/>
+								<textFieldExpression><![CDATA[$F{VolumeQty}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="151" uuid="370fd505-a80f-4ab3-b493-618afe624910">
+						<jr:tableHeader style="table_TH" height="30" rowSpan="1"/>
+						<jr:tableFooter style="table_TH" height="30" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="b490d236-3531-4f85-9fd2-7936a3516aa3"/>
+								<text><![CDATA[ConsumptionQty]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="ce75556c-1906-40d2-8060-c8996bffc8c3"/>
+								<textFieldExpression><![CDATA[$F{ConsumptionQty}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
 		</band>
 	</detail>
 </jasperReport>

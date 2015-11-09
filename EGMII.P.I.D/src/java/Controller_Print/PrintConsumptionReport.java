@@ -12,7 +12,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import static java.lang.System.out;
 import java.sql.Connection;
 import java.util.HashMap;
 import java.util.Map;
@@ -34,7 +33,9 @@ import net.sf.jasperreports.engine.JasperRunManager;
 public class PrintConsumptionReport extends BaseServlet {
 
     @Override
-    public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void servletAction(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException {
+//        PrintWriter out = response.getWriter();
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
        
@@ -42,17 +43,11 @@ public class PrintConsumptionReport extends BaseServlet {
         String productionNumber = request.getParameter("printPONumber");
         int productionNumberInt = Integer.parseInt(productionNumber);
         
-        
-        String path = getServletContext().getRealPath("Reports/ProductionCreationReport/");
-        
+        String path = getServletContext().getRealPath("/Reports/ProductionCreationReport/");
        
-        
         Map map = new HashMap();
         map.put("prodNum", productionNumberInt);
-      
-      
 
-        // jasperDesign = JRXmlLoader.load(path + "ConsumptionReport.jrxml");
         InputStream f = new FileInputStream(new File(path + "/ConsumptionReport.jrxml"));
         try {
             jasperReport = JasperCompileManager.compileReport(f);
