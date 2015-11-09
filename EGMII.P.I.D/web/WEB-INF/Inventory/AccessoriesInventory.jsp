@@ -21,9 +21,8 @@
         <script>
             $(document).ready(function () {
                 $('#AccessoriesInventory').DataTable({
-                    "paging": false,
-                    "info": false,
-                    "dom": '<"pull-left "f>'
+                    "paging": true,
+                    "info": true
                 });
             });
         </script>
@@ -32,34 +31,38 @@
         <br/>
         <%            ArrayList<RawMaterialsInventoryView> AccessoriesInventory = (ArrayList<RawMaterialsInventoryView>) request.getAttribute("AccessoriesInventoryList");
         %>
-    <div align="center" class="container">
-        <h2>Accessories Inventory</h2>
-        <div style="width:70%">
-            <table id="AccessoriesInventory" class="table table-bordered table-hover">
-                <thead>
-                    <tr>
-                        <th>Item Code</th>
-                        <th>Delivery Order Number</th>
-                        <th>Purchase Number</th>
-                        <th>Date Updated</th>
-                        <th>Quantity</th>
-                        <th>Updated By</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <%
-                        for (int i = 0; i < AccessoriesInventory.size(); i++) {
-                    %>
-                    <tr>
-                        <td><%=AccessoriesInventory.get(i).getItemCode()%></td>
-                        <td><%=AccessoriesInventory.get(i).getQty()%></td>
-                    </tr>
-                    <%
-                        }
-                    %>
-                </tbody>
-            </table>
+        <div align="center" class="container">
+            <h2>Accessories Inventory</h2>
+            <div>
+                <table id="AccessoriesInventory" class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Item Code</th>
+                            <th>Delivery Order Number</th>
+                            <th>Purchase Number</th>
+                            <th>Date Updated</th>
+                            <th>Quantity</th>
+                            <th>Updated By</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%
+                            for (int i = 0; i < AccessoriesInventory.size(); i++) {
+                        %>
+                        <tr>
+                            <td><%=AccessoriesInventory.get(i).getItemCode()%></td>
+                            <td>80000000</td>
+                            <td>91111111</td>
+                            <td>2015-11-9</td>
+                            <td><%=AccessoriesInventory.get(i).getQty()%></td>
+                            <td>Benjamin Yung</td>
+                        </tr>
+                        <%
+                            }
+                        %>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
-</body>
+    </body>
 </html>

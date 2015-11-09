@@ -54,7 +54,8 @@ public class InventoryDAO {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             try (Connection conn = myFactory.getConnection();
-                    PreparedStatement pstmt = conn.prepareStatement("SELECT INV.itemCode, I.itemName, I.inventoryType, I.unitMeasurement, INV.qty\n"
+                    PreparedStatement pstmt = conn.prepareStatement("SELECT INV.itemCode, "
+                            + "I.itemName, I.inventoryType, I.unitMeasurement, INV.qty\n"
                             + "FROM inventory INV\n"
                             + "JOIN ref_item I\n"
                             + "ON INV.itemCode = I.itemCode\n"
