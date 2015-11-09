@@ -43,8 +43,8 @@
         ArrayList<SupplierPurchaseOrderView> SupplierPurchaseOrderList = (ArrayList<SupplierPurchaseOrderView>) request.getAttribute("SupplierPurchaseOrder");
     %>
     <form id="form1" method="post" action="ViewSupplierPurchaseOrderServlet">
-        <div align="center" class="container">
-            <table id="dataTable" class="table table-bordered" style="width:80%">
+        <div align="center" class="container" style="width:70%">
+            <table id="dataTable" class="table table-bordered table-hover">
                 <thead>
                     <tr>
                         <th>Purchase Order Number</th>

@@ -48,7 +48,7 @@
             <div class="container" align="center">
                 <h2>Approve Supplier Purchase Order</h2><br/>
                 <div style="width:60%;">
-                    <table id="dataTable" class="table table-bordered">
+                    <table id="dataTable" class="table table-bordered table-hover">
                         <thead>
                             <tr>
                                 <th>Purchase Order No.</th>
