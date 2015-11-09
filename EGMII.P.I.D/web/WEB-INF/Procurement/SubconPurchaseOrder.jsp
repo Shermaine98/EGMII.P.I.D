@@ -42,7 +42,7 @@
     <body>
         <br/>
         <% ArrayList<ConsumptionReportView> ConsumptionReportView = (ArrayList<ConsumptionReportView>) request.getAttribute("ConsumptionList");%>
-        <form id="form1" method="post" action="SetSubconSpecificServlet">
+        <form id="form1" method="post" action="SetSubconPOSpecificSerlvet">
             <div class="container" align="center">
                 <h2>Search Consumption Report</h2><br/>
                 <div style="width:60%;">
@@ -63,7 +63,7 @@
                                 <td><%=ConsumptionReportView.get(i).getProductName()%></td>
                                 <td><%=ConsumptionReportView.get(i).getProductType()%></td>
                                 <td><%=ConsumptionReportView.get(i).getColor()%></td>
-                                <td><%=ConsumptionReportView.get(i).getPreparedBy()%></td>
+                                <td><%=ConsumptionReportView.get(i).getName()%></td>
                             </tr> 
                             <%}%>
                         </tbody>
@@ -74,6 +74,7 @@
         </form>
         <% String data = (String) request.getAttribute("subconData");
             if (data.equalsIgnoreCase("consumption")) {
+             Integer poNumber = (Integer) request.getAttribute("poNumber");
              ArrayList<ConsumptionReportView> PurchaseOrderSpecific = (ArrayList<ConsumptionReportView>) request.getAttribute("ConsumptionSpecific");
         %>
         <form method="POST" action="EncodeSubcontractorPurchaseOrderServlet">
@@ -85,9 +86,10 @@
                     </div>
                     <div class="panel-body">
                         <label class="" for="poNumber">Purchase Order Number</label>
-                        <input type="text" name="poNumber" class="form-control readonlyWhite" id="poNumber" readonly /><br/>
+                        <input type="text" name="poNumber" class="form-control readonlyWhite" id="poNumber" value="<%=poNumber%>" readonly /><br/>
                         <label class="" for="preparedBy">Prepared By</label>
-                        <input type="text" name="preparedBy" class="form-control readonlyWhite"  value=""/><br/>
+                        <input type="hidden" name="preparedBy" class="form-control readonlyWhite"  value="<%=user.getEmployeeNumber()%>"/><br/>
+                        <input type="text" class="form-control readonlyWhite"  value="<%=user.getFirstName()%> <%=user.getLastName()%>"/><br/>
                         <label class="" for="dateMade">Date Made</label>
                         <input type="hidden" name="dateMade" class="form-control readonlyWhite" id="dateMade" value="" /><br/>
                         <input class="form-control readonlyWhite" value="" readonly /><br/>

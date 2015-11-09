@@ -16,6 +16,7 @@ import Model_View.SubconPurchaseOrderView;
 import Model_View.SupplierPurchaseOrderView;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -34,9 +35,9 @@ public class SetSubconPOSpecificSerlvet extends BaseServlet {
 
     @Override
     public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        SubconPurchaseOrderDAO  SubconPurchaseOrderDAO = new SubconPurchaseOrderDAO();
         ArrayList<ConsumptionReportView> ConsumptionReportView = new ArrayList<>();
-   //     SubconPurchaseOrderDAO SubconPurchaseOrderDAO = new SubconPurchaseOrderDAO();
+        int poNumber = 0;
         ConsumptionReportDAO ConsumptionReportDAO = new ConsumptionReportDAO();
         String productionNumber = request.getParameter("hiddenValue");
        
@@ -53,9 +54,17 @@ public class SetSubconPOSpecificSerlvet extends BaseServlet {
             Logger.getLogger(SetSupplierSpecificReceivingServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        try {
+            poNumber = SubconPurchaseOrderDAO.getSubconPurchaseOrderNumber();
+        } catch (SQLException ex) {
+            Logger.getLogger(SetSubconPOSpecificSerlvet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         ServletContext context = getServletContext();
         RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Procurement/SubconPurchaseOrder.jsp");
-      
+        
+        
+        request.setAttribute("poNumber", poNumber);
         request.setAttribute("ConsumptionList", ConsumptionReportView);
         request.setAttribute("subconData", "consumption");
         request.setAttribute("ConsumptionSpecific",ConsumptionSpecific );
