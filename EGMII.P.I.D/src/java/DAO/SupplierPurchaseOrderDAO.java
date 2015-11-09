@@ -360,7 +360,7 @@ public class SupplierPurchaseOrderDAO {
                     + "ON PO.SupplierID = S.SupplierID JOIN user u "
                     + "ON PO.preparedBy = u.employeeID\n"
                     + "WHERE PO.approvedby IS NOT NULL AND "
-                    + "PO.isSupplier = TRUE GROUP BY Po.poNumber; ");
+                    + "PO.isSupplier = TRUE AND PO.isCompleted = FALSE GROUP BY Po.poNumber; ");
 
             ResultSet rs = pstmt.executeQuery();
 
@@ -391,7 +391,7 @@ public class SupplierPurchaseOrderDAO {
             ArrayList<PurchaseOrder> poList = new ArrayList<>();
 
             String query = "UPDATE purchase_order\n"
-                    + "   SET isComplete = ?\n"
+                    + "   SET isCompleted = ?\n"
                     + "   WHERE poNumber = ?;";
 
             PreparedStatement pstmt = conn.prepareStatement(query);
