@@ -60,10 +60,10 @@
                                 <input type="hidden" value="<%= retailInventoryView.get(i).getItemCode()%>" name="itemCode" /></td>
                                 <td><%=retailInventoryView.get(i).getColor()%></td>
                                 <td><%=retailInventoryView.get(i).getSize()%></td>
-                                <td><input type="text" class="transparentBg inputSize" id="bgQty" value="<%=retailInventoryView.get(i).getQty()%>"</td>
+                                <td><input type="text" class="transparentBg inputSize" id="bgQty" readonly name="begQty" value="<%=retailInventoryView.get(i).getQty()%>"</td>
                                 <td><input type="number" class="transparentBg inputSize" id="pulledQty" name="pulledQty" value="0" min="0"></td>
                                 <td><input type="number" class="transparentBg inputSize" id="soldQty" name="soldQty" value="0" min="0"></td>
-                                <td><input type="number" class="transparentBg inputSize" id="endingT" value="0" /></td>
+                                <td><input type="number" class="transparentBg inputSize" id="endingT" readonly value="0" /></td>
                             </tr>
                             <%}%>
                         </table>

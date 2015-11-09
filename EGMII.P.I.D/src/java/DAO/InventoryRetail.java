@@ -59,5 +59,30 @@ public class InventoryRetail {
         }
         return null;
     }
+    
+    
+     public boolean updateRetailInventoryQty(double qty, int locationID, int itemCode) throws ParseException {
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+
+            String query = "UPDATE retail_inventory \n"
+                              + "SET qty = ? \n"
+                          + "WHERE locationID = ? AND itemCode = ?;";
+            
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            
+            pstmt.setDouble(1, qty);
+            pstmt.setInt(2, locationID);
+            pstmt.setInt(3, itemCode);
+
+            int rows = pstmt.executeUpdate();
+            conn.close();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(SupplierPurchaseOrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
 
 }

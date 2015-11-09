@@ -149,7 +149,65 @@ public class InventoryDAO {
         }
         return null;
     }
+
+    public WarehouseInventoryView GetWarehouseInventorySpecific(int itemCode) throws ParseException {
+        WarehouseInventoryView ProductionInventory = new WarehouseInventoryView();
+
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            try (Connection conn = myFactory.getConnection();
+                    PreparedStatement pstmt = conn.prepareStatement("SELECT INV.itemCode, P.productName, P.productType, P.color, P.size, INV.qty\n"
+                            + "FROM inventory INV\n"
+                            + "JOIN product P\n"
+                            + "ON INV.itemCode = P.itemCode\n"
+                            + "WHERE P.inventoryType = \"warehouse\" and"
+                            + " INV.itemCode = ?;")) {
+
+                pstmt.setInt(1, itemCode);
+                ResultSet rs = pstmt.executeQuery();
+
+                while (rs.next()) {
+                    WarehouseInventoryView newWarehouseInventoryView = new WarehouseInventoryView();
+
+                    newWarehouseInventoryView.setItemCode(rs.getInt("itemCode"));
+                    newWarehouseInventoryView.setProductName(rs.getString("productName"));
+                    newWarehouseInventoryView.setProductType(rs.getString("productType"));
+                    newWarehouseInventoryView.setColor(rs.getString("color"));
+                    newWarehouseInventoryView.setSize(rs.getString("size"));
+                    newWarehouseInventoryView.setQty(rs.getDouble("qty"));
+                    ProductionInventory = newWarehouseInventoryView;
+                }
+
+            }
+
+            return ProductionInventory;
+        } catch (SQLException ex) {
+            Logger.getLogger(InventoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
     
-    
+    public boolean updateWarehouseInventory(double qty, int itemCode) throws ParseException {
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+
+            String query = "UPDATE inventory \n"
+                    + "SET qty = ? \n"
+                    + "WHERE itemCode = ?;";
+
+            PreparedStatement pstmt = conn.prepareStatement(query);
+
+            pstmt.setDouble(1, qty);
+            pstmt.setInt(2, itemCode);
+
+            int rows = pstmt.executeUpdate();
+            conn.close();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(SupplierPurchaseOrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
 
 }

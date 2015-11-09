@@ -2,13 +2,16 @@ package Controller_Encode;
 
 import Controller_Base.BaseServlet;
 import DAO.ConsumptionReportDAO;
+import DAO.InventoryDAO;
 import DAO.InventoryReportDAO;
+import DAO.InventoryRetail;
 import DAO.ProductDAO;
 import Model.ConsumptionReport;
 import Model.ConsumptionReportDetails;
 import Model.InventoryReport;
 import Model.InventoryReportDetails;
 import Model.User;
+import Model_View.WarehouseInventoryView;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -38,9 +41,11 @@ public class EncodeInventoryReportServlet extends BaseServlet {
             boolean x = false;
 
             InventoryReport ir = new InventoryReport();
-
+            InventoryRetail retailDAO = new InventoryRetail();
+            InventoryDAO invDAO = new InventoryDAO();
             InventoryReportDAO dao = new InventoryReportDAO();
             User user = (User) request.getSession().getAttribute("login");
+            String[] begQty = request.getParameterValues("begQty");
             String[] pulledOut = request.getParameterValues("pulledQty");
             String[] soldQty = request.getParameterValues("soldQty");
             String[] itemCode = request.getParameterValues("itemCode");
@@ -70,6 +75,27 @@ public class EncodeInventoryReportServlet extends BaseServlet {
                     ird.setSoldQty(Double.parseDouble(soldQty[i]));
                     ird.setPulledOutQty(Double.parseDouble(pulledOut[i]));
                     x = dao.EncodeInventoryReportDetials(ird);
+                    if(x){
+                        double endingQty = Double.parseDouble(begQty[i]) - (Double.parseDouble(soldQty[i]) + Double.parseDouble(pulledOut[i]));
+                        try {
+                            retailDAO.updateRetailInventoryQty(endingQty, user.getLocationID(), Integer.parseInt(itemCode[i]));
+                        } catch (ParseException ex) {
+                            Logger.getLogger(EncodeInventoryReportServlet.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        
+                        WarehouseInventoryView newWarehouse = new WarehouseInventoryView();
+                        try {
+                            newWarehouse = invDAO.GetWarehouseInventorySpecific(ird.getItemCode());
+                        } catch (ParseException ex) {
+                            Logger.getLogger(EncodeInventoryReportServlet.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        double result = newWarehouse.getQty() + ird.getPulledOutQty();
+                        try {
+                            invDAO.updateWarehouseInventory(result, ird.getItemCode());
+                        } catch (ParseException ex) {
+                            Logger.getLogger(EncodeInventoryReportServlet.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
                 }
                 if (x) {
                     ServletContext context = getServletContext();
