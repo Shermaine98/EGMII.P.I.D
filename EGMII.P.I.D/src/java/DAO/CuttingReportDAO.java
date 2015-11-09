@@ -71,4 +71,31 @@ public class CuttingReportDAO {
         }
         return null;
     }
+    
+    public Integer getCuttingReportNumber() throws SQLException {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Integer i;
+        try (Connection conn = myFactory.getConnection()) {
+            i = 0;
+            String query = "SELECT MAX(cuttingNumber) from cutting_report";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                i = rs.getInt("MAX(cuttingNumber)");
+            }
+            if (i == 0) {
+                i = 500000000;
+            } else if (i == 99999999) {
+                i = -1;
+            } else {
+                i += 1;
+            }
+            conn.close();
+            pstmt.close();
+            rs.close();
+        }
+        return i;
+    }
+    
+    
 }

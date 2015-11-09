@@ -47,10 +47,10 @@
             <div class="container" align="center">
                 <h2>Supplier Purchase Order</h2><br/>
                 <div style="width:60%;">
-                    <table id="dataTable" class="table table-bordered table-hover">
+                    <table id="dataTable" class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>Purchase Order No.</th>
+                                <th>Production Number</th>
                                 <th>Product Name</th>
                                 <th>Date Made</th>
                                 <th>Color</th>
@@ -78,28 +78,29 @@
 
         <%
             if (data.equalsIgnoreCase("CuttingReportSpecific")) {
-                ArrayList<ConsumptionReportView> ConsumptionReportSpecific = (ArrayList<ConsumptionReportView>) request.getAttribute("CuttingReportSpecific");%>                    
+                ArrayList<ConsumptionReportView> ConsumptionReportSpecific = (ArrayList<ConsumptionReportView>) request.getAttribute("CuttingReportSpecific");
+                Integer cuttingNumber = (Integer) request.getAttribute("cuttingReportNumber");
+        %>                    
         <form method="POST" action="EncodeSupplierPurchaseOrderServlet">
             <div align="center" class="container">
                 <h2>Approve Cutting Report</h2><br/>
 
                 <div class="panel panel-default col-md-3">
                     <div class="panel-body">
+                        <label>Cutting Number</label>
+                        <input class="form-control readonlyWhite" type="text" name="productionNo" id="productionNo" value="<%=cuttingNumber%>"readonly /><br/>
                         <label>Production Number</label>
-                        <input class="form-control readonlyWhite" type="text" name="productionNo" id="productionNo" value="<%=ConsumptionReportSpecific.get(0).getProductionNumber()%>"readonly /><br/>
-                        <label>Purchase Order Number</label>
-                        <input class="form-control readonlyWhite" type="text" name="poNumber" id="poNumber" readonly /><br/>
-                        <label>Delivery Receipt Number</label>
-                        <input class="form-control readonlyWhite" type="text" name="drNumber" id="drNumber" readonly /><br/>
-                        <input type="hidden" name="preparedBy" value="0000" />
-                        <label>Delivery Date</label>
-                        <input type="date" class="form-control readonlyWhite" name="deliveryDate" id="datepicker" readonly /><br/>
+                        <input class="form-control readonlyWhite" type="text" name="poNumber" id="poNumber" value="<%=ConsumptionReportSpecific.get(0).getProductionNumber() %>"readonly /><br/>
+                        <label>Date Made</label>
+                        <input class="form-control readonlyWhite" type="text" name="drNumber" id="drNumber" value = "<%=ConsumptionReportSpecific.get(0).getDateMade() %>" readonly /><br/>
+                        <label>Cutting Master</label>
+                        <input class="form-control readonlyWhite" name="cuttingMaster" id="cuttingMaster" value="<%= user.getEmployeeNumber() %>" readonly /><br/>
                     </div>
                 </div>
 
                 <div class="panel panel-default col-md-7">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Supplier Purchase Order</h3>
+                        <h3 class="panel-title">Cutting Report</h3>
                     </div>
                     <div class="panel-body table-responsive">
                         <table id="dataTable3" class="table table-bordered">
@@ -107,21 +108,25 @@
                                 <tr>
                                     <th>Item Code</th>
                                     <th>Size</th>
-                                    <th>Calculated Quantity</th>
-                                    <th>Actual Quantity</th>
-                                    <th>Unit Measurement</th>
-                                    <th>Note</th>
+                                    <th>Quantity</th>
+                                    <th>Consumption</th>
+                                    <th>Expected Quantity</th>
                                 </tr>
                             </thead>
                             <tbody >
+                                <%
+                                    for (int i = 0; i < ConsumptionReportSpecific.size(); i++) {
+                                %>
                                 <tr>
-                                    <td><input type="text" class="transparentBg inputSize" name="itemCode"  value = ""  readonly/></td>
-                                    <td><input type="text" class="transparentBg inputSize" name="size"  value = ""  readonly/></td>
-                                    <td><input type="number" class="transparentBg inputSize" name="calculatedQty"  value = ""  readonly/></td>
-                                    <td><input type="number" class="transparentBg inputSize" name="actualQty"  value = ""  readonly/></td>
-                                    <td><input type="text" class="transparentBg inputSize" name="unitMeasurement"  value = ""  readonly/></td>
-                                    <td><input type="text" class="transparentBg" name="note"  value = ""  readonly/></td>
+                                    <td><input type="text" class="transparentBg inputSize" name="itemCode"  value = "<%=ConsumptionReportSpecific.get(i).getItemCode() %>"  readonly/></td>
+                                    <td><input type="text" class="transparentBg inputSize" name="color"  value = "<%=ConsumptionReportSpecific.get(i).getSize()%>"  readonly/></td>
+                                    <td><input type="number" class="transparentBg inputSize" name="quantity"  value = "<%=ConsumptionReportSpecific.get(i).getVolumeQty()%>"  readonly/></td>
+                                    <td><input type="number" class="transparentBg inputSize" name="quantity"  value = "<%=ConsumptionReportSpecific.get(i).getConsumptionQty()%>"  readonly/></td>
+                                    <td><input type="number" class="transparentBg inputSize" name="consumption"  value = ""  readonly/></td>
                                 </tr> 
+                                <%
+                            }
+                        %>
                             </tbody>
                         </table>
                         <br/><br/>

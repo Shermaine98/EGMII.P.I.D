@@ -16,6 +16,7 @@ import Model_View.ConsumptionReportView;
 import Model_View.SupplierPurchaseOrderView;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -51,6 +52,7 @@ public class GenerateCuttingReportServlet extends BaseServlet {
         
   //TODO: FIX FIX       
         if(poNumber != null){
+            Integer cuttingNumber = 0;
            
             ArrayList<ConsumptionReportView> ConsumptionReportViewSpecific = new ArrayList<>();
             try {
@@ -58,10 +60,16 @@ public class GenerateCuttingReportServlet extends BaseServlet {
             } catch (ParseException ex) {
                 Logger.getLogger(GenerateCuttingReportServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
+            try {
+                cuttingNumber = CuttingReportDAO.getCuttingReportNumber();
+            } catch (SQLException ex) {
+                Logger.getLogger(GenerateCuttingReportServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
             
          ServletContext context = getServletContext();
         RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Procurement/GenerateCuttingReport.jsp");
         request.setAttribute("data", "CuttingReportSpecific");
+        request.setAttribute("cuttingReportNumber", cuttingNumber);
          request.setAttribute("CuttingReportSpecific", ConsumptionReportViewSpecific);
         request.setAttribute("CuttingReport", ConsumptionReportView);
         rd.forward(request, response);
