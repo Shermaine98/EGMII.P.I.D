@@ -139,7 +139,7 @@ public class ProductDAO {
                 + "JOIN ref_item I \n"
                 + "ON BM.itemCode = I.itemCode\n"
                 + "WHERE P.productName = ? AND I.inventoryType = 'production'\n"
-                + "GROUP BY P.size,I.itemName ORDER BY P.itemCode ;");
+                + "GROUP BY P.size,I.itemName ORDER BY I.itemName ;");
         ps.setString(1, productName);
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
