@@ -36,8 +36,8 @@
     <%        ArrayList<SubconPurchaseOrderView> SubconPurchaseOrderList = (ArrayList<SubconPurchaseOrderView>) request.getAttribute("SubconPurchaseOrderList");
         if (!SubconPurchaseOrderList.isEmpty()) {
     %>
-    <div align="center" class="container">
-        <table id="dataTable" class="table table-bordered" style="width:80%">
+    <div align="center" class="container" style="width:80%">
+        <table id="dataTable" class="table table-bordered table-hover">
             <thead>
                 <tr>
                     <th>Purchase Order Number</th>

@@ -35,7 +35,7 @@
     %>
     <center><h2>Warehouse Inventory</h2></center>
     <div align="center" class="container">
-        <table id="WarehouseInventory" class="table table-bordered">
+        <table id="WarehouseInventory" class="table table-bordered table-hover">
             <thead>
                 <tr>
                     <th>Delivery Number</th>

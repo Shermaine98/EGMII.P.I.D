@@ -19,9 +19,8 @@
         <link href="bootstrap/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" type="text/css" href="bootstrap/css/jquery.dataTables.min.css">
         <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
-        <title>Encode Subconractor Purchase Order</title>
-    </head>
-    <script>
+        <title>Encode Subcontractor Purchase Order</title>
+        <script>
         $(document).ready(function () {
             $('#dataTable').DataTable({
                 "paging": true,
@@ -39,6 +38,7 @@
         //          });
 
     </script>
+    </head>
     <body>
         <br/>
         <% ArrayList<ConsumptionReportView> ConsumptionReportView = (ArrayList<ConsumptionReportView>) request.getAttribute("ConsumptionList");%>
@@ -46,7 +46,7 @@
             <div class="container" align="center">
                 <h2>Search Consumption Report</h2><br/>
                 <div style="width:60%;">
-                    <table id="dataTable" class="table table-bordered">
+                    <table id="dataTable" class="table table-bordered table-hover">
                         <thead>
                             <tr>
                                 <th>Production Number</th>

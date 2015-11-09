@@ -6,7 +6,6 @@
 
 <%@page import="Model_View.SupplierPurchaseOrderView"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="/LevelOfAccess/LevelOFAccess.jsp"%>
 <!DOCTYPE html>
@@ -44,7 +43,7 @@
             <h2>Approve Subcontractor Purchase Order</h2><br/>
 
             <div style="width:60%;">
-                <table id="dataTable" class="table table-bordered">
+                <table id="dataTable" class="table table-bordered table-hover">
                     <colgroup>
                         <col style="width:23%" />
                         <col style="width:35%" />

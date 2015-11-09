@@ -29,12 +29,12 @@
         </script>
     </head>
     <body>  
-        <br/><br/><br/>
+        <br/>
         <%            ArrayList<RawMaterialsInventoryView> AccessoriesInventory = (ArrayList<RawMaterialsInventoryView>) request.getAttribute("AccessoriesInventoryList");
         %>
-    <center><h2>Accessories Inventory</h2></center>
     <div align="center" class="container">
-        <div style="float:left; width:500px;">
+        <h2>Accessories Inventory</h2>
+        <div style="width:70%">
             <table id="AccessoriesInventory" class="table table-bordered table-hover">
                 <thead>
                     <tr>
