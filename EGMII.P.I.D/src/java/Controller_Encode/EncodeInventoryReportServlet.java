@@ -91,7 +91,7 @@ public class EncodeInventoryReportServlet extends BaseServlet {
                         }
                         double result = newWarehouse.getQty() + ird.getPulledOutQty();
                         try {
-                            invDAO.updateWarehouseInventory(result, ird.getItemCode());
+                            invDAO.updateInventory(result, ird.getItemCode());
                         } catch (ParseException ex) {
                             Logger.getLogger(EncodeInventoryReportServlet.class.getName()).log(Level.SEVERE, null, ex);
                         }

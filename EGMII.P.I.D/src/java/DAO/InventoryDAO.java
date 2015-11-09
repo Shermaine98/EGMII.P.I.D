@@ -81,6 +81,42 @@ public class InventoryDAO {
         }
         return null;
     }
+    
+    public RawMaterialsInventoryView GetAccessoriesInventorySpecific(int itemCode) throws ParseException {
+        RawMaterialsInventoryView inventory = new RawMaterialsInventoryView();
+
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            try (Connection conn = myFactory.getConnection();
+                    PreparedStatement pstmt = conn.prepareStatement("SELECT INV.itemCode, "
+                            + "I.inventoryType, I.unitMeasurement, INV.qty\n"
+                            + "FROM inventory INV\n"
+                            + "JOIN ref_item I\n"
+                            + "ON INV.itemCode = I.itemCode\n"
+                            + "WHERE I.inventoryType = \"accessories\" and"
+                            + " INV.itemCode = ?;")) {
+
+                pstmt.setInt(1, itemCode);
+                ResultSet rs = pstmt.executeQuery();
+
+                while (rs.next()) {
+
+                    inventory.setItemCode(rs.getInt("itemCode"));
+                    inventory.setInventoryType(rs.getString("inventoryType"));
+                    inventory.setUnitMeasurement(rs.getString("unitMeasurement"));
+                    inventory.setQty(rs.getDouble("qty"));
+                }
+
+            }
+
+            return inventory;
+        } catch (SQLException ex) {
+            Logger.getLogger(InventoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    
 
     public ArrayList<RawMaterialsInventoryView> GetProductionInventory() throws ParseException {
         ArrayList<RawMaterialsInventoryView> ProductionInventory = new ArrayList<>();
@@ -187,7 +223,7 @@ public class InventoryDAO {
         return null;
     }
     
-    public boolean updateWarehouseInventory(double qty, int itemCode) throws ParseException {
+    public boolean updateInventory(double qty, int itemCode) throws ParseException {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
