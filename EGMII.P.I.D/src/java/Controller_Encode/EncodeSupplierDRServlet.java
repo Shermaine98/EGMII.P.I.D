@@ -52,7 +52,6 @@ public class EncodeSupplierDRServlet extends BaseServlet {
         String[] qty = request.getParameterValues("receivedqty");
         
           //@TODO: update poDetails 
-
       
         boolean x = false;
 
@@ -78,8 +77,18 @@ public class EncodeSupplierDRServlet extends BaseServlet {
                 DeliveryReceiptDetails deliveryReceiptDetails = new DeliveryReceiptDetails();
                 deliveryReceiptDetails.setDrNumber(Integer.parseInt(drNumber));
                 deliveryReceiptDetails.setItemCode(Integer.parseInt(itemCode[y]));
-                deliveryReceiptDetails.setQty(Integer.parseInt(qty[y]));
+                deliveryReceiptDetails.setQty(Double.parseDouble(qty[y]));
                 if (SupplierDeliveryReceiptDAO.EncodeSupplierDeliveryReceiptDetails(deliveryReceiptDetails)) {
+                    try {
+                        if(SupplierDeliveryReceiptDAO.updateDeliveredQty(Double.parseDouble(qty[y]), Integer.parseInt(poNumber), Integer.parseInt(itemCode[y]))){
+                            System.out.println("QTY" + Double.parseDouble(qty[y]) + "ponumer" + Integer.parseInt(poNumber)+ "sdf"  + Integer.parseInt(itemCode[y]));
+                            x = true;
+                        }else{
+                            x = false;
+                        }
+                    } catch (ParseException ex) {
+                        Logger.getLogger(EncodeSupplierDRServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     x = true;
                     DeliveryReceiptDetails.add(deliveryReceiptDetails);
                 } else {

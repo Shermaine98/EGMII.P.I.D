@@ -24,6 +24,7 @@ public class PurchaseOrder {
     private int preparedBy;
     private int approvedBy;
     private boolean isCompleted;
+   
 
     private DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
     /**
