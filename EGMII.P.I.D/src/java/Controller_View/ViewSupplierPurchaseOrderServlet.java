@@ -47,7 +47,7 @@ public class ViewSupplierPurchaseOrderServlet extends BaseServlet {
         if (poNumber != null) {
              ArrayList<SupplierPurchaseOrderView> PurchaseOrderSpecific = new ArrayList();
                 
-             PurchaseOrderSpecific = DAO.getSupplierPurchaseNumber(Integer.parseInt(poNumber));
+             PurchaseOrderSpecific = DAO.getSupplierPurchaseNumberView(Integer.parseInt(poNumber));
 
              
             ServletContext context = getServletContext();

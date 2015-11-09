@@ -261,12 +261,12 @@
                 });
 
                 $("#dataTable4 tbody tr").each(function () {
-                    //if(){
+                    if(){
                     var $this = $(this);
                     var CPU = parseInt($this.find('[id="fabricItemConsumption\\[\\]"]').val());
                     var STotal = (CPU * Total);
                     $this.find('[id="totalConsumptionFabric\\[\\]"]').val(STotal);
-                    // }
+                    }
                 });
                 return false;
             }

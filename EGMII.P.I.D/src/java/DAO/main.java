@@ -17,8 +17,10 @@ import Model_General.ProductAll;
  */
 public class main {
     public static void main (String args[]) throws SQLException, ParseException{
-    ConsumptionReportDAO  ConsumptionReportDAO = new ConsumptionReportDAO();
-    ArrayList<String> productAll = new ArrayList<String>();
+    SupplierPurchaseOrderDAO  SupplierPurchaseOrderDAO = new SupplierPurchaseOrderDAO();
+    SupplierPurchaseOrderDAO.getSupplierPurchaseNumber(300000000);
+    System.out.print(SupplierPurchaseOrderDAO.getSupplierPurchaseNumber(300000000));
+   
       
     }
     

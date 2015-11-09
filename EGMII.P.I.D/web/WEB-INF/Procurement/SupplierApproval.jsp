@@ -80,7 +80,8 @@
         <%
             String data = (String) request.getAttribute("data");
             if (data.equalsIgnoreCase("supplier")) {
-                ArrayList<SupplierPurchaseOrderView> PurchaseOrderSpecific = (ArrayList<SupplierPurchaseOrderView>) request.getAttribute("SupplierPurchaseOrderSpecific");
+           ArrayList<SupplierPurchaseOrderView> PurchaseOrderSpecific = (ArrayList<SupplierPurchaseOrderView>) request.getAttribute("SupplierPurchaseOrderSpecific");
+        if (!PurchaseOrderSpecific.isEmpty()) {
         %>
         <form method="POST" action="ApproveRejectSPOServlet">
             <div class="container" align="center">
@@ -147,7 +148,8 @@
         </div>
 
         <%
-            }%>
+            }
+    }%>
 
     </body>
 </html>
