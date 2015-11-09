@@ -119,7 +119,7 @@ public class SupplierPurchaseOrderDAO {
                     + "ON PO.supplierID = S.supplierID\n"
                     + "WHERE PO.isSupplier = TRUE AND PO.approvedBy IS NULL;";
             PreparedStatement ps = conn.prepareStatement(query);
-            
+
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 SupplierPurchaseOrderView po = new SupplierPurchaseOrderView();
@@ -130,7 +130,7 @@ public class SupplierPurchaseOrderDAO {
                 po.setCompanyName(rs.getString("companyName"));
                 poList.add(po);
             }
-            
+
             rs.close();
             return poList;
         } catch (SQLException ex) {
@@ -138,7 +138,7 @@ public class SupplierPurchaseOrderDAO {
         }
         return null;
     }
-    
+
     public ArrayList<SupplierPurchaseOrderView> GetAllSupplierPurchaseView() {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -150,7 +150,7 @@ public class SupplierPurchaseOrderDAO {
                     + "ON PO.supplierID = S.supplierID\n"
                     + "WHERE PO.isSupplier = TRUE AND PO.approvedBy IS NOT NULL;";
             PreparedStatement ps = conn.prepareStatement(query);
-            
+
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 SupplierPurchaseOrderView po = new SupplierPurchaseOrderView();
@@ -162,7 +162,7 @@ public class SupplierPurchaseOrderDAO {
                 po.setApprovedBy(rs.getInt("approvedBy"));
                 poList.add(po);
             }
-            
+
             rs.close();
             return poList;
         } catch (SQLException ex) {
@@ -170,19 +170,19 @@ public class SupplierPurchaseOrderDAO {
         }
         return null;
     }
-            
-  /**
-      *  NULL
-      * @param poNumber
-      * @return 
-      */
-     
+
+    /**
+     * NULL
+     *
+     * @param poNumber
+     * @return
+     */
     public ArrayList<SupplierPurchaseOrderView> getSupplierPurchaseNumber(int poNumber) {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
             ArrayList<SupplierPurchaseOrderView> poList = new ArrayList<>();
-            
+
             String query = ""
                     + "SELECT PO.poNumber, PO.preparedBy, PO.dateMade, "
                     + "PO.deliveryDate, S.companyName, PO.isSupplier,\n"
@@ -198,7 +198,7 @@ public class SupplierPurchaseOrderDAO {
                     + "AND PO.supplierID = S.supplierID\n"
                     + "WHERE PO.poNumber = ? AND PO.isSupplier = TRUE\n"
                     + "AND PO.approvedBy IS NULL;";
-            
+
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1, poNumber);
             ResultSet rs = ps.executeQuery();
@@ -214,7 +214,7 @@ public class SupplierPurchaseOrderDAO {
                 po.setQty(rs.getDouble("qty"));
                 poList.add(po);
             }
-            
+
             rs.close();
             return poList;
         } catch (SQLException ex) {
@@ -222,19 +222,19 @@ public class SupplierPurchaseOrderDAO {
         }
         return null;
     }
-     
-     /**
-      * NOT NULL
-      * @param poNumber
-      * @return 
-      */
-     
-     public ArrayList<SupplierPurchaseOrderView> getSupplierPurchaseNumberView(int poNumber) {
+
+    /**
+     * NOT NULL
+     *
+     * @param poNumber
+     * @return
+     */
+    public ArrayList<SupplierPurchaseOrderView> getSupplierPurchaseNumberView(int poNumber) {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
             ArrayList<SupplierPurchaseOrderView> poList = new ArrayList<>();
-            
+
             String query = ""
                     + "SELECT PO.poNumber, PO.preparedBy, PO.dateMade, "
                     + "PO.deliveryDate, S.companyName, PO.isSupplier,\n"
@@ -250,7 +250,7 @@ public class SupplierPurchaseOrderDAO {
                     + "AND PO.supplierID = S.supplierID\n"
                     + "WHERE PO.poNumber = ? AND PO.isSupplier = TRUE\n"
                     + "AND PO.approvedBy IS NOT NULL;";
-            
+
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1, poNumber);
             ResultSet rs = ps.executeQuery();
@@ -266,7 +266,7 @@ public class SupplierPurchaseOrderDAO {
                 po.setQty(rs.getDouble("qty"));
                 poList.add(po);
             }
-            
+
             rs.close();
             return poList;
         } catch (SQLException ex) {
@@ -274,13 +274,13 @@ public class SupplierPurchaseOrderDAO {
         }
         return null;
     }
-            
-         public ArrayList<SupplierPurchaseOrderView> getSPOReceiving(int poNumber) {
+
+    public ArrayList<SupplierPurchaseOrderView> getSPOReceiving(int poNumber) {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
             ArrayList<SupplierPurchaseOrderView> poList = new ArrayList<>();
-            
+
             String query = "SELECT PO.poNumber, PO.preparedBy, "
                     + "PO.dateMade, PO.deliveryDate, "
                     + "S.companyName, PO.isSupplier,\n"
@@ -295,7 +295,7 @@ public class SupplierPurchaseOrderDAO {
                     + "ON I.itemCode = S.itemCode\n"
                     + "AND PO.supplierID = S.supplierID\n"
                     + "WHERE PO.poNumber = ? AND PO.isSupplier = TRUE;";
-            
+
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1, poNumber);
             ResultSet rs = ps.executeQuery();
@@ -312,29 +312,29 @@ public class SupplierPurchaseOrderDAO {
                 po.setQty(rs.getDouble("qty"));
                 poList.add(po);
             }
-            
+
             rs.close();
             return poList;
         } catch (SQLException ex) {
             Logger.getLogger(SupplierPurchaseOrderDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
-    }   
-          
-          public boolean updateApproval(PurchaseOrder newSupplierPurchaseOrder) throws ParseException {
+    }
+
+    public boolean updateApproval(PurchaseOrder newSupplierPurchaseOrder) throws ParseException {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
             ArrayList<PurchaseOrder> poList = new ArrayList<>();
-            
-            String query = "UPDATE purchase_order\n" +
-"                           SET approvedBy = ?\n" +
-"                           WHERE poNumber = ?;";
-            
-             PreparedStatement pstmt = conn.prepareStatement(query);
-             pstmt.setInt(1, newSupplierPurchaseOrder.getApprovedBy());
-             pstmt.setInt(2, newSupplierPurchaseOrder.getPoNumber());
-            
+
+            String query = "UPDATE purchase_order\n"
+                    + "                           SET approvedBy = ?\n"
+                    + "                           WHERE poNumber = ?;";
+
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, newSupplierPurchaseOrder.getApprovedBy());
+            pstmt.setInt(2, newSupplierPurchaseOrder.getPoNumber());
+
             int rows = pstmt.executeUpdate();
             conn.close();
             return rows == 1;
@@ -343,6 +343,9 @@ public class SupplierPurchaseOrderDAO {
         }
         return false;
     }
+
+   
+
 //
 //    public ArrayList<SupplierPurchaseOrder> GetAllSupplierPurchaseOrder() throws ParseException {
 //

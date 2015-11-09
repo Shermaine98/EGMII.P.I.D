@@ -9,6 +9,7 @@ import Database.DBConnectionFactory;
 import Model.DeliveryReceipt;
 import Model.DeliveryReceiptDetails;
 import Model.PurchaseOrder;
+import Model.PurchaseOrderDetails;
 import Model_View.SupplierPurchaseOrderView;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -105,4 +106,27 @@ public class SupplierDeliveryReceiptDAO {
         return false;
     }
 
+     public boolean updateDeliveredQty(double qty, int poNumber, int itemCode) throws ParseException {
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+
+            String query = "UPDATE purchase_order_details\n"
+                              + "SET deliveredQty = ?\n"
+                          + "WHERE poNumber = ? AND itemCode = ?;";
+            
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            
+            pstmt.setDouble(1,qty);
+            pstmt.setInt(2, poNumber);
+            pstmt.setInt(3, itemCode);
+
+            int rows = pstmt.executeUpdate();
+            conn.close();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(SupplierPurchaseOrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
 }
