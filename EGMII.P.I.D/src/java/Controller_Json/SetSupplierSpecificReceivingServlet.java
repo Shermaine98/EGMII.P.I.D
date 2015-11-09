@@ -34,14 +34,14 @@ public class SetSupplierSpecificReceivingServlet extends BaseServlet {
 
         ArrayList<SupplierPurchaseOrderView> SupplierPurchaseOrderList = new ArrayList<>();
         SupplierPurchaseOrderDAO SupplierPurchaseOrderDAO = new SupplierPurchaseOrderDAO();
-        SupplierDeliveryReceiptDAO SupplierDeliveryReceiptDAO = new SupplierDeliveryReceiptDAO();
+        //SupplierDeliveryReceiptDAO SupplierDeliveryReceiptDAO = new SupplierDeliveryReceiptDAO();
         String poNumber = request.getParameter("hiddenValueReceiving");
        
         SupplierPurchaseOrderList = SupplierPurchaseOrderDAO.getSPOReceiving(Integer.parseInt(poNumber));
         ArrayList<SupplierPurchaseOrderView> PurchaseOrderList = new ArrayList<>();
 
         try {
-            PurchaseOrderList = SupplierDeliveryReceiptDAO.GetPurchaseOrderForReceiving();
+              PurchaseOrderList = SupplierPurchaseOrderDAO.GetSupplierPurchaseOrderForReceiving();
         } catch (ParseException ex) {
             Logger.getLogger(SetSupplierSpecificReceivingServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

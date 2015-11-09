@@ -31,11 +31,11 @@ public class SetSupplierReceivingServlet extends BaseServlet {
 
     @Override
     public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        SupplierDeliveryReceiptDAO SupplierDeliveryReceiptDAO = new SupplierDeliveryReceiptDAO();
+        SupplierPurchaseOrderDAO SupplierPurchaseOrderDAO = new SupplierPurchaseOrderDAO();
         ArrayList<SupplierPurchaseOrderView> SupplierPurchaseOrderView = new ArrayList<>();
 
         try {
-            SupplierPurchaseOrderView = SupplierDeliveryReceiptDAO.GetPurchaseOrderForReceiving();
+            SupplierPurchaseOrderView = SupplierPurchaseOrderDAO.GetSupplierPurchaseOrderForReceiving();
         } catch (ParseException ex) {
             Logger.getLogger(SetSupplierReceivingServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

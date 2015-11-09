@@ -27,6 +27,7 @@ public class SupplierPurchaseOrderView {
     private boolean isCompleted;
     private String preparedbyname;
     private int itemCode;
+    private double deliveredQty;
 
     private DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
     /**
@@ -282,5 +283,19 @@ public class SupplierPurchaseOrderView {
      */
     public void setItemCode(int itemCode) {
         this.itemCode = itemCode;
+    }
+
+    /**
+     * @return the deliveredQty
+     */
+    public double getDeliveredQty() {
+        return deliveredQty;
+    }
+
+    /**
+     * @param deliveredQty the deliveredQty to set
+     */
+    public void setDeliveredQty(double deliveredQty) {
+        this.deliveredQty = deliveredQty;
     }
 }

@@ -24,8 +24,7 @@
             $(document).ready(function () {
                 $('#dataTable').DataTable({
                     "paging": true,
-                    "info": true,
-//                    "dom": '<"pull-left "f>'
+                    "info": true
                 });
 
                 $(".SupplierPOReceiving").on("click", (function () {
@@ -34,9 +33,6 @@
                     document.getElementById("form1").submit();
                 }));
             });
-            //          $('#run').ready(function(){
-            //         document.getElementById("run").addEventListener("load", SolveTQP);
-            //          });
         </script>
     </head>
     <% ArrayList<SupplierPurchaseOrderView> PurchaseOrderList = (ArrayList<SupplierPurchaseOrderView>) request.getAttribute("Receiving");%>
@@ -108,12 +104,14 @@
                             <tr>
                                 <th>Item Name</th>
                                 <th>Quantity</th>
+                                <th>Delivered Quantity</th>
                                 <th>Received</th>
                             </tr>
                             <%for (int x = 0; x < PurchaseOrderSpecific.size(); x++) {%>
                             <tr class="trclass">
                                 <td><%=PurchaseOrderSpecific.get(x).getItemName()%><input type="hidden" name="itemCode" value="<%=PurchaseOrderSpecific.get(x).getItemCode()%>" /></td>
-                                <td><input type="text" value="<%=PurchaseOrderSpecific.get(x).getQty()%>" id="volumeQty[]" readonly class="transparentBg inputSize" /></td>  
+                                <td><input type="text" value="<%=PurchaseOrderSpecific.get(x).getQty()%>" id="volumeQty[]" name ="QtyOrdered" readonly class="transparentBg inputSize" /></td>
+                                <td><input type="text" value="<%=PurchaseOrderSpecific.get(x).getDeliveredQty()%>" name ="deliveredQty" readonly class="transparentBg inputSize" /></td>
                                 <td><input type="number" name="receivedqty" class="transparentBg inputSize" /></td>
                             </tr>
                             <% } %>

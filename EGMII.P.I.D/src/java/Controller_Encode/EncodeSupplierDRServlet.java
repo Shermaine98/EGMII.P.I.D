@@ -7,6 +7,7 @@ package Controller_Encode;
 
 import Controller_Base.BaseServlet;
 import DAO.SupplierDeliveryReceiptDAO;
+import DAO.SupplierPurchaseOrderDAO;
 import Model.DeliveryReceipt;
 import Model.DeliveryReceiptDetails;
 import java.io.IOException;
@@ -38,7 +39,7 @@ public class EncodeSupplierDRServlet extends BaseServlet {
         ArrayList<DeliveryReceiptDetails> DeliveryReceiptDetails = new ArrayList<>();
         DeliveryReceipt DeliveryReceipt = new DeliveryReceipt();
         SupplierDeliveryReceiptDAO SupplierDeliveryReceiptDAO = new SupplierDeliveryReceiptDAO();
-
+        SupplierPurchaseOrderDAO  SupplierPurchaseOrderDAO = new SupplierPurchaseOrderDAO();
         //header
         String drNumber = request.getParameter("drNumber");
         String poNumber = request.getParameter("poNumber");
@@ -50,8 +51,9 @@ public class EncodeSupplierDRServlet extends BaseServlet {
         //details
         String[] itemCode = request.getParameterValues("itemCode");
         String[] qty = request.getParameterValues("receivedqty");
+        String[] QtyOrdered = request.getParameterValues("QtyOrdered");
+        String[] deliveredQty = request.getParameterValues("deliveredQty");
         
-          //@TODO: update poDetails 
       
         boolean x = false;
 
@@ -70,7 +72,7 @@ public class EncodeSupplierDRServlet extends BaseServlet {
             x = false;
         }
    
-       
+       boolean complete = false;
         //encode supplierdetails
         if (x == true) {
             for (int y = 0; y < itemCode.length; y++) {
@@ -80,9 +82,12 @@ public class EncodeSupplierDRServlet extends BaseServlet {
                 deliveryReceiptDetails.setQty(Double.parseDouble(qty[y]));
                 if (SupplierDeliveryReceiptDAO.EncodeSupplierDeliveryReceiptDetails(deliveryReceiptDetails)) {
                     try {
-                        if(SupplierDeliveryReceiptDAO.updateDeliveredQty(Double.parseDouble(qty[y]), Integer.parseInt(poNumber), Integer.parseInt(itemCode[y]))){
-                            System.out.println("QTY" + Double.parseDouble(qty[y]) + "ponumer" + Integer.parseInt(poNumber)+ "sdf"  + Integer.parseInt(itemCode[y]));
+                        double currentDeliveredQty = Double.parseDouble(deliveredQty[y]) +  Double.parseDouble(qty[y]);
+                        if(SupplierDeliveryReceiptDAO.updateDeliveredQty(currentDeliveredQty, Integer.parseInt(poNumber), Integer.parseInt(itemCode[y]))){
                             x = true;
+                            if(Double.parseDouble(QtyOrdered[y])==currentDeliveredQty){
+                                complete = true;
+                            }
                         }else{
                             x = false;
                         }
@@ -95,6 +100,12 @@ public class EncodeSupplierDRServlet extends BaseServlet {
                     x = false;
                 }
             }
+        }
+        
+        try {
+            x = SupplierPurchaseOrderDAO.updateIsComplete(complete, Integer.parseInt(poNumber));
+        } catch (ParseException ex) {
+            Logger.getLogger(EncodeSupplierDRServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         if (x == true) {

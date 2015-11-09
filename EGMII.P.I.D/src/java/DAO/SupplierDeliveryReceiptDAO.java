@@ -8,8 +8,6 @@ package DAO;
 import Database.DBConnectionFactory;
 import Model.DeliveryReceipt;
 import Model.DeliveryReceiptDetails;
-import Model.PurchaseOrder;
-import Model.PurchaseOrderDetails;
 import Model_View.SupplierPurchaseOrderView;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -26,39 +24,7 @@ import java.util.logging.Logger;
  */
 public class SupplierDeliveryReceiptDAO {
 
-    public ArrayList<SupplierPurchaseOrderView> GetPurchaseOrderForReceiving() throws ParseException {
-
-        ArrayList<SupplierPurchaseOrderView> DeliveryReceipt = new ArrayList<>();
-
-        try {
-            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
-            Connection conn = myFactory.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement("SELECT PO.poNumber, S.companyName, PO.deliveryDate, PO.deliveryDate, CONCAT(u.firstName,\" \",u.lastName) as 'name' , PO.isCompleted  \n"
-                    + "FROM Purchase_Order PO JOIN ref_supplier S \n"
-                    + "ON PO.SupplierID = S.SupplierID JOIN user u ON PO.preparedBy = u.employeeID\n"
-                    + "WHERE PO.approvedby IS NOT NULL AND PO.isCompleted = FALSE AND PO.isSupplier = TRUE; ");
-
-            ResultSet rs = pstmt.executeQuery();
-
-            while (rs.next()) {
-
-                SupplierPurchaseOrderView SupplierPurchaseOrderView = new SupplierPurchaseOrderView();
-                SupplierPurchaseOrderView.setPoNumber(rs.getInt("poNumber"));
-                SupplierPurchaseOrderView.setCompanyName(rs.getString("companyName"));
-                SupplierPurchaseOrderView.setDeliveryDate(rs.getDate("deliveryDate"));
-                SupplierPurchaseOrderView.setPreparedByName(rs.getString("name"));
-                SupplierPurchaseOrderView.setIsCompleted(rs.getBoolean("isCompleted"));
-                DeliveryReceipt.add(SupplierPurchaseOrderView);
-            }
-            pstmt.close();
-            conn.close();
-
-            return DeliveryReceipt;
-        } catch (SQLException ex) {
-            Logger.getLogger(SupplierDeliveryReceiptDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
-    }
+   
 
     public boolean EncodeSupplierDeliveryReceipt(DeliveryReceipt newDeliveryReceipt) {
         try {
