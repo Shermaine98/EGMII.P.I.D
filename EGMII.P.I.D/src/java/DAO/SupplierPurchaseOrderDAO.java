@@ -144,11 +144,11 @@ public class SupplierPurchaseOrderDAO {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
             ArrayList<SupplierPurchaseOrderView> poList = new ArrayList<>();
-            String query = "SELECT DISTINCT PO.poNumber, PO.preparedBy, PO.dateMade, PO.deliveryDate, S.companyName\n"
+            String query = "SELECT DISTINCT PO.poNumber, PO.approvedBy, PO.preparedBy, PO.dateMade, PO.deliveryDate, S.companyName\n"
                     + "FROM purchase_order PO\n"
                     + "JOIN ref_supplier S \n"
                     + "ON PO.supplierID = S.supplierID\n"
-                    + "WHERE PO.isSupplier = TRUE AND PO.approvedBy IS NOT NULL AND PO.isCompleted = true;";
+                    + "WHERE PO.isSupplier = TRUE AND PO.approvedBy IS NOT NULL;";
             PreparedStatement ps = conn.prepareStatement(query);
             
             ResultSet rs = ps.executeQuery();
@@ -159,6 +159,7 @@ public class SupplierPurchaseOrderDAO {
                 po.setDateMade(rs.getDate("dateMade"));
                 po.setDeliveryDate(rs.getDate("deliveryDate"));
                 po.setCompanyName(rs.getString("companyName"));
+                po.setApprovedBy(rs.getInt("approvedBy"));
                 poList.add(po);
             }
             
@@ -176,8 +177,10 @@ public class SupplierPurchaseOrderDAO {
             Connection conn = myFactory.getConnection();
             ArrayList<SupplierPurchaseOrderView> poList = new ArrayList<>();
             
-            String query = "SELECT PO.poNumber, PO.preparedBy, PO.dateMade, PO.deliveryDate, S.companyName, PO.isSupplier,\n"
-                    + "I.itemName, S.unitPrice, POD.qty, PO.approvedBy, PO.isCompleted\n"
+            String query = "SELECT PO.poNumber, PO.preparedBy, PO.dateMade, "
+                    + "PO.deliveryDate, S.companyName, PO.isSupplier,\n"
+                    + "I.itemName, S.unitPrice, POD.qty, PO.approvedBy, "
+                    + "PO.isCompleted\n"
                     + "FROM purchase_order PO\n"
                     + "JOIN purchase_order_details POD\n"
                     + "ON PO.poNumber  =POD.poNumber\n"
@@ -186,7 +189,7 @@ public class SupplierPurchaseOrderDAO {
                     + "JOIN ref_supplier S \n"
                     + "ON I.itemCode = S.itemCode\n"
                     + "AND PO.supplierID = S.supplierID\n"
-                    + "WHERE PO.poNumber = ? AND PO.isSupplier = TRUE AND PO.approvedBy IS NULL;";
+                    + "WHERE PO.poNumber = ? AND PO.isSupplier = TRUE AND PO.approvedBy IS NOT NULL;";
             
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1, poNumber);

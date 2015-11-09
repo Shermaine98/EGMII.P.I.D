@@ -70,7 +70,6 @@ WHERE CR.productionNumber = $P{prodNum}]]>
             </rectangle>
             <image>
                 <reportElement x="0" y="0" width="454" height="79" uuid="4fd19782-4a57-43ae-845d-2d997e3c0f5e"/>
-               
             </image>
         </band>
     </title>

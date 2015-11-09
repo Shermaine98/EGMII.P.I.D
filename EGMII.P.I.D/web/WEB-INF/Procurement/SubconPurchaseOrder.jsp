@@ -25,12 +25,11 @@
         $(document).ready(function () {
             $('#dataTable').DataTable({
                 "paging": true,
-                "info": true,
-//                    "dom": '<"pull-left "f>'
+                "info": true
             });
 
             $(".SubconPO").on("click", (function () {
-                var purchaseOrderNum = $(this).closest("tr").find(".poNumber").text();
+                var purchaseOrderNum = $(this).closest("tr").find(".productionNumber").text();
                 document.getElementById('hiddenValue').value = purchaseOrderNum;
                 document.getElementById("form1").submit();
             }));
@@ -43,37 +42,39 @@
     <body>
         <br/>
         <% ArrayList<ConsumptionReportView> ConsumptionReportView = (ArrayList<ConsumptionReportView>) request.getAttribute("ConsumptionList");%>
-        <div class="container" align="center">
-            <h2>Search Consumption Report</h2><br/>
-            <div style="width:60%;">
-                <table id="dataTable" class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Production Number</th>
-                            <th>Product Name</th>
-                            <th>Product Type</th>
-                            <th>Color</th>
-                            <th>Prepared By</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <%for (int i = 0; i < ConsumptionReportView.size(); i++) {%>
-                        <tr class="SubconPO">  
-                            <td class="poNumber"><%=ConsumptionReportView.get(i).getProductionNumber()%></td>
-                            <td><%=ConsumptionReportView.get(i).getProductName()%></td>
-                            <td><%=ConsumptionReportView.get(i).getProductType()%></td>
-                            <td><%=ConsumptionReportView.get(i).getColor()%></td>
-                            <td><%=ConsumptionReportView.get(i).getPreparedBy()%></td>
-                        </tr> 
-                        <%}%>
-                    </tbody>
-                </table>
+        <form id="form1" method="post" action="SetSubconSpecificServlet">
+            <div class="container" align="center">
+                <h2>Search Consumption Report</h2><br/>
+                <div style="width:60%;">
+                    <table id="dataTable" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Production Number</th>
+                                <th>Product Name</th>
+                                <th>Product Type</th>
+                                <th>Color</th>
+                                <th>Prepared By</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%for (int i = 0; i < ConsumptionReportView.size(); i++) {%>
+                            <tr class="SubconPO">  
+                                <td class="productionNumber"><%=ConsumptionReportView.get(i).getProductionNumber()%></td>
+                                <td><%=ConsumptionReportView.get(i).getProductName()%></td>
+                                <td><%=ConsumptionReportView.get(i).getProductType()%></td>
+                                <td><%=ConsumptionReportView.get(i).getColor()%></td>
+                                <td><%=ConsumptionReportView.get(i).getPreparedBy()%></td>
+                            </tr> 
+                            <%}%>
+                        </tbody>
+                    </table>
+                </div>
+                <input type="hidden" name="hiddenValue" id="hiddenValue" value=""/>
             </div>
-            <input type="hidden" name="hiddenValue" id="hiddenValue" value=""/>
-        </div>
+        </form>
         <% String data = (String) request.getAttribute("subconData");
             if (data.equalsIgnoreCase("consumption")) {
-                //ArrayList<ConsumptionReportView> PurchaseOrderSpecific = (ArrayList<ConsumptionReportView>) request.getAttribute("SupplierPurchaseOrderSpecific");
+             ArrayList<ConsumptionReportView> PurchaseOrderSpecific = (ArrayList<ConsumptionReportView>) request.getAttribute("ConsumptionSpecific");
         %>
         <form method="POST" action="EncodeSubcontractorPurchaseOrderServlet">
             <div align="center" class="container">
