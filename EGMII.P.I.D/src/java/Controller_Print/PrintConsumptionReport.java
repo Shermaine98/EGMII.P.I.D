@@ -45,14 +45,11 @@ public class PrintConsumptionReport extends BaseServlet {
         
         String path = getServletContext().getRealPath("Reports/ProductionCreationReport/");
         
-        //images
-        String pathImage = getServletContext().getRealPath("Images/");
-        File reportsDir = new File(pathImage);
+       
         
         Map map = new HashMap();
         map.put("prodNum", productionNumberInt);
-        //image
-        map.put("realpath", reportsDir);
+      
       
 
         // jasperDesign = JRXmlLoader.load(path + "ConsumptionReport.jrxml");

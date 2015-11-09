@@ -59,7 +59,7 @@ WHERE CR.productionNumber = $P{prodNum}]]>
     <background>
         <band splitType="Stretch"/>
     </background>
-     <parameter name="realpath" class="java.lang.String" isForPrompting="false"/>
+    
     <title>
         <band height="79" splitType="Stretch">
             <rectangle>
@@ -70,7 +70,7 @@ WHERE CR.productionNumber = $P{prodNum}]]>
             </rectangle>
             <image>
                 <reportElement x="0" y="0" width="454" height="79" uuid="4fd19782-4a57-43ae-845d-2d997e3c0f5e"/>
-                <imageExpression><![CDATA[new File($P{realpath})]]></imageExpression>
+               
             </image>
         </band>
     </title>
