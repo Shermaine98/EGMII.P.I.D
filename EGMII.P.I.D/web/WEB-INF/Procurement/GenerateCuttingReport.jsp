@@ -78,7 +78,7 @@
         <%
             if (data.equalsIgnoreCase("CuttingReportSpecific")) {
                 ArrayList<ConsumptionReportView> ConsumptionReportSpecific = (ArrayList<ConsumptionReportView>) request.getAttribute("CRforCutting");
-                Integer cuttingNumber = (Integer) request.getAttribute("cuttingReportNumber");
+                
         %>                    
        
             <div align="center" class="container">
@@ -86,8 +86,6 @@
 
                 <div class="panel panel-default col-md-3">
                     <div class="panel-body">
-                        <label>Cutting Number</label>
-                        <input class="form-control readonlyWhite" type="text" name="cuttingReport" id="cuttingReport" value="<%=cuttingNumber%>"readonly /><br/>
                         <label>Production Number</label>
                         <input class="form-control readonlyWhite" type="text" name="productionNumber" id="poNumber" value="<%=ConsumptionReportSpecific.get(0).getProductionNumber() %>"readonly /><br/>
                         <label>Cutting Master</label>
@@ -129,9 +127,7 @@
                             </tbody>
                         </table>
                         <br/><br/>
-                        <input type="submit" class="btn btn-danger" value="Save"/>
                         <button type="button" class="btn btn-danger" >Print</button>
-                        <button type="button" class="btn btn-danger" >Resend</button>
                         <a href="\..\..\Accounts\Homepage.jsp"><button type="button" class="btn btn-danger" >Cancel</button></a>
                     </div>
                 </div>

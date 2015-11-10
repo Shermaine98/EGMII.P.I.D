@@ -39,21 +39,17 @@ public class GenerateCuttingReportServlet extends BaseServlet {
         ConsumptionReportDAO ConsumptionReportDAO = new ConsumptionReportDAO();
         CuttingReportDAO CuttingReportDAO = new CuttingReportDAO();
         ArrayList<ConsumptionReportView> ConsumptionReportView = new ArrayList<>();
-        
-        
+
         String poNumber = request.getParameter("poNumber");
- 
 
         try {
             ConsumptionReportView = CuttingReportDAO.GetConsumptionReportForCutting();
         } catch (ParseException ex) {
             Logger.getLogger(SetSupplierReceivingServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-  //TODO: FIX FIX       
-        if(poNumber != null){
-           
-            Integer cuttingNumber = 0;
+
+        //TODO: FIX FIX       
+        if (poNumber != null) {
             ArrayList<ConsumptionReportView> ConsumptionReportViewSpecific = new ArrayList<>();
             ArrayList<ConsumptionReportView> CRforCutting = new ArrayList();
             try {
@@ -62,26 +58,21 @@ public class GenerateCuttingReportServlet extends BaseServlet {
             } catch (ParseException ex) {
                 Logger.getLogger(GenerateCuttingReportServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            try {
-                cuttingNumber = CuttingReportDAO.getCuttingReportNumber();
-            } catch (SQLException ex) {
-                Logger.getLogger(GenerateCuttingReportServlet.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-         ServletContext context = getServletContext();
-        RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Procurement/GenerateCuttingReport.jsp");
-        request.setAttribute("data", "CuttingReportSpecific");
-        request.setAttribute("cuttingReportNumber", cuttingNumber);
-         request.setAttribute("CuttingReportSpecific", ConsumptionReportViewSpecific);
-           request.setAttribute("CuttingReport", ConsumptionReportView);
-        rd.forward(request, response);
-        }else{
-        
-        ServletContext context = getServletContext();
-        RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Procurement/GenerateCuttingReport.jsp");
-        request.setAttribute("data", "null");
-        request.setAttribute("CuttingReport", ConsumptionReportView);
-        rd.forward(request, response);
+
+            ServletContext context = getServletContext();
+            RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Procurement/GenerateCuttingReport.jsp");
+            request.setAttribute("data", "CuttingReportSpecific");
+            request.setAttribute("CuttingReportSpecific", ConsumptionReportViewSpecific);
+            request.setAttribute("CRforCutting", CRforCutting);
+            request.setAttribute("CuttingReport", ConsumptionReportView);
+            rd.forward(request, response);
+        } else {
+
+            ServletContext context = getServletContext();
+            RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Procurement/GenerateCuttingReport.jsp");
+            request.setAttribute("data", "null");
+            request.setAttribute("CuttingReport", ConsumptionReportView);
+            rd.forward(request, response);
         }
     }
 }
