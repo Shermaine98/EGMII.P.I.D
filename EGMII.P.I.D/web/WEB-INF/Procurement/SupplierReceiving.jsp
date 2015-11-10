@@ -19,7 +19,7 @@
         <link href="bootstrap/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" type="text/css" href="bootstrap/css/jquery.dataTables.min.css">
         <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
-         <script src="js/Validation.js"></script>
+        <script src="js/Validation.js"></script>
         <title>Receiving</title>
         <script>
             $(document).ready(function () {
@@ -33,11 +33,28 @@
                     document.getElementById('hiddenValue').value = purchaseOrderNum;
                     document.getElementById("form1").submit();
                 }));
-                 
-          
-          
-                
+
+
+                $(".trclass").on("keyup", (function () {
+                    var volumeQty = parseInt($(this).closest("tr").find(".volQty").text());
+                    var deliveredQty = parseInt($(this).closest("tr").find(".deliveredQty").text());
+                    var receivedQty = parseInt($(this).closest("tr").find('[id="receivedqty\\[\\]"]').val());
+
+                    if (receivedQty !== 0) {
+                        
+                        var remainingTotal = volumeQty - deliveredQty;
+                        if (remainingTotal < receivedQty) {
+                            window.alert("Quantity exceeds possible receiving quantity");
+                            $(this).closest("tr").find('[id="receivedqty\\[\\]"]').val(0);
+                        } /* else if (remainingTotal <= receivedQty) {
+                            window.alert("WRONG");
+                            $(this).closest("tr").find('[id="receivedqty\\[\\]"]').val(0);
+                        } */
+                    }
+
+                }));
             });
+
         </script>
     </head>
     <% ArrayList<SupplierPurchaseOrderView> PurchaseOrderList = (ArrayList<SupplierPurchaseOrderView>) request.getAttribute("Receiving");%>
@@ -115,9 +132,9 @@
                             <%for (int x = 0; x < PurchaseOrderSpecific.size(); x++) {%>
                             <tr class="trclass">
                                 <td><%=PurchaseOrderSpecific.get(x).getItemName()%><input type="hidden" name="itemCode" value="<%=PurchaseOrderSpecific.get(x).getItemCode()%>" /></td>
-                                <td><input type="text" value="<%=PurchaseOrderSpecific.get(x).getQty()%>" id="volumeQty[]" name ="QtyOrdered" readonly class="transparentBg inputSize" /></td>
-                                <td><input type="text" value="<%=PurchaseOrderSpecific.get(x).getDeliveredQty()%>" id="deliveredQty[]" name ="deliveredQty" readonly class="transparentBg inputSize" /></td>
-                                <td><input type="number" name="receivedqty" class="transparentBg inputSize" min="0" required title="Please Input Received Quantity." /></td>
+                                <td class="volQty"><%=PurchaseOrderSpecific.get(x).getQty()%><input type="hidden" value="<%=PurchaseOrderSpecific.get(x).getQty()%>" id="volumeQty[]" name ="QtyOrdered" readonly class="transparentBg inputSize" /></td>
+                                <td class="deliveredQty"><%=PurchaseOrderSpecific.get(x).getDeliveredQty()%><input type="hidden" value="<%=PurchaseOrderSpecific.get(x).getDeliveredQty()%>" id="deliveredQty[]" name ="deliveredQty" readonly class="transparentBg inputSize" /></td>
+                                <td><input type="number" name="receivedqty" id="receivedqty[]" class="transparentBg inputSize" min="0" value="0" required title="Please Input Received Quantity." /></td>
                             </tr>
                             <% } %>
                         </table>

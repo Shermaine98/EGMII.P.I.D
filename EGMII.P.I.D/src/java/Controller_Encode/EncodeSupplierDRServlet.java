@@ -93,6 +93,8 @@ public class EncodeSupplierDRServlet extends BaseServlet {
                             
                             if (Double.parseDouble(QtyOrdered[y]) == currentDeliveredQty) {
                                 complete = true;
+                            } else {
+                                complete = false;
                             }
                         } else {
                             x = false;
