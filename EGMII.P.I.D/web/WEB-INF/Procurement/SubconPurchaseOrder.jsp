@@ -97,10 +97,10 @@
                         <input type="hidden" name="preparedBy" class="form-control readonlyWhite"  value="<%=user.getEmployeeNumber()%>"/><br/>
                         <input type="text" class="form-control readonlyWhite"  value="<%=user.getFirstName()%> <%=user.getLastName()%>"/><br/>
                         <label class="" for="deliveryDate">Delivery Date</label>
-                        <input type="text" name="deliveryDate" id="datepicker" class="form-control"  /><br/>
+                        <input type="text" name="deliveryDate" id="datepicker" class="form-control" pattern=".{1,}" required title="Please Input Delivery Date"  /><br/>
                         <!--Search Subcon-->
                         <label for="subconName">Subcontractor</label>
-                        <input type="text" class="form-control" name="subconName" id="subconName" pattern=".{1,}" required title="Please Input Subcontractor" onkeypress="autoCompleteSubcon();" placeholder="Search Subcon"/>
+                        <input type="text" class="form-control" name="subconName" id="subconName" pattern=".{1,}" required title="lease Input Subcontractor" onkeypress="autoCompleteSubcon();" placeholder="Search Subcon"/>
                         <input type="hidden" name="subcon" id="subcon" disabled="disabled" style="color: #CCC; position: absolute; background: transparent;"/>
                         <br/>  
 
@@ -196,9 +196,8 @@
                     -->
                 </table>
                 <br/><br/>
-                <input type="submit" class="btn btn-danger" value="Submit">
-                <a href="Homepage.jsp"><button type="button" class="btn btn-danger">Cancel</button></a>
-
+                  <a href="/EGMII.P.I.D/Account?action=goToHome"><button type="button" class="btn btn-danger" >Cancel</button></a>
+                <input type="submit" class="btn btn-danger" value="Submit">\
             </div>
 
         </form>

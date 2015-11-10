@@ -59,6 +59,7 @@ public class Login extends HttpServlet {
                 ServletContext context = getServletContext();
                 RequestDispatcher rd = context.getRequestDispatcher("/index.jsp");
                 request.setAttribute("message", "Wrong Password");
+                out.print("Wrong Password!");
                 rd.forward(request, response);
             }else {
                 ServletContext context = getServletContext();
