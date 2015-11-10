@@ -4,7 +4,7 @@
     Author     : Shermaine
 --%>
 
-<%@page import="Model.SupplierPurchaseOrder"%>
+
 <%@page import="java.util.ArrayList"%>
 <%@include file="/LevelOfAccess/LevelOFAccess.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -18,6 +18,7 @@
         <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="bootstrap/css/table-design.css">
+         <script src="js/Validation.js"></script>
         <title>Reconcile</title>
 
         <script>

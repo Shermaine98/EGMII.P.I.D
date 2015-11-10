@@ -23,6 +23,7 @@
         <script type="text/javascript" src="js/searchItem.js"></script>
         <script type="text/javascript" src="js/deleteRow.js"></script>
         <script type="text/javascript" src="js/number.js"></script>
+         <script src="js/Validation.js"></script>
         <title>Bill of Materials</title>
     </head>
     <body> 

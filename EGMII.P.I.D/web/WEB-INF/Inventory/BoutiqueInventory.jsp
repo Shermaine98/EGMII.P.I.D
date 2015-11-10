@@ -4,8 +4,6 @@
     Author     : Geraldine
 --%>
 
-<%@page import="Model.BoutiqueInventory"%>
-<%@page import="Model.AccessoriesInventory"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="/LevelOfAccess/LevelOFAccess.jsp"%>
@@ -18,6 +16,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="bootstrap/css/jquery.dataTables.min.css">
         <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+         <script src="js/Validation.js"></script>
         <title>Boutique Inventory</title>
         <script>
             $(document).ready(function () {

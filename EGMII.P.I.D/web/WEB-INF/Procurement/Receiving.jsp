@@ -20,6 +20,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="bootstrap/css/jquery.dataTables.min.css">
         <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+         <script src="js/Validation.js"></script>
         <title>Receiving</title>
         <script>
             $(document).ready(function () {

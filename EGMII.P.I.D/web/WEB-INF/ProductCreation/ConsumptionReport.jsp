@@ -18,6 +18,7 @@
         <link rel="stylesheet" href="bootstrap/css/sub-menu.css">
         <link href="bootstrap/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript" src="js/jquery.autocomplete.js"></script>
+         <script src="js/Validation.js"></script>
         <title>Encode Consumption Report</title> 
         <style>
             .input {

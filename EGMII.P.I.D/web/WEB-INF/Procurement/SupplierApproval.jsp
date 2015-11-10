@@ -20,6 +20,7 @@
         <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
         <link rel="stylesheet" type="text/css" href="bootstrap/css/jquery.dataTables.min.css">
         <script src="js/searchSupplier.js"></script>
+         <script src="js/Validation.js"></script>
         <title>Supplier Purchase Order Approval</title>
         <script>
             $(document).ready(function () {
