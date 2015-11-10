@@ -75,7 +75,7 @@ function getSupplierItem() {
                     i++;
                 }
                 if (data[0] != null) {
-                    $('#data').append('<tr class="trclass"><td> <input type="checkbox" name="chk" /> </td>\n\
+                    $('#data').append('<tr class="trclass"> <td><input type="checkbox" name="chk" /></td>\n\
                     <td> <input type="hidden" name ="itemCode" value="' + data[0].itemCode + '" />\n\
                       <input type="text" class="transparentBg readonlyWhite" readonly id= "itemName[]" value="' + data[0].itemName + '"/> </td>\n\
                     <td><input type="text" class="transparentBg readonlyWhite input" readonly style="width:60px;" id="unitPrice[]" name = "unitPrice" value="' + data[0].unitPrice + '"/></td>\n\

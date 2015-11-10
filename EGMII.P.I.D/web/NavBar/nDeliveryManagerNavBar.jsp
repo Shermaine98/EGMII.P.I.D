@@ -54,7 +54,7 @@
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="myaccount.jsp">View Account</a></li>
                                 <li><a href="editaccount.jsp">Edit Account</a></li>
-                                <li><a href="index.jsp">Log-Out</a></li>
+                                <li><a href="index.jsp">Sign Out</a></li>
                             </ul>
                         </li>
                     </ul>
