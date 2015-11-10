@@ -76,16 +76,16 @@
                 <div class="panel panel-default col-md-3" style="padding-bottom:10px; margin-left: 60px;">
                     <div class="panel-body">
                         <label for="poNumber">Purchase Order No.</label>
-                        <input type="text" class="form-control readonlyWhite" readonly name="poNumber" value="<%=PurchaseOrderSpecific.get(0).getPoNumber()%>" /><br/>
+                        <input type="text" class="form-control " readonly name="poNumber" value="<%=PurchaseOrderSpecific.get(0).getPoNumber()%>" /><br/>
                         <label for="preparedBy">Prepared By</label>
-                        <input type="text" class="form-control readonlyWhite" readonly name="preparedBy" value="<%=PurchaseOrderSpecific.get(0).getPreparedBy()%>" /><br/>
+                        <input type="text" class="form-control " readonly name="preparedBy" value="<%=PurchaseOrderSpecific.get(0).getPreparedBy()%>" /><br/>
                         <label for="preparedBy">Received By</label>
-                        <input type="hidden" class="form-control readonlyWhite" name="receivedBy" value="<%=user.getEmployeeNumber()%>" /><br/>
-                        <input type="text" class="form-control readonlyWhite" readonly  value="<%=user.getFirstName()%> <%=user.getLastName()%>" /><br/>
+                        <input type="hidden" class="form-control " name="receivedBy" value="<%=user.getEmployeeNumber()%>" /><br/>
+                        <input type="text" class="form-control " readonly  value="<%=user.getFirstName()%> <%=user.getLastName()%>" /><br/>
                         <label for="deliveryDate">Delivery Date</label>
-                        <input type="text" class="form-control readonlyWhite"  name="deliveryDate" readonly value="<%=PurchaseOrderSpecific.get(0).getDeliveryDate()%>"/><br/>
+                        <input type="text" class="form-control "  name="deliveryDate" readonly value="<%=PurchaseOrderSpecific.get(0).getDeliveryDate()%>"/><br/>
                         <label for="supplier">Supplier</label>
-                        <input type="text" class="form-control readonlyWhite" readonly name="supplier" value="<%=PurchaseOrderSpecific.get(0).getCompanyName()%>" /><br/>
+                        <input type="text" class="form-control " readonly name="supplier" value="<%=PurchaseOrderSpecific.get(0).getCompanyName()%>" /><br/>
                     </div>
                 </div>
 
@@ -126,8 +126,8 @@
 
             <!--Buttons-->
             <div id="buttonz" align="center">
-                <input type="submit" class="btn btn-danger"/>
-                <button class="btn btn-danger">Receive All</button>
+                <input type="submit" class="btn btn-default"/>
+                <button class="btn btn-default">Receive All</button>
             </div>
             <%}%>
         </form>

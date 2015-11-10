@@ -197,8 +197,10 @@
                     -->
                 </table>
                 <br/><br/>
-                  <a href="/EGMII.P.I.D/Account?action=goToHome"><button type="button" class="btn btn-danger" >Cancel</button></a>
-                <input type="submit" class="btn btn-danger" value="Submit">\
+                  <input type="submit" class="btn btn-default" value="Submit">
+                  <a href="/EGMII.P.I.D/Account?action=goToHome">
+                      <button type="button" class="btn btn-primary" >Cancel</button></a>
+                
             </div>
 
         </form>

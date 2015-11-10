@@ -81,11 +81,11 @@
                                 <input type="text" class="form-control" name="Total" id="total" readonly />
                             </div>
                             <br/><br/><br/>
-                            <input type="button" class="btn btn-danger" value="Delete Row" onclick="deleteRow('table')" />
+                            <input type="button" class="btn btn-primary" value="Delete Row" onclick="deleteRow('table')" />
 
                             <br/><br/>
-                            <a href="/EGMII.P.I.D/Account?action=goToHome"><button type="button" class="btn btn-danger" >Cancel</button></a>
-                            <input type="submit" class="btn btn-danger" value="Submit">
+                            <input type="submit" class="btn btn-default" value="Submit">
+                            <a href="/EGMII.P.I.D/Account?action=goToHome"><button type="button" class="btn btn-primary" >Cancel</button></a>
 
 
                         </div>
