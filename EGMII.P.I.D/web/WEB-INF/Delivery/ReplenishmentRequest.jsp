@@ -73,9 +73,9 @@
         </div>
         <!--Buttons-->
         <div id="buttonz" align="center">
-            <button class="btn btn-danger">Save</button>
-            <button class="btn btn-danger">Cancel</button><br/><br/>
-            <button class="btn btn-danger" style="width:140px">Print Picking Form</button>
+            <button class="btn btn-default">Save</button>
+            <button class="btn btn-primary">Cancel</button><br/><br/>
+            <button class="btn btn-default" style="width:140px">Print Picking Form</button>
         </div>
     </body>
 </html>

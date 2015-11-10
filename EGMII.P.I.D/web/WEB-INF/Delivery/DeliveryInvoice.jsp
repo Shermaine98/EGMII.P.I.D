@@ -67,8 +67,8 @@
         </div>
         <!--Buttons-->
         <div id="buttonz" align="center">
-            <button class="btn btn-danger">Submit</button>
-            <button class="btn btn-danger">Cancel</button>
+            <button class="btn btn-default">Submit</button>
+            <button class="btn btn-primary">Cancel</button>
         </div>
 
         <script>
