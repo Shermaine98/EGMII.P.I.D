@@ -77,7 +77,7 @@
                                 <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="/EGMI/Login?action=viewAccounts">View Account</a></li>
-                                <li><a href="/EGMI/Logout">Log-Out</a></li>
+                                <li><a href="/EGMI/Logout">Sign Out</a></li>
                             </ul>
                         </li>
                     </ul>

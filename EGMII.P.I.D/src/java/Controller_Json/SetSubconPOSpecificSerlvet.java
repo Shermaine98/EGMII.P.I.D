@@ -6,12 +6,15 @@
 package Controller_Json;
 
 import Controller_Base.BaseServlet;
+import Controller_View.ViewConsumptionReportServlet;
 import DAO.ConsumptionReportDAO;
+import DAO.InventoryDAO;
 import DAO.SubconPurchaseOrderDAO;
 import DAO.SupplierDeliveryReceiptDAO;
 import DAO.SupplierPurchaseOrderDAO;
 import Model.PurchaseOrder;
 import Model_View.ConsumptionReportView;
+import Model_View.RawMaterialsInventoryView;
 import Model_View.SubconPurchaseOrderView;
 import Model_View.SupplierPurchaseOrderView;
 import java.io.IOException;
@@ -36,6 +39,8 @@ public class SetSubconPOSpecificSerlvet extends BaseServlet {
     @Override
     public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         SubconPurchaseOrderDAO  SubconPurchaseOrderDAO = new SubconPurchaseOrderDAO();
+        ConsumptionReportDAO DAO = new ConsumptionReportDAO();
+        InventoryDAO invDAO = new InventoryDAO();
         ArrayList<ConsumptionReportView> ConsumptionReportView = new ArrayList<>();
         int poNumber = 0;
         ConsumptionReportDAO ConsumptionReportDAO = new ConsumptionReportDAO();
@@ -50,6 +55,7 @@ public class SetSubconPOSpecificSerlvet extends BaseServlet {
 
         try {
             ConsumptionSpecific = ConsumptionReportDAO.GetAllConsumptionReportSpecific(Integer.parseInt(productionNumber));
+            
         } catch (ParseException ex) {
             Logger.getLogger(SetSupplierSpecificReceivingServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -63,7 +69,26 @@ public class SetSubconPOSpecificSerlvet extends BaseServlet {
         ServletContext context = getServletContext();
         RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Procurement/SubconPurchaseOrder.jsp");
         
-        
+         
+             ArrayList<ConsumptionReportView> crListSpecific = new ArrayList();
+             ArrayList<ConsumptionReportView> CRforFabric = new ArrayList();
+                
+             try {
+                crListSpecific = DAO.GetAllConsumptionReportSpecific(Integer.parseInt(productionNumber));
+                CRforFabric = DAO.GetCRforFabric(Integer.parseInt(productionNumber));
+            } catch (ParseException ex) {
+                Logger.getLogger(ViewConsumptionReportServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+             ArrayList<RawMaterialsInventoryView> rmwInventory = new  ArrayList<RawMaterialsInventoryView>();
+        try {
+            rmwInventory = invDAO.checkRMInventory(Integer.parseInt(productionNumber));
+        } catch (ParseException ex) {
+            Logger.getLogger(SetSubconPOSpecificSerlvet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+//        System.out.println(rmwInventory.get(0).getItemName());
+        request.setAttribute("rmwInventory", rmwInventory);     
+        request.setAttribute("crListSpecific", crListSpecific);
+        request.setAttribute("CRforFabric", CRforFabric);
         request.setAttribute("poNumber", poNumber);
         request.setAttribute("ConsumptionList", ConsumptionReportView);
         request.setAttribute("subconData", "consumption");

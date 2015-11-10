@@ -18,8 +18,9 @@ import Model_General.ProductAll;
 public class main {
     public static void main (String args[]) throws SQLException, ParseException{
     SupplierPurchaseOrderDAO  SupplierPurchaseOrderDAO = new SupplierPurchaseOrderDAO();
-    SupplierPurchaseOrderDAO.getSupplierPurchaseNumber(300000000);
-    System.out.print(SupplierPurchaseOrderDAO.getSupplierPurchaseNumber(300000000));
+    InventoryDAO InventoryDAO = new InventoryDAO();
+    InventoryDAO.checkRMInventory(300000000);
+    System.out.print(InventoryDAO.checkRMInventory(300000000));
    
       
     }
