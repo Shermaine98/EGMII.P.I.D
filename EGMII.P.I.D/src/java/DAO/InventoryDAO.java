@@ -300,5 +300,48 @@ public class InventoryDAO {
         }
         return false;
     }
+    
+    public ArrayList<RawMaterialsInventoryView> checkRMInventory(int productionNumber) throws ParseException {
+        ArrayList<RawMaterialsInventoryView> AccessoriesInventory = new ArrayList<>();
+
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement("SELECT Inv.itemCode, \n" +
+                "itemName, totalQtyPerItem,\n" +
+                "(inv.qty - totalQtyPerItem) AS 'BalQty'\n" +
+                "FROM inventory Inv\n" +
+                "INNER JOIN\n" +
+                "(SELECT BM.itemCode, RI.itemName as 'itemName', SUM((BM.qty * CRD.qty)) as 'totalQtyPerItem'\n" +
+                "FROM product_bm BM\n" +
+                "JOIN cr_details CRD\n" +
+                "ON BM.productID = CRD.itemCode\n" +
+                "JOIN ref_item RI \n" +
+                "ON BM.itemCode = RI.itemCode\n" +
+                "WHERE productionNumber = ?\n" +
+                "group by BM.itemCode) AS QN\n" +
+                "ON Inv.itemCode = QN.itemCode;");
+            
+            pstmt.setInt(1, productionNumber);
+            ResultSet rs = pstmt.executeQuery();
+            
+            while (rs.next()) {
+                RawMaterialsInventoryView newAccessoriesInventory = new RawMaterialsInventoryView();
+
+                newAccessoriesInventory.setItemCode(rs.getInt("itemCode"));
+                newAccessoriesInventory.setItemName("itemName");
+                newAccessoriesInventory.setQty(rs.getDouble("totalQtyPerItem"));
+                newAccessoriesInventory.setQtyNeeded(rs.getDouble("BalQty"));
+                AccessoriesInventory.add(newAccessoriesInventory);
+            }
+
+            conn.close();
+            pstmt.close();
+            return AccessoriesInventory;
+        } catch (SQLException ex) {
+            Logger.getLogger(InventoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 
 }

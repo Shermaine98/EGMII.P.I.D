@@ -82,8 +82,6 @@
             </div>
         </form> 
         <br/><br/>
-
-        >
         <%
             if (data.equalsIgnoreCase("ViewConsumptionReportSpecific")) {
                 ArrayList<ConsumptionReportView> cr1 = (ArrayList<ConsumptionReportView>) request.getAttribute("crListSpecific");
