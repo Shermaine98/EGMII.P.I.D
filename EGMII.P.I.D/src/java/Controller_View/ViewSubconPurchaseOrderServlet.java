@@ -3,10 +3,12 @@ package Controller_View;
 import Controller_Base.BaseServlet;
 import DAO.ConsumptionReportDAO;
 import DAO.InventoryReportDAO;
+import DAO.SubconPurchaseOrderDAO;
 import Model.ConsumptionReport;
 import Model_View.ConsumptionReportView;
 import Model_View.InventoryReportView;
 import Model_View.RetailInventoryView;
+import Model_View.SubconPurchaseOrderView;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
@@ -35,14 +37,18 @@ public class ViewSubconPurchaseOrderServlet extends BaseServlet {
     @Override
     public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
        
-
-        String action = request.getParameter("action");
-        ServletContext context = getServletContext();
-        
+        String poNumber = request.getParameter("poNumber");
+        SubconPurchaseOrderDAO DAO = new SubconPurchaseOrderDAO();
+        if (poNumber != null) {
+             ArrayList<SubconPurchaseOrderView> PurchaseOrderSpecific = new ArrayList();
+             PurchaseOrderSpecific = DAO.getSubconPurchaseNumberView(Integer.parseInt(poNumber));
+             
+        } else {
+            ServletContext context = getServletContext();
             RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Procurement/ViewSubconPurchaseOrder.jsp");
             request.setAttribute("SubconPurchaseOrderList","SubconPurchaseOrderList" );
             rd.forward(request, response);
-        
-
+            
+        }
     }
 }

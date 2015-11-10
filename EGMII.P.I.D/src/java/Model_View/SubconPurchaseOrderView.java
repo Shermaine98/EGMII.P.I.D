@@ -16,6 +16,7 @@ import java.text.SimpleDateFormat;
 public class SubconPurchaseOrderView {
     private int poNumber;
     private int preparedBy;
+    private String preparedByName;
     private int approvedBy;
     private java.sql.Date dateMade;
     private java.sql.Date deliveryDate;
@@ -28,8 +29,10 @@ public class SubconPurchaseOrderView {
     private String productSize;
     private double unitPrice;
     private double qty;
+    private double deliveredQty;
     private boolean isCompleted;
-
+    private int subconID;
+    private int itemCode;
     private DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
     /**
      * @return the dateMade
@@ -298,5 +301,61 @@ public class SubconPurchaseOrderView {
      */
     public void setProductSize(String productSize) {
         this.productSize = productSize;
+    }
+
+    /**
+     * @return the preparedByName
+     */
+    public String getPreparedByName() {
+        return preparedByName;
+    }
+
+    /**
+     * @param preparedByName the preparedByName to set
+     */
+    public void setPreparedByName(String preparedByName) {
+        this.preparedByName = preparedByName;
+    }
+
+    /**
+     * @return the deliveredQty
+     */
+    public double getDeliveredQty() {
+        return deliveredQty;
+    }
+
+    /**
+     * @param deliveredQty the deliveredQty to set
+     */
+    public void setDeliveredQty(double deliveredQty) {
+        this.deliveredQty = deliveredQty;
+    }
+
+    /**
+     * @return the subconID
+     */
+    public int getSubconID() {
+        return subconID;
+    }
+
+    /**
+     * @param subconID the subconID to set
+     */
+    public void setSubconID(int subconID) {
+        this.subconID = subconID;
+    }
+
+    /**
+     * @return the itemCode
+     */
+    public int getItemCode() {
+        return itemCode;
+    }
+
+    /**
+     * @param itemCode the itemCode to set
+     */
+    public void setItemCode(int itemCode) {
+        this.itemCode = itemCode;
     }
 }

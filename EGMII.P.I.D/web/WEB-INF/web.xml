@@ -200,6 +200,10 @@
         <servlet-name>ViewBoutiqueInventoryServlet</servlet-name>
         <servlet-class>Controller_View.ViewBoutiqueInventoryServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ApproveRejectSubconPOServlet</servlet-name>
+        <servlet-class>Controller_Approve.ApproveRejectSubconPOServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SearchProductServlet</servlet-name>
         <url-pattern>/SearchProductServlet</url-pattern>
@@ -399,6 +403,10 @@
     <servlet-mapping>
         <servlet-name>ViewBoutiqueInventoryServlet</servlet-name>
         <url-pattern>/ViewBoutiqueInventoryServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ApproveRejectSubconPOServlet</servlet-name>
+        <url-pattern>/ApproveRejectSubconPOServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
