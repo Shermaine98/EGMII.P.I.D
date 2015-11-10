@@ -17,8 +17,8 @@
         <link href="bootstrap/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript" src="js/jquery.autocomplete.js"></script>
         <script src="js/searchSupplier.js"></script>
+          <script type="text/javascript" src="js/deleteRow.js"></script>
          <script src="js/Validation.js"></script>
-        <script src="js/deleteRow.js"></script>
 
         <style>
             .input{
@@ -70,6 +70,8 @@
                         <br/><br/>
 
                         <table id="data" class="table table-bordered">
+                            <tbody id="table">
+                            </tbody>
                         </table>
 
                         <br/>
@@ -79,7 +81,7 @@
                                 <input type="text" class="form-control" name="Total" id="total" readonly />
                             </div>
                             <br/><br/><br/>
-                            <input type="button" class="btn btn-danger" value="Delete Row" onclick="deleteRow('data')" />
+                            <input type="button" class="btn btn-danger" value="Delete Row" onclick="deleteRow('table')" />
 
                             <br/><br/>
                             <a href="/EGMII.P.I.D/Account?action=goToHome"><button type="button" class="btn btn-danger" >Cancel</button></a>
