@@ -131,7 +131,7 @@
                         <%for (int i = 0; i < rmwi.size(); i++) {
                          if (rmwi.get(i).getQtyNeeded() < 0) {
                         %>
-                        <tr style="background-color:#CC0000"> 
+                        <tr style="background-color:#FF8080"> 
                             <td><input type="text" value="<%=rmwi.get(i).getItemName()%>" class="transparentBg" readonly/> 
                             <td><input type="text" value="<%=rmwi.get(i).getQtyNeeded()%>" class="transparentBg" readonly/> 
                         </tr> 
