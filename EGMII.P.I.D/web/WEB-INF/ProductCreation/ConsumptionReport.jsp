@@ -18,7 +18,7 @@
         <link rel="stylesheet" href="bootstrap/css/sub-menu.css">
         <link href="bootstrap/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript" src="js/jquery.autocomplete.js"></script>
-         <script src="js/Validation.js"></script>
+        <script src="js/Validation.js"></script>
         <title>Encode Consumption Report</title> 
         <style>
             .input {
@@ -209,8 +209,9 @@
                 </div>
             </div>
             <div align="center">
-                  <a href="/EGMII.P.I.D/Account?action=goToHome"><button type="button" class="btn btn-danger" >Cancel</button></a>
-                <input type="submit" class="btn btn-danger" value="Create"/>
+                <input type="submit" class="btn btn-default" value="Create"/><br/><br/>
+                <button type="button" class="btn btn-primary">Delete</button>
+                <a href="/EGMII.P.I.D/Account?action=goToHome"><button type="button" class="btn btn-primary" >Cancel</button></a>
             </div>
         </form>
         <!--close bracket here-->
@@ -235,9 +236,9 @@
                 var sizeXL = parseInt(document.getElementById('sizeXL').value);
                 var totalS = sizeXS + sizeS + sizeM + sizeL + sizeXL;
                 document.getElementById('TotalS').value = totalS;
-                 x = true;
+                x = true;
                 SolveTotal(totalS);
-               
+
             }
             function calculateTotalPants() {
                 var size28 = parseInt(document.getElementById('size28').value);
@@ -253,12 +254,12 @@
 
                 var totalP = size28 + size29 + size30 + size31 + size32 + size33 + size34 + size36 + size38 + size40;
                 document.getElementById('TotalP').value = totalP;
-                  x = false;
+                x = false;
                 SolveTotal(totalP);
             }
 
             function SolveTotal(Total) {
-                if (x===true) {
+                if (x === true) {
                     var sizeXS = parseInt(document.getElementById('sizeXS').value);
                     var sizeS = parseInt(document.getElementById('sizeS').value);
                     var sizeM = parseInt(document.getElementById('sizeM').value);
@@ -285,7 +286,7 @@
                 });
 //solve per fabric
                 $("#dataTable4 tbody tr").each(function () {
-                    var $this = $(this); 
+                    var $this = $(this);
                     var STotal = 0;
                     var size = $this.find('[id="FabricName\\[\\]"]').val();
                     console.log(size);
@@ -293,12 +294,12 @@
                         if (size === "xs") {
                             var CPU = parseInt($this.find('[id="fabricItemConsumption\\[\\]"]').val());
                             var temp = (sizeXS * CPU);
-                           $this.find('[id="totalConsumptionFabric\\[\\]"]').val(temp);
+                            $this.find('[id="totalConsumptionFabric\\[\\]"]').val(temp);
                         } else if (size === "s") {
                             var CPU = parseInt($this.find('[id="fabricItemConsumption\\[\\]"]').val());
                             var temp = (sizeS * CPU);
-                            
-                           $this.find('[id="totalConsumptionFabric\\[\\]"]').val(temp);
+
+                            $this.find('[id="totalConsumptionFabric\\[\\]"]').val(temp);
                         } else if (size === "m") {
                             var CPU = parseInt($this.find('[id="fabricItemConsumption\\[\\]"]').val());
                             var temp = (sizeM * CPU);
@@ -312,55 +313,55 @@
                             var temp = (sizeXL * CPU);
                             $this.find('[id="totalConsumptionFabric\\[\\]"]').val(temp);
                         }
-                    }else{
-                        if(size==="28"){
+                    } else {
+                        if (size === "28") {
                             var CPU = parseInt($this.find('[id="fabricItemConsumption\\[\\]"]').val());
                             var temp = (size28 * CPU);
-                           $this.find('[id="totalConsumptionFabric\\[\\]"]').val(temp);
-                        }else if(size === "29"){
+                            $this.find('[id="totalConsumptionFabric\\[\\]"]').val(temp);
+                        } else if (size === "29") {
                             var CPU = parseInt($this.find('[id="fabricItemConsumption\\[\\]"]').val());
                             var temp = (size29 * CPU);
-                           $this.find('[id="totalConsumptionFabric\\[\\]"]').val(temp);
-                        }else if(size === "30"){
+                            $this.find('[id="totalConsumptionFabric\\[\\]"]').val(temp);
+                        } else if (size === "30") {
                             var CPU = parseInt($this.find('[id="fabricItemConsumption\\[\\]"]').val());
                             var temp = (size30 * CPU);
-                           $this.find('[id="totalConsumptionFabric\\[\\]"]').val(temp);
-                        }else if(size === "31"){
+                            $this.find('[id="totalConsumptionFabric\\[\\]"]').val(temp);
+                        } else if (size === "31") {
                             var CPU = parseInt($this.find('[id="fabricItemConsumption\\[\\]"]').val());
                             var temp = (size31 * CPU);
-                           $this.find('[id="totalConsumptionFabric\\[\\]"]').val(temp);
-                       }else if(size === "32"){
+                            $this.find('[id="totalConsumptionFabric\\[\\]"]').val(temp);
+                        } else if (size === "32") {
                             var CPU = parseInt($this.find('[id="fabricItemConsumption\\[\\]"]').val());
                             var temp = (size32 * CPU);
-                           $this.find('[id="totalConsumptionFabric\\[\\]"]').val(temp);
-                       }else if(size === "33"){
+                            $this.find('[id="totalConsumptionFabric\\[\\]"]').val(temp);
+                        } else if (size === "33") {
                             var CPU = parseInt($this.find('[id="fabricItemConsumption\\[\\]"]').val());
                             var temp = (size33 * CPU);
-                           $this.find('[id="totalConsumptionFabric\\[\\]"]').val(temp);
-                       }else if(size === "33"){
+                            $this.find('[id="totalConsumptionFabric\\[\\]"]').val(temp);
+                        } else if (size === "33") {
                             var CPU = parseInt($this.find('[id="fabricItemConsumption\\[\\]"]').val());
                             var temp = (size33 * CPU);
-                           $this.find('[id="totalConsumptionFabric\\[\\]"]').val(temp);
-                       }else if(size === "34"){
+                            $this.find('[id="totalConsumptionFabric\\[\\]"]').val(temp);
+                        } else if (size === "34") {
                             var CPU = parseInt($this.find('[id="fabricItemConsumption\\[\\]"]').val());
                             var temp = (size34 * CPU);
-                           $this.find('[id="totalConsumptionFabric\\[\\]"]').val(temp);
-                       }else if(size === "36"){
+                            $this.find('[id="totalConsumptionFabric\\[\\]"]').val(temp);
+                        } else if (size === "36") {
                             var CPU = parseInt($this.find('[id="fabricItemConsumption\\[\\]"]').val());
                             var temp = (size36 * CPU);
-                           $this.find('[id="totalConsumptionFabric\\[\\]"]').val(temp);
-                       }else if(size === "38"){
+                            $this.find('[id="totalConsumptionFabric\\[\\]"]').val(temp);
+                        } else if (size === "38") {
                             var CPU = parseInt($this.find('[id="fabricItemConsumption\\[\\]"]').val());
                             var temp = (size38 * CPU);
-                           $this.find('[id="totalConsumptionFabric\\[\\]"]').val(temp);
-                       }else if(size === "40"){
+                            $this.find('[id="totalConsumptionFabric\\[\\]"]').val(temp);
+                        } else if (size === "40") {
                             var CPU = parseInt($this.find('[id="fabricItemConsumption\\[\\]"]').val());
                             var temp = (size40 * CPU);
-                           $this.find('[id="totalConsumptionFabric\\[\\]"]').val(temp);
-                       }
-                        
+                            $this.find('[id="totalConsumptionFabric\\[\\]"]').val(temp);
+                        }
+
                     }
-                    
+
                 });
                 return false;
             }
