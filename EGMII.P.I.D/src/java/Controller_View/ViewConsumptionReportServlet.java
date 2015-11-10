@@ -46,12 +46,10 @@ public class ViewConsumptionReportServlet extends BaseServlet {
         
         if (productionNumber != null) {
              ArrayList<ConsumptionReportView> crListSpecific = new ArrayList();
-             ArrayList<ConsumptionReportView> CRforCutting = new ArrayList();
              ArrayList<ConsumptionReportView> CRforFabric = new ArrayList();
                 
              try {
                 crListSpecific = DAO.GetAllConsumptionReportSpecific(Integer.parseInt(productionNumber));
-                CRforCutting = DAO.GetCRForCutting(Integer.parseInt(productionNumber));
                 CRforFabric = DAO.GetCRforFabric(Integer.parseInt(productionNumber));
             } catch (ParseException ex) {
                 Logger.getLogger(ViewConsumptionReportServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -62,7 +60,6 @@ public class ViewConsumptionReportServlet extends BaseServlet {
             RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/ProductCreation/ViewConsumptionReport.jsp");
             request.setAttribute("data", "ViewConsumptionReportSpecific");
             request.setAttribute("crListSpecific", crListSpecific);
-            request.setAttribute("CRforCutting", CRforCutting);
             request.setAttribute("CRforFabric", CRforFabric);
             request.setAttribute("crList", crList);
             rd.forward(request, response);

@@ -25,40 +25,81 @@
                     "paging": true,
                     "info": true
                 });
+                $('#WarehouseInventory2').DataTable({
+                    "paging": true,
+                    "info": true
+                });
             });
         </script>
     </head>
     <body>  
         <%        ArrayList<WarehouseInventoryView> WarehouseInventory = (ArrayList<WarehouseInventoryView>) request.getAttribute("WarehouseInventoryList");
         %>
-    <div align="center" class="container">
-        <h2>Warehouse Inventory</h2>
-        <table id="WarehouseInventory" class="table table-bordered table-hover">
-            <thead>
-                <tr>
-                    <th>Product ID</th>
-                    <th>Product Name</th>
-                    <th>Product Type</th>
-                    <th>Color</th>
-                    <th>Size</th>
-                    <th>Quantity</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% for (int i = 0; i < WarehouseInventory.size(); i++) {%>
-                <tr>
-                    <td><%=WarehouseInventory.get(i).getItemCode() %></td>
-                    <td><%=WarehouseInventory.get(i).getProductName() %></td>
-                    <td><%=WarehouseInventory.get(i).getProductType() %></td>
-                    <td><%=WarehouseInventory.get(i).getColor() %></td>
-                    <td><%=WarehouseInventory.get(i).getSize() %></td>
-                    <td><%=WarehouseInventory.get(i).getQty() %></td>
-                </tr>
-                <%
-                  }
-                %>
-            </tbody>
-        </table>
-    </div>
-</body>
+        <div align="center" class="container">
+            <h2>Warehouse Inventory</h2>
+            <table id="WarehouseInventory" class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Product ID</th>
+                        <th>Product Name</th>
+                        <th>Product Type</th>
+                        <th>Color</th>
+                        <th>Size</th>
+                        <th>Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (int i = 0; i < WarehouseInventory.size(); i++) {
+                            if (WarehouseInventory.get(i).getQty() > 0) {
+                    %>
+                    <tr>
+                        <td><%=WarehouseInventory.get(i).getItemCode()%></td>
+                        <td><%=WarehouseInventory.get(i).getProductName()%></td>
+                        <td><%=WarehouseInventory.get(i).getProductType()%></td>
+                        <td><%=WarehouseInventory.get(i).getColor()%></td>
+                        <td><%=WarehouseInventory.get(i).getSize()%></td>
+                        <td><%=WarehouseInventory.get(i).getQty()%></td>
+                    </tr>
+                    <%
+                            }
+                        }
+                    %>
+                </tbody>
+            </table>
+        </div>
+        <!-- for 0 qty -->
+        <div align="center" class="container">
+            <br/><br/>
+            <h3>Out of Stock</h3>
+            <table id="WarehouseInventory2" class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Product ID</th>
+                        <th>Product Name</th>
+                        <th>Product Type</th>
+                        <th>Color</th>
+                        <th>Size</th>
+                        <th>Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (int i = 0; i < WarehouseInventory.size(); i++) {
+                            if (WarehouseInventory.get(i).getQty() <= 0) {
+                    %>
+                    <tr>
+                        <td><%=WarehouseInventory.get(i).getItemCode()%></td>
+                        <td><%=WarehouseInventory.get(i).getProductName()%></td>
+                        <td><%=WarehouseInventory.get(i).getProductType()%></td>
+                        <td><%=WarehouseInventory.get(i).getColor()%></td>
+                        <td><%=WarehouseInventory.get(i).getSize()%></td>
+                        <td><%=WarehouseInventory.get(i).getQty()%></td>
+                    </tr>
+                    <%
+                            }
+                        }
+                    %>
+                </tbody>
+            </table>
+        </div>
+    </body>
 </html>

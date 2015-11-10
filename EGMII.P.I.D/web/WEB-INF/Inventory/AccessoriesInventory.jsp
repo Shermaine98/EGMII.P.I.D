@@ -24,6 +24,12 @@
                     "paging": true,
                     "info": true
                 });
+                
+                $('#AccessoriesInventory2').DataTable({
+                    "paging": true,
+                    "info": true
+                });
+                
             });
         </script>
     </head>
@@ -46,6 +52,7 @@
                     <tbody>
                         <%
                             for (int i = 0; i < AccessoriesInventory.size(); i++) {
+                                if(AccessoriesInventory.get(i).getQty() > 0){
                         %>
                         <tr>
                             <td><%=AccessoriesInventory.get(i).getItemCode()%></td>
@@ -54,6 +61,38 @@
                             <td><%=AccessoriesInventory.get(i).getUnitMeasurement() %></td>
                         </tr>
                         <%
+                                }
+                            }
+                        %>
+                    </tbody>
+                </table>
+            </div>
+                    <!-- for 0 qty -->
+                    <br/><br/>
+                    <h3>Out of Stock</h3>
+                    <div>
+                <table id="AccessoriesInventory2" class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Item Code</th>
+                            <th>Item Name</th>
+                            <th>Quantity</th>
+                            <th>Unit Measurement</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%
+                            for (int i = 0; i < AccessoriesInventory.size(); i++) {
+                                if(AccessoriesInventory.get(i).getQty() <= 0){
+                        %>
+                        <tr>
+                            <td><%=AccessoriesInventory.get(i).getItemCode()%></td>
+                            <td><%=AccessoriesInventory.get(i).getItemName() %></td>
+                            <td><%=AccessoriesInventory.get(i).getQty() %></td>
+                            <td><%=AccessoriesInventory.get(i).getUnitMeasurement() %></td>
+                        </tr>
+                        <%
+                                }
                             }
                         %>
                     </tbody>

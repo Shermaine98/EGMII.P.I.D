@@ -37,7 +37,7 @@ public class GenerateCuttingReportServlet extends BaseServlet {
     @Override
     public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ConsumptionReportDAO ConsumptionReportDAO = new ConsumptionReportDAO();
-         CuttingReportDAO CuttingReportDAO = new CuttingReportDAO();
+        CuttingReportDAO CuttingReportDAO = new CuttingReportDAO();
         ArrayList<ConsumptionReportView> ConsumptionReportView = new ArrayList<>();
         
         
@@ -55,8 +55,10 @@ public class GenerateCuttingReportServlet extends BaseServlet {
             Integer cuttingNumber = 0;
            
             ArrayList<ConsumptionReportView> ConsumptionReportViewSpecific = new ArrayList<>();
+            ArrayList<ConsumptionReportView> CRforCutting = new ArrayList();
             try {
                 ConsumptionReportViewSpecific = ConsumptionReportDAO.GetAllConsumptionReportSpecific(Integer.parseInt(poNumber));
+                CRforCutting = ConsumptionReportDAO.GetCRForCutting(Integer.parseInt(poNumber));
             } catch (ParseException ex) {
                 Logger.getLogger(GenerateCuttingReportServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -71,6 +73,7 @@ public class GenerateCuttingReportServlet extends BaseServlet {
         request.setAttribute("data", "CuttingReportSpecific");
         request.setAttribute("cuttingReportNumber", cuttingNumber);
          request.setAttribute("CuttingReportSpecific", ConsumptionReportViewSpecific);
+         request.setAttribute("CRforCutting", CRforCutting);
         request.setAttribute("CuttingReport", ConsumptionReportView);
         rd.forward(request, response);
         }else{
