@@ -47,19 +47,19 @@
             <div class="panel panel-default col-md-3" style="padding-bottom:10px; margin-left: 60px;">
                 <div class="panel-body">
                     <label for="invoiceNum">Invoice Number</label>
-                    <input type="text" class="form-control readonlyWhite" readonly name="invoiceNum" value="" /><br/>
+                    <input type="text" class="form-control" readonly name="invoiceNum" value="" /><br/>
                     <label for="preparedBy">Prepared By</label>
-                    <input type="text" class="form-control readonlyWhite" readonly name="preparedBy" value="" /><br/>
+                    <input type="text" class="form-control " readonly name="preparedBy" value="" /><br/>
                     <label for="dateMade">Date Made</label>
-                    <input type="text" class="form-control readonlyWhite" readonly name="dateMade" value="" /><br/>
+                    <input type="text" class="form-control " readonly name="dateMade" value="" /><br/>
                     <label for="deliveryDate">Delivery Date</label>
-                    <input type="text" class="form-control readonlyWhite" readonly name="deliveryDate" value="" /><br/>
+                    <input type="text" class="form-control " readonly name="deliveryDate" value="" /><br/>
                     <label for="promo">Promo</label>
-                    <input type="text" class="form-control readonlyWhite" readonly name="promo" value="" /><br/>
+                    <input type="text" class="form-control " readonly name="promo" value="" /><br/>
                     <label for="branch">Branch</label>
-                    <input type="text" class="form-control readonlyWhite" readonly name="branch" value="" /><br/>
+                    <input type="text" class="form-control " readonly name="branch" value="" /><br/>
                     <label for="address">Address</label>
-                    <input type="text" class="form-control readonlyWhite" readonly name="address" value="" /><br/>
+                    <input type="text" class="form-control " readonly name="address" value="" /><br/>
                 </div>
             </div>
 

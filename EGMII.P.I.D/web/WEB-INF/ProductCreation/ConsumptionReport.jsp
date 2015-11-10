@@ -53,15 +53,16 @@
                     </div>
                     <div class="panel-body">
                         <label class="" for="productionNumber">Production Number</label>
-                        <input type="text" name="productionNumber" id="productionNumber" class="form-control readonlyWhite" readonly value=<%=productionNumber%>  /><br/>
+                        <input type="text" name="productionNumber" id="productionNumber" class="form-control" readonly value=<%=productionNumber%>  /><br/>
                         <label class="" for="productName">Product Name</label>
-                        <input type="text" name="productName" class="form-control readonlyWhite" value="<%=productAll.get(0).getProductName()%>" readonly /><br/>
+                        <input type="text" name="productName" class="form-control" value="<%=productAll.get(0).getProductName()%>" readonly /><br/>
                         <label for="productType">Product Type</label>
-                        <input type="text" name="productType"  class="form-control readonlyWhite" readonly id="productType" value="<%=productAll.get(0).getProductType()%>" /><br/>
+                        <input type="text" name="productType"  class="form-control" readonly id="productType" value="<%=productAll.get(0).getProductType()%>" /><br/>
                         <label for="color">Color</label>
-                        <input type="text" name="color" class="form-control readonlyWhite" value="<%=productAll.get(0).getColor()%>" readonly /><br/>
+                        <input type="text" name="color" class="form-control" value="<%=productAll.get(0).getColor()%>" readonly /><br/>
                         <label for="preparedBy">Prepared By</label>
-                        <input type="hidden" name="preparedBy"  class="form-control readonlyWhite" value="<%=user.getEmployeeNumber()%>" /> <input type="text" readonly name="preparedBy" class="form-control readonlyWhite" value="<%=user.getFirstName()%> <%=user.getLastName()%>"/><br/>
+                        <input type="hidden" name="preparedBy" value="<%=user.getEmployeeNumber()%>" /> 
+                        <input type="text" readonly name="preparedBy" class="form-control" value="<%=user.getFirstName()%> <%=user.getLastName()%>"/><br/>
                     </div>
 
                 </div>
