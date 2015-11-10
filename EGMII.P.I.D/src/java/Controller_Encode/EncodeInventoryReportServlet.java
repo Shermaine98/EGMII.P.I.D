@@ -4,7 +4,7 @@ import Controller_Base.BaseServlet;
 import DAO.ConsumptionReportDAO;
 import DAO.InventoryDAO;
 import DAO.InventoryReportDAO;
-import DAO.InventoryRetail;
+import DAO.InventoryRetailDAO;
 import DAO.ProductDAO;
 import Model.ConsumptionReport;
 import Model.ConsumptionReportDetails;
@@ -41,7 +41,7 @@ public class EncodeInventoryReportServlet extends BaseServlet {
             boolean x = false;
 
             InventoryReport ir = new InventoryReport();
-            InventoryRetail retailDAO = new InventoryRetail();
+            InventoryRetailDAO retailDAO = new InventoryRetailDAO();
             InventoryDAO invDAO = new InventoryDAO();
             InventoryReportDAO dao = new InventoryReportDAO();
             User user = (User) request.getSession().getAttribute("login");
@@ -77,11 +77,7 @@ public class EncodeInventoryReportServlet extends BaseServlet {
                     x = dao.EncodeInventoryReportDetials(ird);
                     if(x){
                         double endingQty = Double.parseDouble(begQty[i]) - (Double.parseDouble(soldQty[i]) + Double.parseDouble(pulledOut[i]));
-                        try {
-                            retailDAO.updateRetailInventoryQty(endingQty, user.getLocationID(), Integer.parseInt(itemCode[i]));
-                        } catch (ParseException ex) {
-                            Logger.getLogger(EncodeInventoryReportServlet.class.getName()).log(Level.SEVERE, null, ex);
-                        }
+                        retailDAO.updateRetailInventoryQty(endingQty, user.getLocationID(), Integer.parseInt(itemCode[i]));
                         
                         WarehouseInventoryView newWarehouse = new WarehouseInventoryView();
                         try {
@@ -113,6 +109,8 @@ public class EncodeInventoryReportServlet extends BaseServlet {
                 rd.forward(request, response);
             }
         } catch (SQLException ex) {
+            Logger.getLogger(EncodeInventoryReportServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
             Logger.getLogger(EncodeInventoryReportServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
 

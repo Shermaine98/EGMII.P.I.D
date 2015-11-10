@@ -188,6 +188,18 @@
         <servlet-name>SearchSubconServlet</servlet-name>
         <servlet-class>Controller_Json.SearchSubconServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EncodeSubconPurchaseOrderServlet</servlet-name>
+        <servlet-class>Controller_Encode.EncodeSubconPurchaseOrderServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>VuewBoutiqueInventory</servlet-name>
+        <servlet-class>Controller_View.VuewBoutiqueInventoryServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewBoutiqueInventoryServlet</servlet-name>
+        <servlet-class>Controller_View.ViewBoutiqueInventoryServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SearchProductServlet</servlet-name>
         <url-pattern>/SearchProductServlet</url-pattern>
@@ -375,6 +387,18 @@
     <servlet-mapping>
         <servlet-name>SearchSubconServlet</servlet-name>
         <url-pattern>/SearchSubconServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EncodeSubconPurchaseOrderServlet</servlet-name>
+        <url-pattern>/EncodeSubconPurchaseOrderServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VuewBoutiqueInventory</servlet-name>
+        <url-pattern>/VuewBoutiqueInventory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewBoutiqueInventoryServlet</servlet-name>
+        <url-pattern>/ViewBoutiqueInventoryServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

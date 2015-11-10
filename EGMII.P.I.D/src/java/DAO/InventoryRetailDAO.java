@@ -2,6 +2,7 @@ package DAO;
 
 import Database.DBConnectionFactory;
 import Model.RetailInventory;
+import Model_View.RetailInventoryView;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,7 +21,47 @@ import java.util.logging.Logger;
  * @author Dimaandal
  *
  */
-public class InventoryRetail {
+public class InventoryRetailDAO {
+    
+    
+    public ArrayList<RetailInventoryView> GetRIforView() throws ParseException {
+        ArrayList<RetailInventoryView> RetailInventory = new ArrayList<>();
+
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement("SELECT RL.branchName, \n" +
+                "P.itemCode, P.productName, P.productType, \n" +
+                "P.color, P.size, RI.qty\n" +
+                "FROM ref_location RL\n" +
+                "JOIN retail_inventory RI \n" +
+                "ON RL.locationID = RI.locationID\n" +
+                "JOIN product P \n" +
+                "ON RI.itemCode = P.itemCode\n" +
+                "ORDER BY 1, 2;");
+
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                RetailInventoryView newRetailInventory = new RetailInventoryView();
+
+                newRetailInventory.setBranchName("branchName");
+                newRetailInventory.setItemCode(rs.getInt("itemCode"));
+                newRetailInventory.setProductName("productName");
+                newRetailInventory.setProductType("productType");
+                newRetailInventory.setColor("color");
+                newRetailInventory.setSize("size");
+                newRetailInventory.setQty(rs.getDouble("qty"));
+                RetailInventory.add(newRetailInventory);
+            }
+            conn.close();
+            pstmt.close();
+            return RetailInventory;
+        } catch (SQLException ex) {
+            Logger.getLogger(InventoryRetailDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
     /**
      * Get Retail Inventory
      * @return
@@ -60,7 +101,7 @@ public class InventoryRetail {
             pstmt.close();
             return RetailInventory;
         } catch (SQLException ex) {
-            Logger.getLogger(InventoryRetail.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(InventoryRetailDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
@@ -91,7 +132,7 @@ public class InventoryRetail {
             conn.close();
             return true;
         } catch (SQLException ex) {
-            Logger.getLogger(InventoryRetail.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(InventoryRetailDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }

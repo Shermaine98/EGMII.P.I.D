@@ -1,6 +1,7 @@
 package DAO;
 
 import Database.DBConnectionFactory;
+import Model.ConsumptionReportDetails;
 import Model.PurchaseOrder;
 import Model.PurchaseOrderDetails;
 import Model_View.SubconPurchaseOrderView;
@@ -35,17 +36,17 @@ public class SubconPurchaseOrderDAO {
             Connection conn = myFactory.getConnection();
             String query = "INSERT INTO purchase_order\n"
                     + "(poNumber,isSupplier, subconID, productionNumber, dateMade, deliveryDate, preparedBy, isCompleted)\n"
-                    + "VALUES(?,?,?,?,?,?,?);";
+                    + "VALUES(?,?,?,?,?,?,?,?);";
             PreparedStatement pstmt = conn.prepareStatement(query);
 
             pstmt.setInt(1, newSubconPurchaseOrder.getPoNumber());
-            pstmt.setBoolean(1, newSubconPurchaseOrder.isIsSupplier());
-            pstmt.setInt(2, newSubconPurchaseOrder.getSubconID());
-            pstmt.setInt(3, newSubconPurchaseOrder.getProductionNumber());
-            pstmt.setDate(4, newSubconPurchaseOrder.getDateMade());
-            pstmt.setDate(5, newSubconPurchaseOrder.getDeliveryDate());
-            pstmt.setInt(6, newSubconPurchaseOrder.getPreparedBy());
-            pstmt.setBoolean(7, newSubconPurchaseOrder.isIsCompleted());
+            pstmt.setBoolean(2, newSubconPurchaseOrder.isIsSupplier());
+            pstmt.setInt(3, newSubconPurchaseOrder.getSubconID());
+            pstmt.setInt(4, newSubconPurchaseOrder.getProductionNumber());
+            pstmt.setDate(5, newSubconPurchaseOrder.getDateMade());
+            pstmt.setDate(6, newSubconPurchaseOrder.getDeliveryDate());
+            pstmt.setInt(7, newSubconPurchaseOrder.getPreparedBy());
+            pstmt.setBoolean(8, newSubconPurchaseOrder.isIsCompleted());
 
             int rows = pstmt.executeUpdate();
             conn.close();
@@ -63,19 +64,18 @@ public class SubconPurchaseOrderDAO {
      * @param newPurchaseOrderDetails
      * @return
      */
-    public boolean EncodeSubconPurchaseOrderDeatils(PurchaseOrderDetails newPurchaseOrderDetails) {
+    public boolean UpdateSubconPurchaseOrderDetails(ConsumptionReportDetails newCRD) {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
-            String query = "INSERT INTO purchase_order_details\n"
-                    + "(poNumber, itemCode, qty, deliveredQty)\n"
-                    + "VALUES (?,?,?,?);";
+            String query = "UPDATE cr_details\n" +
+                "SET deliveredQty = ?\n" +
+                "WHERE productionNumber = ? AND itemCode = ?;";
             PreparedStatement pstmt = conn.prepareStatement(query);
 
-            pstmt.setInt(1, newPurchaseOrderDetails.getPoNumber());
-            pstmt.setInt(2, newPurchaseOrderDetails.getItemCode());
-            pstmt.setDouble(3, newPurchaseOrderDetails.getQty());
-            pstmt.setDouble(4, newPurchaseOrderDetails.getDeliveredQty());
+            pstmt.setDouble(1, newCRD.getDeliveredQty());
+            pstmt.setInt(2, newCRD.getProductionNumber());
+            pstmt.setDouble(3, newCRD.getItemCode());
 
             int rows = pstmt.executeUpdate();
             conn.close();

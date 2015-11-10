@@ -36,18 +36,18 @@
                     document.getElementById('hiddenValue').value = purchaseOrderNum;
                     document.getElementById("form1").submit();
                 }));
-                    var x = document.getElementById('trigger').value;
-                   
-                   if(x==="true"){
-                  $('input[type="submit').prop('disabled',true);
-            
-                   
-            }
+                var x = document.getElementById('trigger').value;
+
+                if (x === "true") {
+                    $('input[type="submit').prop('disabled', true);
+
+
+                }
             });
             //          $('#run').ready(function(){
             //         document.getElementById("run").addEventListener("load", SolveTQP);
             //          });
-            
+
         </script>
         <style>
             .input{
@@ -94,7 +94,7 @@
                 Integer poNumber = (Integer) request.getAttribute("poNumber");
                 ArrayList<ConsumptionReportView> PurchaseOrderSpecific = (ArrayList<ConsumptionReportView>) request.getAttribute("ConsumptionSpecific");
         %>
-        <form method="POST" action="EncodeSubcontractorPurchaseOrderServlet">
+        <form method="POST" action="EncodeSubconPurchaseOrderServlet">
             <div align="center" class="container">
 
                 <div class="panel panel-default col-md-3">
@@ -112,7 +112,7 @@
                         <!--Search Subcon-->
                         <label for="subconName">Subcontractor</label>
                         <input type="text" class="form-control" name="subconName" id="subconName" pattern=".{1,}" required title="lease Input Subcontractor" onkeypress="autoCompleteSubcon();" placeholder="Search Subcon"/>
-                        <input type="hidden" name="subcon" id="subcon" disabled="disabled" style="color: #CCC; position: absolute; background: transparent;"/>
+                        <input type="hidden" name="subconID" id="subcon" disabled="disabled" style="color: #CCC; position: absolute; background: transparent;"/>
                         <br/>  
 
                         <label class="" for="productionNumber">Production Number</label>
@@ -134,33 +134,33 @@
                         <h3 class="panel-title">Subcontractor Purchase Order</h3>
                     </div>
                     <div class="panel-body table-responsive">
-                <table id="dataTable3" class="table table-bordered table-hover">
-                    <thead>
-                        <tr>
-                            <th>Item Name</th>
-                            <th>Inventory Balance Quantity</th>
-                        </tr>
-                    </thead>
-                    <tbody> 
-                        <%for (int i = 0; i < rmwi.size(); i++) {
-                         if (rmwi.get(i).getQtyNeeded() < 0) {
-                        %>
-                        <tr style="background-color:#FF8080"> 
-                            <td><input onload="disabled()" type="text" value="<%=rmwi.get(i).getItemName()%>" class="transparentBg" readonly/> 
-                            <td><input type="hidden" id="trigger" value="true"/><input type="text" value="<%=rmwi.get(i).getQtyNeeded()%>" class="transparentBg" readonly/> 
-                        </tr> 
-                        <%
-                         }else{
-                        %>   
-                        <tr> 
-                            <td><input type="text" value="<%=rmwi.get(i).getItemName()%>" class="transparentBg" readonly/> 
-                            <td><input type="text" value="<%=rmwi.get(i).getQtyNeeded()%>" class="transparentBg" readonly/> 
-                        </tr> 
-                         <%       
-                                }
-                        }%>
-                    </tbody>
-                </table>
+                        <table id="dataTable3" class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Item Name</th>
+                                    <th>Inventory Balance Quantity</th>
+                                </tr>
+                            </thead>
+                            <tbody> 
+                                <%for (int i = 0; i < rmwi.size(); i++) {
+                                        if (rmwi.get(i).getQtyNeeded() < 0) {
+                                %>
+                                <tr style="background-color:#FF8080"> 
+                                    <td><input onload="disabled()" type="text" value="<%=rmwi.get(i).getItemName()%>" class="transparentBg" readonly/> 
+                                    <td><input type="hidden" id="trigger" value="true"/><input type="text" value="<%=rmwi.get(i).getQtyNeeded()%>" class="transparentBg" readonly/> 
+                                </tr> 
+                                <%
+                                } else {
+                                %>   
+                                <tr> 
+                                    <td><input type="text" value="<%=rmwi.get(i).getItemName()%>" class="transparentBg" readonly/> 
+                                    <td><input type="text" value="<%=rmwi.get(i).getQtyNeeded()%>" class="transparentBg" readonly/> 
+                                </tr> 
+                                <%
+                                 }
+                             }%>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
 
@@ -323,7 +323,9 @@
                         <input type="submit" class="btn btn-danger" value="Submit"/>
                     </div>
 
+                    </form>
                     <%}%>
+                    
                 </div>
                 <br/><br/>
                 <script>
