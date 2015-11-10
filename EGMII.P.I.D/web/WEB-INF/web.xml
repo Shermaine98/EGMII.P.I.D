@@ -184,6 +184,10 @@
         <servlet-name>Account</servlet-name>
         <servlet-class>Controller_Base.Account</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchSubconServlet</servlet-name>
+        <servlet-class>Controller_Json.SearchSubconServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SearchProductServlet</servlet-name>
         <url-pattern>/SearchProductServlet</url-pattern>
@@ -367,6 +371,10 @@
     <servlet-mapping>
         <servlet-name>Account</servlet-name>
         <url-pattern>/Account</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchSubconServlet</servlet-name>
+        <url-pattern>/SearchSubconServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
