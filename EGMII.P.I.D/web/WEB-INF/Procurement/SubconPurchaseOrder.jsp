@@ -21,6 +21,8 @@
         <link rel="stylesheet" type="text/css" href="bootstrap/css/jquery.dataTables.min.css">
         <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
         <script src="js/Validation.js"></script>
+        <script type="text/javascript" src="js/jquery.autocomplete.js"></script>
+        <script src="js/searchSubcon.js"></script>
         <title>Encode Subcontractor Purchase Order</title>
         <script>
             $(document).ready(function () {
@@ -34,11 +36,18 @@
                     document.getElementById('hiddenValue').value = purchaseOrderNum;
                     document.getElementById("form1").submit();
                 }));
+                    var x = document.getElementById('trigger').value;
+                   
+                   if(x==="true"){
+                  $('input[type="submit').prop('disabled',true);
+            
+                   
+            }
             });
             //          $('#run').ready(function(){
             //         document.getElementById("run").addEventListener("load", SolveTQP);
             //          });
-
+            
         </script>
         <style>
             .input{
@@ -120,11 +129,16 @@
 
                 <% ArrayList<RawMaterialsInventoryView> rmwi = (ArrayList<RawMaterialsInventoryView>) request.getAttribute("rmwInventory"); %>
                 <!--not enough inventory-->
+                <div class="panel panel-default col-md-7">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Subcontractor Purchase Order</h3>
+                    </div>
+                    <div class="panel-body table-responsive">
                 <table id="dataTable3" class="table table-bordered table-hover">
                     <thead>
                         <tr>
                             <th>Item Name</th>
-                            <th>Needed Quantity</th>
+                            <th>Inventory Balance Quantity</th>
                         </tr>
                     </thead>
                     <tbody> 
@@ -132,8 +146,8 @@
                          if (rmwi.get(i).getQtyNeeded() < 0) {
                         %>
                         <tr style="background-color:#FF8080"> 
-                            <td><input type="text" value="<%=rmwi.get(i).getItemName()%>" class="transparentBg" readonly/> 
-                            <td><input type="text" value="<%=rmwi.get(i).getQtyNeeded()%>" class="transparentBg" readonly/> 
+                            <td><input onload="disabled()" type="text" value="<%=rmwi.get(i).getItemName()%>" class="transparentBg" readonly/> 
+                            <td><input type="hidden" id="trigger" value="true"/><input type="text" value="<%=rmwi.get(i).getQtyNeeded()%>" class="transparentBg" readonly/> 
                         </tr> 
                         <%
                          }else{
@@ -147,7 +161,8 @@
                         }%>
                     </tbody>
                 </table>
-
+                    </div>
+                </div>
 
 
                 <!--view here-->
@@ -305,7 +320,7 @@
                     <div class="container" align="center">
                         <br/><br/>
                         <a href="/EGMII.P.I.D/Account?action=goToHome"><button type="button" class="btn btn-danger" >Cancel</button></a>
-                        <input type="submit" class="btn btn-danger" value="Submit">\
+                        <input type="submit" class="btn btn-danger" value="Submit"/>
                     </div>
 
                     <%}%>
