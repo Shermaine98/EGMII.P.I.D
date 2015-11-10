@@ -44,7 +44,7 @@
         <% String data = (String) request.getAttribute("data");
             ArrayList<ConsumptionReportView> cr = (ArrayList<ConsumptionReportView>) request.getAttribute("crList"); %>
         <!--View Consumption Report-->
-        <form id="form1" method="post" action="ViewConsumptionReportServlet">
+        <form id="form1" method="post" action="ViewConsumptionReportServlet?goToC=ViewThis">
             <div class="col-md-8 center1" align="center">
                 <h2>View Consumption Report</h2>
                 <br/>

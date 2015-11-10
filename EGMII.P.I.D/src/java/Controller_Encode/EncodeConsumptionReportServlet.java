@@ -74,7 +74,6 @@ public class EncodeConsumptionReportServlet extends BaseServlet {
         ArrayList<String> productNumber = new ArrayList<String>();
         try {
             productNumber = productDAO.GetProductNumber(productName,color);
-            System.out.println(productNumber);
         } catch (SQLException ex) {
             Logger.getLogger(EncodeConsumptionReportServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -100,8 +99,8 @@ public class EncodeConsumptionReportServlet extends BaseServlet {
 
         if (x) {
             ServletContext context = getServletContext();
-            RequestDispatcher rd = context.getRequestDispatcher("/index.jsp");
-            request.setAttribute("consumptionReport", consumptionReport);
+            RequestDispatcher rd = context.getRequestDispatcher("/ViewConsumptionReportServlet?goToC=ViewSpecific");
+            request.setAttribute("consumptionReportNumber", consumptionReport.getProductionNumber());
             rd.forward(request, response);
         } else {
             ServletContext context = getServletContext();

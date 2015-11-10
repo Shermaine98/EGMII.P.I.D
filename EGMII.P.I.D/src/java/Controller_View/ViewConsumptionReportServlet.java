@@ -35,7 +35,9 @@ public class ViewConsumptionReportServlet extends BaseServlet {
         String productionNumber = request.getParameter("productionNumber");
         
         ConsumptionReportDAO DAO = new ConsumptionReportDAO();
-            ArrayList<ConsumptionReportView> crList = new ArrayList();
+        ArrayList<ConsumptionReportView> crList = new ArrayList();
+        
+        String goToC = request.getParameter("goToC");
 
             try {
                 crList = DAO.GetAllConsumptionReportGroupBy();
@@ -45,6 +47,11 @@ public class ViewConsumptionReportServlet extends BaseServlet {
 
         
         if (productionNumber != null) {
+            if(goToC.equalsIgnoreCase("ViewSpecific")){
+                Integer consumptionReportNumber = (Integer) request.getAttribute("consumptionReportNumber");
+                 productionNumber = String.valueOf(consumptionReportNumber);
+            }
+            
              ArrayList<ConsumptionReportView> crListSpecific = new ArrayList();
              ArrayList<ConsumptionReportView> CRforCutting = new ArrayList();
              ArrayList<ConsumptionReportView> CRforFabric = new ArrayList();

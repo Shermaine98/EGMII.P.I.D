@@ -25,12 +25,21 @@ public class SearchProductServlet extends BaseServlet {
     @Override
     public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ArrayList<ProductAll> productALLAccessories = new ArrayList<ProductAll>();
-         ArrayList<ProductAll> productALLProduction = new ArrayList<ProductAll>();
+        ArrayList<ProductAll> productALLProduction = new ArrayList<ProductAll>();
         String productName = request.getParameter("query");
         String productName1 = request.getParameter("productName1");
+        
+        String action = (String) request.getParameter("action");
+         
+         
         ProductDAO productDAO = new ProductDAO();
         ArrayList<ProductAll> ProductList = new ArrayList<ProductAll>();
-        if (productName == null) {
+       
+       if (productName == null) {
+           if(action.equalsIgnoreCase("specific")){
+               String productNameSpecific = (String) request.getAttribute("productNameSpecific");
+               productName1 = productNameSpecific;
+           }
             ServletContext context = getServletContext();
             try {
                 ProductList = new ProductDAO().searchProduct(productName1);

@@ -28,7 +28,7 @@
     <body>
         <div align="center">
             <h2>Encode Consumption Report</h2>
-            <form method="POST" action="SearchProductServlet">
+            <form method="POST" action="SearchProductServlet?action=search">
                 <div class="input-group col-md-4">
                     <input type="text" name="productName1" class="form-control" id="productName1" onkeypress="autoComplete();" placeholder="Search Item"/>
                     <input type="hidden" name="productName1" id="productName1" disabled="disabled" style="color: #CCC; position: absolute; background: transparent;"/>

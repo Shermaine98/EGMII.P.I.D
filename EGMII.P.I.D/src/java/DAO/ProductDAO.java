@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -258,5 +259,35 @@ public class ProductDAO {
         }
         return i;
     }
+    
+      /**
+     * INSERT into Inventory
+     *
+     * @param qty
+     * @param itemCode
+     * @return
+     * @throws ParseException
+     */
+    public boolean InsertInventory(double qty, int itemCode) throws ParseException {
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
 
+            String query = "INSERT INTO inventory \n"
+                    + "(itemCode, qty) VALUES (?,?)";
+
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, itemCode);
+            pstmt.setDouble(2, qty);
+            int rows = pstmt.executeUpdate();
+            conn.close();
+            pstmt.close();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(InventoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
+    
 }

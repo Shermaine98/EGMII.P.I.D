@@ -46,8 +46,8 @@
                                 <!--SUB-MENU OF CONSUMPTION REPORT-->
                                 <li><a href="">Consumption Report</a>
                                     <ul class="dropdown-menu sub-menu" style="margin-top: 35px;">
-                                        <li><a href="/EGMII.P.I.D/SearchProductServlet">Encode Consumption Report</a></li>
-                                        <li><a href="/EGMII.P.I.D/ViewConsumptionReportServlet">View Consumption Report</a></li></ul>
+                                        <li><a href="/EGMII.P.I.D/SearchProductServlet?action=Encode">Encode Consumption Report</a></li>
+                                        <li><a href="/EGMII.P.I.D/ViewConsumptionReportServlet?goToC=View">View Consumption Report</a></li></ul>
                                 </li>
 
                             </ul>
