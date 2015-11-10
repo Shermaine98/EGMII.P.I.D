@@ -329,7 +329,7 @@ public class InventoryDAO {
                 RawMaterialsInventoryView newAccessoriesInventory = new RawMaterialsInventoryView();
 
                 newAccessoriesInventory.setItemCode(rs.getInt("itemCode"));
-                newAccessoriesInventory.setItemName("itemName");
+                newAccessoriesInventory.setItemName(rs.getString("itemName"));
                 newAccessoriesInventory.setQty(rs.getDouble("totalQtyPerItem"));
                 newAccessoriesInventory.setQtyNeeded(rs.getDouble("BalQty"));
                 AccessoriesInventory.add(newAccessoriesInventory);
