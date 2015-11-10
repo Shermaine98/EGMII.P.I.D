@@ -33,6 +33,10 @@
                     document.getElementById('hiddenValue').value = purchaseOrderNum;
                     document.getElementById("form1").submit();
                 }));
+                 
+          
+          
+                
             });
         </script>
     </head>
@@ -98,7 +102,7 @@
                         </div>
                         <br/>
 
-                        <table class="table table-bordered">
+                        <table id="tableReceiving" class="table table-bordered">
                             <colgroup>
                                 <col style="width:60%" />
                             </colgroup>
@@ -112,7 +116,7 @@
                             <tr class="trclass">
                                 <td><%=PurchaseOrderSpecific.get(x).getItemName()%><input type="hidden" name="itemCode" value="<%=PurchaseOrderSpecific.get(x).getItemCode()%>" /></td>
                                 <td><input type="text" value="<%=PurchaseOrderSpecific.get(x).getQty()%>" id="volumeQty[]" name ="QtyOrdered" readonly class="transparentBg inputSize" /></td>
-                                <td><input type="text" value="<%=PurchaseOrderSpecific.get(x).getDeliveredQty()%>" name ="deliveredQty" readonly class="transparentBg inputSize" /></td>
+                                <td><input type="text" value="<%=PurchaseOrderSpecific.get(x).getDeliveredQty()%>" id="deliveredQty[]" name ="deliveredQty" readonly class="transparentBg inputSize" /></td>
                                 <td><input type="number" name="receivedqty" class="transparentBg inputSize" min="0" required title="Please Input Received Quantity." /></td>
                             </tr>
                             <% } %>

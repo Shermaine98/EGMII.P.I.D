@@ -32,7 +32,7 @@
                     document.getElementById('hiddenValue').value = productionNumber;
                     document.getElementById("form1").submit();
                 }));
-            });
+               
         </script>    
         <style>
             .input {

@@ -17,17 +17,16 @@
         <link href="bootstrap/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript" src="js/jquery.autocomplete.js"></script>
         <script src="js/searchSupplier.js"></script>
-          <script type="text/javascript" src="js/deleteRow.js"></script>
-         <script src="js/Validation.js"></script>
+        <script type="text/javascript" src="js/deleteRow.js"></script>
+        <script src="js/Validation.js"></script>
 
         <style>
             .input{
                 width:25px;
             }
-                   label {
-  font-weight:bold;
-}
-
+            label {
+                font-weight:bold;
+            }
         </style>
         <title>Encode Supplier Purchase Order</title>
     </head>
@@ -97,17 +96,13 @@
         </div>
         <script>
 
-            
+
             $(function () {
                 $("#datepicker").datepicker({minDate: 1, maxDate: "+4M +10D", dateFormat: 'yy-mm-dd'});
-
             });
-          
-
             $(document).ready(function () {
                 var spoNumber = '${SPONumber}';
                 document.getElementById('poNumber').value = spoNumber;
-
             });
         </script>
     </body>
