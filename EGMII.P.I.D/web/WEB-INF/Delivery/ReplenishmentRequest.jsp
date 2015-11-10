@@ -27,15 +27,15 @@
             <div class="panel panel-default col-md-3">
                 <div class="panel-body">
                     <label for="outlet">Outlet</label>
-                    <input type="text" class="form-control readonlyWhite" readonly name="outlet" value="" /><br/>
+                    <input type="text" class="form-control" readonly name="outlet" value="" /><br/>
                     <label for="promo">Promo</label>
-                    <input type="text" class="form-control readonlyWhite" readonly name="promo" value="" /><br/>
+                    <input type="text" class="form-control" readonly name="promo" value="" /><br/>
                     <label for="date">Date</label>
-                    <input type="text" class="form-control readonlyWhite" readonly name="date" value="" /><br/>
+                    <input type="text" class="form-control" readonly name="date" value="" /><br/>
                     <label for="repID">Replenishment ID</label>
-                    <input type="text" class="form-control readonlyWhite" readonly name="repID" value="" /><br/>
+                    <input type="text" class="form-control" readonly name="repID" value="" /><br/>
                     <label for="version">Version</label>
-                    <input type="text" class="form-control readonlyWhite" readonly name="version" value="" /><br/>
+                    <input type="text" class="form-control" readonly name="version" value="" /><br/>
                 </div>
             </div>
 
@@ -73,9 +73,9 @@
         </div>
         <!--Buttons-->
         <div id="buttonz" align="center">
-            <button class="btn btn-danger">Save</button>
-            <button class="btn btn-danger">Cancel</button><br/><br/>
-            <button class="btn btn-danger" style="width:140px">Print Picking Form</button>
+            <button class="btn btn-default">Save</button>
+            <button class="btn btn-primary">Cancel</button><br/><br/>
+            <button class="btn btn-default" style="width:140px">Print Picking Form</button>
         </div>
     </body>
 </html>

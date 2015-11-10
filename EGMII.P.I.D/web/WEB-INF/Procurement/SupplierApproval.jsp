@@ -91,15 +91,15 @@
                     </div>
                     <div class="panel-body">
                         <label for="poNumber">Purchase Order No.</label>
-                        <input type="text" class="form-control readonlyWhite" readonly name="poNumber" value ="<%=PurchaseOrderSpecific.get(0).getPoNumber()%>" /><br/>
+                        <input type="text" class="form-control" readonly name="poNumber" value ="<%=PurchaseOrderSpecific.get(0).getPoNumber()%>" /><br/>
                         <label for="preparedBy">Prepared By</label>
-                        <input type="text" class="form-control readonlyWhite" readonly name="preparedBy" value="<%=PurchaseOrderSpecific.get(0).getPreparedBy()%>"/><br/>
+                        <input type="text" class="form-control" readonly name="preparedBy" value="<%=PurchaseOrderSpecific.get(0).getPreparedBy()%>"/><br/>
                         <label for="dateMade">Date Made</label>
-                        <input type="text" class="form-control readonlyWhite" readonly name="dateMade" value="<%=PurchaseOrderSpecific.get(0).getDateMade()%>"/><br/>
+                        <input type="text" class="form-control " readonly name="dateMade" value="<%=PurchaseOrderSpecific.get(0).getDateMade()%>"/><br/>
                         <label for="deliveryDate">Delivery Date</label>
-                        <input type="date" class="form-control readonlyWhite" id="datepicker" readonly name="deliveryDate" value="<%=PurchaseOrderSpecific.get(0).getDeliveryDate()%>"/><br/>
+                        <input type="text" class="form-control " readonly name="deliveryDate" value="<%=PurchaseOrderSpecific.get(0).getDeliveryDate()%>"/><br/>
                         <label for="supplier">Supplier</label>
-                        <input type="text" class="form-control readonlyWhite" readonly name="supplier" value="<%=PurchaseOrderSpecific.get(0).getCompanyName()%>"/><br/>
+                        <input type="text" class="form-control " readonly name="supplier" value="<%=PurchaseOrderSpecific.get(0).getCompanyName()%>"/><br/>
                         <input type="text" class="hidden" readonly name="employeeNumber" value="<%=user.getEmployeeNumber()%>"/>
                     </div>
                 </div>
@@ -137,13 +137,13 @@
             </div>
             <div id="buttonz" align="center">
                 <!--Buttons-->
-                <input type="submit" value="Approve" class="btn btn-danger" />
-                <button class="btn btn-danger">Reject</button><br/><br/>
+                <input type="submit" value="Approve" class="btn btn-default" />
+                <button class="btn btn-primary">Reject</button><br/><br/>
             </div>
         </form> 
         <div align="center"> 
             <form>
-                <button class="btn btn-danger">Print</button>
+                <button class="btn btn-default">Print</button>
             </form>
         </div>
 

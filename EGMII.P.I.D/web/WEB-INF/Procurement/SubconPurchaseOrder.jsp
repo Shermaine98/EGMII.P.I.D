@@ -93,12 +93,12 @@
                     </div>
                     <div class="panel-body">
                         <label class="" for="poNumber">Purchase Order Number</label>
-                        <input type="text" name="poNumber" class="form-control readonlyWhite" id="poNumber" value="<%=poNumber%>" readonly /><br/>
+                        <input type="text" name="poNumber" class="form-control " id="poNumber" value="<%=poNumber%>" readonly /><br/>
                         <label class="" for="preparedBy">Prepared By</label>
-                        <input type="hidden" name="preparedBy" class="form-control readonlyWhite"  value="<%=user.getEmployeeNumber()%>"/><br/>
-                        <input type="text" class="form-control readonlyWhite"  value="<%=user.getFirstName()%> <%=user.getLastName()%>"/><br/>
+                        <input type="hidden" name="preparedBy" class="form-control "   value="<%=user.getEmployeeNumber()%>"/><br/>
+                        <input type="text" class="form-control " readonly  value="<%=user.getFirstName()%> <%=user.getLastName()%>"/><br/>
                         <label class="" for="deliveryDate">Delivery Date</label>
-                        <input type="text" name="deliveryDate" id="datepicker" class="form-control" pattern=".{1,}" required title="Please Input Delivery Date"  /><br/>
+                        <input type="text" name="deliveryDate" placeholder="yyyy-mm-dd" id="datepicker" class="form-control" pattern=".{1,}" required title="Please Input Delivery Date"  /><br/>
                         <!--Search Subcon-->
                         <label for="subconName">Subcontractor</label>
                         <input type="text" class="form-control" name="subconName" id="subconName" pattern=".{1,}" required title="lease Input Subcontractor" onkeypress="autoCompleteSubcon();" placeholder="Search Subcon"/>
@@ -115,13 +115,13 @@
                     <div class="panel-body">
                         <div style="width:70%">
                             <label for="productionNumber">Production Number</label>
-                            <input type="text" name="productionNumber" class="form-control readonlyWhite" readonly /><br/>
+                            <input type="text" name="productionNumber" class="form-control " readonly /><br/>
                             <label for="productName">Product Name</label>
-                            <input type="text" name="productName" class="form-control readonlyWhite" readonly /><br/>
+                            <input type="text" name="productName" class="form-control " readonly /><br/>
                             <label for="productType">Product Type</label>
-                            <input type="text" name="productType" class="form-control readonlyWhite" readonly /><br/>
+                            <input type="text" name="productType" class="form-control " readonly /><br/>
                             <label for="color">Color</label>
-                            <input type="text" name="color" class="form-control readonlyWhite" readonly /><br/>
+                            <input type="text" name="color" class="form-control " readonly /><br/>
                         </div>
                     </div>
                 </div>
@@ -197,8 +197,10 @@
                     -->
                 </table>
                 <br/><br/>
-                  <a href="/EGMII.P.I.D/Account?action=goToHome"><button type="button" class="btn btn-danger" >Cancel</button></a>
-                <input type="submit" class="btn btn-danger" value="Submit">\
+                  <input type="submit" class="btn btn-default" value="Submit">
+                  <a href="/EGMII.P.I.D/Account?action=goToHome">
+                      <button type="button" class="btn btn-primary" >Cancel</button></a>
+                
             </div>
 
         </form>

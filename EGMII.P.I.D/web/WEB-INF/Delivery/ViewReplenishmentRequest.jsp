@@ -69,7 +69,7 @@
         </div>
         <!--Buttons-->
         <div id="buttonz" align="center">
-            <button class="btn btn-danger">Print</button>
+            <button class="btn btn-default">Print</button>
         </div>
     </body>
 </html>

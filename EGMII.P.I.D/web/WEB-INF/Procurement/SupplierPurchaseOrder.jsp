@@ -46,7 +46,7 @@
                         <input type="hidden" name="preparedBy" class="readonlyWhite" id="preparedBy" value="<%=user.getEmployeeNumber()%>" />
                         <input type="text" class="form-control" readonly value="<%= user.getFirstName()%> <%= user.getLastName()%>" /><br/>
                         <label class="" for="deliveryDate">Delivery Date</label>
-                        <input type="text" name="deliveryDate" class="form-control" id="datepicker" pattern=".{1,}" required title="Please Input Delivery Date" /><br/>
+                        <input type="text" name="deliveryDate" placeholder="yyyy-mm-dd" class="form-control" id="datepicker" pattern=".{1,}" required title="Please Input Delivery Date" /><br/>
                         <label class="" for="supplier">Supplier</label>
                         <input type="text" name="supplier" class="form-control" id="supplierName" onkeypress="autoCompleteSupplier()" placeholder="Search Supplier" /><br/>
                         <input type="hidden" name="supplier" id ="supplierName" disabled="disabled" style="color: #CCC; position: absolute; background: transparent;"/>
@@ -77,14 +77,14 @@
                         <div id="total1" align="center" style="visibility:hidden;">
                             <div style="float:right">
                                 TOTAL:
-                                <input type="text" class="form-control readonlyWhite" name="Total" id="total" readonly />
+                                <input type="text" class="form-control" name="Total" id="total" readonly />
                             </div>
                             <br/><br/><br/>
-                            <input type="button" class="btn btn-danger" value="Delete Row" onclick="deleteRow('table')" />
+                            <input type="button" class="btn btn-primary" value="Delete Row" onclick="deleteRow('table')" />
 
                             <br/><br/>
-                            <a href="/EGMII.P.I.D/Account?action=goToHome"><button type="button" class="btn btn-danger" >Cancel</button></a>
-                            <input type="submit" class="btn btn-danger" value="Submit">
+                            <input type="submit" class="btn btn-default" value="Submit">
+                            <a href="/EGMII.P.I.D/Account?action=goToHome"><button type="button" class="btn btn-primary" >Cancel</button></a>
 
 
                         </div>
