@@ -52,7 +52,7 @@
                                 <%}%>
                             </select><br/>
                             <label class="" for="inventoryType">Inventory Type</label>
-                            <input type="text" name="inventoryType" class="form-control readonlyWhite" value="Warehouse" readonly ="readonly" /><br/>
+                            <input type="text" name="inventoryType" class="form-control" value="Warehouse" readonly ="readonly" /><br/>
                         </div>
                     </div>
 

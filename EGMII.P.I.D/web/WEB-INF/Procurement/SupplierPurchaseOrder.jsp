@@ -24,6 +24,10 @@
             .input{
                 width:25px;
             }
+                   label {
+  font-weight:bold;
+}
+
         </style>
         <title>Encode Supplier Purchase Order</title>
     </head>
@@ -38,10 +42,10 @@
                     </div>
                     <div class="panel-body">
                         <label class="" for="poNumber">Purchase Order Number</label>
-                        <input type="text" name="poNumber" class="form-control readonlyWhite" id="poNumber" readonly /><br/>
+                        <input type="text" name="poNumber" class="form-control" id="poNumber" readonly /><br/>
                         <label class="" for="preparedBy">Prepared By</label>
-                        <input type="hidden" name="preparedBy" class="form-control readonlyWhite" id="preparedBy" value="<%=user.getEmployeeNumber()%>" />
-                        <input type="text" class="form-control readonlyWhite" readonly value="<%= user.getFirstName()%> <%= user.getLastName()%>" /><br/>
+                        <input type="hidden" name="preparedBy" class="readonlyWhite" id="preparedBy" value="<%=user.getEmployeeNumber()%>" />
+                        <input type="text" class="form-control" readonly value="<%= user.getFirstName()%> <%= user.getLastName()%>" /><br/>
                         <label class="" for="deliveryDate">Delivery Date</label>
                         <input type="text" name="deliveryDate" class="form-control" id="datepicker" pattern=".{1,}" required title="Please Input Delivery Date" /><br/>
                         <label class="" for="supplier">Supplier</label>
