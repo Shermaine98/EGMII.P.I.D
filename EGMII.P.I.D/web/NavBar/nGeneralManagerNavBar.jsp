@@ -124,7 +124,7 @@
                                 <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="/EGMII.P.I.D/Account?action=viewAccounts">View Account</a></li>
-                                <li><a href="/EGMII.P.I.D/Logout">Log-Out</a></li>
+                                <li><a href="/EGMII.P.I.D/Logout">Sign Out</a></li>
                             </ul>
                         </li>
                     </ul>
