@@ -207,8 +207,8 @@
                 </div>
             </div>
             <div align="center">
+                  <a href="/EGMII.P.I.D/Account?action=goToHome"><button type="button" class="btn btn-danger" >Cancel</button></a>
                 <input type="submit" class="btn btn-danger" value="Create"/>
-                <a href="\..\..\Accounts\Homepage.jsp"><button type="button" class="btn btn-danger" >Cancel</button></a>
             </div>
         </form>
         <!--close bracket here-->

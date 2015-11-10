@@ -180,6 +180,10 @@
         <servlet-name>ViewSubconPurchaseOrderServlet</servlet-name>
         <servlet-class>Controller_View.ViewSubconPurchaseOrderServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Account</servlet-name>
+        <servlet-class>Controller_Base.Account</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SearchProductServlet</servlet-name>
         <url-pattern>/SearchProductServlet</url-pattern>
@@ -359,6 +363,10 @@
     <servlet-mapping>
         <servlet-name>ViewSubconPurchaseOrderServlet</servlet-name>
         <url-pattern>/ViewSubconPurchaseOrderServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Account</servlet-name>
+        <url-pattern>/Account</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

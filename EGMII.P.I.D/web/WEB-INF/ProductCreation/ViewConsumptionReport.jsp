@@ -261,6 +261,7 @@
         <div align="center">
             <form method="POST" action="PrintConsumptionReport" target="_blank">
                 <input type="hidden" id="printPONumber" name="printPONumber" value="<%= cr1.get(0).getProductionNumber()%>"/>
+                <a href="/EGMII.P.I.D/Account?action=goToHome"><button type="button" class="btn btn-danger" >Cancel</button></a>
                 <input type="submit" class="btn btn-default" value="Save" />
             </form>
         </div>

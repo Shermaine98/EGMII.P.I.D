@@ -113,47 +113,9 @@
             </div> 
 
             <div align="center">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Edit</button>
+                <a href="/EGMII.P.I.D/Account?action=goToHome"><button type="button" class="btn btn-danger" >Cancel</button></a>
                 <input type="submit" class="btn btn-danger" value="Create">
             </div>
         </form>
-        <!--        <div  align="center" class="container">
-                    <form method="POST" action="EncodeBillOfMaterialsServlet">
-                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                        <h4 class="modal-title" id="myModalLabel">Are you sure?</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div align="center" style="width:60%">
-                                            <label class="" for="productIDModal">Product Name</label>
-                                            <input type="text" name="productIDModal" class="form-control readonlyWhite" id="productIDModal" readonly /><br/>
-                                            <label class="" for="sizeTypeModal">Product Type</label>
-                                            <input type="text" class="form-control readonlyWhite" name="sizeTypeModal" id="sizeTypeModal" readonly />
-                                            <label class="" for="colorModal">Color</label>
-                                            <input type="text" class="form-control readonlyWhite" name="colorModal" id="colorModal" readonly />
-                                        </div>
-                                        <br/><br/>
-        
-                                        <table  id="thisTableModal" class="table table-bordered">
-                                            <tbody id="dataTableModal">
-                                            </tbody>
-                                        </table>
-        
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Edit</button>
-                                            <input type="submit" class="btn btn-danger" value="Create">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                    <br/><br/>
-                    <input type="button" class="btn btn-danger" onclick= "viewModal()" data-toggle="modal" data-target="#myModal" value="Create">
-                    <a href="dashboard.jsp"><button type="button" class="btn btn-danger">Cancel</button></a>
-                </div>
-        -->    </body>
+         </body>
 </html>

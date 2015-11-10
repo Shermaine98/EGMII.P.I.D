@@ -23,7 +23,7 @@ import javax.servlet.http.HttpSession;
  * @author Nunez
  *
  */
-public class Login extends HttpServlet {
+public class Account extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,33 +38,21 @@ public class Login extends HttpServlet {
             throws ServletException, IOException, ParseException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        User user = new User();
         try {
 
-            user.setUserName(request.getParameter("username"));
-            user.setPassword(request.getParameter("password"));
+            String action = request.getParameter("action");
 
-            UserDAO UserDAO = new UserDAO();
-            boolean successful = UserDAO.authenticate(user);
-            if (successful) {
-                user = UserDAO.getUser(user.getEmail(), user.getPassword());
+             if (action.equals("goToHome")) {
                 ServletContext context = getServletContext();
                 RequestDispatcher rd = context.getRequestDispatcher("/Accounts/Homepage.jsp");
-                HttpSession session = request.getSession();
-                request.setAttribute("message", "Success");
-                session.setAttribute("login", user);
-                session.setAttribute("successful", "successful");
                 rd.forward(request, response);
-            } else if(!successful){
+            } else if (action.equals("viewAccounts")) {
+                ServletContext context = getServletContext();
+                RequestDispatcher rd = context.getRequestDispatcher("/Accounts/ViewAccount.jsp");
+                rd.forward(request, response);
+            } else {
                 ServletContext context = getServletContext();
                 RequestDispatcher rd = context.getRequestDispatcher("/index.jsp");
-                request.setAttribute("message", "Wrong Password");
-                rd.forward(request, response);
-            }else {
-                ServletContext context = getServletContext();
-                RequestDispatcher rd = context.getRequestDispatcher("/index.jsp");
-                rd.forward(request, response);
-                out.print("Wrong Password!");
             }
         } finally {
             out.close();
