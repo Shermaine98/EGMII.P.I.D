@@ -24,6 +24,10 @@
                     "paging": true,
                     "info": true
                 });
+                $('#productionInventory2').DataTable({
+                    "paging": true,
+                    "info": true
+                });
             });
         </script>
     </head>
@@ -42,7 +46,9 @@
                 </tr>
             </thead>
             <tbody>
-                <%for (int i = 0; i < ProductionInventory.size(); i++) {%>
+                <%for (int i = 0; i < ProductionInventory.size(); i++) {
+                        if (ProductionInventory.get(i).getQty() > 0) {
+                %>
                 <tr>
                     <td><%=ProductionInventory.get(i).getItemCode()%></td>
                     <td><%=ProductionInventory.get(i).getItemName()%></td>
@@ -50,6 +56,38 @@
                     <td><%=ProductionInventory.get(i).getUnitMeasurement()%></td>
                 </tr>
                 <%
+                        }
+                    }
+                %>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- for 0 qty -->
+    <div align="center" class="container">
+        <br/><br/>
+        <h3>Out of Stock</h3>
+        <table id="productionInventory2" class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Item Code</th>
+                    <th>Item Name</th>
+                    <th>Quantity</th>
+                    <th>Unit Measurement</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%for (int i = 0; i < ProductionInventory.size(); i++) {
+                        if (ProductionInventory.get(i).getQty() <= 0) {
+                %>
+                <tr>
+                    <td><%=ProductionInventory.get(i).getItemCode()%></td>
+                    <td><%=ProductionInventory.get(i).getItemName()%></td>
+                    <td><%=ProductionInventory.get(i).getQty()%></td>
+                    <td><%=ProductionInventory.get(i).getUnitMeasurement()%></td>
+                </tr>
+                <%
+                        }
                     }
                 %>
             </tbody>

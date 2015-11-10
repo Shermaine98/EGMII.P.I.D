@@ -81,7 +81,7 @@
                 ArrayList<ConsumptionReportView> ConsumptionReportSpecific = (ArrayList<ConsumptionReportView>) request.getAttribute("CRforCutting");
                 Integer cuttingNumber = (Integer) request.getAttribute("cuttingReportNumber");
         %>                    
-        <form method="POST" action="EncodeSupplierPurchaseOrderServlet">
+       
             <div align="center" class="container">
                 <h2>Approve Cutting Report</h2><br/>
 
@@ -106,7 +106,7 @@
                         <table id="dataTable3" class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th>Item Code</th>
+                                    <th>Item Name</th>
                                     <th>Size</th>
                                     <th>Quantity</th>
                                     <th>Consumption</th>
@@ -135,7 +135,7 @@
                         <a href="\..\..\Accounts\Homepage.jsp"><button type="button" class="btn btn-danger" >Cancel</button></a>
                     </div>
                 </div>
-            </div></form>
+            </div>
             <%}%>
     </body>
 </html>
