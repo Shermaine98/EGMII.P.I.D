@@ -27,6 +27,7 @@ public class ConsumptionReportView {
     private String color;
     private String size;
     private String itemName;
+    private int itemCodeRM;
     private String unitMeasurement;
     private String productType;
     private int productNumber;
@@ -300,5 +301,19 @@ public class ConsumptionReportView {
      */
     public void setTotalQty(double totalQty) {
         this.totalQty = totalQty;
+    }
+
+    /**
+     * @return the itemCodeRM
+     */
+    public int getItemCodeRM() {
+        return itemCodeRM;
+    }
+
+    /**
+     * @param itemCodeRM the itemCodeRM to set
+     */
+    public void setItemCodeRM(int itemCodeRM) {
+        this.itemCodeRM = itemCodeRM;
     }
 }

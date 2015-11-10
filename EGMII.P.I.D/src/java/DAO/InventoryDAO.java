@@ -102,6 +102,47 @@ public class InventoryDAO {
         }
         return null;
     }
+    
+     /**
+     * Get Specific Accessories Inventory
+     *
+     * @param itemCode
+     * @return
+     * @throws ParseException
+     */
+    public RawMaterialsInventoryView GetAAndPInventorySpecific(int itemCode) throws ParseException {
+        RawMaterialsInventoryView inventory = new RawMaterialsInventoryView();
+
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement("SELECT INV.itemCode, "
+                    + "I.inventoryType, I.unitMeasurement, INV.qty\n"
+                    + "FROM inventory INV\n"
+                    + "JOIN ref_item I\n"
+                    + "ON INV.itemCode = I.itemCode\n"
+                    + "WHERE I.inventoryType != \"warehouse\" and"
+                    + " INV.itemCode = ?;");
+
+            pstmt.setInt(1, itemCode);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+
+                inventory.setItemCode(rs.getInt("itemCode"));
+                inventory.setInventoryType(rs.getString("inventoryType"));
+                inventory.setUnitMeasurement(rs.getString("unitMeasurement"));
+                inventory.setQty(rs.getDouble("qty"));
+            }
+            conn.close();
+            pstmt.close();
+            return inventory;
+        } catch (SQLException ex) {
+            Logger.getLogger(InventoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
 
     /**
      * Get Production Inventory

@@ -52,8 +52,8 @@ public class GenerateCuttingReportServlet extends BaseServlet {
         
   //TODO: FIX FIX       
         if(poNumber != null){
-            Integer cuttingNumber = 0;
            
+            Integer cuttingNumber = 0;
             ArrayList<ConsumptionReportView> ConsumptionReportViewSpecific = new ArrayList<>();
             ArrayList<ConsumptionReportView> CRforCutting = new ArrayList();
             try {
@@ -73,8 +73,7 @@ public class GenerateCuttingReportServlet extends BaseServlet {
         request.setAttribute("data", "CuttingReportSpecific");
         request.setAttribute("cuttingReportNumber", cuttingNumber);
          request.setAttribute("CuttingReportSpecific", ConsumptionReportViewSpecific);
-         request.setAttribute("CRforCutting", CRforCutting);
-        request.setAttribute("CuttingReport", ConsumptionReportView);
+           request.setAttribute("CuttingReport", ConsumptionReportView);
         rd.forward(request, response);
         }else{
         
