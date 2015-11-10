@@ -17,6 +17,7 @@
         <link href="bootstrap/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript" src="js/jquery.autocomplete.js"></script>
         <script src="js/searchSupplier.js"></script>
+         <script src="js/Validation.js"></script>
         <script src="js/deleteRow.js"></script>
 
         <style>
@@ -77,8 +78,9 @@
                             <input type="button" class="btn btn-danger" value="Delete Row" onclick="deleteRow('data')" />
 
                             <br/><br/>
+                            <a href="/EGMII.P.I.D/Account?action=goToHome"><button type="button" class="btn btn-danger" >Cancel</button></a>
                             <input type="submit" class="btn btn-danger" value="Submit">
-                            <a href="dashboard.jsp"><button type="button" class="btn btn-danger">Cancel</button></a>
+
 
                         </div>
 
@@ -88,18 +90,13 @@
             </form>
         </div>
         <script>
-             $(function () {
+
+            
+            $(function () {
                 $("#datepicker").datepicker({minDate: 1, maxDate: "+4M +10D", dateFormat: 'yy-mm-dd'});
 
             });
-            $('form').on('focus', 'input[type=number]', function (e) {
-                $(this).on('mousewheel.disableScroll', function (e) {
-                    e.preventDefault();
-                });
-            });
-            $('form').on('blur', 'input[type=number]', function (e) {
-                $(this).off('mousewheel.disableScroll');
-            });
+          
 
             $(document).ready(function () {
                 var spoNumber = '${SPONumber}';
