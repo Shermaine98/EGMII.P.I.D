@@ -31,6 +31,7 @@ public class ConsumptionReportView {
     private String productType;
     private int productNumber;
     private String inventoryType;
+    private double totalQty;
     
    
 
@@ -285,5 +286,19 @@ public class ConsumptionReportView {
      */
     public void setInventoryType(String inventoryType) {
         this.inventoryType = inventoryType;
+    }
+
+    /**
+     * @return the totalQty
+     */
+    public double getTotalQty() {
+        return totalQty;
+    }
+
+    /**
+     * @param totalQty the totalQty to set
+     */
+    public void setTotalQty(double totalQty) {
+        this.totalQty = totalQty;
     }
 }

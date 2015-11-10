@@ -37,7 +37,7 @@ public class InventoryDAO {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
             PreparedStatement pstmt = conn.prepareStatement("SELECT INV.itemCode, "
-                    + "I.itemName, I.inventoryType, I.unitMeasurement, INV.qty\n"
+                    + "I.itemName, I.unitMeasurement, INV.qty\n"
                     + "FROM inventory INV\n"
                     + "JOIN ref_item I\n"
                     + "ON INV.itemCode = I.itemCode\n"
@@ -49,7 +49,6 @@ public class InventoryDAO {
 
                 newAccessoriesInventory.setItemCode(rs.getInt("itemCode"));
                 newAccessoriesInventory.setItemName(rs.getString("itemName"));
-                newAccessoriesInventory.setInventoryType(rs.getString("inventoryType"));
                 newAccessoriesInventory.setUnitMeasurement(rs.getString("unitMeasurement"));
                 newAccessoriesInventory.setQty(rs.getDouble("qty"));
                 AccessoriesInventory.add(newAccessoriesInventory);
@@ -116,11 +115,12 @@ public class InventoryDAO {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement("SELECT INV.itemCode, I.itemName, I.inventoryType, I.unitMeasurement, INV.qty\n"
+            PreparedStatement pstmt = conn.prepareStatement("SELECT INV.itemCode, "
+                    + "I.itemName, I.unitMeasurement, INV.qty\n"
                     + "FROM inventory INV\n"
                     + "JOIN ref_item I\n"
                     + "ON INV.itemCode = I.itemCode\n"
-                    + "WHERE I.inventoryType = \"production\";");
+                    + "WHERE I.inventoryType = \"production\"");
 
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
@@ -128,7 +128,6 @@ public class InventoryDAO {
 
                 newProductionInventory.setItemCode(rs.getInt("itemCode"));
                 newProductionInventory.setItemName(rs.getString("itemName"));
-                newProductionInventory.setInventoryType(rs.getString("inventoryType"));
                 newProductionInventory.setUnitMeasurement(rs.getString("unitMeasurement"));
                 newProductionInventory.setQty(rs.getDouble("qty"));
                 ProductionInventory.add(newProductionInventory);
@@ -155,7 +154,8 @@ public class InventoryDAO {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement("SELECT INV.itemCode, P.productName, P.productType, P.color, P.size, INV.qty\n"
+            PreparedStatement pstmt = conn.prepareStatement("SELECT INV.itemCode, "
+                    + "P.productName, P.productType, P.color, P.size, INV.qty\n"
                     + "FROM inventory INV\n"
                     + "JOIN product P\n"
                     + "ON INV.itemCode = P.itemCode\n"

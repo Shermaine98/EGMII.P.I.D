@@ -78,7 +78,7 @@
 
         <%
             if (data.equalsIgnoreCase("CuttingReportSpecific")) {
-                ArrayList<ConsumptionReportView> ConsumptionReportSpecific = (ArrayList<ConsumptionReportView>) request.getAttribute("CuttingReportSpecific");
+                ArrayList<ConsumptionReportView> ConsumptionReportSpecific = (ArrayList<ConsumptionReportView>) request.getAttribute("CRforCutting");
                 Integer cuttingNumber = (Integer) request.getAttribute("cuttingReportNumber");
         %>                    
         <form method="POST" action="EncodeSupplierPurchaseOrderServlet">
@@ -118,11 +118,11 @@
                                     for (int i = 0; i < ConsumptionReportSpecific.size(); i++) {
                                 %>
                                 <tr>
-                                    <td><input type="text" class="transparentBg inputSize" name="itemCode"  value = "<%=ConsumptionReportSpecific.get(i).getItemCode() %>"  readonly/></td>
+                                    <td><input type="text" class="transparentBg inputSize" name="itemName"  value = "<%=ConsumptionReportSpecific.get(i).getItemName() %>"  readonly/></td>
                                     <td><input type="text" class="transparentBg inputSize" name="color"  value = "<%=ConsumptionReportSpecific.get(i).getSize()%>"  readonly/></td>
                                     <td><input type="number" class="transparentBg inputSize" name="quantity"  value = "<%=ConsumptionReportSpecific.get(i).getVolumeQty()%>"  readonly/></td>
                                     <td><input type="number" class="transparentBg inputSize" name="quantity"  value = "<%=ConsumptionReportSpecific.get(i).getConsumptionQty()%>"  readonly/></td>
-                                    <td><input type="number" class="transparentBg inputSize" name="consumption"  value = ""  readonly/></td>
+                                    <td><input type="number" class="transparentBg inputSize" name="consumption"  value = "<%=ConsumptionReportSpecific.get(i).getTotalQty() %>"  readonly/></td>
                                 </tr> 
                                 <%
                             }

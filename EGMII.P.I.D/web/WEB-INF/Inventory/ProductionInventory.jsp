@@ -28,37 +28,26 @@
         </script>
     </head>
     <body>  
-        <%        
-        ArrayList<RawMaterialsInventoryView> ProductionInventory = (ArrayList<RawMaterialsInventoryView>) request.getAttribute("ProductionInventoryList");
+        <%            ArrayList<RawMaterialsInventoryView> ProductionInventory = (ArrayList<RawMaterialsInventoryView>) request.getAttribute("ProductionInventoryList");
         %>
     <center><h2>Production Inventory</h2></center>
     <div align="center" class="container">
         <table id="productionInventory" class="table table-bordered table-hover">
             <thead>
                 <tr>
-                    <th>Production Number</th>
-                    <th>Product ID</th>
-                    <th>Size</th>
-                    <th>Delivery Number</th>
-                    <th>Purchase Number</th>
                     <th>Item Code</th>
-                    <th>Date Updated</th>
+                    <th>Item Name</th>
                     <th>Quantity</th>
-                    <th>Updated By</th>
+                    <th>Unit Measurement</th>
                 </tr>
             </thead>
             <tbody>
                 <%for (int i = 0; i < ProductionInventory.size(); i++) {%>
                 <tr>
-                    <td>30000001</td>
-                    <td>2000000<%= i+1 %></td>
-                    <td>XS</td>
-                    <td>80000001</td>
-                    <td>91000000</td>
                     <td><%=ProductionInventory.get(i).getItemCode()%></td>
-                    <td>2015-11-10</td>
+                    <td><%=ProductionInventory.get(i).getItemName()%></td>
                     <td><%=ProductionInventory.get(i).getQty()%></td>
-                    <td>Benjamin Yung</td>
+                    <td><%=ProductionInventory.get(i).getUnitMeasurement()%></td>
                 </tr>
                 <%
                     }

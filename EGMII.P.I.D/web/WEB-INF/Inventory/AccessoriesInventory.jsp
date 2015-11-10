@@ -38,11 +38,9 @@
                     <thead>
                         <tr>
                             <th>Item Code</th>
-                            <th>Delivery Order Number</th>
-                            <th>Purchase Number</th>
-                            <th>Date Updated</th>
+                            <th>Item Name</th>
                             <th>Quantity</th>
-                            <th>Updated By</th>
+                            <th>Unit Measurement</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -51,11 +49,9 @@
                         %>
                         <tr>
                             <td><%=AccessoriesInventory.get(i).getItemCode()%></td>
-                            <td>80000000</td>
-                            <td>91111111</td>
-                            <td>2015-11-9</td>
-                            <td><%=AccessoriesInventory.get(i).getQty()%></td>
-                            <td>Benjamin Yung</td>
+                            <td><%=AccessoriesInventory.get(i).getItemName() %></td>
+                            <td><%=AccessoriesInventory.get(i).getQty() %></td>
+                            <td><%=AccessoriesInventory.get(i).getUnitMeasurement() %></td>
                         </tr>
                         <%
                             }

@@ -175,6 +175,7 @@
                     </table>
                 </div>
             </div>
+            <%}%>
 
             <!--ACCESSORIES-->
             <div class="panel panel-default col-md-7">
@@ -226,14 +227,14 @@
                             <tr> 
                                 <th>Fabric Name</th>     
                                 <th>Size</th> 
-                                <th>Volume Qty</th>
+                                <th>Volume Qty Per Size</th>
                                 <th>Consumption</th>
                                 <th>Unit Measurement</th>
                             </tr>
                         </thead>
                         <tbody>
                             <%
-                                ArrayList<ConsumptionReportView> productAllproduc = (ArrayList<ConsumptionReportView>) request.getAttribute("crListSpecific");
+                                ArrayList<ConsumptionReportView> productAllproduc = (ArrayList<ConsumptionReportView>) request.getAttribute("CRforFabric");
                                 for (int i = 0; i < productAllproduc.size(); i++) {
                                     if (productAllproduc.get(i).getInventoryType().equalsIgnoreCase("production")) {
                             %>   
@@ -255,7 +256,6 @@
             </div>
 
         </div>
-        <%}%>
         <!--CLOSE BRACKET HERE-->
 
         <div align="center">

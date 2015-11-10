@@ -226,5 +226,107 @@ public class ConsumptionReportDAO {
         }
         return null;
     }
+    
+    public ArrayList<ConsumptionReportView> GetCRforFabric(int productionNumber) throws ParseException {
 
+        ArrayList<ConsumptionReportView> ConsumptionReport = new ArrayList<ConsumptionReportView>();
+
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(""
+                    + "SELECT CR.productionNumber,\n" +
+                        "CR.dateMade, CR.status, CRD.itemCode,\n" +
+                        "CRD.qty as 'VolumeQty', P.productType, P.productName ,\n" +
+                        "P.color, P.size, I.itemName, I.inventoryType,\n" +
+                        "I.unitMeasurement, PBM.qty as 'ConsumptionQty', (CRD.qty * PBM.qty) as 'totalQty'\n" +
+                        "FROM consumption_report CR\n" +
+                        "JOIN cr_details CRD\n" +
+                        "ON CR.productionNumber = CRD.productionNumber\n" +
+                        "JOIN product P\n" +
+                        "ON CRD.itemCode =  P.itemCode\n" +
+                        "JOIN product_bm PBM\n" +
+                        "ON P.itemCode = PBM.productID\n" +
+                        "JOIN ref_item I\n" +
+                        "ON PBM.itemCode = I.itemCode\n" +
+                        "WHERE CR.productionNumber = ? \n" +
+                        "ORDER BY I.itemCode, P.itemCode;");
+            pstmt.setInt(1, productionNumber);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                ConsumptionReportView temp = new ConsumptionReportView();
+                temp.setProductionNumber(rs.getInt("productionNumber"));
+                temp.setDateMade(rs.getDate("dateMade"));
+                temp.setStatus(rs.getString("status"));
+                temp.setItemCode(rs.getInt("itemCode"));
+                temp.setVolumeQty(rs.getDouble("VolumeQty"));
+                temp.setProductName(rs.getString("productName"));
+                temp.setColor(rs.getString("color"));
+                temp.setSize(rs.getString("size"));
+                temp.setItemName(rs.getString("itemName"));
+                temp.setInventoryType(rs.getString("inventoryType"));
+                temp.setUnitMeasurement(rs.getString("unitMeasurement"));
+                temp.setConsumptionQty(rs.getDouble("ConsumptionQty"));
+                temp.setTotalQty(rs.getDouble("totalQty"));
+                ConsumptionReport.add(temp);
+            }
+            pstmt.close();
+            conn.close();
+            return ConsumptionReport;
+        } catch (SQLException ex) {
+            Logger.getLogger(ConsumptionReportDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    public ArrayList<ConsumptionReportView> GetCRForCutting(int productionNumber) throws ParseException {
+
+        ArrayList<ConsumptionReportView> ConsumptionReport = new ArrayList<ConsumptionReportView>();
+
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement("SELECT CR.productionNumber, \n" +
+                "CRD.itemCode,CR.dateMade, P.productName, \n" +
+                "RI.itemName, P.color, P.size, CRD.qty, PBM.qty, CRD.qty * PBM.qty) as 'totalQty'\n" +
+                "FROM consumption_report CR\n" +
+                "JOIN cr_details CRD\n" +
+                "ON CR.productionNumber = CRD.productionNumber\n" +
+                "JOIN product P \n" +
+                "ON CRD.itemCode = P.itemCode\n" +
+                "JOIN product_bm PBM\n" +
+                "ON P.itemCode = PBM.productID\n" +
+                "JOIN ref_item RI \n" +
+                "ON PBM.itemCode = RI.itemCode\n" +
+                "WHERE RI.inventoryType = \"production\" AND CR.productionNumber = ? \n" +
+                "ORDER BY 5, P.itemCode;");
+            pstmt.setInt(1, productionNumber);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                ConsumptionReportView temp = new ConsumptionReportView();
+                temp.setProductionNumber(rs.getInt("productionNumber"));
+                temp.setItemCode(rs.getInt("itemCode"));
+                temp.setDateMade(rs.getDate("dateMade"));
+                temp.setStatus(rs.getString("status"));
+                temp.setProductName(rs.getString("productName"));
+                temp.setItemName(rs.getString("itemName"));
+                temp.setColor(rs.getString("color"));
+                temp.setSize(rs.getString("size"));
+                temp.setVolumeQty(rs.getInt("VolumeQty"));
+                temp.setConsumptionQty(rs.getInt("ConsumptionQty"));
+                temp.setTotalQty(rs.getDouble("totalQty"));
+                ConsumptionReport.add(temp);
+            }
+            pstmt.close();
+            conn.close();
+            return ConsumptionReport;
+        } catch (SQLException ex) {
+            Logger.getLogger(ConsumptionReportDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 }
