@@ -290,7 +290,7 @@ public class ConsumptionReportDAO {
             Connection conn = myFactory.getConnection();
             PreparedStatement pstmt = conn.prepareStatement("SELECT CR.productionNumber, \n" +
                 "CRD.itemCode,CR.dateMade, P.productName, \n" +
-                "RI.itemName, P.color, P.size, CRD.qty as 'VolumeQty', \n" + 
+                "RI.itemName, RI.itemCode as 'forItem', P.color, P.size, CRD.qty as 'VolumeQty', \n" + 
                 "PBM.qty as 'ConsumptionQty', (CRD.qty * PBM.qty) as 'totalQty'\n" +
                 "FROM consumption_report CR\n" +
                 "JOIN cr_details CRD\n" +
@@ -314,6 +314,7 @@ public class ConsumptionReportDAO {
                 temp.setDateMade(rs.getDate("dateMade"));
                 temp.setProductName(rs.getString("productName"));
                 temp.setItemName(rs.getString("itemName"));
+                temp.setItemCodeRM(rs.getInt("forItem"));
                 temp.setColor(rs.getString("color"));
                 temp.setSize(rs.getString("size"));
                 temp.setVolumeQty(rs.getInt("VolumeQty"));

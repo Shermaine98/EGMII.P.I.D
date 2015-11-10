@@ -92,7 +92,7 @@ public class CuttingReportDAO {
             }
             if (i == 0) {
                 i = 500000000;
-            } else if (i == 99999999) {
+            } else if (i == 9999999) {
                 i = -1;
             } else {
                 i += 1;
