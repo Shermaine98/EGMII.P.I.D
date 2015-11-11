@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="EGMI" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a55eb19c-5c7a-4a85-9b26-9bd12a2bb018">
 	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="212"/>
+	<property name="ireport.y" value="164"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -111,7 +111,7 @@ ORDER BY 1, 2;]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial Unicode MS" size="16"/>
 				</textElement>
-				<text><![CDATA[Report Type]]></text>
+				<text><![CDATA[Boutique Inventory]]></text>
 			</staticText>
 			<textField pattern="MMMMM dd, yyyy">
 				<reportElement x="415" y="0" width="157" height="61" uuid="7f7b07f9-5f96-42b6-a8bf-fcdb8a24da2e"/>
