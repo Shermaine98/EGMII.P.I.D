@@ -23,11 +23,13 @@ import java.util.logging.Logger;
  *
  */
 public class ReplenishmentDAO {
-/**
- * Get Replenishment View
- * @return
- * @throws ParseException 
- */
+
+    /**
+     * Get Replenishment View
+     *
+     * @return
+     * @throws ParseException
+     */
     public ArrayList<RepRequestView> ReplenishmentReportView() throws ParseException {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -66,7 +68,7 @@ public class ReplenishmentDAO {
         }
         return null;
     }
-    
+
     /**
      * Encode Replenishment Request
      *
@@ -115,7 +117,7 @@ public class ReplenishmentDAO {
             pstmt.setInt(1, newRepRequestDetails.getVersion());
             pstmt.setDouble(2, newRepRequestDetails.getRepID());
             pstmt.setDouble(3, newRepRequestDetails.getItemCode());
-             pstmt.setDouble(4, newRepRequestDetails.getQty());
+            pstmt.setDouble(4, newRepRequestDetails.getQty());
 
             int rows = pstmt.executeUpdate();
             pstmt.close();
@@ -127,4 +129,32 @@ public class ReplenishmentDAO {
         return false;
     }
 
+    /**
+     * Get Replenisment Number
+     *
+     * @return
+     * @throws SQLException
+     */
+    public Integer getReplenishmentNumber() throws SQLException {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        Integer i = 0;
+        String query = "SELECT MAX(repID) from rep_request";
+        PreparedStatement ps = conn.prepareStatement(query);
+
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            i = rs.getInt("MAX(repID)");
+        }
+        if (i == 0) {
+            i = 80000000;
+        } else if (i == 89999999) {
+            i = -1;
+        } else {
+            i += 1;
+        }
+        conn.close();
+        rs.close();
+        return i;
+    }
 }

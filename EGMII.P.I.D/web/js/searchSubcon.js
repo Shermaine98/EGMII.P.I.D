@@ -5,7 +5,6 @@ function autoCompleteSubcon() {
         showNoSuggestionNotice: true,
         noSuggestionNotice: 'No Exsiting Suppplier',
         onSelect: function (event, ui) {
-            console.log("SELECTTT");
          var subconName = document.getElementById('subconName').value;
             $.ajax({
                 type: 'POST',

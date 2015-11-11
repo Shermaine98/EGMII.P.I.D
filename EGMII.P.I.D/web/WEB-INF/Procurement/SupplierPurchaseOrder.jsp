@@ -18,6 +18,7 @@
         <script src="js/searchSupplier.js"></script>
         <script type="text/javascript" src="js/deleteRow.js"></script>
         <script src="js/Validation.js"></script>
+        <script src="js/searchWarehouse.js"></script>
 
         <style>
             .input{
@@ -57,7 +58,6 @@
                     <div class="panel-body table-responsive">
                         <div class="input-group">
                             <input type="text" class="form-control" name="itemNameSupplier" id="itemNameSupplier" onkeypress="autoCompleteSupplierItem()" placeholder="Search Item"/>
-                            <input type="hidden" name="itemNameSupplier" id="itemNameSupplier" disabled="disabled" style="color: #CCC; position: absolute; background: transparent;"/>
                             <span class="input-group-btn">
                                 <a href="#" onClick="getSupplierItem()" class="btn btn-default">
                                     <span class="glyphicon glyphicon-search"></span>
@@ -82,8 +82,6 @@
                             <br/><br/>
                             <input type="submit" class="btn btn-default" value="Submit">
                             <a href="/EGMII.P.I.D/Account?action=goToHome"><button type="button" class="btn btn-primary" >Cancel</button></a>
-
-
                         </div>
 
 

@@ -29,7 +29,6 @@ public class InventoryDAO {
      * @return
      * @throws ParseException
      */
-
     public ArrayList<RawMaterialsInventoryView> GetAccessoriesInventory() throws ParseException {
         ArrayList<RawMaterialsInventoryView> AccessoriesInventory = new ArrayList<>();
 
@@ -102,8 +101,8 @@ public class InventoryDAO {
         }
         return null;
     }
-    
-     /**
+
+    /**
      * Get Specific Accessories Inventory
      *
      * @param itemCode
@@ -142,7 +141,6 @@ public class InventoryDAO {
         }
         return null;
     }
-
 
     /**
      * Get Production Inventory
@@ -300,31 +298,31 @@ public class InventoryDAO {
         }
         return false;
     }
-    
+
     public ArrayList<RawMaterialsInventoryView> checkRMInventory(int productionNumber) throws ParseException {
         ArrayList<RawMaterialsInventoryView> AccessoriesInventory = new ArrayList<>();
 
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement("SELECT Inv.itemCode, \n" +
-                "itemName, totalQtyPerItem,\n" +
-                "(inv.qty - totalQtyPerItem) AS 'BalQty'\n" +
-                "FROM inventory Inv\n" +
-                "INNER JOIN\n" +
-                "(SELECT BM.itemCode, RI.itemName as 'itemName', SUM((BM.qty * CRD.qty)) as 'totalQtyPerItem'\n" +
-                "FROM product_bm BM\n" +
-                "JOIN cr_details CRD\n" +
-                "ON BM.productID = CRD.itemCode\n" +
-                "JOIN ref_item RI \n" +
-                "ON BM.itemCode = RI.itemCode\n" +
-                "WHERE productionNumber = ?\n" +
-                "group by BM.itemCode) AS QN\n" +
-                "ON Inv.itemCode = QN.itemCode;");
-            
+            PreparedStatement pstmt = conn.prepareStatement("SELECT Inv.itemCode, \n"
+                    + "itemName, totalQtyPerItem,\n"
+                    + "(inv.qty - totalQtyPerItem) AS 'BalQty'\n"
+                    + "FROM inventory Inv\n"
+                    + "INNER JOIN\n"
+                    + "(SELECT BM.itemCode, RI.itemName as 'itemName', SUM((BM.qty * CRD.qty)) as 'totalQtyPerItem'\n"
+                    + "FROM product_bm BM\n"
+                    + "JOIN cr_details CRD\n"
+                    + "ON BM.productID = CRD.itemCode\n"
+                    + "JOIN ref_item RI \n"
+                    + "ON BM.itemCode = RI.itemCode\n"
+                    + "WHERE productionNumber = ?\n"
+                    + "group by BM.itemCode) AS QN\n"
+                    + "ON Inv.itemCode = QN.itemCode;");
+
             pstmt.setInt(1, productionNumber);
             ResultSet rs = pstmt.executeQuery();
-            
+
             while (rs.next()) {
                 RawMaterialsInventoryView newAccessoriesInventory = new RawMaterialsInventoryView();
 
@@ -338,6 +336,45 @@ public class InventoryDAO {
             conn.close();
             pstmt.close();
             return AccessoriesInventory;
+        } catch (SQLException ex) {
+            Logger.getLogger(InventoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    /**
+     * Get Warehouse Inventory
+     *
+     * @return
+     * @throws ParseException
+     */
+    public ArrayList<String> searchWarehouse(String productName) throws ParseException {
+        ArrayList<String> productNameList = new ArrayList<>();
+
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+
+            String search = productName + "%";
+            PreparedStatement pstmt = conn.prepareStatement("SELECT P.productName\n"
+                    + "FROM retail_inventory RI\n"
+                    + "JOIN product P\n"
+                    + "ON RI.itemCode = P.itemCode\n"
+                    + "WHERE P.productName LIKE ?\n"
+                    + "GROUP BY (p.productName);");
+
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                String newproductName;
+
+                newproductName = rs.getString("p.productName");
+                productNameList.add(newproductName);
+
+            }
+            conn.close();
+            pstmt.close();
+            return productNameList;
         } catch (SQLException ex) {
             Logger.getLogger(InventoryDAO.class.getName()).log(Level.SEVERE, null, ex);
         }

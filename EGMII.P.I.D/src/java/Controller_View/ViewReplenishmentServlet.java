@@ -10,6 +10,7 @@ import Model_View.InventoryReportView;
 import Model_View.RepRequestView;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -41,15 +42,18 @@ public class ViewReplenishmentServlet extends BaseServlet {
         ArrayList<RepRequestView> RepRequestView = new   ArrayList<RepRequestView>();
         String action = request.getParameter("action");
         ServletContext context = getServletContext();
+        Integer repID = 0;
         
-        if (action.equalsIgnoreCase("create")) {
-            try {
+        try {
                 irv = inventoryReportDAO.GetAllInventoryView();
             } catch (ParseException ex) {
                 Logger.getLogger(ViewReplenishmentServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
+        
+        if (action.equalsIgnoreCase("create")) {
             RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Delivery/ReplenishmentRequest.jsp");
             request.setAttribute("inventoryReports", irv);
+             request.setAttribute("data", "null");
             rd.forward(request, response);
             
         } else if (action.equalsIgnoreCase("revise")) {
@@ -59,8 +63,24 @@ public class ViewReplenishmentServlet extends BaseServlet {
                 Logger.getLogger(ViewInventoryReportServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
             RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Delivery/ViewReplenishmentRequest.jsp");
+            request.setAttribute("data", "null");
             request.setAttribute("RepRequestView", RepRequestView);
             rd.forward(request, response);
+        } else if(action.equalsIgnoreCase("specific")){
+            try {
+                // specific here
+
+                repID = ReplenishmentDAO.getReplenishmentNumber();
+            } catch (SQLException ex) {
+                Logger.getLogger(ViewReplenishmentServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Delivery/ReplenishmentRequest.jsp");
+            request.setAttribute("data", "specific");
+            request.setAttribute("inventoryReports", irv);
+            request.setAttribute("repID", repID);
+            rd.forward(request, response);
+            
         }
         
     }
