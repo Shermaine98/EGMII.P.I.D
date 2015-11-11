@@ -21,11 +21,11 @@
         <title>Boutique Inventory</title>
         <script>
             $(document).ready(function () {
-                $('#WarehouseInventory').DataTable({
+                $('#BoutiqueInventory').DataTable({
                     "paging": true,
                     "info": true
                 });
-                $('#WarehouseInventory2').DataTable({
+                $('#BoutiqueInventory2').DataTable({
                     "paging": true,
                     "info": true
                 });
@@ -73,7 +73,7 @@
         <div align="center" class="container">
             <br/><br/>
             <h3>Out of Stock</h3>
-            <table id="WarehouseInventory2" class="table table-bordered table-hover">
+            <table id="BoutiqueInventory2" class="table table-bordered table-hover">
                 <thead>
                     <tr>
                         <th>Product ID</th>

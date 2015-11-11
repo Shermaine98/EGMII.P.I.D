@@ -40,7 +40,7 @@ public class ViewBoutiqueInventoryServlet extends BaseServlet {
         }
         ServletContext context = getServletContext();
        
-        RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Inventory/WarehouseInventory.jsp");
+        RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Inventory/BoutiqueInventory.jsp");
         request.setAttribute("RBIList", RBIList);
         rd.forward(request, response); 
     }

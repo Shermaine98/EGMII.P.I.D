@@ -23,6 +23,42 @@
     <body>
         <div class="container" align="center">
             <h2>Replenishment Request</h2>
+            <!--Click Inventory Reports-->
+            <form id="form1" method="POST" action="SetApprovalSupplierPO">
+            <div class="container" align="center">
+                <h2>Approve Supplier Purchase Order</h2><br/>
+                <div style="width:60%;">
+                    <table id="dataTable" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Purchase Order No.</th>
+                                <th>Supplier</th>
+                                <th>Date Made</th>
+                                <th>Delivery Date</th>
+                                <th>Prepared By</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for (int i = 0; i < PurchaseOrderList.size(); i++) {%>
+                            <tr class="SupplierPOView">
+                                <td class="poNumber"><%=PurchaseOrderList.get(i).getPoNumber()%></td>
+                                <td><%=PurchaseOrderList.get(i).getCompanyName()%></td>
+                                <td><%=PurchaseOrderList.get(i).getDateMade()%></td>
+                                <td><%=PurchaseOrderList.get(i).getDeliveryDate()%></td>
+                                <td><%=PurchaseOrderList.get(i).getPreparedBy()%></td>
+                            </tr>
+                            <%
+                                }
+                            %>
+                        </tbody>
+                    </table>
+                </div>
+                <input type="hidden" name="hiddenValue" id="hiddenValue" value=""/>
+            </div>
+        </form>
+            
+     
+            
 
             <div class="panel panel-default col-md-3">
                 <div class="panel-body">
