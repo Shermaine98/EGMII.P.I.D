@@ -36,13 +36,20 @@ public class ViewReplenishmentServlet extends BaseServlet {
     @Override
     public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ReplenishmentDAO ReplenishmentDAO = new ReplenishmentDAO();
-        ArrayList<RepRequestView> RepRequestView = new   ArrayList<RepRequestView> ();
+        ArrayList<InventoryReportView> irv = new ArrayList<InventoryReportView>();
+        InventoryReportDAO inventoryReportDAO = new InventoryReportDAO();
+        ArrayList<RepRequestView> RepRequestView = new   ArrayList<RepRequestView>();
         String action = request.getParameter("action");
         ServletContext context = getServletContext();
         
         if (action.equalsIgnoreCase("create")) {
+            try {
+                irv = inventoryReportDAO.GetAllInventoryView();
+            } catch (ParseException ex) {
+                Logger.getLogger(ViewReplenishmentServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
             RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Delivery/ReplenishmentRequest.jsp");
-            request.setAttribute("", "");
+            request.setAttribute("inventoryReports", irv);
             rd.forward(request, response);
             
         } else if (action.equalsIgnoreCase("revise")) {

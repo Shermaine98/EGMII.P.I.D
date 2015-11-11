@@ -35,10 +35,6 @@
                     document.getElementById("form1").submit();
                 }));
             });
-            //          $('#run').ready(function(){
-            //         document.getElementById("run").addEventListener("load", SolveTQP);
-            //          });
-
         </script>
     </head>
     <%        ArrayList<SupplierPurchaseOrderView> PurchaseOrderList = (ArrayList<SupplierPurchaseOrderView>) request.getAttribute("SupplierPurchaseOrderList");

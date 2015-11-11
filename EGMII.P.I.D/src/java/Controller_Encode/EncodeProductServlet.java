@@ -38,7 +38,7 @@ public class EncodeProductServlet extends BaseServlet {
     @Override
     public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-     //   ProductBM productBM = new ProductBM();
+        //   ProductBM productBM = new ProductBM();
         ArrayList<ProductBM> ProductListBM = new ArrayList<>();
         ArrayList<Product> ProductList = new ArrayList<>();
         ProductDAO productDAO = new ProductDAO();
@@ -91,7 +91,12 @@ public class EncodeProductServlet extends BaseServlet {
                 if (productDAO.EncodeProduct(product)) {
                     x = true;
                     ProductList.add(product);
-                   
+                    try {
+                        x = productDAO.InsertInventory(0.0, productNumber);
+                    } catch (ParseException ex) {
+                        Logger.getLogger(EncodeProductServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
                     productNumber++;
                 } else {
                     x = false;
@@ -116,8 +121,8 @@ public class EncodeProductServlet extends BaseServlet {
                     }
                 }
             }
-            
-          for (int i = 0; i < itemCodefabric.length; i++) {
+
+            for (int i = 0; i < itemCodefabric.length; i++) {
                 productBM.setItemCode(Integer.parseInt(itemCodefabric[i]));
                 for (int y = 0; y < ProductList.size(); y++) {
                     if (y == 0 || x == true) {
@@ -125,19 +130,14 @@ public class EncodeProductServlet extends BaseServlet {
                         productBM.setProductID(ProductList.get(y).getItemCode());
                         productBM.setQty(Integer.parseInt(itemConsumptionfabric[input]));
                         if (productDAO.EncodeProductBM(productBM)) {
-                            try {
-                              x =  productDAO.InsertInventory(0.0 ,productBM.getProductID());
-                            } catch (ParseException ex) {
-                                Logger.getLogger(EncodeProductServlet.class.getName()).log(Level.SEVERE, null, ex);
-                            }
                             ProductListBM.add(productBM);
                         } else {
                             x = false;
                         }
                     }
                 }
-            }  
-            
+
+            }
 
         }
 

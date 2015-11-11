@@ -24,10 +24,12 @@ import java.util.logging.Logger;
  *
  */
 public class InventoryReportDAO {
+
     /**
      * View All Inventory Report
+     *
      * @return
-     * @throws ParseException 
+     * @throws ParseException
      */
 
     public ArrayList<InventoryReportView> InventoryReportView() throws ParseException {
@@ -78,12 +80,14 @@ public class InventoryReportDAO {
         }
         return null;
     }
-/**
- * Inventory Report View by Location
- * @param locationId
- * @return
- * @throws ParseException 
- */
+
+    /**
+     * Inventory Report View by Location
+     *
+     * @param locationId
+     * @return
+     * @throws ParseException
+     */
     public ArrayList<RetailInventoryView> InventoryReportCreateView(int locationId) throws ParseException {
         ArrayList<RetailInventoryView> RetailInventoryView = new ArrayList<>();
 
@@ -121,6 +125,48 @@ public class InventoryReportDAO {
             conn.close();
             pstmt.close();
             return RetailInventoryView;
+        } catch (SQLException ex) {
+            Logger.getLogger(InventoryReportDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    /**
+     * GetAll Inventory report group by
+     *
+     * @return
+     * @throws ParseException
+     */
+    public ArrayList<InventoryReportView> GetAllInventoryView() throws ParseException {
+        ArrayList<InventoryReportView> InventoryReportView = new ArrayList<>();
+
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(""
+                    + "SELECT r.reportID, r.promo, "
+                    + "r.location, r.dateMade, "
+                    + "rf.branchName, rf.address\n"
+                    + "FROM inventory_report r \n"
+                    + "JOIN ref_location rf\n"
+                    + "on r.location = rf.locationID \n"
+                    + "group by r.reportID;");
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                InventoryReportView newInventoryReport = new InventoryReportView();
+
+                newInventoryReport.setReportID(rs.getInt("reportID"));
+                newInventoryReport.setBranchName(rs.getString("branchName"));
+                newInventoryReport.setPromo(rs.getInt("promo"));
+                newInventoryReport.setDateMade(rs.getDate("DateMade"));
+                newInventoryReport.setAddress(rs.getString("address"));
+                InventoryReportView.add(newInventoryReport);
+
+            }
+            conn.close();
+            pstmt.close();
+            return InventoryReportView;
         } catch (SQLException ex) {
             Logger.getLogger(InventoryReportDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -187,10 +233,12 @@ public class InventoryReportDAO {
         }
         return false;
     }
+
     /**
      * Get Report ID
+     *
      * @return
-     * @throws SQLException 
+     * @throws SQLException
      */
 
     public Integer getReportId() throws SQLException {

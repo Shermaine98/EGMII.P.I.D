@@ -24,6 +24,8 @@ public class InventoryReportView {
     private double qty;
     private double soldQty;
     private double pulledOutQty;
+    private String address;
+
     
     private DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
     
@@ -196,6 +198,14 @@ public class InventoryReportView {
      */
     public void setQty(double qty) {
         this.qty = qty;
+    }
+    
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
     
 }

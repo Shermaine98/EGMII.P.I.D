@@ -4,6 +4,8 @@
     Author     : Geraldine
 --%>
 
+<%@page import="Model_View.InventoryReportView"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="/LevelOfAccess/LevelOFAccess.jsp"%>
 <!DOCTYPE html>
@@ -14,41 +16,62 @@
         <link rel="stylesheet" href="bootstrap/css/table-design.css">
         <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="bootstrap/css/sub-menu.css">
+        <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="bootstrap/css/jquery.dataTables.min.css">
         <link href="bootstrap/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
          <script src="js/Validation.js"></script>
         <title>Replenishment Request</title>
         <style>
         </style>
+        <script>
+             $(document).ready(function () {
+                $('#Replenish').DataTable({
+                    "paging": true,
+                    "info": true
+                });
+
+                $(".SupplierPOView").on("click", (function () {
+                    var purchaseOrderNum = $(this).closest("tr").find(".poNumber").text();
+                    document.getElementById('hiddenValue').value = purchaseOrderNum;
+                    document.getElementById("form1").submit();
+                }));
+            });
+        </script>
     </head>
     <body>
+        
+        
         <div class="container" align="center">
             <h2>Replenishment Request</h2>
             <!--Click Inventory Reports-->
-            <form id="form1" method="POST" action="SetApprovalSupplierPO">
+    <%        
+      ArrayList<InventoryReportView> InventoryReport = (ArrayList<InventoryReportView>) request.getAttribute("inventoryReports");
+      if(InventoryReport.size()<=0){
+    %>
+            <form id="form1" method="POST" action="">
             <div class="container" align="center">
                 <h2>Approve Supplier Purchase Order</h2><br/>
                 <div style="width:60%;">
-                    <table id="dataTable" class="table table-bordered table-hover">
+                    <table id="Replenish" class="table table-bordered table-hover">
                         <thead>
                             <tr>
-                                <th>Purchase Order No.</th>
-                                <th>Supplier</th>
+                                <th>Report ID</th>
+                                <th>Branch Name</th>
+                                <th>Promoter</th>
                                 <th>Date Made</th>
-                                <th>Delivery Date</th>
-                                <th>Prepared By</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <% for (int i = 0; i < PurchaseOrderList.size(); i++) {%>
+                            <% for (int i = 0; i < InventoryReport.size(); i++) {%>
                             <tr class="SupplierPOView">
-                                <td class="poNumber"><%=PurchaseOrderList.get(i).getPoNumber()%></td>
-                                <td><%=PurchaseOrderList.get(i).getCompanyName()%></td>
-                                <td><%=PurchaseOrderList.get(i).getDateMade()%></td>
-                                <td><%=PurchaseOrderList.get(i).getDeliveryDate()%></td>
-                                <td><%=PurchaseOrderList.get(i).getPreparedBy()%></td>
+                                <td class="poNumber"><%=InventoryReport.get(i).getReportID()%></td>
+                                <td><%=InventoryReport.get(i).getBranchName()%></td>
+                                <td><%=InventoryReport.get(i).getPromo()%></td>
+                                 <td><%=InventoryReport.get(i).getDateMade()%></td>
                             </tr>
                             <%
                                 }
+      }
                             %>
                         </tbody>
                     </table>
