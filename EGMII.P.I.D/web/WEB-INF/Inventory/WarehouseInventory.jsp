@@ -102,5 +102,10 @@
                 </tbody>
             </table>
         </div>
+        <form method="POST" action="PrintWarehouseInventory" target="_blank">
+            <div align="center">
+                <input type="submit" class="btn btn-default" value="Save"/>
+            </div>
+        </form>
     </body>
 </html>
