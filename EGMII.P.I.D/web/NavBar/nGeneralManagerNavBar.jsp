@@ -84,6 +84,7 @@
                                 <li><a href="/EGMII.P.I.D/ViewAccessoriesInventoryServlet">Accessories Inventory</a></li>
                                 <li><a href="/EGMII.P.I.D/ViewProductionInventoryServlet">Production Inventory</a></li>
                                 <li><a href="/EGMII.P.I.D/ViewWarehouseInventoryServlet">Warehouse Inventory</a></li>
+                                 <li><a href="/EGMII.P.I.D/ViewAllInventoryServlet">View All Inventory</a></li>
                                 <li><a href="/EGMII.P.I.D/ViewBoutiqueInventoryServlet">Boutique Inventory</a></li>
                             </ul>
                         </li>

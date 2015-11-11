@@ -212,6 +212,10 @@
         <servlet-name>SetApprovalSubconPOServlet</servlet-name>
         <servlet-class>Controller_Json.SetApprovalSubconPOServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewAllInventoryServlet</servlet-name>
+        <servlet-class>Controller_View.ViewAllInventoryServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SearchProductServlet</servlet-name>
         <url-pattern>/SearchProductServlet</url-pattern>
@@ -423,6 +427,10 @@
     <servlet-mapping>
         <servlet-name>SetApprovalSubconPOServlet</servlet-name>
         <url-pattern>/SetApprovalSubconPOServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewAllInventoryServlet</servlet-name>
+        <url-pattern>/ViewAllInventoryServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
