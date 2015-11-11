@@ -116,7 +116,7 @@ GROUP BY I.inventoryType = "accessories"]]>
 	<summary>
 		<band height="50">
 			<componentElement>
-				<reportElement key="table" style="table" x="0" y="0" width="572" height="50" uuid="8622a7e9-cd06-49c3-8520-68291bee26d7"/>
+				<reportElement key="table" style="table" x="104" y="0" width="366" height="50" uuid="8622a7e9-cd06-49c3-8520-68291bee26d7"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="New Dataset 1" uuid="8dabad98-a979-4611-8c8b-635afdc1b8c5">
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
