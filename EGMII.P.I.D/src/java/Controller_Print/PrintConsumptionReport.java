@@ -35,7 +35,7 @@ public class PrintConsumptionReport extends BaseServlet {
     @Override
     public void servletAction(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
-//        PrintWriter out = response.getWriter();
+        response.reset();
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
        
