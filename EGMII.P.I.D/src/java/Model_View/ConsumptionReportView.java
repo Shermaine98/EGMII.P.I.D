@@ -61,7 +61,7 @@ public class ConsumptionReportView {
     }
 
     /**
-     * @param dateMade set the dateMade
+     * @throws java.text.ParseException
      */
     public void setDateMade() throws ParseException {
         java.util.Date currentDate = new java.util.Date();
@@ -143,7 +143,7 @@ public class ConsumptionReportView {
     }
 
     /**
-     * @param qty the qty to set
+     * @param VolumeQty
      */
     public void setVolumeQty(double VolumeQty) {
         this.VolumeQty = VolumeQty;

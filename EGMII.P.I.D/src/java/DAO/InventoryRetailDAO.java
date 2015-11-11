@@ -23,7 +23,11 @@ import java.util.logging.Logger;
  */
 public class InventoryRetailDAO {
     
-    
+    /**
+     *
+     * @return
+     * @throws ParseException
+     */
     public ArrayList<RetailInventoryView> GetRIforView() throws ParseException {
         ArrayList<RetailInventoryView> RetailInventory = new ArrayList<>();
 

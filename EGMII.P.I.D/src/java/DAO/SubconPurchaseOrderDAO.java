@@ -62,7 +62,7 @@ public class SubconPurchaseOrderDAO {
     /**
      * Subcontractor Purchase Order details
      *
-     * @param newPurchaseOrderDetails
+     * @param newCRD
      * @return
      */
     public boolean UpdateSubconPurchaseOrderDetails(ConsumptionReportDetails newCRD) {
@@ -157,6 +157,12 @@ public class SubconPurchaseOrderDAO {
 
     }
     
+    /**
+     *
+     * @param newSupplierPurchaseOrder
+     * @return
+     * @throws ParseException
+     */
     public boolean updateApproval(PurchaseOrder newSupplierPurchaseOrder) throws ParseException {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -181,6 +187,11 @@ public class SubconPurchaseOrderDAO {
         return false;
     }
     
+    /**
+     *
+     * @return
+     * @throws ParseException
+     */
     public ArrayList<SubconPurchaseOrderView> GetSupplierPurchaseOrderForReceiving() throws ParseException {
 
         ArrayList<SubconPurchaseOrderView> DeliveryReceipt = new ArrayList<>();
@@ -220,6 +231,11 @@ public class SubconPurchaseOrderDAO {
         return null;
     }
     
+    /**
+     *
+     * @param poNumber
+     * @return
+     */
     public ArrayList<SubconPurchaseOrderView> getSubconPurchaseNumberView(int poNumber) {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -274,6 +290,13 @@ public class SubconPurchaseOrderDAO {
         return null;
     }
     
+    /**
+     *
+     * @param x
+     * @param poNumber
+     * @return
+     * @throws ParseException
+     */
     public boolean updateIsComplete(boolean x, int poNumber) throws ParseException {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();

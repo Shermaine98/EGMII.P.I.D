@@ -32,7 +32,7 @@ public class InventoryReportAll {
     }
 
     /**
-     * @param dateMade the dateMade to set
+     * @throws java.text.ParseException
      */
     public void setDateMade() throws ParseException {
         @SuppressWarnings("deprecation")
@@ -44,7 +44,8 @@ public class InventoryReportAll {
     }
     
          /**
-     * @param deliveryDate the deliveryDate to set
+     * @param dateMade
+     * @throws java.text.ParseException
      */
     public void setDateMade(java.util.Date dateMade) throws ParseException {
         @SuppressWarnings("deprecation")

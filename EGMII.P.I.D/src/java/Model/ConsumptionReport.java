@@ -46,7 +46,7 @@ public class ConsumptionReport {
     }
 
     /**
-     * @param dateMade set the dateMade
+     * @throws java.text.ParseException
      */
     public void setDateMade() throws ParseException {
         java.util.Date currentDate = new java.util.Date();

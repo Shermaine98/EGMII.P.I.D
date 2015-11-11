@@ -34,6 +34,13 @@ import org.json.JSONObject;
  */
 public class ViewSubconPurchaseOrderServlet extends BaseServlet {
 
+    /**
+     *
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
        

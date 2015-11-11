@@ -227,6 +227,12 @@ public class ConsumptionReportDAO {
         return null;
     }
     
+    /**
+     *
+     * @param productionNumber
+     * @return
+     * @throws ParseException
+     */
     public ArrayList<ConsumptionReportView> GetCRforFabric(int productionNumber) throws ParseException {
 
         ArrayList<ConsumptionReportView> ConsumptionReport = new ArrayList<ConsumptionReportView>();
@@ -281,6 +287,12 @@ public class ConsumptionReportDAO {
         return null;
     }
     
+    /**
+     *
+     * @param productionNumber
+     * @return
+     * @throws ParseException
+     */
     public ArrayList<ConsumptionReportView> GetCRForCutting(int productionNumber) throws ParseException {
 
         ArrayList<ConsumptionReportView> ConsumptionReport = new ArrayList<ConsumptionReportView>();

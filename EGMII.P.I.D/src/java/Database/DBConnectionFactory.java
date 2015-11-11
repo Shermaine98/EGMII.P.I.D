@@ -16,9 +16,17 @@ public abstract class DBConnectionFactory {
     String username = "HammerheadAdmin";
     String password = "DEVWEB";
 
+    /**
+     *
+     * @return
+     */
     public static DBConnectionFactory getInstance() {
         return new DBConnectionFactoryImpl();
     }
 
+    /**
+     *
+     * @return
+     */
     public abstract Connection getConnection();
 }

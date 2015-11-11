@@ -50,7 +50,7 @@ public class DeliveryReceiptAll {
     }
     
     /**
-     * @param dateMade set the dateMade
+     * @throws java.text.ParseException
      */
     public void setDateReceived() throws ParseException{
         java.util.Date currentDate = new java.util.Date();

@@ -23,6 +23,13 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class SearchProductsServlet extends BaseServlet {
 
+    /**
+     *
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

@@ -26,6 +26,13 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ViewAllInventoryServlet extends BaseServlet {
 
+    /**
+     *
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         InventoryDAO DAO = new InventoryDAO();

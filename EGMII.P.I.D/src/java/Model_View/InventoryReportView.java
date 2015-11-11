@@ -37,7 +37,7 @@ public class InventoryReportView {
     }
 
     /**
-     * @param dateMade the dateMade to set
+     * @throws java.text.ParseException
      */
     public void setDateMade() throws ParseException {
         @SuppressWarnings("deprecation")
@@ -49,7 +49,8 @@ public class InventoryReportView {
     }
     
          /**
-     * @param deliveryDate the deliveryDate to set
+     * @param dateMade
+     * @throws java.text.ParseException
      */
     public void setDateMade(java.util.Date dateMade) throws ParseException {
         @SuppressWarnings("deprecation")
@@ -200,10 +201,18 @@ public class InventoryReportView {
         this.qty = qty;
     }
     
+    /**
+     *
+     * @return
+     */
     public String getAddress() {
         return address;
     }
 
+    /**
+     *
+     * @param address
+     */
     public void setAddress(String address) {
         this.address = address;
     }

@@ -28,11 +28,18 @@ public class User {
 
     DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
-    
+    /**
+     *
+     * @return
+     */
     public int getLocationID() {
         return locationID;
     }
 
+    /**
+     *
+     * @param locationID
+     */
     public void setLocationID(int locationID) {
         this.locationID = locationID;
     }
@@ -87,6 +94,7 @@ public class User {
     }
 
     /**
+     * @param email
      * @param userName the userName to set
      */
     public void setUserName(String email) {
@@ -108,6 +116,7 @@ public class User {
     }
 
     /**
+     * @param Position
      * @return the position
      */
     public String getPosition(String Position) {
@@ -151,6 +160,7 @@ public class User {
 
     /**
      * @param birthDate the birthDate to set
+     * @throws java.text.ParseException
      */
     public void setBirthDate() throws ParseException {
         @SuppressWarnings("deprecation")
@@ -161,6 +171,11 @@ public class User {
         this.birthDate = sqlreceivedDate1;
     }
 
+    /**
+     *
+     * @param birthDate
+     * @throws ParseException
+     */
     public void setBirthDate(String birthDate) throws ParseException {
         @SuppressWarnings("deprecation")
         java.util.Date hbirthDate = formatter.parse(birthDate);
@@ -176,7 +191,9 @@ public class User {
     }
 
     /**
+     * @param EntryDate
      * @param entryDate the entryDate to set
+     * @throws java.text.ParseException
      */
     public void setEntryDate(String EntryDate) throws ParseException {
         @SuppressWarnings("deprecation")
@@ -194,6 +211,7 @@ public class User {
 
     /**
      * @param leftDate the leftDate to set
+     * @throws java.text.ParseException
      */
     public void setLeftDate() throws ParseException {
         @SuppressWarnings("deprecation")
@@ -204,6 +222,11 @@ public class User {
         this.leftDate = sqlreceivedDate1;
     }
 
+    /**
+     *
+     * @param LeftDate
+     * @throws ParseException
+     */
     public void setLeftDate(String LeftDate) throws ParseException {
         @SuppressWarnings("deprecation")
         java.util.Date hDate = formatter.parse(LeftDate);

@@ -299,6 +299,12 @@ public class InventoryDAO {
         return false;
     }
 
+    /**
+     *
+     * @param productionNumber
+     * @return
+     * @throws ParseException
+     */
     public ArrayList<RawMaterialsInventoryView> checkRMInventory(int productionNumber) throws ParseException {
         ArrayList<RawMaterialsInventoryView> AccessoriesInventory = new ArrayList<>();
 
@@ -345,6 +351,7 @@ public class InventoryDAO {
     /**
      * Get Warehouse Inventory
      *
+     * @param productName
      * @return
      * @throws ParseException
      */

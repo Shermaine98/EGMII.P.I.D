@@ -36,6 +36,13 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class SetSubconPOSpecificSerlvet extends BaseServlet {
 
+    /**
+     *
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         SubconPurchaseOrderDAO  SubconPurchaseOrderDAO = new SubconPurchaseOrderDAO();

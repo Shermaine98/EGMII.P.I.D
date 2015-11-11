@@ -29,7 +29,7 @@ public class CuttingReport {
     }
 
     /**
-     * @param dateMade the dateMade to set
+     * @throws java.text.ParseException
      */
     public void setDateMade() throws ParseException {
         @SuppressWarnings("deprecation")
@@ -42,6 +42,7 @@ public class CuttingReport {
     
          /**
      * @param deliveryDate the deliveryDate to set
+     * @throws java.text.ParseException
      */
     public void setDateMade(java.util.Date dateMade) throws ParseException {
         @SuppressWarnings("deprecation")

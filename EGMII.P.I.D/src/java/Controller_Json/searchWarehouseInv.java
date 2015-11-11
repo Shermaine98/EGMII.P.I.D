@@ -19,6 +19,13 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class searchWarehouseInv extends BaseServlet {
 
+    /**
+     *
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             String productName1 = request.getParameter("query");

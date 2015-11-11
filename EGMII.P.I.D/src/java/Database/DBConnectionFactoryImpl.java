@@ -16,6 +16,10 @@ import java.util.logging.Logger;
  */
 public class DBConnectionFactoryImpl extends DBConnectionFactory {
 
+    /**
+     *
+     * @return
+     */
     @Override
     public Connection getConnection() {
         try {

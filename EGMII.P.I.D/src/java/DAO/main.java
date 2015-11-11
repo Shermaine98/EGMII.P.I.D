@@ -16,6 +16,13 @@ import Model_General.ProductAll;
  * @author shermainesy
  */
 public class main {
+
+    /**
+     *
+     * @param args
+     * @throws SQLException
+     * @throws ParseException
+     */
     public static void main (String args[]) throws SQLException, ParseException{
     SupplierPurchaseOrderDAO  SupplierPurchaseOrderDAO = new SupplierPurchaseOrderDAO();
     InventoryDAO InventoryDAO = new InventoryDAO();

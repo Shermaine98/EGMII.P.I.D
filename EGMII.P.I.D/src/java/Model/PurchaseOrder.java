@@ -35,7 +35,7 @@ public class PurchaseOrder {
     }
 
     /**
-     * @param dateMade the dateMade to set
+     * @throws java.text.ParseException
      */
     public void setDateMade() throws ParseException {
         @SuppressWarnings("deprecation")
@@ -48,6 +48,7 @@ public class PurchaseOrder {
     
          /**
      * @param deliveryDate the deliveryDate to set
+     * @throws java.text.ParseException
      */
     public void setDateMade(java.util.Date dateMade) throws ParseException {
         @SuppressWarnings("deprecation")
@@ -67,6 +68,7 @@ public class PurchaseOrder {
 
     /**
      * @param deliveryDate the deliveryDate to set
+     * @throws java.text.ParseException
      */
     public void setDeliveryDate(java.util.Date deliveryDate) throws ParseException {
         @SuppressWarnings("deprecation")
@@ -88,6 +90,10 @@ public class PurchaseOrder {
         this.setDeliveryDate(deliveryDate1);
     }
     
+    /**
+     *
+     * @param deliveryDate
+     */
     public void setDeliveryDate(java.sql.Date deliveryDate) {
         this.deliveryDate = deliveryDate;
     }

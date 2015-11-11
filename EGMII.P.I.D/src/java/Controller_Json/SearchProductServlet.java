@@ -22,6 +22,13 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class SearchProductServlet extends BaseServlet {
 
+    /**
+     *
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ArrayList<ProductAll> productALLAccessories = new ArrayList<ProductAll>();

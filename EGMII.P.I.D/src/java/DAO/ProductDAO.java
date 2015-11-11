@@ -126,7 +126,7 @@ public class ProductDAO {
     /**
      * Get Item Production for Consumption Report
      *
-     * @param search productName
+     * @param productName
      * @return
      * @throws SQLException
      */
@@ -165,6 +165,7 @@ public class ProductDAO {
     /**
      * Get Item Accessories for Consumption Report
      *
+     * @param productName
      * @param search productName
      * @return
      * @throws SQLException

@@ -87,6 +87,11 @@ public class SupplierPurchaseOrderDAO {
         return false;
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     public Integer getSupplierPurchaseOrderNumber() throws SQLException {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -110,6 +115,10 @@ public class SupplierPurchaseOrderDAO {
         return i;
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<SupplierPurchaseOrderView> GetAllSupplierPurchaseOrderForApproval() {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -141,6 +150,10 @@ public class SupplierPurchaseOrderDAO {
         return null;
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<SupplierPurchaseOrderView> GetAllSupplierPurchaseView() {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();

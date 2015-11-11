@@ -18,6 +18,13 @@ import java.util.ArrayList;
  * @author Gerard
  */
 public class RefSubconDAO {
+
+    /**
+     *
+     * @param subconName
+     * @return
+     * @throws SQLException
+     */
     public ArrayList<RefSubcon> searchSubcon(String subconName) throws SQLException {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
