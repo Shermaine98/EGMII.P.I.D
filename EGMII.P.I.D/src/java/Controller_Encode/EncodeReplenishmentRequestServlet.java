@@ -1,23 +1,10 @@
 package Controller_Encode;
 
 import Controller_Base.BaseServlet;
-import DAO.ConsumptionReportDAO;
-import DAO.InventoryDAO;
-import DAO.InventoryReportDAO;
-import DAO.InventoryRetailDAO;
-import DAO.ProductDAO;
 import DAO.ReplenishmentDAO;
-import Model.ConsumptionReport;
-import Model.ConsumptionReportDetails;
-import Model.InventoryReport;
-import Model.InventoryReportDetails;
 import Model.RepRequest;
-import Model.User;
-import Model_View.WarehouseInventoryView;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;

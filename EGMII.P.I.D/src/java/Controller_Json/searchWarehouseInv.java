@@ -31,6 +31,7 @@ public class searchWarehouseInv extends BaseServlet {
             String productName1 = request.getParameter("query");
 
         try (PrintWriter out = response.getWriter()) {
+            
             ArrayList<String> productName = new InventoryDAO().searchWarehouse(productName1);
             ArrayList<String> productNameList = new ArrayList<String>();
            
