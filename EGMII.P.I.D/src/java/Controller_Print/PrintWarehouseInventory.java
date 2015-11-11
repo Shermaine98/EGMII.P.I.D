@@ -46,21 +46,21 @@ public class PrintWarehouseInventory extends BaseServlet {
        
         Map map = new HashMap();
 
-        InputStream f = new FileInputStream(new File(path + "/AccessoriesInventory.jrxml"));
+        InputStream f = new FileInputStream(new File(path + "/WarehouseInventory.jrxml"));
         try {
             jasperReport = JasperCompileManager.compileReport(f);
         } catch (JRException ex) {
-            Logger.getLogger(PrintAccessoriesInventory.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PrintWarehouseInventory.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         byte[] byteStream = null;
         try {
             byteStream = JasperRunManager.runReportToPdf(jasperReport, map, conn);
         } catch (JRException ex) {
-            Logger.getLogger(PrintAccessoriesInventory.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PrintWarehouseInventory.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        response.addHeader("content-disposition", "attachment; filename=AccessoriesInventory.pdf");   
+        response.addHeader("content-disposition", "attachment; filename=WarehouseInventory.pdf");   
         response.setContentType("application/pdf");
         response.setContentLength(byteStream.length);
         outStream.write(byteStream, 0, byteStream.length);
