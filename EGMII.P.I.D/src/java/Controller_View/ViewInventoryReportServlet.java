@@ -65,7 +65,7 @@ public class ViewInventoryReportServlet extends BaseServlet {
         } else if (action.equalsIgnoreCase("view")) {
             ArrayList<InventoryReportView> inventoryReportView = new ArrayList<InventoryReportView>();
             try {
-                inventoryReportView = inventoryReportDAO.InventoryReportView();
+                inventoryReportView = inventoryReportDAO.InventoryReportView(user.getEmployeeNumber());
             } catch (ParseException ex) {
                 Logger.getLogger(ViewInventoryReportServlet.class.getName()).log(Level.SEVERE, null, ex);
             }

@@ -3,6 +3,7 @@ package DAO;
 import Database.DBConnectionFactory;
 import Model.InventoryReport;
 import Model.InventoryReportDetails;
+import Model.User;
 import Model_View.InventoryReportView;
 import Model_View.RetailInventoryView;
 import java.sql.Connection;
@@ -32,7 +33,7 @@ public class InventoryReportDAO {
      * @throws ParseException
      */
 
-    public ArrayList<InventoryReportView> InventoryReportView() throws ParseException {
+    public ArrayList<InventoryReportView> InventoryReportView(int empNum) throws ParseException {
         ArrayList<InventoryReportView> InventoryReport = new ArrayList<>();
 
         try {
@@ -52,8 +53,10 @@ public class InventoryReportDAO {
                     + "JOIN inventory_report IR \n"
                     + "ON L.locationID = IR.location\n"
                     + "JOIN inventory_report_details IRD\n"
-                    + "ON IR.reportID = IRD.reportID\n;");
+                    + "ON IR.reportID = IRD.reportID\n"
+                    + "WHERE IR.promo = ?;");
 
+            pstmt.setInt(1, empNum);
             ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) {
