@@ -464,6 +464,8 @@
     <servlet-mapping>
         <servlet-name>ErrorCatchingServlet</servlet-name>
         <url-pattern>/ErrorCatchingServlet</url-pattern>
+          </servlet-mapping>
+          <servlet-mapping>
         <servlet-name>PrintAccessoriesInventory</servlet-name>
         <url-pattern>/PrintAccessoriesInventory</url-pattern>
     </servlet-mapping>
