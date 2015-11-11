@@ -35,15 +35,14 @@
                     document.getElementById('hiddenValue').value = purchaseOrderNum;
                     document.getElementById("form1").submit();
                 }));
-
+                $("#datepicker").datepicker({minDate: 1, maxDate: "+4M +10D", dateFormat: 'yy-mm-dd'});
+               
                 var x = document.getElementById('trigger').value;
                 if (x === "true") {
                     $('input[type="submit').prop('disabled', true);
                 }
-
-                $("#datepicker").datepicker({minDate: 1, maxDate: "+4M +10D", dateFormat: 'yy-mm-dd'});
-
             });
+           
         </script>
         <style>
             .input{
