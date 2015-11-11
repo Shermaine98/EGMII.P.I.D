@@ -91,7 +91,7 @@
             <div align="center">
                 <button class="btn btn-danger">Print</button>
             </div>
-        </form>
+        </form><br/>
         <div id="buttonz" align="center">
             <button class="btn btn-danger" style="width:130px">Create Request</button>
         </div>
