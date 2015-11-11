@@ -102,7 +102,7 @@
         </div>
         <form method="POST" action="PrintAccessoriesInventory" target="_blank">
             <div align="center">
-                <input type="submit" class="btn btn-default" value="Print"/>
+                <input type="submit" class="btn btn-default" value="Save"/>
             </div>
         </form>
     </body>

@@ -35,9 +35,10 @@ public class PrintAccessoriesInventory extends BaseServlet {
     @Override
     public void servletAction(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
+        response.reset();
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
-       
+        OutputStream outStream = response.getOutputStream();
         JasperReport jasperReport = null;
         
         String path = getServletContext().getRealPath("/Reports/Inventory/");
@@ -48,16 +49,16 @@ public class PrintAccessoriesInventory extends BaseServlet {
         try {
             jasperReport = JasperCompileManager.compileReport(f);
         } catch (JRException ex) {
-            Logger.getLogger(PrintConsumptionReport.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PrintAccessoriesInventory.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         byte[] byteStream = null;
         try {
             byteStream = JasperRunManager.runReportToPdf(jasperReport, map, conn);
         } catch (JRException ex) {
-            Logger.getLogger(PrintConsumptionReport.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PrintAccessoriesInventory.class.getName()).log(Level.SEVERE, null, ex);
         }
-        OutputStream outStream = response.getOutputStream();
+        
         response.addHeader("content-disposition", "attachment; filename=AccessoriesInventory.pdf");   
         response.setContentType("application/pdf");
         response.setContentLength(byteStream.length);

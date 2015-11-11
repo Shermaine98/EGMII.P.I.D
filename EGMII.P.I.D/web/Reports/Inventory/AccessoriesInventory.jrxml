@@ -3,10 +3,49 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<queryString>
-		<![CDATA[SELECT INV.itemCode, I.itemName, I.unitMeasurement, INV.qty
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#C8AE8C">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#E6DCCF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="New Dataset 1" uuid="d6ee1f4b-7b4d-4619-a1a1-254913b9d0a2">
+		<queryString>
+			<![CDATA[SELECT INV.itemCode, I.itemName, I.unitMeasurement, INV.qty
 FROM inventory INV JOIN ref_item I ON INV.itemCode = I.itemCode
-WHERE I.inventoryType = "accessories AND inv.qty !=0"]]>
+WHERE I.inventoryType = "accessories" AND inv.qty !=0]]>
+		</queryString>
+		<field name="itemCode" class="java.math.BigDecimal">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="itemName" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="unitMeasurement" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="qty" class="java.lang.Double">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+	</subDataset>
+	<queryString>
+		<![CDATA[SELECT DISTINCT INV.itemCode, I.itemName, I.unitMeasurement, INV.qty
+FROM inventory INV JOIN ref_item I ON INV.itemCode = I.itemCode
+WHERE I.inventoryType = "accessories" AND inv.qty !=0]]>
 	</queryString>
 	<field name="itemCode" class="java.math.BigDecimal">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -56,6 +95,84 @@ WHERE I.inventoryType = "accessories AND inv.qty !=0"]]>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="487" splitType="Stretch"/>
+		<band height="487" splitType="Stretch">
+			<componentElement>
+				<reportElement key="table" style="table" x="114" y="0" width="360" height="50" uuid="8622a7e9-cd06-49c3-8520-68291bee26d7"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="New Dataset 1" uuid="8dabad98-a979-4611-8c8b-635afdc1b8c5">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="90" uuid="c3804d17-2a4d-4ef6-a3e1-1adffe25d816">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="01f3fb05-015e-4092-93c2-1015996135c1"/>
+								<textElement verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[ Item Code]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="33194540-8fc6-4e92-8e74-18b8ed5f57fe"/>
+								<textFieldExpression><![CDATA[$F{itemCode}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="ccdf91d9-0701-4bf5-ba85-c901c6043f94">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="dbbceb8e-914c-4a4d-aabb-03608cb9740d"/>
+								<textElement verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[ Item Name]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="7e4366ce-88d0-4874-bfe8-84f1ac21bbd9"/>
+								<textFieldExpression><![CDATA[$F{itemName}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="45040ba4-8947-4a8a-9b37-56fcda74b95f">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="97eabb0c-b2b5-4f25-9896-a0d9c81dedeb"/>
+								<textElement verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[ Unit
+ Measurement]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="334bd7ba-ece0-48a3-a867-7800eb81a9e5"/>
+								<textFieldExpression><![CDATA[$F{unitMeasurement}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="162f8a8c-2008-456c-a72f-51151818d337">
+						<jr:columnHeader style="table_CH" height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="2b2c25f3-7e29-4983-bbb2-0aa8d60db7d7"/>
+								<textElement verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[ Quantity]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="9114c1ff-1301-4cc9-b65a-b8aba2f2e9e4"/>
+								<textFieldExpression><![CDATA[$F{qty}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
 	</detail>
 </jasperReport>
