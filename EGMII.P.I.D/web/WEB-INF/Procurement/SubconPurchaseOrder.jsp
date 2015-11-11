@@ -44,10 +44,6 @@
 
                 }
             });
-            //          $('#run').ready(function(){
-            //         document.getElementById("run").addEventListener("load", SolveTQP);
-            //          });
-
         </script>
         <style>
             .input{
@@ -112,7 +108,6 @@
                         <!--Search Subcon-->
                         <label for="subconName">Subcontractor</label>
                         <input type="text" class="form-control" name="subconName" id="subconName" pattern=".{1,}" required title="lease Input Subcontractor" onkeypress="autoCompleteSubcon();" placeholder="Search Subcon"/>
-                        <input type="hidden" name="subconID" id="subcon" disabled="disabled" style="color: #CCC; position: absolute; background: transparent;"/>
                         <br/>  
 
                         <label class="" for="productionNumber">Production Number</label>
@@ -157,8 +152,8 @@
                                     <td><input type="text" value="<%=rmwi.get(i).getQtyNeeded()%>" class="transparentBg" readonly/> 
                                 </tr> 
                                 <%
-                                 }
-                             }%>
+                                        }
+                                    }%>
                             </tbody>
                         </table>
                     </div>
@@ -311,37 +306,28 @@
                                 %>
                             </tbody>
                         </table>
+                        <table id="dataSubconService">
+                            <tbody>
+                                
+                            </tbody>
+                        </table>
                     </div>
                     <br/>
-
-
-
-
-                    <div class="container" align="center">
-                        <br/><br/>
-                        <a href="/EGMII.P.I.D/Account?action=goToHome"><button type="button" class="btn btn-danger" >Cancel</button></a>
-                        <input type="submit" class="btn btn-danger" value="Submit"/>
-                    </div>
-
-                    </form>
-                    <%}%>
-                    
                 </div>
-                <br/><br/>
-                <script>
-                    $(function () {
-                        $("#datepicker").datepicker({minDate: 1, maxDate: "+4M +10D", dateFormat: 'yy-mm-dd'});
+                <div class="container" align="center">
+                    <br/><br/>
+                    <a href="/EGMII.P.I.D/Account?action=goToHome"><button type="button" class="btn btn-danger" >Cancel</button></a>
+                    <input type="submit" class="btn btn-danger" value="Submit"/>
+                </div>
+            </div>
+        </form>
+        <%}%>
+        <br/><br/>
+        <script>
+                $(function () {
+            $("#datepicker").datepicker({minDate: 1, maxDate: "+4M +10D", dateFormat: 'yy-mm-dd'});
 
-                    });
-
-                    function autoComplete() {
-                        $("#productName").devbridgeAutocomplete({
-                            serviceUrl: 'SearchProductsServlet',
-                            type: 'POST',
-                            showNoSuggestionNotice: true,
-                            noSuggestionNotice: 'No Exsiting Product'
-                        });
-                    }
-                </script>
-                </body>
-                </html>
+            });
+        </script>
+    </body>
+</html>

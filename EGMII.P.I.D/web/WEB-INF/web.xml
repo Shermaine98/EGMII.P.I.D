@@ -204,6 +204,10 @@
         <servlet-name>ApproveRejectSubconPOServlet</servlet-name>
         <servlet-class>Controller_Approve.ApproveRejectSubconPOServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SetSubconInfoServlet</servlet-name>
+        <servlet-class>Controller_Json.SetSubconInfoServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SearchProductServlet</servlet-name>
         <url-pattern>/SearchProductServlet</url-pattern>
@@ -407,6 +411,10 @@
     <servlet-mapping>
         <servlet-name>ApproveRejectSubconPOServlet</servlet-name>
         <url-pattern>/ApproveRejectSubconPOServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SetSubconInfoServlet</servlet-name>
+        <url-pattern>/SetSubconInfoServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
