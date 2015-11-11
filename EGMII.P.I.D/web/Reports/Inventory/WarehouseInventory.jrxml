@@ -113,26 +113,26 @@ WHERE P.inventoryType = "warehouse";]]>
 			</frame>
 		</band>
 	</title>
-	<columnHeader>
-		<band height="61" splitType="Stretch">
+	<pageHeader>
+		<band height="50">
 			<staticText>
-				<reportElement x="0" y="0" width="260" height="61" uuid="7d3cc8bc-148c-4c6a-8353-7861a678c6a8"/>
+				<reportElement x="155" y="0" width="260" height="50" uuid="7d3cc8bc-148c-4c6a-8353-7861a678c6a8"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial Unicode MS" size="16"/>
 				</textElement>
-				<text><![CDATA[Report Type]]></text>
+				<text><![CDATA[Warehouse Inventory]]></text>
 			</staticText>
 			<textField pattern="MMMMM dd, yyyy">
-				<reportElement x="415" y="0" width="157" height="61" uuid="7f7b07f9-5f96-42b6-a8bf-fcdb8a24da2e"/>
+				<reportElement x="415" y="0" width="157" height="50" uuid="7f7b07f9-5f96-42b6-a8bf-fcdb8a24da2e"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Arial Unicode MS" size="16"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 		</band>
-	</columnHeader>
-	<detail>
-		<band height="487" splitType="Stretch">
+	</pageHeader>
+	<summary>
+		<band height="50">
 			<componentElement>
 				<reportElement key="table 1" style="table 1" x="17" y="0" width="540" height="50" uuid="f493c62b-c6f4-4023-93d7-69006ff44da1"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
@@ -244,5 +244,5 @@ WHERE P.inventoryType = "warehouse";]]>
 				</jr:table>
 			</componentElement>
 		</band>
-	</detail>
+	</summary>
 </jasperReport>
