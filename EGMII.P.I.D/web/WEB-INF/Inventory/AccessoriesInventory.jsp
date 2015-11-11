@@ -17,7 +17,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="bootstrap/css/jquery.dataTables.min.css">
         <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
-         <script src="js/Validation.js"></script>
+        <script src="js/Validation.js"></script>
         <title>Accessories Inventory</title>
         <script>
             $(document).ready(function () {
@@ -25,12 +25,12 @@
                     "paging": true,
                     "info": true
                 });
-                
+
                 $('#AccessoriesInventory2').DataTable({
                     "paging": true,
                     "info": true
                 });
-                
+
             });
         </script>
     </head>
@@ -53,13 +53,13 @@
                     <tbody>
                         <%
                             for (int i = 0; i < AccessoriesInventory.size(); i++) {
-                                if(AccessoriesInventory.get(i).getQty() > 0){
+                                if (AccessoriesInventory.get(i).getQty() > 0) {
                         %>
                         <tr>
                             <td><%=AccessoriesInventory.get(i).getItemCode()%></td>
-                            <td><%=AccessoriesInventory.get(i).getItemName() %></td>
-                            <td><%=AccessoriesInventory.get(i).getQty() %></td>
-                            <td><%=AccessoriesInventory.get(i).getUnitMeasurement() %></td>
+                            <td><%=AccessoriesInventory.get(i).getItemName()%></td>
+                            <td><%=AccessoriesInventory.get(i).getQty()%></td>
+                            <td><%=AccessoriesInventory.get(i).getUnitMeasurement()%></td>
                         </tr>
                         <%
                                 }
@@ -68,10 +68,10 @@
                     </tbody>
                 </table>
             </div>
-                    <!-- for 0 qty -->
-                    <br/><br/>
-                    <h3>Out of Stock</h3>
-                    <div>
+            <!-- for 0 qty -->
+            <br/><br/>
+            <h3>Out of Stock</h3>
+            <div>
                 <table id="AccessoriesInventory2" class="table table-bordered table-hover">
                     <thead>
                         <tr>
@@ -84,13 +84,13 @@
                     <tbody>
                         <%
                             for (int i = 0; i < AccessoriesInventory.size(); i++) {
-                                if(AccessoriesInventory.get(i).getQty() <= 0){
+                                if (AccessoriesInventory.get(i).getQty() <= 0) {
                         %>
                         <tr>
                             <td><%=AccessoriesInventory.get(i).getItemCode()%></td>
-                            <td><%=AccessoriesInventory.get(i).getItemName() %></td>
-                            <td><%=AccessoriesInventory.get(i).getQty() %></td>
-                            <td><%=AccessoriesInventory.get(i).getUnitMeasurement() %></td>
+                            <td><%=AccessoriesInventory.get(i).getItemName()%></td>
+                            <td><%=AccessoriesInventory.get(i).getQty()%></td>
+                            <td><%=AccessoriesInventory.get(i).getUnitMeasurement()%></td>
                         </tr>
                         <%
                                 }
@@ -100,5 +100,10 @@
                 </table>
             </div>
         </div>
+        <form method="POST" action="PrintAccessoriesInventory" target="_blank">
+            <div align="center">
+                <input type="submit" class="btn btn-default" value="Print"/>
+            </div>
+        </form>
     </body>
 </html>
