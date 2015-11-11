@@ -49,7 +49,8 @@ WHERE I.inventoryType = "production" and INV.qty != 0]]>
 FROM inventory INV
 JOIN ref_item I
 ON INV.itemCode = I.itemCode
-WHERE I.inventoryType = "production" and INV.qty != 0]]>
+WHERE I.inventoryType = "production" and INV.qty != 0
+GROUP BY I.inventoryType = "production"]]>
 	</queryString>
 	<field name="itemCode" class="java.math.BigDecimal">
 		<fieldDescription><![CDATA[]]></fieldDescription>

@@ -43,9 +43,10 @@ WHERE I.inventoryType = "accessories" AND inv.qty !=0]]>
 		</field>
 	</subDataset>
 	<queryString>
-		<![CDATA[SELECT DISTINCT INV.itemCode, I.itemName, I.unitMeasurement, INV.qty
+		<![CDATA[SELECT INV.itemCode, I.itemName, I.unitMeasurement, INV.qty
 FROM inventory INV JOIN ref_item I ON INV.itemCode = I.itemCode
-WHERE I.inventoryType = "accessories" AND inv.qty !=0]]>
+WHERE I.inventoryType = "accessories" AND inv.qty !=0
+GROUP BY I.inventoryType = "accessories"]]>
 	</queryString>
 	<field name="itemCode" class="java.math.BigDecimal">
 		<fieldDescription><![CDATA[]]></fieldDescription>
