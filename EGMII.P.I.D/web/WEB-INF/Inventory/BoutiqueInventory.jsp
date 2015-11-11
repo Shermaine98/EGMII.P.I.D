@@ -37,7 +37,7 @@
         %>
         <div align="center" class="container">
             <h2>Boutique Inventory</h2>
-            <table id="WarehouseInventory" class="table table-bordered table-hover">
+            <table id="BoutiqueInventory" class="table table-bordered table-hover">
                 <thead>
                     <tr>
                         <th>Branch Name</th>
