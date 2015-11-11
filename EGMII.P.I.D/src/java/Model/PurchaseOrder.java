@@ -145,7 +145,7 @@ public class PurchaseOrder {
      * @return the isSupplier
      */
     public boolean isIsSupplier() {
-        return true;
+        return isSupplier;
     }
 
     /**

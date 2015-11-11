@@ -39,7 +39,7 @@
             });</script>
     </head>
     <body>
-      <% ArrayList<SubconPurchaseOrderView> SubconPurchaseOrderView = (ArrayList<SubconPurchaseOrderView>) request.getAttribute("PurchaseOrderList");%>
+        <% ArrayList<SubconPurchaseOrderView> ConsumptionReportView = (ArrayList<SubconPurchaseOrderView>) request.getAttribute("PurchaseOrderList");%>
         <form id="form1" method="post" action="SetApprovalSubconPOServlet">
             <div class="container" align="center">
                 <h2>Search Consumption Report</h2><br/>
@@ -47,30 +47,36 @@
                     <table id="dataTable" class="table table-bordered table-hover">
                         <thead>
                             <tr>
+                                <th>Purchase Order Number</th>
                                 <th>Production Number</th>
                                 <th>Product Name</th>
                                 <th>Product Type</th>
+                                <th>Date Made</th>
+                                <th>Prepared By</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <%for (int i = 0; i < SubconPurchaseOrderView.size(); i++) {%>
-                            <tr class="SubconPoView">  
-                                <td class="poNumber"><%=SubconPurchaseOrderView.get(i).getProductionNumber()%></td>
-                                <td><%=SubconPurchaseOrderView.get(i).getProductName()%></td>
-                                <td><%=SubconPurchaseOrderView.get(i).getProductType()%></td>
+                            <%for (int i = 0; i < ConsumptionReportView.size(); i++) {%>
+                            <tr class="SubconPO">  
+                                <td><%=ConsumptionReportView.get(i).getPoNumber()%></td>
+                                <td><%=ConsumptionReportView.get(i).getProductionNumber() %></td>
+                                <td><%=ConsumptionReportView.get(i).getProductName()%></td>
+                                <td><%=ConsumptionReportView.get(i).getProductType()%></td>
+                                <td><%=ConsumptionReportView.get(i).getDateMade()%></td>
+                                <td><%=ConsumptionReportView.get(i).getPreparedBy()%></td>
+                                
                             </tr> 
                             <%}%>
                         </tbody>
                     </table>
                 </div>
-                <input type="hidden" name="hiddenValue" id="hiddenValue" value=""/>
             </div>
         </form>
         <br/>
-        <% 
+        <%
             String data = (String) request.getAttribute("data");
             if (data.equalsIgnoreCase("subconApproval")) {
-           // ArrayList<SubconPurchaseOrderView> PurchaseOrderSpecific = (ArrayList<SubconPurchaseOrderView>) request.getAttribute("SubconReceivingSpecific");
+                // ArrayList<SubconPurchaseOrderView> PurchaseOrderSpecific = (ArrayList<SubconPurchaseOrderView>) request.getAttribute("SubconReceivingSpecific");
         %>
         <form method="POST" action="ApproveRejectSubconPOServlet">
             <div align="center" class="container">
@@ -104,7 +110,7 @@
                     </div>-->
                     --%>
                 </div>
-<!--
+                <!--
                 <%-- ArrayList<RawMaterialsInventoryView> rmwi = (ArrayList<RawMaterialsInventoryView>) request.getAttribute("rmwInventory"); %>
                 not enough inventory
                 <div class="panel panel-default col-md-7">
@@ -231,76 +237,76 @@
                                 </tr>
                             </thead>
                             <tbody >
-                                <%--
-                                    ArrayList<ConsumptionReportView> productAllAcce = (ArrayList<ConsumptionReportView>) request.getAttribute("crListSpecific");
-                                    for (int i = 0; i < productAllAcce.size(); i++) {
-                                        if (productAllAcce.get(i).getInventoryType().equalsIgnoreCase("accessories")) {
-                                %>
-                                FOR LOOP
-                                <tr>
-                                    <td><input type="text" class="transparentBg readonlyWhite " name="itemName"  value = "<%= productAllAcce.get(i).getItemName()%>"  readonly/>
-                                        <input type="hidden" class="transparentBg readonlyWhite inputSize" name="itemCode"  value = "<%= productAllAcce.get(i).getItemCode()%>" /></td>
-                                    <td><input name="itemConsumption" class="transparentBg readonlyWhite inputSize" id="itemConsumption[]" value="<%= productAllAcce.get(i).getVolumeQty()%>"   readonly/></td> 
-                                    <td><input name="totalConsumption" class="transparentBg readonlyWhite inputSize" id="totalConsumption[]" value="<%=productAllAcce.get(i).getConsumptionQty()%>"  readonly/></td>
-                                    <td><input name="unitMeasurement" class="transparentBg readonlyWhite inputSize" id="unitMeasurement" value="<%= productAllAcce.get(i).getUnitMeasurement()%>"  readonly /></td>
-                                </tr> 
-                                <%
-                                        }
-                                    }
-                              --%>
-                                close bracket here
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                <%--
+                    ArrayList<ConsumptionReportView> productAllAcce = (ArrayList<ConsumptionReportView>) request.getAttribute("crListSpecific");
+                    for (int i = 0; i < productAllAcce.size(); i++) {
+                        if (productAllAcce.get(i).getInventoryType().equalsIgnoreCase("accessories")) {
+                %>
+                FOR LOOP
+                <tr>
+                    <td><input type="text" class="transparentBg readonlyWhite " name="itemName"  value = "<%= productAllAcce.get(i).getItemName()%>"  readonly/>
+                        <input type="hidden" class="transparentBg readonlyWhite inputSize" name="itemCode"  value = "<%= productAllAcce.get(i).getItemCode()%>" /></td>
+                    <td><input name="itemConsumption" class="transparentBg readonlyWhite inputSize" id="itemConsumption[]" value="<%= productAllAcce.get(i).getVolumeQty()%>"   readonly/></td> 
+                    <td><input name="totalConsumption" class="transparentBg readonlyWhite inputSize" id="totalConsumption[]" value="<%=productAllAcce.get(i).getConsumptionQty()%>"  readonly/></td>
+                    <td><input name="unitMeasurement" class="transparentBg readonlyWhite inputSize" id="unitMeasurement" value="<%= productAllAcce.get(i).getUnitMeasurement()%>"  readonly /></td>
+                </tr> 
+                <%
+                        }
+                    }
+                --%>
+                  close bracket here
+              </tbody>
+          </table>
+      </div>
+  </div>
 
-                 fabric 
-                <div class="panel panel-default col-md-7 pull-right" style="margin-right:140px">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Choose Fabric</h3>
-                    </div>
-                    <div class="panel-body table-responsive">
-                        <table id="dataTable4" class="table table-bordered">
-                            <thead>
-                                <tr> 
-                                    <th>Fabric Name</th>     
-                                    <th>Size</th> 
-                                    <th>Volume Qty Per Size</th>
-                                    <th>Consumption</th>
-                                    <th>Unit Measurement</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <%--
-                                    ArrayList<ConsumptionReportView> productAllproduc = (ArrayList<ConsumptionReportView>) request.getAttribute("CRforFabric");
-                                    for (int i = 0; i < productAllproduc.size(); i++) {
-                                        if (productAllproduc.get(i).getInventoryType().equalsIgnoreCase("production")) {
-                                
-                                <tr> 
-                                    <td><input type="text" value="<%=productAllproduc.get(i).getItemName()%>" class="transparentBg" readonly/> 
-                                    <td><input type="text" value="<%=productAllproduc.get(i).getSize()%>" class="transparentBg inputSize" readonly/> 
-                                    <td><input type="text" id="fabricItemConsumption[]" value="<%=productAllproduc.get(i).getVolumeQty()%>" class="transparentBg inputSize" readonly/> 
-                                    <td><input type="text" class="transparentBg readonlyWhite inputSize" id="totalConsumptionFabric[]" value="<%=productAllproduc.get(i).getConsumptionQty()%>"  readonly/></td>
-                                    <td><input type="text" value="<%=productAllproduc.get(i).getUnitMeasurement()%>" class="transparentBg" readonly/> 
-                                </tr> 
-                                <%
-                                        }
-                                    }
-                                %>
-                                 --%>  
-                            </tbody>
-                        </table>
-                    </div>
-                    <br/>
-                </div>-->
+   fabric 
+  <div class="panel panel-default col-md-7 pull-right" style="margin-right:140px">
+      <div class="panel-heading">
+          <h3 class="panel-title">Choose Fabric</h3>
+      </div>
+      <div class="panel-body table-responsive">
+          <table id="dataTable4" class="table table-bordered">
+              <thead>
+                  <tr> 
+                      <th>Fabric Name</th>     
+                      <th>Size</th> 
+                      <th>Volume Qty Per Size</th>
+                      <th>Consumption</th>
+                      <th>Unit Measurement</th>
+                  </tr>
+              </thead>
+              <tbody>
+                <%--
+                    ArrayList<ConsumptionReportView> productAllproduc = (ArrayList<ConsumptionReportView>) request.getAttribute("CRforFabric");
+                    for (int i = 0; i < productAllproduc.size(); i++) {
+                        if (productAllproduc.get(i).getInventoryType().equalsIgnoreCase("production")) {
+                
+                <tr> 
+                    <td><input type="text" value="<%=productAllproduc.get(i).getItemName()%>" class="transparentBg" readonly/> 
+                    <td><input type="text" value="<%=productAllproduc.get(i).getSize()%>" class="transparentBg inputSize" readonly/> 
+                    <td><input type="text" id="fabricItemConsumption[]" value="<%=productAllproduc.get(i).getVolumeQty()%>" class="transparentBg inputSize" readonly/> 
+                    <td><input type="text" class="transparentBg readonlyWhite inputSize" id="totalConsumptionFabric[]" value="<%=productAllproduc.get(i).getConsumptionQty()%>"  readonly/></td>
+                    <td><input type="text" value="<%=productAllproduc.get(i).getUnitMeasurement()%>" class="transparentBg" readonly/> 
+                </tr> 
+                <%
+                        }
+                    }
+                %>
+                --%>  
+           </tbody>
+       </table>
+   </div>
+   <br/>
+</div>-->
             </div>
         </form>
-        
+
         <div id="buttonz" align="center">
-                <!--Buttons-->
-                <input type="submit" value="Approve" class="btn btn-default" />
-                <button class="btn btn-primary">Reject</button><br/><br/>
-            </div>
+            <!--Buttons-->
+            <input type="submit" value="Approve" class="btn btn-default" />
+            <button class="btn btn-primary">Reject</button><br/><br/>
+        </div>
         <div align="center"> 
             <form>
                 <button class="btn btn-default">Print</button>
