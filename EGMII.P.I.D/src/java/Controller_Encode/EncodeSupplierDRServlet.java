@@ -90,7 +90,6 @@ public class EncodeSupplierDRServlet extends BaseServlet {
                             RawMaterialsInventoryView rm = new RawMaterialsInventoryView();
                             rm = inventoryDAO.GetAAndPInventorySpecific(deliveryReceiptDetails.getItemCode());
                             inventoryDAO.updateInventory(currentDeliveredQty + rm.getQty(), rm.getItemCode());
-                            
                             if (Double.parseDouble(QtyOrdered[y]) == currentDeliveredQty) {
                                 complete = true;
                             } else {

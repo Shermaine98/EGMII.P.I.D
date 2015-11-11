@@ -58,7 +58,7 @@ function getItem() {
                                         <td ><input type="checkbox" name="chk" /></td>\n\
                                         <td><input type="hidden" name = "itemCode" id="itemCode[]" value="' + data[0].itemCode + '"/> \n\
                                              <input type="text" class="transparentBg" readonly id="itemName[]" name = "itemName" value="' + data[0].itemName + '"/></td> \n\
-                                        <td><input class="transparentBg" value="0" type="number" min="1" id="itemConsumption[]" name="itemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td> \n\
+                                        <td><input type="number" class="form-control inputSize" value="0"  min="1" id="itemConsumption[]" name="itemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td> \n\
                                         <td><input class="transparentBg" name="unitMeasurement" readonly id="unitMeasurement[]" value="' + data[0].unitMeasurement + '" /> </td>'
                         + '</tr>');
                 document.getElementById("buttons").style.visibility = 'visible';
@@ -138,24 +138,24 @@ function getFabricItem() {
                                              </tr> \n\
                                              <tr>\n\
                                                 <td><input class="transparentBg inputSize" value="XS" type="text"  name="size" readonly /></td>\n\\n\
-                                                <td><input class="transparentBg inputSize" value="0" type="number"  id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
+                                                <td><input  class="form-control inputSize" value="0" type="number"  id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
                                             <td rowspan="5"><input class="transparentBg inputSize" name="unitMeasurementfabric" id="unitMeasurement[]" value="' + data[0].unitMeasurement + '" /> </td>\n\
                                             </tr>\n\\n\
                                              <tr>\n\
                                                 <td><input class="transparentBg inputSize" value="S" type="text"  name="size" readonly  /></td>\n\\n\
-                                                 <td><input class="transparentBg inputSize" value="0" type="number"  id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
+                                                 <td><input class="form-control inputSize" value="0" type="number"  id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
                                             </tr>\n\\n\
                                              <tr>\n\
                                                 <td><input class="transparentBg inputSize" value="M" type="text"  name="size" readonly  /></td>\n\\n\
-                                                 <td><input class="transparentBg inputSize" value="0" type="number" id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
+                                                 <td><input class="form-control inputSize" value="0" type="number" id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
                                             </tr>\n\\n\
                                              <tr>\n\
                                                 <td><input class="transparentBg inputSize" value="L" type="text"  name="size" readonly  /></td>\n\\n\
-                                                 <td><input class="transparentBg inputSize" value="0" type="number" id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
+                                                 <td><input class="form-control inputSize" value="0" type="number" id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
                                             </tr>\n\\n\
                                             <tr>\n\
                                                 <td><input class="transparentBg inputSize" value="XL" type="text"  name="size" readonly  /></td>\n\\n\
-                                                 <td><input class="transparentBg inputSize" value="0" type="number"  id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
+                                                 <td><input class="form-control inputSize" value="0" type="number"  id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
                                                   '
                             + '</tr>');
                     document.getElementById("buttonsFabric").style.visibility = 'visible';
@@ -169,44 +169,44 @@ function getFabricItem() {
                                              </tr> \n\
                                              <tr>\n\
                                                 <td><input class="transparentBg inputSize" value="28" type="text"  name="size" readonly /></td>\n\\n\
-                                                 <td><input class="transparentBg inputSize" value="0" type="number" min="1" id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
+                                                 <td><input class="form-control inputSize" value="0" type="number" min="1" id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
                                             <td rowspan="10"><input class="transparentBg inputSize" name="unitMeasurementfabric" id="unitMeasurement[]" value="' + data[0].unitMeasurement + '" readonly /> </td>\n\
                                             </tr>\n\\n\
                                              <tr>\n\
                                                 <td><input class="transparentBg inputSize" value="29" type="text"  name="size" readonly  /></td>\n\\n\
-                                                 <td><input class="transparentBg inputSize" value="0" type="number" min="1" id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
+                                                 <td><input class="form-control inputSize" value="0" type="number" min="1" id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
                                             </tr>\n\\n\
                                              <tr>\n\
                                                 <td><input class="transparentBg inputSize" value="30" type="text"  name="size" readonly  /></td>\n\\n\
-                                                 <td><input class="transparentBg inputSize" value="0" type="number" min="1" id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
+                                                 <td><input class="form-control inputSize" value="0" type="number" min="1" id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
                                             </tr>\n\\n\
                                              <tr>\n\
                                                 <td><input class="transparentBg inputSize" value="31" type="text"  name="size" readonly  /></td>\n\\n\
-                                                 <td><input class="transparentBg inputSize" value="0" type="number" min="1" id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
+                                                 <td><input class="form-control inputSize" value="0" type="number" min="1" id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
                                             </tr>\n\\n\
                                             <tr>\n\
                                                 <td><input class="transparentBg inputSize" value="32" type="text"  name="size" readonly  /></td>\n\\n\
-                                                 <td><input class="transparentBg inputSize" value="0" type="number" min="1" id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
+                                                 <td><input class="form-control inputSize" value="0" type="number" min="1" id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
                                             </tr>\n\
                                             <tr>\n\
                                                 <td><input class="transparentBg inputSize" value="33" type="text"  name="size" readonly  /></td>\n\\n\
-                                                 <td><input class="transparentBg inputSize" value="0" type="number" min="1" id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
+                                                 <td><input class="form-control inputSize" value="0" type="number" min="1" id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
                                             </tr>\n\
                                             <tr>\n\
                                                 <td><input class="transparentBg inputSize" value="34" type="text"  name="size" readonly  /></td>\n\\n\
-                                                 <td><input class="transparentBg inputSize" value="0" type="number" min="1" id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
+                                                 <td><input class="form-control inputSize" value="0" type="number" min="1" id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
                                             </tr>\n\\n\
                                             <tr>\n\
                                                 <td><input class="transparentBg inputSize" value="36" type="text"  name="size" readonly  /></td>\n\\n\
-                                                 <td><input class="transparentBg inputSize" value="0" type="number" min="1" id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
+                                                 <td><input class="form-control inputSize" value="0" type="number" min="1" id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
                                             </tr>\n\\n\
                                             <tr>\n\
                                                 <td><input class="transparentBg inputSize" value="38" type="text"  name="size" readonly  /></td>\n\\n\
-                                                 <td><input class="transparentBg inputSize" value="0" type="number" min="1" id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
+                                                 <td><input class="form-control inputSize" value="0" type="number" min="1" id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
                                             </tr>\n\\n\
                                             <tr>\n\
                                                 <td><input class="transparentBg inputSize" value="40" type="text"  name="size" readonly  /></td>\n\\n\
-                                                 <td><input class="transparentBg inputSize" value="0" type="number" min="1" id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
+                                                 <td><input class="form-control inputSize" value="0" type="number" min="1" id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
                                             </tr>\n\
                                                   ');
                     document.getElementById("buttonsFabric").style.visibility = 'visible';

@@ -344,8 +344,8 @@ public class SupplierPurchaseOrderDAO {
             ArrayList<PurchaseOrder> poList = new ArrayList<>();
 
             String query = "UPDATE purchase_order\n"
-                    + "                           SET approvedBy = ?\n"
-                    + "                           WHERE poNumber = ?;";
+                    + "SET approvedBy = ?\n"
+                    + "WHERE poNumber = ?;";
 
             PreparedStatement pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, newSupplierPurchaseOrder.getApprovedBy());
