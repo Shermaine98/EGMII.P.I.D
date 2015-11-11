@@ -244,6 +244,10 @@
         <servlet-name>SetWarehouseInvServlet</servlet-name>
         <servlet-class>Controller_Json.SetWarehouseInvServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PrintInventoryReport</servlet-name>
+        <servlet-class>Controller_Print.PrintInventoryReport</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SearchProductServlet</servlet-name>
         <url-pattern>/SearchProductServlet</url-pattern>
@@ -487,6 +491,10 @@
     <servlet-mapping>
         <servlet-name>SetWarehouseInvServlet</servlet-name>
         <url-pattern>/SetWarehouseInvServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PrintInventoryReport</servlet-name>
+        <url-pattern>/PrintInventoryReport</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

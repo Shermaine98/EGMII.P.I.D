@@ -17,13 +17,13 @@
         <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="bootstrap/css/sub-menu.css">
         <link href="bootstrap/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
-         <script src="js/Validation.js"></script>
+        <script src="js/Validation.js"></script>
         <title>View Inventory Report</title>
     </head>
     <body>
         <%            ArrayList<InventoryReportView> InventoryReportView = (ArrayList<InventoryReportView>) request.getAttribute("InventoryReportList");
             if (!InventoryReportView.isEmpty()) {
-                
+
         %>      
         <div class="container" align="center">
 
@@ -56,28 +56,28 @@
                             <col style="width:25%" />
                         </colgroup>
                         <thead>
-                        <tr>
-                            <th>Product Name</th>
-                            <th>Color</th>
-                            <th>Size</th>
-                            <th>Beginning Inventory</th>
-                            <th>Pulled Out</th>
-                            <th>Sold Out</th>
-                            <th>Ending Inventory</th>
-                        </tr>
+                            <tr>
+                                <th>Product Name</th>
+                                <th>Color</th>
+                                <th>Size</th>
+                                <th>Beginning Inventory</th>
+                                <th>Pulled Out</th>
+                                <th>Sold Out</th>
+                                <th>Ending Inventory</th>
+                            </tr>
                         </thead>
                         <tbody>
-                     <%for(int i=0; i<InventoryReportView.size();i++) {%>
-                        <tr>
-                            <td><%=InventoryReportView.get(0).getProductName()%></td>
-                            <td><%=InventoryReportView.get(0).getColor()%></td>
-                            <td><%=InventoryReportView.get(0).getSize()%></td>
-                            <td><%=InventoryReportView.get(0).getQty()%></td>
-                            <td><%=InventoryReportView.get(0).getPulledOutQty()%></td>
-                            <td><%=InventoryReportView.get(0).getSoldQty()%></td>
-                            <td>ending solve</td>
-                        </tr>
-                        <%}%>
+                            <%for (int i = 0; i < InventoryReportView.size(); i++) {%>
+                            <tr>
+                                <td><%=InventoryReportView.get(0).getProductName()%></td>
+                                <td><%=InventoryReportView.get(0).getColor()%></td>
+                                <td><%=InventoryReportView.get(0).getSize()%></td>
+                                <td><%=InventoryReportView.get(0).getQty()%></td>
+                                <td><%=InventoryReportView.get(0).getPulledOutQty()%></td>
+                                <td><%=InventoryReportView.get(0).getSoldQty()%></td>
+                                <td>ending solve</td>
+                            </tr>
+                            <%}%>
                         </tbody>
                     </table>
 
@@ -86,8 +86,13 @@
 
         </div>
         <!--Buttons-->
+
+        <form method="POST" action="PrintInventoryReport" target="_blank">
+            <div align="center">
+                <button class="btn btn-danger">Print</button>
+            </div>
+        </form>
         <div id="buttonz" align="center">
-            <button class="btn btn-danger">Print</button>
             <button class="btn btn-danger" style="width:130px">Create Request</button>
         </div>
         <%}%>
