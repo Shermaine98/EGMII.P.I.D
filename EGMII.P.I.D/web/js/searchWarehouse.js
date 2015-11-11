@@ -9,7 +9,7 @@ function autoCompleteWarehouseInventory() {
          var productName = document.getElementById('productName').value;
             $.ajax({
                 type: 'POST',
-                url: '',
+                url: 'SetWarehouseInvServlet',
                 dataType: 'json',
                 data: {
                     productName: productName

@@ -240,6 +240,10 @@
         <servlet-name>PrintWarehouseInventory</servlet-name>
         <servlet-class>Controller_Print.PrintWarehouseInventory</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SetWarehouseInvServlet</servlet-name>
+        <servlet-class>Controller_Json.SetWarehouseInvServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SearchProductServlet</servlet-name>
         <url-pattern>/SearchProductServlet</url-pattern>
@@ -457,15 +461,14 @@
         <url-pattern>/ViewAllInventoryServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-
         <servlet-name>searchWarehouseInv</servlet-name>
         <url-pattern>/searchWarehouseInv</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ErrorCatchingServlet</servlet-name>
         <url-pattern>/ErrorCatchingServlet</url-pattern>
-          </servlet-mapping>
-          <servlet-mapping>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>PrintAccessoriesInventory</servlet-name>
         <url-pattern>/PrintAccessoriesInventory</url-pattern>
     </servlet-mapping>
@@ -480,6 +483,10 @@
     <servlet-mapping>
         <servlet-name>PrintWarehouseInventory</servlet-name>
         <url-pattern>/PrintWarehouseInventory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SetWarehouseInvServlet</servlet-name>
+        <url-pattern>/SetWarehouseInvServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
