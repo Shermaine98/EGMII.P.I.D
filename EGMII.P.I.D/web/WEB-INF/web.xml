@@ -220,6 +220,18 @@
         <servlet-name>PrintAccessoriesInventory</servlet-name>
         <servlet-class>Controller_Print.PrintAccessoriesInventory</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PrintProductionInventory</servlet-name>
+        <servlet-class>Controller_Print.PrintProductionInventory</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PrintBoutiqueInventory</servlet-name>
+        <servlet-class>Controller_Print.PrintBoutiqueInventory</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PrintWarehouseInventory</servlet-name>
+        <servlet-class>Controller_Print.PrintWarehouseInventory</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SearchProductServlet</servlet-name>
         <url-pattern>/SearchProductServlet</url-pattern>
@@ -439,6 +451,18 @@
     <servlet-mapping>
         <servlet-name>PrintAccessoriesInventory</servlet-name>
         <url-pattern>/PrintAccessoriesInventory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PrintProductionInventory</servlet-name>
+        <url-pattern>/PrintProductionInventory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PrintBoutiqueInventory</servlet-name>
+        <url-pattern>/PrintBoutiqueInventory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PrintWarehouseInventory</servlet-name>
+        <url-pattern>/PrintWarehouseInventory</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
