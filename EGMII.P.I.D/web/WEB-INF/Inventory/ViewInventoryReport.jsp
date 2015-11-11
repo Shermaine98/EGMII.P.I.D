@@ -89,7 +89,7 @@
 
         <form method="POST" action="PrintInventoryReport" target="_blank">
             <div align="center">
-                <button class="btn btn-danger">Print</button>
+                <input type="submit"  class="btn btn-danger">Print</button>
             </div>
         </form><br/>
         <div id="buttonz" align="center">
