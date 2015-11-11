@@ -18,7 +18,8 @@
         <link rel="stylesheet" type="text/css" href="bootstrap/css/jquery.dataTables.min.css">
         <link href="bootstrap/css/table-design.css" rel="stylesheet" type="text/css">
         <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
-         <script src="js/Validation.js"></script>
+
+        <script src="js/Validation.js"></script>
         <title>View Consumption Report</title>
         <script>
             $(document).ready(function () {
@@ -32,7 +33,10 @@
                     document.getElementById('hiddenValue').value = productionNumber;
                     document.getElementById("form1").submit();
                 }));
-               
+            });
+
+
+
         </script>    
         <style>
             .input {
