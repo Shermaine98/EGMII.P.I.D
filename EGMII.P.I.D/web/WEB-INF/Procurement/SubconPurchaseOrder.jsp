@@ -14,7 +14,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="bootstrap/css/table-design.css">
         <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="bootstrap/css/sub-menu.css">
         <link href="bootstrap/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -36,13 +35,14 @@
                     document.getElementById('hiddenValue').value = purchaseOrderNum;
                     document.getElementById("form1").submit();
                 }));
-                var x = document.getElementById('trigger').value;
 
+                var x = document.getElementById('trigger').value;
                 if (x === "true") {
                     $('input[type="submit').prop('disabled', true);
-
-
                 }
+
+                $("#datepicker").datepicker({minDate: 1, maxDate: "+4M +10D", dateFormat: 'yy-mm-dd'});
+
             });
         </script>
         <style>
@@ -104,7 +104,7 @@
                         <input type="hidden" name="preparedBy" class="form-control "   value="<%=user.getEmployeeNumber()%>"/><br/>
                         <input type="text" class="form-control " readonly  value="<%=user.getFirstName()%> <%=user.getLastName()%>"/><br/>
                         <label class="" for="deliveryDate">Delivery Date</label>
-                        <input type="text" name="deliveryDate" placeholder="yyyy-mm-dd" id="datepicker" class="form-control" pattern=".{1,}" required title="Please Input Delivery Date"  /><br/>
+                        <input type="text" name="deliveryDate" placeholder="yyyy-mm-dd" class="form-control" id="datepicker" pattern=".{1,}" required title="Please Input Delivery Date" /><br/>
                         <!--Search Subcon-->
                         <label for="subconName">Subcontractor</label>
                         <input type="text" class="form-control" name="subconName" id="subconName" pattern=".{1,}" required title="lease Input Subcontractor" onkeypress="autoCompleteSubcon();" placeholder="Search Subcon"/>
@@ -307,7 +307,7 @@
                             </tbody>
                         </table>
                         <table id="dataSubcon">
-                           
+
                         </table>
                     </div>
                     <br/>
@@ -321,11 +321,6 @@
         </form>
         <%}%>
         <br/><br/>
-        <script>
-                $(function () {
-            $("#datepicker").datepicker({minDate: 1, maxDate: "+4M +10D", dateFormat: 'yy-mm-dd'});
 
-            });
-        </script>
     </body>
 </html>

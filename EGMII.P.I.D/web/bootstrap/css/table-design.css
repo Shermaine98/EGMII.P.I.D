@@ -48,6 +48,9 @@ input[type=number]::-webkit-outer-spin-button {
     cursor:default;
 }
 
+ .label {
+                font-weight:bold;
+            }
 .search {
     width:250px;
     height:35px;

@@ -24,9 +24,6 @@
                 width:25px;
 
             }
-            label {
-                font-weight:bold;
-            }
         </style>
         <title>Encode Supplier Purchase Order</title>
     </head>
