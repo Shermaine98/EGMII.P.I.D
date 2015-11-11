@@ -5,13 +5,13 @@ function autoCompleteSupplier() {
         serviceUrl: 'SearchSupplierServlet',
         type: 'POST',
         showNoSuggestionNotice: true,
-        noSuggestionNotice: 'No Exsiting Suppplier',
+        noSuggestionNotice: 'No Exsiting Suppplier'
     });
 }
 
 function autoCompleteSupplierItem() {
     var supplierName = document.getElementById('supplierName').value;
-    if (supplierName == "") {
+    if (supplierName === "") {
         window.alert("Please Input Supplier");
         $('input:text').focus(
                 function () {
@@ -26,7 +26,7 @@ function autoCompleteSupplierItem() {
             },
             type: 'POST',
             showNoSuggestionNotice: true,
-            noSuggestionNotice: 'No Exsiting Item',
+            noSuggestionNotice: 'No Exsiting Item'
         });
     }
 }
@@ -36,7 +36,7 @@ function chk() {
         $("#data tbody tr").each(function () {
             var $this = $(this);
             var chk = $this.find('[id="itemName\\[\\]"]').val();
-            if (itemNameSupplier == chk) {
+            if (itemNameSupplier === chk) {
                 x = false;
             }
         }
@@ -62,7 +62,7 @@ function getSupplierItem() {
                 supplierName: supplierName
             },
             success: function (data) {
-                if (data[0] == null) {
+                if (data[0] === null) {
                     window.alert("Please Enter Item / Supplier Name");
                     $('input:text').focus(
                             function () {
@@ -70,11 +70,11 @@ function getSupplierItem() {
                             });
                 }
                 
-                else if (i == 1) {
+                else if (i === 1) {
                     $('#data').append('<tr><th><input type="hidden" name="supplierId" value="' + data[0].supplier + '"/></th><th>Item Name</th> <th> Unit Price</th> <th>Quantity</th> <th>Total Quantity Price </th> <th>Note</th></tr>');
                     i++;
                 }
-                if (data[0] != null) {
+                if (data[0] !== null) {
                     $('#data').append('<tr class="trclass"> \n\
                     <td><input type="checkbox" name="chk" /></td>\n\
                     <td> <input type="hidden" name ="itemCode" value="' + data[0].itemCode + '" />\n\

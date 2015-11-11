@@ -20,8 +20,8 @@
         <link rel="stylesheet" type="text/css" href="bootstrap/css/jquery.dataTables.min.css">
         <link href="bootstrap/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
          <script type="text/javascript" src="js/jquery.autocomplete.js"></script>
-        <script src="js/Validation.js"></script>
         <script src="js/searchWarehouse.js"></script>
+        <script src="js/Validation.js"></script>
         <title>Replenishment Request</title>
         <style>
         </style>

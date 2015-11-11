@@ -369,7 +369,7 @@ public class InventoryDAO {
                     + "ON RI.itemCode = P.itemCode\n"
                     + "WHERE P.productName LIKE ?\n"
                     + "GROUP BY (p.productName);");
-
+            pstmt.setString(1, search);
             ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) {
