@@ -165,8 +165,8 @@
         <servlet-class>Controller_Encode.EncodeInventoryReportServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>EncodeReplenishementRequestServlet</servlet-name>
-        <servlet-class>Controller_Encode.EncodeReplenishementRequestServlet</servlet-class>
+        <servlet-name>EncodeReplenishmentRequestServlet</servlet-name>
+        <servlet-class>Controller_Encode.EncodeReplenishmentRequestServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>EncodeDeliveryInvoiceServlet</servlet-name>
@@ -215,6 +215,14 @@
     <servlet>
         <servlet-name>ViewAllInventoryServlet</servlet-name>
         <servlet-class>Controller_View.ViewAllInventoryServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>searchWarehouseInv</servlet-name>
+        <servlet-class>Controller_Json.searchWarehouseInv</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ErrorCatchingServlet</servlet-name>
+        <servlet-class>Controller_Base.ErrorCatchingServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>SearchProductServlet</servlet-name>
@@ -381,8 +389,8 @@
         <url-pattern>/EncodeInventoryReportServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>EncodeReplenishementRequestServlet</servlet-name>
-        <url-pattern>/EncodeReplenishementRequestServlet</url-pattern>
+        <servlet-name>EncodeReplenishmentRequestServlet</servlet-name>
+        <url-pattern>/EncodeReplenishmentRequestServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>EncodeDeliveryInvoiceServlet</servlet-name>
@@ -431,6 +439,14 @@
     <servlet-mapping>
         <servlet-name>ViewAllInventoryServlet</servlet-name>
         <url-pattern>/ViewAllInventoryServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>searchWarehouseInv</servlet-name>
+        <url-pattern>/searchWarehouseInv</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ErrorCatchingServlet</servlet-name>
+        <url-pattern>/ErrorCatchingServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
