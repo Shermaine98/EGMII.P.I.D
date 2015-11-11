@@ -76,7 +76,9 @@ WHERE P.inventoryType = "warehouse";]]>
 P.productName, P.productType, P.color, P.size, INV.qty
 FROM inventory INV JOIN product P
 ON INV.itemCode = P.itemCode
-WHERE P.inventoryType = "warehouse";]]>
+WHERE P.inventoryType = "warehouse" AND INV.QTY!= 0
+GROUP BY P.INVENTORYTYPE = "warehouse";
+]]>
 	</queryString>
 	<field name="itemCode" class="java.math.BigDecimal">
 		<fieldDescription><![CDATA[]]></fieldDescription>
