@@ -79,10 +79,12 @@ public class SetSubconPOSpecificSerlvet extends BaseServlet {
          
              ArrayList<ConsumptionReportView> crListSpecific = new ArrayList();
              ArrayList<ConsumptionReportView> CRforFabric = new ArrayList();
+             ArrayList<ConsumptionReportView> CRforSizes = new ArrayList();
                 
              try {
                 crListSpecific = DAO.GetAllConsumptionReportSpecific(Integer.parseInt(productionNumber));
                 CRforFabric = DAO.GetCRforFabric(Integer.parseInt(productionNumber));
+                CRforSizes = DAO.GetCRForSizes(Integer.parseInt(productionNumber));
             } catch (ParseException ex) {
                 Logger.getLogger(ViewConsumptionReportServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -96,6 +98,7 @@ public class SetSubconPOSpecificSerlvet extends BaseServlet {
         request.setAttribute("rmwInventory", rmwInventory);     
         request.setAttribute("crListSpecific", crListSpecific);
         request.setAttribute("CRforFabric", CRforFabric);
+        request.setAttribute("CRforSizes", CRforSizes);
         request.setAttribute("poNumber", poNumber);
         request.setAttribute("ConsumptionList", ConsumptionReportView);
         request.setAttribute("subconData", "consumption");

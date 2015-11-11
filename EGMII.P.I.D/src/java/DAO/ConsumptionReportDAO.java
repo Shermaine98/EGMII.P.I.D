@@ -19,7 +19,6 @@ import java.util.logging.Logger;
  * @author Dimaandal
  *
  */
-
 public class ConsumptionReportDAO {
 
     /**
@@ -170,7 +169,6 @@ public class ConsumptionReportDAO {
      * @return
      * @throws ParseException
      */
-
     public ArrayList<ConsumptionReportView> GetAllConsumptionReportSpecific(int productionNumber) throws ParseException {
 
         ArrayList<ConsumptionReportView> ConsumptionReport = new ArrayList<ConsumptionReportView>();
@@ -226,7 +224,7 @@ public class ConsumptionReportDAO {
         }
         return null;
     }
-    
+
     /**
      *
      * @param productionNumber
@@ -241,22 +239,22 @@ public class ConsumptionReportDAO {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(""
-                    + "SELECT CR.productionNumber,\n" +
-                        "CR.dateMade, CR.status, CRD.itemCode,\n" +
-                        "CRD.qty as 'VolumeQty', P.productType, P.productName ,\n" +
-                        "P.color, P.size, I.itemName, I.inventoryType,\n" +
-                        "I.unitMeasurement, PBM.qty as 'ConsumptionQty', (CRD.qty * PBM.qty) as 'totalQty'\n" +
-                        "FROM consumption_report CR\n" +
-                        "JOIN cr_details CRD\n" +
-                        "ON CR.productionNumber = CRD.productionNumber\n" +
-                        "JOIN product P\n" +
-                        "ON CRD.itemCode =  P.itemCode\n" +
-                        "JOIN product_bm PBM\n" +
-                        "ON P.itemCode = PBM.productID\n" +
-                        "JOIN ref_item I\n" +
-                        "ON PBM.itemCode = I.itemCode\n" +
-                        "WHERE CR.productionNumber = ? \n" +
-                        "ORDER BY I.itemCode, P.itemCode;");
+                    + "SELECT CR.productionNumber,\n"
+                    + "CR.dateMade, CR.status, CRD.itemCode,\n"
+                    + "CRD.qty as 'VolumeQty', P.productType, P.productName ,\n"
+                    + "P.color, P.size, I.itemName, I.inventoryType,\n"
+                    + "I.unitMeasurement, PBM.qty as 'ConsumptionQty', (CRD.qty * PBM.qty) as 'totalQty'\n"
+                    + "FROM consumption_report CR\n"
+                    + "JOIN cr_details CRD\n"
+                    + "ON CR.productionNumber = CRD.productionNumber\n"
+                    + "JOIN product P\n"
+                    + "ON CRD.itemCode =  P.itemCode\n"
+                    + "JOIN product_bm PBM\n"
+                    + "ON P.itemCode = PBM.productID\n"
+                    + "JOIN ref_item I\n"
+                    + "ON PBM.itemCode = I.itemCode\n"
+                    + "WHERE CR.productionNumber = ? \n"
+                    + "ORDER BY I.itemCode, P.itemCode;");
             pstmt.setInt(1, productionNumber);
 
             ResultSet rs = pstmt.executeQuery();
@@ -286,7 +284,7 @@ public class ConsumptionReportDAO {
         }
         return null;
     }
-    
+
     /**
      *
      * @param productionNumber
@@ -300,21 +298,21 @@ public class ConsumptionReportDAO {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement("SELECT CR.productionNumber, \n" +
-                "CRD.itemCode,CR.dateMade, P.productName, \n" +
-                "RI.itemName, RI.itemCode as 'forItem', P.color, P.size, CRD.qty as 'VolumeQty', \n" + 
-                "PBM.qty as 'ConsumptionQty', (CRD.qty * PBM.qty) as 'totalQty'\n" +
-                "FROM consumption_report CR\n" +
-                "JOIN cr_details CRD\n" +
-                "ON CR.productionNumber = CRD.productionNumber\n" +
-                "JOIN product P \n" +
-                "ON CRD.itemCode = P.itemCode\n" +
-                "JOIN product_bm PBM\n" +
-                "ON P.itemCode = PBM.productID\n" +
-                "JOIN ref_item RI \n" +
-                "ON PBM.itemCode = RI.itemCode\n" +
-                "WHERE RI.inventoryType = \"production\" AND CR.productionNumber = ? \n" +
-                "ORDER BY 5, P.itemCode;");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT CR.productionNumber, \n"
+                    + "CRD.itemCode,CR.dateMade, P.productName, \n"
+                    + "RI.itemName, RI.itemCode as 'forItem', P.color, P.size, CRD.qty as 'VolumeQty', \n"
+                    + "PBM.qty as 'ConsumptionQty', (CRD.qty * PBM.qty) as 'totalQty'\n"
+                    + "FROM consumption_report CR\n"
+                    + "JOIN cr_details CRD\n"
+                    + "ON CR.productionNumber = CRD.productionNumber\n"
+                    + "JOIN product P \n"
+                    + "ON CRD.itemCode = P.itemCode\n"
+                    + "JOIN product_bm PBM\n"
+                    + "ON P.itemCode = PBM.productID\n"
+                    + "JOIN ref_item RI \n"
+                    + "ON PBM.itemCode = RI.itemCode\n"
+                    + "WHERE RI.inventoryType = \"production\" AND CR.productionNumber = ? \n"
+                    + "ORDER BY 5, P.itemCode;");
             pstmt.setInt(1, productionNumber);
 
             ResultSet rs = pstmt.executeQuery();
@@ -332,6 +330,39 @@ public class ConsumptionReportDAO {
                 temp.setVolumeQty(rs.getInt("VolumeQty"));
                 temp.setConsumptionQty(rs.getInt("ConsumptionQty"));
                 temp.setTotalQty(rs.getDouble("totalQty"));
+                ConsumptionReport.add(temp);
+            }
+            pstmt.close();
+            conn.close();
+            return ConsumptionReport;
+        } catch (SQLException ex) {
+            Logger.getLogger(ConsumptionReportDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public ArrayList<ConsumptionReportView> GetCRForSizes(int productionNumber) throws ParseException {
+
+        ArrayList<ConsumptionReportView> ConsumptionReport = new ArrayList<ConsumptionReportView>();
+
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement("SELECT CRD.itemCode, CRD.qty, P.size\n" +
+                "FROM cr_details CRD \n" +
+                "JOIN product P \n" +
+                "ON CRD.itemCode = P.itemCOde\n" +
+                "WHERE productionNumber = ?\n" +
+                "ORDER BY P.itemCode;");
+            pstmt.setInt(1, productionNumber);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                ConsumptionReportView temp = new ConsumptionReportView();
+                temp.setItemCode(rs.getInt("itemCode"));
+                temp.setVolumeQty(rs.getDouble("qty"));
+                temp.setSize(rs.getString("size"));
                 ConsumptionReport.add(temp);
             }
             pstmt.close();
