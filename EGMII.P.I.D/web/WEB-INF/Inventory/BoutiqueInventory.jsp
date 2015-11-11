@@ -36,7 +36,7 @@
         <%        ArrayList<RetailInventoryView> retailInventory = (ArrayList<RetailInventoryView>) request.getAttribute("RBIList");
         %>
         <div align="center" class="container">
-            <h2>Warehouse Inventory</h2>
+            <h2>Boutique Inventory</h2>
             <table id="WarehouseInventory" class="table table-bordered table-hover">
                 <thead>
                     <tr>
