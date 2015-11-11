@@ -41,7 +41,7 @@ public class EncodeSubconPurchaseOrderServlet extends BaseServlet {
         //header
         String preparedBy = request.getParameter("preparedBy");
         String deliveryDate = request.getParameter("deliveryDate");
-        String subconID = request.getParameter("subconID");
+        String subconID = request.getParameter("subcon");
         String productionNumber = request.getParameter("productionNumber");
 
         boolean isSupplier = false;
