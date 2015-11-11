@@ -36,7 +36,7 @@
                     document.getElementById("form1").submit();
                 }));
                 $("#datepicker").datepicker({minDate: 1, maxDate: "+4M +10D", dateFormat: 'yy-mm-dd'});
-               
+       
                 var x = document.getElementById('trigger').value;
                 if (x === "true") {
                     $('input[type="submit').prop('disabled', true);
@@ -148,7 +148,7 @@
                                 %>   
                                 <tr> 
                                     <td><input type="text" value="<%=rmwi.get(i).getItemName()%>" class="transparentBg" readonly/> 
-                                    <td><input type="text" value="<%=rmwi.get(i).getQtyNeeded()%>" class="transparentBg" readonly/> 
+                                    <td><input type="hidden" id="trigger" value=""/><input type="text" value="<%=rmwi.get(i).getQtyNeeded()%>" class="transparentBg" readonly/> 
                                 </tr> 
                                 <%
                                         }
