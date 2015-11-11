@@ -7,6 +7,7 @@ package Controller_Print;
 
 import Controller_Base.BaseServlet;
 import Database.DBConnectionFactory;
+import Model.User;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -49,10 +50,12 @@ public class PrintInventoryReport extends BaseServlet {
         OutputStream outStream = response.getOutputStream();
         JasperReport jasperReport = null;
         
+        User u = (User) request.getAttribute("login");
         String path = getServletContext().getRealPath("/Reports/Inventory/");
        
         Map map = new HashMap();
-
+        map.put("UserID",  u.getEmployeeNumber());
+        
         InputStream f = new FileInputStream(new File(path + "/InventoryReport.jrxml"));
         try {
             jasperReport = JasperCompileManager.compileReport(f);
