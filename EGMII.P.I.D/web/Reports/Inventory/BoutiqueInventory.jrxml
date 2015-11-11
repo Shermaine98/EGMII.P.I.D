@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="EGMI" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a55eb19c-5c7a-4a85-9b26-9bd12a2bb018">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="0" width="612" height="79" backcolor="#E2E2E2" uuid="8f093631-4b89-4371-becf-7c5a95156930"/>
+				<staticText>
+					<reportElement x="20" y="0" width="572" height="79" forecolor="#DC0000" uuid="fe7248ec-f0fa-4437-84f3-d357ad4cf6ba"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial Unicode MS" size="26" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+					</textElement>
+					<text><![CDATA[Evergrowth Manufacturing Incorporated]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="260" height="61" uuid="7d3cc8bc-148c-4c6a-8353-7861a678c6a8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Unicode MS" size="16"/>
+				</textElement>
+				<text><![CDATA[Report Type]]></text>
+			</staticText>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="415" y="0" width="157" height="61" uuid="7f7b07f9-5f96-42b6-a8bf-fcdb8a24da2e"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial Unicode MS" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="487" splitType="Stretch"/>
+	</detail>
+</jasperReport>
