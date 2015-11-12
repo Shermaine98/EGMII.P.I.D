@@ -25,6 +25,9 @@
                 width:25px;
 
             }
+            
+            
+            
         </style>
         <title>Encode Supplier Purchase Order</title>
     </head>

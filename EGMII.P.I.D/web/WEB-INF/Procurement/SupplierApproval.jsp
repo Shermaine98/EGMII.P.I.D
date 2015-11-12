@@ -20,7 +20,7 @@
         <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
         <link rel="stylesheet" type="text/css" href="bootstrap/css/jquery.dataTables.min.css">
         <script src="js/searchSupplier.js"></script>
-         <script src="js/Validation.js"></script>
+        <script src="js/Validation.js"></script>
         <title>Supplier Purchase Order Approval</title>
         <script>
             $(document).ready(function () {
@@ -34,7 +34,28 @@
                     document.getElementById('hiddenValue').value = purchaseOrderNum;
                     document.getElementById("form1").submit();
                 }));
+
+                $(".trclass").each(function () {
+                    var $this = $(this);
+                    var unitPrice = parseFloat($this.find('[id="unitPrice\\[\\]"]').val());
+                    var volumeQty = parseFloat($this.find('[id="volumeQty\\[\\]"]').val());
+                    var STotal = unitPrice * volumeQty;
+                    $this.find('[id="TQP\\[\\]"]').val(STotal);
+                    SolveTotal();
+                });
+                return false;
             });
+
+            function SolveTotal() {
+                var STotal = 0;
+                $(".trclass").each(function () {
+                    var $this = $(this);
+                    var TQP = parseFloat($this.find('[id="TQP\\[\\]"]').val());
+                    STotal = STotal + TQP;
+                    document.getElementById('total').value = STotal;
+                });
+                return false;
+            }
         </script>
     </head>
     <%        ArrayList<SupplierPurchaseOrderView> PurchaseOrderList = (ArrayList<SupplierPurchaseOrderView>) request.getAttribute("SupplierPurchaseOrderList");
@@ -76,8 +97,8 @@
         <%
             String data = (String) request.getAttribute("data");
             if (data.equalsIgnoreCase("supplier")) {
-           ArrayList<SupplierPurchaseOrderView> PurchaseOrderSpecific = (ArrayList<SupplierPurchaseOrderView>) request.getAttribute("SupplierPurchaseOrderSpecific");
-        if (!PurchaseOrderSpecific.isEmpty()) {
+                ArrayList<SupplierPurchaseOrderView> PurchaseOrderSpecific = (ArrayList<SupplierPurchaseOrderView>) request.getAttribute("SupplierPurchaseOrderSpecific");
+                if (!PurchaseOrderSpecific.isEmpty()) {
         %>
         <form method="POST" action="ApproveRejectSPOServlet">
             <div class="container" align="center">
@@ -144,8 +165,8 @@
         </div>
 
         <%
-            }
-    }%>
+                }
+            }%>
 
     </body>
 </html>

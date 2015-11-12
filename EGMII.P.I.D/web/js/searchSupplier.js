@@ -106,8 +106,8 @@ function getSupplierItem() {
 function SolveTQP() {
     $(".trclass").each(function () {
         var $this = $(this);
-        var unitPrice = parseInt($this.find('[id="unitPrice\\[\\]"]').val());
-        var volumeQty = parseInt($this.find('[id="volumeQty\\[\\]"]').val());
+        var unitPrice = parseFloat($this.find('[id="unitPrice\\[\\]"]').val());
+        var volumeQty = parseFloat($this.find('[id="volumeQty\\[\\]"]').val());
         var STotal = unitPrice * volumeQty;
         $this.find('[id="TQP\\[\\]"]').val(STotal);
         SolveTotal();
@@ -120,7 +120,7 @@ function SolveTotal() {
     var STotal = 0;
     $(".trclass").each(function () {
         var $this = $(this);
-        var TQP = parseInt($this.find('[id="TQP\\[\\]"]').val());
+        var TQP = parseFloat($this.find('[id="TQP\\[\\]"]').val());
         STotal = STotal + TQP;
         document.getElementById('total').value = STotal;
     }
