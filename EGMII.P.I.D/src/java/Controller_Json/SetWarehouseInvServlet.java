@@ -5,12 +5,22 @@
  */
 package Controller_Json;
 
+import DAO.InventoryDAO;
+import Model_View.WarehouseInventoryView;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  *
@@ -26,21 +36,38 @@ public class SetWarehouseInvServlet extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
+     * @throws java.sql.SQLException
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+       try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet SetWarehouseInvServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet SetWarehouseInvServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+           
+            String productName = request.getParameter("productName");
+            ArrayList<WarehouseInventoryView> WarehouseInventoryList = new InventoryDAO().GetWarehouse(productName);
+            JSONArray array = new JSONArray();
+            for (int i = 0; i < WarehouseInventoryList.size(); i++) {
+                JSONObject obj = new JSONObject();
+                try {
+                    obj.put("itemCode", WarehouseInventoryList.get(i).getItemCode());
+                    obj.put("productName", WarehouseInventoryList.get(i).getProductName());
+                    obj.put("productType", WarehouseInventoryList.get(i).getProductType());
+                    obj.put("size", WarehouseInventoryList.get(i).getSize());
+                    obj.put("color", WarehouseInventoryList.get(i).getColor());
+                    obj.put("qty", WarehouseInventoryList.get(i).getQty());
+                   
+                    array.put(obj);
+
+                } catch (JSONException ex) {
+                    Logger.getLogger(SetItemServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+            out.print(array);
+            out.flush();
+        } catch (ParseException ex) {
+            Logger.getLogger(SetWarehouseInvServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -56,7 +83,11 @@ public class SetWarehouseInvServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(SetWarehouseInvServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -70,7 +101,11 @@ public class SetWarehouseInvServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(SetWarehouseInvServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

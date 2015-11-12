@@ -4,6 +4,7 @@
     Author     : Geraldine
 --%>
 
+<%@page import="Model.InventoryReportCom"%>
 <%@page import="Model_View.InventoryReportView"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -32,8 +33,8 @@
                     "info": true
                 });
 
-                $(".SupplierPOView").on("click", (function () {
-                    var purchaseOrderNum = $(this).closest("tr").find(".poNumber").text();
+                $(".repView").on("click", (function () {
+                    var purchaseOrderNum = $(this).closest("tr").find(".reportID").text();
                     document.getElementById('hiddenValue').value = purchaseOrderNum;
                     document.getElementById("form1").submit();
                 }));
@@ -64,8 +65,8 @@
                             </thead>
                             <tbody>
                                 <% for (int i = 0; i < InventoryReport.size(); i++) {%>
-                                <tr class="SupplierPOView">
-                                    <td class="poNumber"><%=InventoryReport.get(i).getReportID()%></td>
+                                <tr class="repView">
+                                    <td class="reportID"><%=InventoryReport.get(i).getReportID()%></td>
                                     <td><%=InventoryReport.get(i).getBranchName()%></td>
                                     <td><%=InventoryReport.get(i).getPromo()%></td>
                                     <td><%=InventoryReport.get(i).getDateMade()%></td>
@@ -77,13 +78,14 @@
                             </tbody>
                         </table>
                     </div>
-                    <input type="hidden" name="hiddenValue" id="hiddenValue" value=""/>
+                    <input type="hidden" name="invId" id="hiddenValue" value=""/>
                 </div>
             </form>
 
             <%
                 String data = (String) request.getAttribute("data");
                 if (data.equalsIgnoreCase("specific")) {
+               ArrayList<InventoryReportCom> InventoryReportS = (ArrayList<InventoryReportCom>) request.getAttribute("InventoryReportCom");
                     Integer repID = (Integer) request.getAttribute("repID");
             %>
 
@@ -92,7 +94,7 @@
                
                 <div class="panel-body">
                     <label for="outlet">Outlet</label>
-                    <input type="hidden" class="form-control" readonly name="location" value="" /><br/>
+                    <input type="hidden" class="form-control" readonly name="location" value="<%InventoryReportS.get(0).getBranchName();%>" /><br/>
                     <input type="text" class="form-control" readonly name="outlet" value="" /><br/>
                     <label for="promo">Promoter</label>
                     <input type="text" class="form-control" readonly name="promo" value="" /><br/>

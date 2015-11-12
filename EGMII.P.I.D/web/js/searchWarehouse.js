@@ -16,10 +16,12 @@ function autoCompleteWarehouseInventory() {
                 },
                 success: function (data) {
                     if(x){
-                     $('#ReplenishItem').append('<tr><th>Product Name</th><th>Color</th><th>Size</th><th>Quantity</th></tr>');
+                     $('#ReplenishItem').append('<tr>\n\
+                        <th>Product Name</th><th>Color</th><th>Size</th><th>Quantity</th></tr>');
                         x=false;
                     }
-                    $('#ReplenishItem').append('<tr><td><input type="hidden" name="subcon" value="'+ data[0].subconId +'"/></td></tr>');
+                    $('#ReplenishItem').append('<tr>\n\
+                        <td><input type="hidden" name="subcon" value="'+ data[0].productName +'"/></td></tr>');
                 }
            });
         }

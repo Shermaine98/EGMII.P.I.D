@@ -5,6 +5,7 @@ import DAO.ConsumptionReportDAO;
 import DAO.InventoryReportDAO;
 import DAO.ReplenishmentDAO;
 import Model.ConsumptionReport;
+import Model.InventoryReportCom;
 import Model_View.ConsumptionReportView;
 import Model_View.InventoryReportView;
 import Model_View.RepRequestView;
@@ -74,17 +75,21 @@ public class ViewReplenishmentServlet extends BaseServlet {
             request.setAttribute("RepRequestView", RepRequestView);
             rd.forward(request, response);
         } else if(action.equalsIgnoreCase("specific")){
+             ArrayList<InventoryReportCom> inventoryCom = new ArrayList<InventoryReportCom>();
             try {
-                // specific here
-
+                String invId = request.getParameter("invId");
+                inventoryCom = inventoryReportDAO.GetInventoryReportRep(invId);
                 repID = ReplenishmentDAO.getReplenishmentNumber();
             } catch (SQLException ex) {
+                Logger.getLogger(ViewReplenishmentServlet.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ParseException ex) {
                 Logger.getLogger(ViewReplenishmentServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
             
             RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Delivery/ReplenishmentRequest.jsp");
             request.setAttribute("data", "specific");
             request.setAttribute("inventoryReports", irv);
+            request.setAttribute("InventoryReportCom", inventoryCom);
             request.setAttribute("repID", repID);
             rd.forward(request, response);
             

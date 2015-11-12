@@ -2,6 +2,7 @@ package DAO;
 
 import Database.DBConnectionFactory;
 import Model.InventoryReport;
+import Model.InventoryReportCom;
 import Model.InventoryReportDetails;
 import Model.User;
 import Model_View.InventoryReportView;
@@ -32,7 +33,6 @@ public class InventoryReportDAO {
      * @return
      * @throws ParseException
      */
-
     public ArrayList<InventoryReportView> InventoryReportView(int empNum) throws ParseException {
         ArrayList<InventoryReportView> InventoryReport = new ArrayList<>();
 
@@ -243,7 +243,6 @@ public class InventoryReportDAO {
      * @return
      * @throws SQLException
      */
-
     public Integer getReportId() throws SQLException {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -265,6 +264,67 @@ public class InventoryReportDAO {
 
         rs.close();
         return i;
+    }
+
+    /**
+     * GetAll Inventory report group by
+     *
+     * @return
+     * @throws ParseException
+     */
+    public ArrayList<InventoryReportCom> GetInventoryReportRep(String Reportid) throws ParseException {
+        ArrayList<InventoryReportCom> InventoryReportView = new ArrayList<>();
+
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(""
+                    + "SELECT RL.locationID, RL.branchName, RL.address,\n"
+                    + "IR.reportID, IR.promo, IR.dateMade, \n"
+                    + "IRD.itemCode, P.productName,\n"
+                    + "IRD.soldQty, IRD.pulledOutQty, RI.qty as 'currentQty',\n"
+                    + "P.size, P.color, Concat(u.firstName,\" \", u.lastName) as 'name'\n"
+                    + "FROM ref_location RL\n"
+                    + "JOIN retail_inventory RI\n"
+                    + "ON RL.locationID = RI.locationID\n"
+                    + "JOIN inventory_report IR \n"
+                    + "ON RI.locationID = IR.location\n"
+                    + "JOIN inventory_report_details IRD\n"
+                    + "ON IR.reportID =  IRD.reportID \n"
+                    + "JOIN product P \n"
+                    + "ON IRD.itemCode = P.itemCode\n"
+                    + "JOIN user U \n"
+                    + "ON IR.promo = U.employeeID  WHERE reportID = ?;");
+            pstmt.setString(1, Reportid);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                InventoryReportCom inventoryReportCom = new InventoryReportCom();
+
+                inventoryReportCom.setLocationID(rs.getInt("locationID"));
+                inventoryReportCom.setBranchName(rs.getString("branchName"));
+                inventoryReportCom.setPromoid(rs.getInt("promo"));
+                inventoryReportCom.setDateMade(rs.getDate("DateMade"));
+                inventoryReportCom.setAddress(rs.getString("address"));
+                inventoryReportCom.setReportID(rs.getInt("reportID"));
+                inventoryReportCom.setItemCode(rs.getInt("itemCode"));
+                inventoryReportCom.setProductName(rs.getString("productName"));
+                inventoryReportCom.setSoldQty(rs.getDouble("soldQty"));
+                inventoryReportCom.setPulledQty(rs.getDouble("pulledOutQty"));
+                inventoryReportCom.setCurrentQty(rs.getDouble("currentQty"));
+                inventoryReportCom.setSize(rs.getString("size"));
+                inventoryReportCom.setColor(rs.getString("color"));
+                inventoryReportCom.setName(rs.getString("name"));
+                InventoryReportView.add(inventoryReportCom);
+
+            }
+            conn.close();
+            pstmt.close();
+            return InventoryReportView;
+        } catch (SQLException ex) {
+            Logger.getLogger(InventoryReportDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
 }
