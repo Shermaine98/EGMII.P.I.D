@@ -42,6 +42,9 @@
             .input {
                 width: 20px;
             }
+            label{
+                font-weight: bold;
+            }
         </style>
     </head>
     <body>
@@ -97,19 +100,20 @@
                 <div class="panel-heading">
                     <h3 class="panel-title">Consumption Report</h3>
                 </div>
-                <div class="panel-body">
-                    <label class="" for="productionNumber">Production Number</label>
-                    <input type="text" name="productionNumber" id="productionNumber" class="form-control readonlyWhite" readonly value=<%=cr1.get(0).getProductionNumber()%>  /><br/>
-                    <label class="" for="productName">Product Name</label>
-                    <input type="text" name="productName" class="form-control readonlyWhite" value="<%=cr1.get(0).getProductName()%>" readonly /><br/>
-                    <label for="productType">Product Type</label>
-                    <input type="text" name="productType"  class="form-control readonlyWhite" readonly id="productType" value="<%=cr1.get(0).getProductType()%>" /><br/>
-                    <label for="color">Color</label>
-                    <input type="text" name="color" class="form-control readonlyWhite" value="<%=cr1.get(0).getColor()%>" readonly /><br/>
-                    <label for="preparedBy">Prepared By</label>
-                    <input type="hidden" name="preparedBy" class="form-control readonlyWhite" value="<%= cr1.get(0).getName()%>" /> <input type="text" name="preparedBy" class="form-control readonlyWhite" value="<%=user.getFirstName()%> <%=user.getLastName()%>" readonly /><br/>
-                </div>
+                <div class="panel-body h5">
+                    <label>Production Number: </label>
+                    <%=cr1.get(0).getProductionNumber()%> <br/><br/>
+                    <label>Product Name: </label>
+                    <%=cr1.get(0).getProductName()%> <br/><br/>
+                    <label>Product Type: </label>
+                    <%=cr1.get(0).getProductType()%><br/><br/>
+                    <label>Color: </label>
+                    <%=cr1.get(0).getColor()%> <br/><br/>
+                    <label>Prepared By: </label>
+                    <input type="hidden" name="preparedBy" class="form-control readonlyWhite" value="<%= cr1.get(0).getName()%>" /> 
+                    <%=user.getFirstName()%> <%=user.getLastName()%><br/>
 
+                </div>
             </div>
             <%
                 if (cr1.get(0).getProductType().equalsIgnoreCase("Shirt")) {
