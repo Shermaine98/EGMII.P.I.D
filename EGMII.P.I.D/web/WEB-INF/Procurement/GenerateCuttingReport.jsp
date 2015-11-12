@@ -20,6 +20,7 @@
         <link rel="stylesheet" type="text/css" href="bootstrap/css/jquery.dataTables.min.css">
         <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
         <script src="js/Validation.js"></script>
+        <script src="js/Print.js"></script>
         <title>Approve Cutting Report</title>
         <style>
             input[type=number]::-webkit-inner-spin-button, 
@@ -82,7 +83,7 @@
 
         %>                    
 
-        <div align="center" class="container">
+        <div id="printableArea" align="center" class="container">
             <h2>View Cutting Report</h2><br/>
 
             <div class="panel panel-default col-md-3">
@@ -129,11 +130,12 @@
                     </table>
                 </div>
             </div>
-            <br/><br/>
-            <button type="button" class="btn btn-default" >Print</button>
-            <a href="\..\..\Accounts\Homepage.jsp"><button type="button" class="btn btn-primary" >Cancel</button></a>
-
         </div>
-        <%}%>
-    </body>
+    <center>
+        <br/><br/>
+        <input type="button" class="btn btn-default" onclick="printDiv('printableArea')" value="Print" />
+        <a href="\..\..\Accounts\Homepage.jsp"><button type="button" class="btn btn-primary" >Cancel</button></a>
+    </center>
+    <%}%>
+</body>
 </html>
