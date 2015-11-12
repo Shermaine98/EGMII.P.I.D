@@ -32,7 +32,27 @@
                     document.getElementById('hiddenValue').value = productionNumber;
                     document.getElementById("form1").submit();
                 }));
+              $(".trclass").each(function () {
+                    var $this = $(this);
+                    var unitPrice = parseFloat($this.find('[id="unitPrice\\[\\]"]').val());
+                    var volumeQty = parseFloat($this.find('[id="volumeQty\\[\\]"]').val());
+                    var STotal = unitPrice * volumeQty;
+                    $this.find('[id="TQP\\[\\]"]').val(STotal);
+                    SolveTotal();
+                });
+                return false;
             });
+
+            function SolveTotal() {
+                var STotal = 0;
+                $(".trclass").each(function () {
+                    var $this = $(this);
+                    var TQP = parseFloat($this.find('[id="TQP\\[\\]"]').val());
+                    STotal = STotal + TQP;
+                    document.getElementById('total').value = STotal;
+                });
+                return false;
+            }
         </script>
     </head>
     <body>  

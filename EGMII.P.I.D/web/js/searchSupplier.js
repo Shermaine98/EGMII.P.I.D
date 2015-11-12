@@ -69,7 +69,7 @@ function getSupplierItem() {
                                 $('#itemNameSupplier').val('');
                             });
                 }
-                
+
                 else if (i === 1) {
                     $('#data').append('<tr><th><input type="hidden" name="supplierId" value="' + data[0].supplier + '"/></th><th>Item Name</th> <th> Unit Price</th> <th>Quantity</th> <th>Total Quantity Price </th> <th>Note</th></tr>');
                     i++;
@@ -127,4 +127,29 @@ function SolveTotal() {
     );
 
     return false;
+}
+
+function deleteRowSupplier(tableID) {
+    try {
+        var table = document.getElementById(tableID);
+        var rowCount = table.rows.length;
+
+        for (var i = 0; i < rowCount; i++) {
+            var row = table.rows[i];
+            var chkbox = row.cells[0].childNodes[0];
+            if (null != chkbox && true == chkbox.checked) {
+                if (rowCount <= 1) {
+                    alert("Cannot delete all the rows.");
+                    break;
+                }
+                table.deleteRow(i);
+                rowCount--;
+                i--;
+            }
+        }
+        document.getElementById('total').value = 0;
+        SolveTQP();
+    } catch (e) {
+        alert(e);
+    }
 }

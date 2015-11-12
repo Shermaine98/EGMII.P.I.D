@@ -80,7 +80,7 @@
                                 <input type="text" class="form-control" name="Total" id="total" readonly />
                             </div>
                             <br/><br/><br/>
-                            <input type="button" class="btn btn-primary" value="Delete Row" onclick="deleteRow('table')" />
+                            <input type="button" class="btn btn-primary" value="Delete Row" onclick="deleteRowSupplier('table')" />
 
                             <br/><br/>
                             <input type="submit" class="btn btn-default" value="Submit">
