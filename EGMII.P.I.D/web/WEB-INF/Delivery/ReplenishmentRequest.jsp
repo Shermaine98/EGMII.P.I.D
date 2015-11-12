@@ -32,6 +32,10 @@
                     "paging": true,
                     "info": true
                 });
+                  $('#invR').DataTable({
+                    "paging": true,
+                    "info": true
+                });
 
                 $(".repView").on("click", (function () {
                     var purchaseOrderNum = $(this).closest("tr").find(".reportID").text();
@@ -86,24 +90,56 @@
                 String data = (String) request.getAttribute("data");
                 if (data.equalsIgnoreCase("specific")) {
                ArrayList<InventoryReportCom> InventoryReportS = (ArrayList<InventoryReportCom>) request.getAttribute("InventoryReportCom");
-                    Integer repID = (Integer) request.getAttribute("repID");
+               Integer repID = (Integer) request.getAttribute("repID");
             %>
-
-
+            
+            
+            <!--Inventory Report Data Table-->
+            
+             <h2>Inventory Report Details</h2><br/>
+            <div style="width:60%;">
+                        <table id="invR" class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Product Name</th>
+                                    <th>Color</th>
+                                    <th>Size</th>
+                                    <th>Sold Out</th>
+                                    <th>Pulled Out</th>
+                                    <th>Current Quantity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for (int i = 0; i < InventoryReportS.size(); i++) {%>
+                                <tr class="repView">
+                                    <td class="reportID"><%=InventoryReportS.get(i).getProductName()%></td>
+                                    <td><%=InventoryReportS.get(i).getColor()%></td>
+                                    <td><%=InventoryReportS.get(i).getSize()%></td>
+                                    <td><%=InventoryReportS.get(i).getSoldQty()%></td>
+                                    <td><%=InventoryReportS.get(i).getPulledQty()%></td>
+                                    <td><%=InventoryReportS.get(i).getCurrentQty()%></td>
+                                </tr>
+                                <%
+                                        
+                                    }
+                                %>
+                            </tbody>
+                        </table>
+                    </div>
+                            
             <div class="panel panel-default col-md-3">
                
                 <div class="panel-body">
                     <label for="outlet">Outlet</label>
-                    <input type="hidden" class="form-control" readonly name="location" value="<%InventoryReportS.get(0).getBranchName();%>" /><br/>
-                    <input type="text" class="form-control" readonly name="outlet" value="" /><br/>
+                    <input type="hidden" class="form-control" readonly name="location" value="<%=InventoryReportS.get(0).getLocationID()%>" /><br/>
+                    <input type="text" class="form-control" readonly name="outlet" value="<%=InventoryReportS.get(0).getBranchName()%>" />
                     <label for="promo">Promoter</label>
-                    <input type="text" class="form-control" readonly name="promo" value="" /><br/>
+                     <input type="hidden" class="form-control" readonly name="promo" value="<%=InventoryReportS.get(0).getPromoid()%>" />
+                    <input type="text" class="form-control" readonly  value="<%=InventoryReportS.get(0).getName()%>" /><br/>
                     <label for="date">Date Inventory </label>
-                    <input type="text" class="form-control" readonly name="date" value="" /><br/>
+                    <input type="text" class="form-control" readonly name="date" value="<%=InventoryReportS.get(0).getDateMade()%>" /><br/>
                     <label for="repID">Replenishment ID</label>
                     <input type="text" class="form-control" readonly name="repID" value="<%=repID%>" /><br/>
-                    <label for="version">Version</label>
-                    <input type="text" class="form-control" readonly name="version" value="" /><br/>
                     <input type="hidden" class="form-control" readonly name="supervisor" value="<%=user.getEmployeeNumber()%>" /><br/>
                 </div>
             </div>

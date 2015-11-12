@@ -1,4 +1,4 @@
-var x =true;
+var x = true;
 function autoCompleteWarehouseInventory() {
     $("#productName").devbridgeAutocomplete({
         serviceUrl: 'searchWarehouseInv',
@@ -6,7 +6,7 @@ function autoCompleteWarehouseInventory() {
         showNoSuggestionNotice: true,
         noSuggestionNotice: 'No Exsiting Product',
         onSelect: function (event, ui) {
-         var productName = document.getElementById('productName').value;
+            var productName = document.getElementById('productName').value;
             $.ajax({
                 type: 'POST',
                 url: 'SetWarehouseInvServlet',
@@ -15,15 +15,19 @@ function autoCompleteWarehouseInventory() {
                     productName: productName
                 },
                 success: function (data) {
-                    if(x){
-                     $('#ReplenishItem').append('<tr>\n\
-                        <th>Product Name</th><th>Color</th><th>Size</th><th>Quantity</th></tr>');
-                        x=false;
+                    if (x) {
+                        $('#ReplenishItem').append('<tr><th>Product Name</th><th>Color</th><th>Size</th><th>Current Quantity</th></tr>');
+                        x = false;
                     }
-                    $('#ReplenishItem').append('<tr>\n\
-                        <td><input type="hidden" name="subcon" value="'+ data[0].productName +'"/></td></tr>');
+                   //code appending etc
+                    $('#ReplenishItem').append('<tr><td><input type="hidden" name="" value="'+ data[0].itemCode +'"/>\n\
+                           <input type="text" value="'+ data[0].productName +'"/> \n\
+                           </td><td><select name="color">'  + data.map(function(opt) { return '<option value="'+ opt.color +'">'+ opt.color + '</option>' }).join("") + '</select>\n\
+                           </td> <td><select name="size">'  + data.map(function(opt) { return '<option value="'+ opt.size +'">'+ opt.size + '</option>' }).join("") + '</select>\n\
+                           </td><td><select name="size">'  + data.map(function(opt) { return '<option value="'+ opt.qty +'">'+ opt.qty + '</option>' }).join("") + '</select>\n\
+                           </td></tr>');
                 }
-           });
+            });
         }
     });
 }

@@ -409,7 +409,7 @@ public class InventoryDAO {
 
                 WarehouseInventoryView.setItemCode(rs.getInt("itemCode"));
                 WarehouseInventoryView.setProductName(rs.getString("productName"));
-                WarehouseInventoryView.setProductName(rs.getString("productType"));
+                WarehouseInventoryView.setProductType(rs.getString("productType"));
                 WarehouseInventoryView.setSize(rs.getString("size"));
                 WarehouseInventoryView.setColor(rs.getString("color"));
                 WarehouseInventoryView.setQty(rs.getDouble("qty"));

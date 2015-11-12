@@ -279,7 +279,7 @@ public class InventoryReportDAO {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(""
-                    + "SELECT RL.locationID, RL.branchName, RL.address,\n"
+                    + "SELECT IR.reportID, RL.locationID, RL.branchName, RL.address,\n"
                     + "IR.reportID, IR.promo, IR.dateMade, \n"
                     + "IRD.itemCode, P.productName,\n"
                     + "IRD.soldQty, IRD.pulledOutQty, RI.qty as 'currentQty',\n"
@@ -294,7 +294,7 @@ public class InventoryReportDAO {
                     + "JOIN product P \n"
                     + "ON IRD.itemCode = P.itemCode\n"
                     + "JOIN user U \n"
-                    + "ON IR.promo = U.employeeID  WHERE reportID = ?;");
+                    + "ON IR.promo = U.employeeID  WHERE IR.reportID = ?;");
             pstmt.setString(1, Reportid);
             ResultSet rs = pstmt.executeQuery();
 
@@ -315,6 +315,7 @@ public class InventoryReportDAO {
                 inventoryReportCom.setSize(rs.getString("size"));
                 inventoryReportCom.setColor(rs.getString("color"));
                 inventoryReportCom.setName(rs.getString("name"));
+                inventoryReportCom.setReportID(rs.getInt("reportID"));
                 InventoryReportView.add(inventoryReportCom);
 
             }
