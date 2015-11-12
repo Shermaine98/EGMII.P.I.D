@@ -39,6 +39,7 @@ public class EncodeReplenishmentRequestServlet extends BaseServlet {
         RepRequest repRequest = new RepRequest();
         String locationID = request.getParameter("location");
         String supervisor = request.getParameter("supervisor");
+        
 
         Integer repID = 0;
         try {
@@ -50,6 +51,10 @@ public class EncodeReplenishmentRequestServlet extends BaseServlet {
         repRequest.setRepID(repID);
         repRequest.setLocation(Integer.parseInt(locationID));
         repRequest.setSupervisor(Integer.parseInt(supervisor));
+        
+        
+        
+        //detail
 
         if (x) {
             ServletContext context = getServletContext();

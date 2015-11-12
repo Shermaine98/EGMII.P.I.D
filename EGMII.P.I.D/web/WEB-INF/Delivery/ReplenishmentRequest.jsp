@@ -111,8 +111,8 @@
                             </thead>
                             <tbody>
                                 <% for (int i = 0; i < InventoryReportS.size(); i++) {%>
-                                <tr class="repView">
-                                    <td class="reportID"><%=InventoryReportS.get(i).getProductName()%></td>
+                                <tr>
+                                    <td><%=InventoryReportS.get(i).getProductName()%></td>
                                     <td><%=InventoryReportS.get(i).getColor()%></td>
                                     <td><%=InventoryReportS.get(i).getSize()%></td>
                                     <td><%=InventoryReportS.get(i).getSoldQty()%></td>

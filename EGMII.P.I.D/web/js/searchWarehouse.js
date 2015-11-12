@@ -20,12 +20,13 @@ function autoCompleteWarehouseInventory() {
                         x = false;
                     }
                    //code appending etc
-                    $('#ReplenishItem').append('<tr><td><input type="hidden" name="" value="'+ data[0].itemCode +'"/>\n\
-                           <input type="text" value="'+ data[0].productName +'"/> \n\
-                           </td><td><select name="color">'  + data.map(function(opt) { return '<option value="'+ opt.color +'">'+ opt.color + '</option>' }).join("") + '</select>\n\
-                           </td> <td><select name="size">'  + data.map(function(opt) { return '<option value="'+ opt.size +'">'+ opt.size + '</option>' }).join("") + '</select>\n\
-                           </td><td><select name="size">'  + data.map(function(opt) { return '<option value="'+ opt.qty +'">'+ opt.qty + '</option>' }).join("") + '</select>\n\
-                           </td></tr>');
+                    $('#ReplenishItem').append('<tr>\n\
+                                <td><input type="hidden" name="" value="'+ data[0].itemCode +'"/>\n\
+                                    <input type="text" value="'+ data[0].productName +'"/> \n\
+                                </td><td><select name="color">'  + data.map(function(opt) { return '<option value="'+ opt.color +'">'+ opt.color + '</option>' }).join("") + '</select>\n\
+                                </td> <td><select name="size">'  + data.map(function(opt) { return '<option value="'+ opt.size +'">'+ opt.size + '</option>' }).join("") + '</select>\n\
+                                </td><td><select name="size">'  + data.map(function(opt) { return '<option value="'+ opt.qty +'">'+ opt.qty + '</option>' }).join("") + '</select>\n\
+                                </td></tr>');
                 }
             });
         }
