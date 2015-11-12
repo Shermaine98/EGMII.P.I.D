@@ -28,6 +28,9 @@
                 -webkit-appearance: none; 
                 margin: 0; 
             }
+            label{
+                font-weight:bold;
+            }
         </style>
         <script> $(document).ready(function () {
                 $('#dataTable').DataTable({
@@ -86,18 +89,21 @@
         <div id="printableArea" align="center" class="container">
             <h2>View Cutting Report</h2><br/>
 
+            <div class="panel-heading">
+                <h3 class="panel-title">Cutting Report</h3>
+            </div>
             <div class="panel panel-default col-md-3">
-                <div class="panel-body">
+                <div class="panel-body h5" align="left">
                     <label>Production Number</label>
-                    <input class="form-control readonlyWhite" type="text" name="productionNumber" id="poNumber" value="<%=ConsumptionReportSpecific.get(0).getProductionNumber()%>"readonly /><br/>
+                    <%=ConsumptionReportSpecific.get(0).getProductionNumber()%><br/><br/>
                     <label>Cutting Master</label>
-                    <input class="form-control readonlyWhite" name="cuttingMaster" id="cuttingMaster" value="<%= user.getEmployeeNumber()%>" readonly /><br/>
+                    <%= user.getEmployeeNumber()%><br/>
                 </div>
             </div>
 
             <div class="panel panel-default col-md-7">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Cutting Report</h3>
+                    <h3 class="panel-title">Details</h3>
                 </div>
                 <div class="panel-body table-responsive">
                     <table id="dataTable3" class="table table-bordered">
