@@ -48,10 +48,10 @@
                 var month = d.getMonth() + 1;
                 var day = d.getDate();
                 var output =  
-                        (('' + month).length < 2 ? '0' : '') + month + '-' +
-                        (('' + day).length < 2 ? '0' : '') + day + '-' + d.getFullYear();
+                        (('' + month).length < 2 ? '0' : '') + month + '/' +
+                        (('' + day).length < 2 ? '0' : '') + day + '/' + d.getFullYear();
 
-                document.getElementById('Today').value = output + "   " + currentTimeString;
+                document.getElementById('Today').value = output;
 
             }
 

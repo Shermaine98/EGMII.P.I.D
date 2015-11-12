@@ -68,18 +68,25 @@
             img { 
                 cursor: pointer; 
             }
+            .btn {
+                background-color: #B20000;
+                color: #FFF;
+                width:  250px;
+                height: 35px;
+                align-content: center
+            }
         </style>
 
     </head>
     <body>  
-        <div class="container" align="center" style="margin-top:50px;">
+        <div class="container" align="center" style="margin-top:30px;">
             <div style="margin-bottom: 50px;">
-                <img src="Images/AI.png" id="AccessoriesInv" onclick="showHide('AItable')" style="margin-right:15px;" />
-                <img src="Images/PI.png" id="ProductionInv"  onclick="showHide('PItable')" style="margin-right:15px;" />
-                <img src="Images/wi.png" id="WarehouseInv"  onclick="showHide('WItable')" />
+                <button id="AccessoriesInv" class="btn" onclick="showHide('AItable')" style="margin-right:15px;">Accessories</button>
+                <button id="ProductionInv" class="btn" onclick="showHide('PItable')" style="margin-right:15px;">Production</button>
+                <button id="WarehouseInv" class="btn" onclick="showHide('WItable')">Warehouse</button>
             </div>
-
-
+        </div>
+        <div style="width:70%" class="container" align="center">
             <%       ArrayList<RawMaterialsInventoryView> AccessoriesInventory = (ArrayList<RawMaterialsInventoryView>) request.getAttribute("AccessoriesInventoryList");
             %>          
             <div id="AItable" style="display:none;">
@@ -142,10 +149,10 @@
                     </table> 
                 </div>
             </div>
+        </div>
+        <!--Production-->                       
 
-            <!--Production-->                       
-
-
+        <div class="container"style="width:70%"  align="center">
             <div id="PItable" style="display:none;">
                 <%
                     ArrayList<RawMaterialsInventoryView> ProductionInventory = (ArrayList<RawMaterialsInventoryView>) request.getAttribute("ProductionInventoryList");
@@ -177,64 +184,26 @@
                     </tbody>
                 </table>
                 <!-- for 0 qty -->
-                <div align="center" class="container">
-                    <br/><br/>
-                    <h3>Out of Stock</h3>
-                    <table id="productionInventory2" class="table table-bordered table-hover">
-                        <thead>
-                            <tr>
-                                <th>Item Code</th>
-                                <th>Item Name</th>
-                                <th>Quantity</th>
-                                <th>Unit Measurement</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <%for (int i = 0; i < ProductionInventory.size(); i++) {
-                                    if (ProductionInventory.get(i).getQty() <= 0) {
-                            %>
-                            <tr>
-                                <td><%=ProductionInventory.get(i).getItemCode()%></td>
-                                <td><%=ProductionInventory.get(i).getItemName()%></td>
-                                <td><%=ProductionInventory.get(i).getQty()%></td>
-                                <td><%=ProductionInventory.get(i).getUnitMeasurement()%></td>
-                            </tr>
-                            <%
-                                    }
-                                }
-                            %>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <!--Warehouse-->   
-            <%
-                ArrayList<WarehouseInventoryView> WarehouseInventory = (ArrayList<WarehouseInventoryView>) request.getAttribute("WarehouseInventoryList");
-            %>
-            <div id="WItable" style="display:none;">
-                <h2>Warehouse Inventory</h2>
-                <table id="WarehouseInventory" class="table table-bordered table-hover">
+                <br/><br/>
+                <h3>Out of Stock</h3>
+                <table id="productionInventory2" class="table table-bordered table-hover">
                     <thead>
                         <tr>
-                            <th>Product ID</th>
-                            <th>Product Name</th>
-                            <th>Product Type</th>
-                            <th>Color</th>
-                            <th>Size</th>
+                            <th>Item Code</th>
+                            <th>Item Name</th>
                             <th>Quantity</th>
+                            <th>Unit Measurement</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <% for (int i = 0; i < WarehouseInventory.size(); i++) {
-                                if (WarehouseInventory.get(i).getQty() > 0) {
+                        <%for (int i = 0; i < ProductionInventory.size(); i++) {
+                                if (ProductionInventory.get(i).getQty() <= 0) {
                         %>
                         <tr>
-                            <td><%=WarehouseInventory.get(i).getItemCode()%></td>
-                            <td><%=WarehouseInventory.get(i).getProductName()%></td>
-                            <td><%=WarehouseInventory.get(i).getProductType()%></td>
-                            <td><%=WarehouseInventory.get(i).getColor()%></td>
-                            <td><%=WarehouseInventory.get(i).getSize()%></td>
-                            <td><%=WarehouseInventory.get(i).getQty()%></td>
+                            <td><%=ProductionInventory.get(i).getItemCode()%></td>
+                            <td><%=ProductionInventory.get(i).getItemName()%></td>
+                            <td><%=ProductionInventory.get(i).getQty()%></td>
+                            <td><%=ProductionInventory.get(i).getUnitMeasurement()%></td>
                         </tr>
                         <%
                                 }
@@ -242,9 +211,46 @@
                         %>
                     </tbody>
                 </table>
+            </div>
+        </div>
+            <!--Warehouse-->   
+            <%
+                ArrayList<WarehouseInventoryView> WarehouseInventory = (ArrayList<WarehouseInventoryView>) request.getAttribute("WarehouseInventoryList");
+            %>
+            <div class="container" align="center">
+                <div id="WItable" style="display:none;">
+                    <h2>Warehouse Inventory</h2>
+                    <table id="WarehouseInventory" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Product ID</th>
+                                <th>Product Name</th>
+                                <th>Product Type</th>
+                                <th>Color</th>
+                                <th>Size</th>
+                                <th>Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for (int i = 0; i < WarehouseInventory.size(); i++) {
+                                    if (WarehouseInventory.get(i).getQty() > 0) {
+                            %>
+                            <tr>
+                                <td><%=WarehouseInventory.get(i).getItemCode()%></td>
+                                <td><%=WarehouseInventory.get(i).getProductName()%></td>
+                                <td><%=WarehouseInventory.get(i).getProductType()%></td>
+                                <td><%=WarehouseInventory.get(i).getColor()%></td>
+                                <td><%=WarehouseInventory.get(i).getSize()%></td>
+                                <td><%=WarehouseInventory.get(i).getQty()%></td>
+                            </tr>
+                            <%
+                                    }
+                                }
+                            %>
+                        </tbody>
+                    </table>
 
-                <!-- for 0 qty -->
-                <div align="center" class="container">
+                    <!-- for 0 qty -->
                     <br/><br/>
                     <h3>Out of Stock</h3>
                     <table id="WarehouseInventory2" class="table table-bordered table-hover">
@@ -278,6 +284,5 @@
                     </table>
                 </div>
             </div>
-
     </body>
 </html>
