@@ -14,7 +14,6 @@ import Model.PurchaseOrder;
 import Model_View.ConsumptionReportView;
 import Model_View.RawMaterialsInventoryView;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -22,7 +21,6 @@ import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -66,20 +64,29 @@ public class ApproveRejectSubconPOServlet extends BaseServlet {
 
         try {
             if (PurchaseOrderDAO.updateApproval(purchaseOrder)) {
+                x = true;
                 System.out.println("passed approval");
                 for (int i = 0; i < CRforRM.size(); i++) {
+                     x = true;
                     RawMaterialsInventoryView rm = new RawMaterialsInventoryView();
                     rm = inventoryDAO.GetAAndPInventorySpecific(CRforRM.get(i).getItemCode());
-                    inventoryDAO.updateInventory(rm.getQty()-CRforRM.get(i).getTotalQty(), rm.getItemCode());
+                    inventoryDAO.updateInventory(rm.getQty() - CRforRM.get(i).getTotalQty(), rm.getItemCode());
                 }
             }
         } catch (ParseException ex) {
             Logger.getLogger(ApproveRejectSubconPOServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
         if (x) {
             ServletContext context = getServletContext();
             RequestDispatcher rd = context.getRequestDispatcher("/ApproveSubconPurchaseOrderServlet");
             request.setAttribute("Approval", "Approved");
+            rd.forward(request, response);
+        }
+        else {
+            ServletContext context = getServletContext();
+            RequestDispatcher rd = context.getRequestDispatcher("/Accounts/Homepage.jsp");
             rd.forward(request, response);
         }
     }
