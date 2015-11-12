@@ -54,7 +54,7 @@
         <% ArrayList<ConsumptionReportView> ConsumptionReportView = (ArrayList<ConsumptionReportView>) request.getAttribute("ConsumptionList");%>
         <form id="form1" method="post" action="SetSubconPOSpecificSerlvet">
             <div class="container" align="center">
-                <h2>Search Consumption Report</h2><br/>
+                <h2>Encode Subcontractor Purchase Order</h2><br/>
                 <div style="width:60%;">
                     <table id="dataTable" class="table table-bordered table-hover">
                         <thead>
@@ -96,7 +96,7 @@
                         <h3 class="panel-title">Subcontractor Purchase Order</h3>
                     </div>
                     <div class="panel-body">
-                        <label class="" for="poNumber">Purchase Order Number</label>
+                        <label class="" for="poNumber">Purchase Order No.</label>
                         <input type="text" name="poNumber" class="form-control " id="poNumber" value="<%=poNumber%>" readonly /><br/>
                         <label class="" for="preparedBy">Prepared By</label>
                         <input type="hidden" name="preparedBy" class="form-control "   value="<%=user.getEmployeeNumber()%>"/><br/>
@@ -181,15 +181,16 @@
                                 <th>Total</th></tr>
                             <tr>
                                 <%
+                                 double  total = 0;
                                     for (int i = 0; i < productSizes.size(); i++) {
-                                        double  total = 0;
+                                       
                                 %>
                                 <td><input type="number" readonly class="transparentBg" name="volumeQty" id="sizeS" value="<%=productSizes.get(i).getVolumeQty() %>" /></td>
                                     <%
                                     total += productSizes.get(i).getVolumeQty();
                                         }
-                                    %>
-                                <td><input name="TotalS" class="transparentBg" id="TotalS" value="${total}" readonly/></td>
+                                    %>  
+                                <td><input name="TotalS" class="transparentBg" id="TotalS" value="<%=total%>" readonly/></td>
                             </tr>
                         </table>
                     </div>

@@ -6,12 +6,15 @@
 package Controller_Approve;
 
 import Controller_Base.BaseServlet;
+import DAO.InventoryDAO;
 import DAO.SubconPurchaseOrderDAO;
 import DAO.SupplierPurchaseOrderDAO;
 import Model.PurchaseOrder;
+import Model_View.RawMaterialsInventoryView;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -38,6 +41,8 @@ public class ApproveRejectSubconPOServlet extends BaseServlet {
     public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         SubconPurchaseOrderDAO PurchaseOrderDAO = new SubconPurchaseOrderDAO();
         PurchaseOrder purchaseOrder = new PurchaseOrder();
+        InventoryDAO inventoryDAO = new InventoryDAO();
+        
          int PoNumber = Integer.parseInt(request.getParameter("poNumber"));
          int employeeNumber = Integer.parseInt(request.getParameter("employeeNumber"));
          purchaseOrder.setApprovedBy(employeeNumber);
@@ -45,6 +50,8 @@ public class ApproveRejectSubconPOServlet extends BaseServlet {
          boolean x = false;
         try {
            x =  PurchaseOrderDAO.updateApproval(purchaseOrder);
+           RawMaterialsInventoryView rm = new RawMaterialsInventoryView();
+           
         } catch (ParseException ex) {
             Logger.getLogger(ApproveRejectSubconPOServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

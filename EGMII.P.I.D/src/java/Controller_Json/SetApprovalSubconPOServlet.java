@@ -48,27 +48,35 @@ public class SetApprovalSubconPOServlet extends BaseServlet {
        
         
         SubconPurchaseOrderDAO PurchaseOrderDAO = new SubconPurchaseOrderDAO();
+        ConsumptionReportDAO DAO = new ConsumptionReportDAO();
         ArrayList<SubconPurchaseOrderView> PurchaseOrderList = new ArrayList<>();
+        
         PurchaseOrderList = PurchaseOrderDAO.GetAllSubconPurchaseOrderForApproval();
         
         String poNumber = request.getParameter("hiddenValue");
-        
-        
+        String productionNumber = request.getParameter("productionNumber");
+       
         ArrayList<SubconPurchaseOrderView> SubconPurchaseOrderSpecific = new ArrayList<>();
-
-        // get Specific  details search using productioNumber
-        
-        // get inventory accessories
-        
-        //get fabric accesroies
-        
-        
+        ArrayList<ConsumptionReportView> CRforSizes = new ArrayList();
+        ArrayList<SubconPurchaseOrderView> CRHeader =  new ArrayList<>();
+       SubconPurchaseOrderSpecific  = PurchaseOrderDAO.getSubconPurchaseNumberView(Integer.parseInt(poNumber));
+       
+        try {
+            CRforSizes = DAO.GetCRForSizes(Integer.parseInt(productionNumber));
+            CRHeader = PurchaseOrderDAO.getSubconHeader(Integer.parseInt(poNumber));
+            
+        } catch (ParseException ex) {
+            Logger.getLogger(SetApprovalSubconPOServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      
         ServletContext context = getServletContext();
-        RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Procurement/SubconPurchaseOrder.jsp");
+        RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Procurement/SubconApproval.jsp");
         
         request.setAttribute("PurchaseOrderList", PurchaseOrderList);
         request.setAttribute("data", "subconApproval");
-        request.setAttribute("", "");
+        request.setAttribute("SubconPurchaseOrderSpecific", SubconPurchaseOrderSpecific);
+        request.setAttribute("CRforSizes", CRforSizes);
+        request.setAttribute("CRHeader", CRHeader);
         
         rd.forward(request, response);
 
