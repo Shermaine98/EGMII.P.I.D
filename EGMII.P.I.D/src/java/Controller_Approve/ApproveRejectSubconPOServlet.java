@@ -6,10 +6,12 @@
 package Controller_Approve;
 
 import Controller_Base.BaseServlet;
+import DAO.ConsumptionReportDAO;
 import DAO.InventoryDAO;
 import DAO.SubconPurchaseOrderDAO;
 import DAO.SupplierPurchaseOrderDAO;
 import Model.PurchaseOrder;
+import Model_View.ConsumptionReportView;
 import Model_View.RawMaterialsInventoryView;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -41,25 +43,44 @@ public class ApproveRejectSubconPOServlet extends BaseServlet {
     public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         SubconPurchaseOrderDAO PurchaseOrderDAO = new SubconPurchaseOrderDAO();
         PurchaseOrder purchaseOrder = new PurchaseOrder();
+        ConsumptionReportDAO DAO = new ConsumptionReportDAO();
         InventoryDAO inventoryDAO = new InventoryDAO();
-        
-         int PoNumber = Integer.parseInt(request.getParameter("poNumber"));
-         int employeeNumber = Integer.parseInt(request.getParameter("employeeNumber"));
-         purchaseOrder.setApprovedBy(employeeNumber);
-         purchaseOrder.setPoNumber(PoNumber);
-         boolean x = false;
+        ArrayList<ConsumptionReportView> CRforRM = new ArrayList<>();
+        ArrayList<ConsumptionReportView> CRforProduction = new ArrayList<>();
+
+        int PoNumber = Integer.parseInt(request.getParameter("poNumber"));
+        int employeeNumber = Integer.parseInt(request.getParameter("employeeNumber"));
+        int productionNumber = Integer.parseInt(request.getParameter("productionNumber"));
+        System.out.println("Production Number: " + productionNumber);
+
+        purchaseOrder.setApprovedBy(employeeNumber);
+        purchaseOrder.setPoNumber(PoNumber);
+        boolean x = false;
+
         try {
-           x =  PurchaseOrderDAO.updateApproval(purchaseOrder);
-           RawMaterialsInventoryView rm = new RawMaterialsInventoryView();
-           
+            CRforRM = DAO.getCRTotalForUpdate(productionNumber);
+            System.out.println("RM: " + CRforRM.size());
         } catch (ParseException ex) {
             Logger.getLogger(ApproveRejectSubconPOServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if(x){
-         ServletContext context = getServletContext();
-         RequestDispatcher rd = context.getRequestDispatcher("/ApproveSubconPurchaseOrderServlet");
-           request.setAttribute("Approval", "Approved");
-        rd.forward(request, response); 
+
+        try {
+            if (PurchaseOrderDAO.updateApproval(purchaseOrder)) {
+                System.out.println("passed approval");
+                for (int i = 0; i < CRforRM.size(); i++) {
+                    RawMaterialsInventoryView rm = new RawMaterialsInventoryView();
+                    rm = inventoryDAO.GetAAndPInventorySpecific(CRforRM.get(i).getItemCode());
+                    inventoryDAO.updateInventory(rm.getQty()-CRforRM.get(i).getTotalQty(), rm.getItemCode());
+                }
+            }
+        } catch (ParseException ex) {
+            Logger.getLogger(ApproveRejectSubconPOServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (x) {
+            ServletContext context = getServletContext();
+            RequestDispatcher rd = context.getRequestDispatcher("/ApproveSubconPurchaseOrderServlet");
+            request.setAttribute("Approval", "Approved");
+            rd.forward(request, response);
         }
     }
 }
