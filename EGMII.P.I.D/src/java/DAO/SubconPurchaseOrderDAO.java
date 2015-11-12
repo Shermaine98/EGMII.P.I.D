@@ -264,7 +264,7 @@ public class SubconPurchaseOrderDAO {
                 "ON CR.productionNumber = CRD.productionNumber\n" +
                 "JOIN product P\n" +
                 "ON CRD.itemCode = P.itemCode\n" +
-                "WHERE PO.poNumber AND PO.isSupplier = FALSE;";
+                "WHERE PO.poNumber = ? AND PO.isSupplier = FALSE;";
 
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1, poNumber);
@@ -280,7 +280,7 @@ public class SubconPurchaseOrderDAO {
                 po.setDeliveryDate(rs.getDate("deliveryDate"));
                 po.setApprovedBy(rs.getInt("approvedBy"));
                 po.setPreparedBy(rs.getInt("preparedBy"));
-                po.setItemCode(rs.getInt("itenCode"));
+                po.setItemCode(rs.getInt("itemCode"));
                 po.setProductName(rs.getString("productName"));
                 po.setProductType(rs.getString("productType"));
                 po.setProductColor(rs.getString("color"));
