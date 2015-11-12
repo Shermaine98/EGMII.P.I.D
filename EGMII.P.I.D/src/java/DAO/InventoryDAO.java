@@ -400,8 +400,45 @@ public class InventoryDAO {
                     + "FROM inventory I \n"
                     + "JOIN product P \n"
                     + "ON I.itemCode = P.itemCode\n"
-                    + "WHERE P.productName = ?  AND I.qty > 0 AND P.inventoryType = 'warehouse';;");
+                    + "WHERE P.productName = ?  AND I.qty > 0 AND P.inventoryType = 'warehouse';");
             pstmt.setString(1, productName);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                WarehouseInventoryView WarehouseInventoryView = new WarehouseInventoryView();
+
+                WarehouseInventoryView.setItemCode(rs.getInt("itemCode"));
+                WarehouseInventoryView.setProductName(rs.getString("productName"));
+                WarehouseInventoryView.setProductType(rs.getString("productType"));
+                WarehouseInventoryView.setSize(rs.getString("size"));
+                WarehouseInventoryView.setColor(rs.getString("color"));
+                WarehouseInventoryView.setQty(rs.getDouble("qty"));
+                WarehouseInventoryList.add(WarehouseInventoryView);
+
+            }
+            conn.close();
+            pstmt.close();
+            return WarehouseInventoryList;
+        } catch (SQLException ex) {
+            Logger.getLogger(InventoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    public ArrayList<WarehouseInventoryView> GetAllWarehouse() throws ParseException {
+        ArrayList<WarehouseInventoryView> WarehouseInventoryList = new ArrayList<>();
+
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+            
+            PreparedStatement pstmt = conn.prepareStatement("SELECT I.itemCode, "
+                    + "P.productName, P.productType, P.size, P.color, I.qty\n"
+                    + "FROM inventory I \n"
+                    + "JOIN product P \n"
+                    + "ON I.itemCode = P.itemCode\n"
+                    + "WHERE I.qty > 0 AND P.inventoryType = 'warehouse';");
+          
             ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) {
