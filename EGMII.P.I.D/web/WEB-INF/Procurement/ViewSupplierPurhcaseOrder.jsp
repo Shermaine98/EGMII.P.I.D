@@ -54,6 +54,11 @@
                 return false;
             }
         </script>
+        <style>
+            label{
+                font-weight:Bold;
+            }
+        </style>
     </head>
     <body>  
         <br/>
@@ -111,17 +116,17 @@
                 <div class="panel-heading">
                     <h3 class="panel-title">Supplier Purchase Order</h3>
                 </div>
-                <div class="panel-body">
-                    <label for="poNumber">Purchase Order No.</label>
-                    <input type="text" class="form-control readonlyWhite" readonly name="poNumber" value ="<%=spo1.get(0).getPoNumber()%>" /><br/>
-                    <label for="preparedBy">Prepared By</label>
-                    <input type="text" class="form-control readonlyWhite" readonly name="preparedBy" value="<%=spo1.get(0).getPreparedBy()%>"/><br/>
-                    <label for="dateMade">Date Made</label>
-                    <input type="text" class="form-control readonlyWhite" readonly name="dateMade" value="<%=spo1.get(0).getDateMade()%>"/><br/>
-                    <label for="deliveryDate">Delivery Date</label>
-                    <input type="date" class="form-control readonlyWhite" id="datepicker" readonly name="deliveryDate" value="<%=spo1.get(0).getDeliveryDate()%>"/><br/>
-                    <label for="supplier">Supplier</label>
-                    <input type="text" class="form-control readonlyWhite" readonly name="supplier" value="<%=spo1.get(0).getCompanyName()%>"/><br/>
+                <div class="panel-body h5" align="left">
+                    <label for="poNumber">Purchase Order No: </label>
+                    <%=spo1.get(0).getPoNumber()%> <br/><br/>
+                    <label for="preparedBy">Prepared By: </label>
+                    <%=spo1.get(0).getPreparedBy()%><br/><br/>
+                    <label for="dateMade">Date Made: </label>
+                    <%=spo1.get(0).getDateMade()%> <br/><br/>
+                    <label for="deliveryDate">Delivery Date: </label>
+                    <%=spo1.get(0).getDeliveryDate()%><br/><br/>
+                    <label for="supplier">Supplier: </label>
+                    <%=spo1.get(0).getCompanyName()%><br/><br/>
                     <input type="text" class="hidden" readonly name="employeeNumber" value="<%=user.getEmployeeNumber()%>"/>
                 </div>
             </div>
