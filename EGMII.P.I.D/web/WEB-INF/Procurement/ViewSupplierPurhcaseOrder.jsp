@@ -18,7 +18,8 @@
         <link rel="stylesheet" type="text/css" href="bootstrap/css/jquery.dataTables.min.css">
         <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
         <script src="js/searchSupplier.js"></script>
-         <script src="js/Validation.js"></script>
+        <script src="js/Validation.js"></script>
+        <script src="js/Print.js"></script>
         <title>View Supplier Purchase Order</title>
         <script>
             $(document).ready(function () {
@@ -32,11 +33,10 @@
                     document.getElementById("form1").submit();
                 }));
             });
-
         </script>
     </head>
     <body>  
-        <br/><br/><br/>
+        <br/>
     <center><h2>View Supplier Purchase Order</h2></center>
 
     <br/><br/>
@@ -78,7 +78,7 @@
     </form>
 
 
-    <div>
+    <div id="printableArea">
         <%
             if (data.equalsIgnoreCase("SupplierPurchaseOrderSpecific")) {
                 ArrayList<SupplierPurchaseOrderView> spo1 = (ArrayList<SupplierPurchaseOrderView>) request.getAttribute("SupplierPurchaseOrderSpecific");
@@ -144,7 +144,9 @@
 
         <%}%>
     </div>
-    <script></script>
+    <center>
+        <input type="button" class="btn btn-default" onclick="printDiv('printableArea')" value="Print" />
+    </center>
 </body>
 
 </html>

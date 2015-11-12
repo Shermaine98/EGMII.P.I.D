@@ -150,8 +150,8 @@ public class SubconPurchaseOrderDAO {
                 po.setDateMade(rs.getDate("dateMade"));
                 po.setDeliveryDate(rs.getDate("deliveryDate"));
                 po.setCompanyName(rs.getString("companyName"));
-                po.setProductName("productName");
-                po.setProductType("productType");
+                po.setProductName(rs.getString("productName"));
+                po.setProductType(rs.getString("productType"));
                 poList.add(po);
             }
             ps.close();
@@ -327,5 +327,51 @@ public class SubconPurchaseOrderDAO {
         }
         return false;
     }
+    public ArrayList<SubconPurchaseOrderView> getSubconHeader(int poNumber) {
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+            ArrayList<SubconPurchaseOrderView> poList = new ArrayList<>();
 
+            String query = "SELECT PO.poNumber,\n" +
+                "PO.subconID, S.companyName, \n" +
+                "CR.productionNumber, PO.deliveryDate, PO.preparedBy,\n" +
+                "CRD.itemCode, P.productName, P.productType, P.color\n" +
+                "FROM ref_subcon S\n" +
+                "JOIN purchase_order PO\n" +
+                "ON PO.subconID = S.subconID\n" +
+                "JOIN consumption_report CR\n" +
+                "ON CR.productionNumber = PO.productionNumber\n" +
+                "JOIN cr_details CRD\n" +
+                "ON CR.productionNumber = CRD.productionNumber\n" +
+                "JOIN product P\n" +
+                "ON CRD.itemCode = P.itemCode\n" +
+                "WHERE PO.poNumber = ? AND PO.isSupplier = FALSE;";
+
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setInt(1, poNumber);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                SubconPurchaseOrderView po = new SubconPurchaseOrderView();
+                po.setPoNumber(rs.getInt("poNumber"));
+                po.setSubconID(rs.getInt("subconID"));
+                po.setCompanyName(rs.getString("companyName"));
+                po.setProductionNumber(rs.getInt("productionNumber"));
+                po.setDeliveryDate(rs.getDate("deliveryDate"));
+                po.setPreparedBy(rs.getInt("preparedBy"));
+                po.setItemCode(rs.getInt("itemCode"));
+                po.setProductName(rs.getString("productName"));
+                po.setProductType(rs.getString("productType"));
+                po.setProductColor(rs.getString("color"));
+                poList.add(po);
+            }
+            ps.close();
+            rs.close();
+            return poList;
+        } catch (SQLException ex) {
+            Logger.getLogger(SubconPurchaseOrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
 }
