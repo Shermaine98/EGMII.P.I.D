@@ -2,6 +2,7 @@ package Controller_View;
 
 import Controller_Base.BaseServlet;
 import DAO.ConsumptionReportDAO;
+import DAO.InventoryDAO;
 import DAO.InventoryReportDAO;
 import DAO.ReplenishmentDAO;
 import Model.ConsumptionReport;
@@ -9,6 +10,7 @@ import Model.InventoryReportCom;
 import Model_View.ConsumptionReportView;
 import Model_View.InventoryReportView;
 import Model_View.RepRequestView;
+import Model_View.WarehouseInventoryView;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -76,6 +78,15 @@ public class ViewReplenishmentServlet extends BaseServlet {
             rd.forward(request, response);
         } else if(action.equalsIgnoreCase("specific")){
              ArrayList<InventoryReportCom> inventoryCom = new ArrayList<InventoryReportCom>();
+             ArrayList<WarehouseInventoryView> warehouseView = new ArrayList<>();
+             InventoryDAO invDAO = new InventoryDAO();
+             
+            try {
+                warehouseView = invDAO.GetAllWarehouse();
+            } catch (ParseException ex) {
+                Logger.getLogger(ViewReplenishmentServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+             
             try {
                 String invId = request.getParameter("invId");
                 inventoryCom = inventoryReportDAO.GetInventoryReportRep(invId);
@@ -91,6 +102,7 @@ public class ViewReplenishmentServlet extends BaseServlet {
             request.setAttribute("inventoryReports", irv);
             request.setAttribute("InventoryReportCom", inventoryCom);
             request.setAttribute("repID", repID);
+            request.setAttribute("warehouseView", warehouseView);
             rd.forward(request, response);
             
         }
