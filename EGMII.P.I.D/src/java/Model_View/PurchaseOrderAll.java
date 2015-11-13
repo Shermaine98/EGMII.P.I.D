@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Model_General;
+package Model_View;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -11,19 +6,29 @@ import java.text.SimpleDateFormat;
 
 /**
  *
- * @author Gerard
+ * @author Atayan
+ * @author Lapidario
+ * @author Sy
+ * @author Nunez
+ * @author Dimaandal
+ *
  */
-public class DeliveryInvoiceAll {
-    private int diNumber;
-    private int location;
-    private int madeBy;
-    private int approvedBy;
+public class PurchaseOrderAll {
+    private int poNumber;
+    private boolean isSupplier;
+    private int supplierID;
+    private int subconID;
+    private int productionNumber;
     private java.sql.Date dateMade;
     private java.sql.Date deliveryDate;
+    private int preparedBy;
+    private int approvedBy;
+    private boolean isCompleted;
     private int itemCode;
     private double qty;
-    
-     private DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+    private double deliveredQty;
+
+    private DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
     /**
      * @return the dateMade
      */
@@ -44,7 +49,7 @@ public class DeliveryInvoiceAll {
     }
     
          /**
-     * @param dateMade
+     * @param deliveryDate the deliveryDate to set
      * @throws java.text.ParseException
      */
     public void setDateMade(java.util.Date dateMade) throws ParseException {
@@ -94,47 +99,20 @@ public class DeliveryInvoiceAll {
     public void setDeliveryDate(java.sql.Date deliveryDate) {
         this.deliveryDate = deliveryDate;
     }
-
+    
+   
     /**
-     * @return the diNumber
+     * @return the preparedBy
      */
-    public int getDiNumber() {
-        return diNumber;
+    public int getPreparedBy() {
+        return preparedBy;
     }
 
     /**
-     * @param diNumber the diNumber to set
+     * @param preparedBy the preparedBy to set
      */
-    public void setDiNumber(int diNumber) {
-        this.diNumber = diNumber;
-    }
-
-    /**
-     * @return the location
-     */
-    public int getLocation() {
-        return location;
-    }
-
-    /**
-     * @param location the location to set
-     */
-    public void setLocation(int location) {
-        this.location = location;
-    }
-
-    /**
-     * @return the madeBy
-     */
-    public int getMadeBy() {
-        return madeBy;
-    }
-
-    /**
-     * @param madeBy the madeBy to set
-     */
-    public void setMadeBy(int madeBy) {
-        this.madeBy = madeBy;
+    public void setPreparedBy(int preparedBy) {
+        this.preparedBy = preparedBy;
     }
 
     /**
@@ -149,6 +127,90 @@ public class DeliveryInvoiceAll {
      */
     public void setApprovedBy(int approvedBy) {
         this.approvedBy = approvedBy;
+    }
+
+    /**
+     * @return the poNumber
+     */
+    public int getPoNumber() {
+        return poNumber;
+    }
+
+    /**
+     * @param poNumber the poNumber to set
+     */
+    public void setPoNumber(int poNumber) {
+        this.poNumber = poNumber;
+    }
+
+    /**
+     * @return the isSupplier
+     */
+    public boolean isIsSupplier() {
+        return isSupplier;
+    }
+
+    /**
+     * @param isSupplier the isSupplier to set
+     */
+    public void setIsSupplier(boolean isSupplier) {
+        this.isSupplier = isSupplier;
+    }
+
+    /**
+     * @return the supplierID
+     */
+    public int getSupplierID() {
+        return supplierID;
+    }
+
+    /**
+     * @param supplierID the supplierID to set
+     */
+    public void setSupplierID(int supplierID) {
+        this.supplierID = supplierID;
+    }
+
+    /**
+     * @return the subconID
+     */
+    public int getSubconID() {
+        return subconID;
+    }
+
+    /**
+     * @param subconID the subconID to set
+     */
+    public void setSubconID(int subconID) {
+        this.subconID = subconID;
+    }
+
+    /**
+     * @return the productionNumber
+     */
+    public int getProductionNumber() {
+        return productionNumber;
+    }
+
+    /**
+     * @param productionNumber the productionNumber to set
+     */
+    public void setProductionNumber(int productionNumber) {
+        this.productionNumber = productionNumber;
+    }
+
+    /**
+     * @return the isCompleted
+     */
+    public boolean isIsCompleted() {
+        return isCompleted;
+    }
+
+    /**
+     * @param isCompleted the isCompleted to set
+     */
+    public void setIsCompleted(boolean isCompleted) {
+        this.isCompleted = isCompleted;
     }
 
     /**
@@ -192,5 +254,18 @@ public class DeliveryInvoiceAll {
     public void setQty(double qty) {
         this.qty = qty;
     }
-    
+
+    /**
+     * @return the deliveredQty
+     */
+    public double getDeliveredQty() {
+        return deliveredQty;
+    }
+
+    /**
+     * @param deliveredQty the deliveredQty to set
+     */
+    public void setDeliveredQty(double deliveredQty) {
+        this.deliveredQty = deliveredQty;
+    }
 }

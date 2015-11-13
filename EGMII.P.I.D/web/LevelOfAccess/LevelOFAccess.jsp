@@ -1,8 +1,9 @@
 <%@page import="Model.User"%>
 <%
-   User user = (User) session.getAttribute("login");
-   String position = user.getPosition().toLowerCase().trim();
-    if (position.equalsIgnoreCase("promoter")) {
+    
+        User user = (User) session.getAttribute("login");
+        String position = user.getPosition().toLowerCase().trim();
+        if (position.equalsIgnoreCase("promoter")) {
 %>         <jsp:include page ="/NavBar/nPromoNavBar.jsp" />
 <%
 } else if (position.equalsIgnoreCase("receipt handler")) {
@@ -24,10 +25,11 @@
 %>          <jsp:include page="/NavBar/nWarehouseManagerNavBar.jsp"/>
 <%          } else if (position.equalsIgnoreCase("administrator")) {
 %>          <jsp:include page="/NavBar/nadministratorNavBar.jsp"/>
-<%          } else if (position.equalsIgnoreCase("delivery man")||position.equalsIgnoreCase("employee")) {
+<%          } else if (position.equalsIgnoreCase("delivery man") || position.equalsIgnoreCase("employee")) {
 %>          <jsp:include page="/NavBar/nemployeeNavBar.jsp"/>
 <%          } else {
-        response.sendRedirect("index.jsp");
-    }
+            response.sendRedirect("index.jsp");
+        }
+    
 
 %> 

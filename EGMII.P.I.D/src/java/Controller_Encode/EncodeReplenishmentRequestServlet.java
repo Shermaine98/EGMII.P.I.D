@@ -64,7 +64,9 @@ public class EncodeReplenishmentRequestServlet extends BaseServlet {
         }
         if(ReplenishmentDAO.EncodeReplenishmentRequest(repRequest)){
             x = true;
-        }
+        }else{
+                x = false;
+                        }
         
         //detail
         if(x){
@@ -78,7 +80,9 @@ public class EncodeReplenishmentRequestServlet extends BaseServlet {
             
                 x= true;
             
-            }
+            }else{
+                x = false;
+                        }
         }
         }
         if (x) {

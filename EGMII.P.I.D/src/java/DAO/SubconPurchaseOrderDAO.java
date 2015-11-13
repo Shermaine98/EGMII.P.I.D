@@ -3,7 +3,6 @@ package DAO;
 import Database.DBConnectionFactory;
 import Model.ConsumptionReportDetails;
 import Model.PurchaseOrder;
-import Model.PurchaseOrderDetails;
 import Model_View.SubconPurchaseOrderView;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

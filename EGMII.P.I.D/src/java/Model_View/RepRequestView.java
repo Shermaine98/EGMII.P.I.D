@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Model_View;
 
 import java.text.DateFormat;
@@ -11,7 +6,12 @@ import java.text.SimpleDateFormat;
 
 /**
  *
- * @author Gerard
+ * @author Atayan
+ * @author Lapidario
+ * @author Sy
+ * @author Nunez
+ * @author Dimaandal
+ *
  */
 public class RepRequestView {
     private int repID;
@@ -24,6 +24,10 @@ public class RepRequestView {
     private String color;
     private String size;
     private double qty;
+    private int location;
+    private String address;
+    private int promo;
+    
     
     
     
@@ -199,6 +203,48 @@ public class RepRequestView {
      */
     public void setQty(double qty) {
         this.qty = qty;
+    }
+
+    /**
+     * @return the location
+     */
+    public int getLocation() {
+        return location;
+    }
+
+    /**
+     * @param location the location to set
+     */
+    public void setLocation(int location) {
+        this.location = location;
+    }
+
+    /**
+     * @return the address
+     */
+    public String getAddress() {
+        return address;
+    }
+
+    /**
+     * @param address the address to set
+     */
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    /**
+     * @return the promo
+     */
+    public int getPromo() {
+        return promo;
+    }
+
+    /**
+     * @param promo the promo to set
+     */
+    public void setPromo(int promo) {
+        this.promo = promo;
     }
 
 }

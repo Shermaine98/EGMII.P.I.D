@@ -115,13 +115,13 @@ public class DeliveryInvoiceDAO {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
             String query = "INSERT INTO delivery_invoice_details"
-                    + "(diNUmber, itemCoce, qty) "
+                    + "(diNumber, itemCode, qty) "
                     + "VALUES (?, ?, ?);";
             PreparedStatement pstmt = conn.prepareStatement(query);
 
             pstmt.setInt(1, newDeliveryInvoiceDetails.getDiNumber());
-            pstmt.setDouble(3, newDeliveryInvoiceDetails.getItemCode());
-            pstmt.setDouble(4, newDeliveryInvoiceDetails.getQty());
+            pstmt.setDouble(2, newDeliveryInvoiceDetails.getItemCode());
+            pstmt.setDouble(3, newDeliveryInvoiceDetails.getQty());
 
             int rows = pstmt.executeUpdate();
             pstmt.close();
@@ -132,5 +132,34 @@ public class DeliveryInvoiceDAO {
             Logger.getLogger(DeliveryInvoiceDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
+    }
+    
+    /**
+     * Get delivery Number
+     *
+     * @return
+     * @throws SQLException
+     */
+    public Integer getDirNumber() throws SQLException {
+        DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+        Connection conn = myFactory.getConnection();
+        Integer i = 0;
+        String query = "SELECT MAX(diNumber) from delivery_invoice";
+        PreparedStatement ps = conn.prepareStatement(query);
+
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            i = rs.getInt("MAX(diNumber)");
+        }
+        if (i == 0) {
+            i = 90000000;
+        } else if (i == 99999999) {
+            i = -1;
+        } else {
+            i += 1;
+        }
+        conn.close();
+        rs.close();
+        return i;
     }
 }

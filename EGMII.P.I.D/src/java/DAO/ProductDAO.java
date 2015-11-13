@@ -3,7 +3,7 @@ package DAO;
 import Database.DBConnectionFactory;
 import Model.Product;
 import Model.ProductBM;
-import Model_General.ProductAll;
+import Model_View.ProductAll;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

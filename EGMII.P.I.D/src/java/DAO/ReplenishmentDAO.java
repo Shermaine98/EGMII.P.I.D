@@ -81,7 +81,8 @@ public class ReplenishmentDAO {
             Connection conn = myFactory.getConnection();
             PreparedStatement pstmt = conn.prepareStatement("SELECT "
                     + "RR.repID, L.branchName, "
-                    + "RR.supervisor, RR.dateMade, P.productName, P.color, P.size, RRD.qty\n"
+                    + "RR.supervisor, RR.dateMade, L.locationID, "
+                    + "L.address, P.itemCode, P.productName, P.color, P.size, RRD.qty\n"
                     + "FROM rep_request RR \n"
                     + "JOIN rep_request_details RRD\n"
                     + "ON RR.repID = RRD.repID\n"
@@ -96,6 +97,7 @@ public class ReplenishmentDAO {
             while (rs.next()) {
                 RepRequestView temp = new RepRequestView();
                 temp.setRepID(rs.getInt("repID"));
+                temp.setProductID(rs.getInt("itemCode"));
                 temp.setBranchName(rs.getString("branchName"));
                 temp.setSupervisor(rs.getInt("supervisor"));
                 temp.setDateMade(rs.getDate("dateMade"));
@@ -103,6 +105,8 @@ public class ReplenishmentDAO {
                 temp.setColor(rs.getString("color"));
                 temp.setSize(rs.getString("size"));
                 temp.setQty(rs.getDouble("qty"));
+                temp.setAddress(rs.getString("address"));
+                temp.setLocation(rs.getInt("locationID"));
                 ConsumptionReport.add(temp);
             }
             pstmt.close();

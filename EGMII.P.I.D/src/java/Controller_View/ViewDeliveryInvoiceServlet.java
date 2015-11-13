@@ -9,8 +9,10 @@ import Model.ConsumptionReport;
 import Model_View.ConsumptionReportView;
 import Model_View.DeliveryInvoiceView;
 import Model_View.InventoryReportView;
+import Model_View.RepRequestView;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -48,13 +50,48 @@ public class ViewDeliveryInvoiceServlet extends BaseServlet {
         String action = request.getParameter("action");
         ServletContext context = getServletContext();
         
-        if (action.equalsIgnoreCase("create")) {
-            
-     //        DeliveryInvoiceView =  DeliveryInvoiceDAO.ReplenishmentReportView();
+        ArrayList<RepRequestView> RepRequestView = new ArrayList<RepRequestView>();
+        ReplenishmentDAO ReplenishmentDAO = new ReplenishmentDAO();
+        
+
+         if (action.equalsIgnoreCase("create")) {
+              
+            try {
+                RepRequestView = ReplenishmentDAO.ReplenishmentReportView();
+            } catch (ParseException ex) {
+                Logger.getLogger(ViewInventoryReportServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
             RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Delivery/DeliveryInvoice.jsp");
-            //request.setAttribute("ProductionInventoryList", "");
+            request.setAttribute("data", "null");
+            request.setAttribute("RepRequestView", RepRequestView);
             rd.forward(request, response);
-        } else if (action.equalsIgnoreCase("approve")) {
+        } else if (action.equalsIgnoreCase("viewSpecific")) {
+            Integer dirNumber =0;
+            try {
+                dirNumber = DeliveryInvoiceDAO.getDirNumber();
+            } catch (SQLException ex) {
+                Logger.getLogger(ViewDeliveryInvoiceServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            try {
+                RepRequestView = ReplenishmentDAO.ReplenishmentReportView();
+            } catch (ParseException ex) {
+                Logger.getLogger(ViewInventoryReportServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            String reportID = request.getParameter("reportID");
+            ArrayList<RepRequestView> RepRequestViewSpec = new ArrayList<RepRequestView>();
+            try {
+                RepRequestViewSpec = ReplenishmentDAO.ReplenishmentReportSpecView(Integer.parseInt(reportID));
+            } catch (ParseException ex) {
+                Logger.getLogger(ViewInventoryReportServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Delivery/DeliveryInvoice.jsp");
+            request.setAttribute("dirNumber", dirNumber);
+            request.setAttribute("data", "viewSpecific");
+            request.setAttribute("RepRequestView", RepRequestView);
+            request.setAttribute("RepRequestViewSpec", RepRequestViewSpec);
+            rd.forward(request, response);
+        }else if (action.equalsIgnoreCase("approve")) {
             try {
                  DeliveryInvoiceView =  DeliveryInvoiceDAO.ReplenishmentReportView();
             } catch (ParseException ex) {

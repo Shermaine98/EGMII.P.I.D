@@ -3,7 +3,7 @@ package Controller_Json;
 import Controller_Base.BaseServlet;
 import DAO.ProductDAO;
 import DAO.ConsumptionReportDAO;
-import Model_General.ProductAll;
+import Model_View.ProductAll;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.sql.SQLException;

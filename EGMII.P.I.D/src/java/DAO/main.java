@@ -9,7 +9,7 @@ package DAO;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
-import Model_General.ProductAll;
+import Model_View.ProductAll;
 
 /**
  *
