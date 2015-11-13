@@ -24,10 +24,10 @@ public class main {
      * @throws ParseException
      */
     public static void main (String args[]) throws SQLException, ParseException{
-    SupplierPurchaseOrderDAO  SupplierPurchaseOrderDAO = new SupplierPurchaseOrderDAO();
-    InventoryDAO InventoryDAO = new InventoryDAO();
-    InventoryDAO.checkRMInventory(300000000);
-    System.out.print(InventoryDAO.checkRMInventory(300000000));
+    ReplenishmentDAO  ReplenishmentDAO = new ReplenishmentDAO();
+    //InventoryDAO InventoryDAO = new InventoryDAO();
+   // InventoryDAO.checkRMInventory(300000000);
+    System.out.print(ReplenishmentDAO.ReplenishmentReportSpecView(80000000));
    
       
     }

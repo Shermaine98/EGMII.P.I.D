@@ -35,7 +35,52 @@ public class ReplenishmentDAO {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             ArrayList<RepRequestView> ConsumptionReport = new ArrayList<RepRequestView>();
             Connection conn = myFactory.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement("SELECT RR.repID, RRD.version, L.branchName, "
+            PreparedStatement pstmt = conn.prepareStatement("SELECT RR.repID, L.branchName, "
+                    + "RR.supervisor, RR.dateMade, P.productName, P.color, P.size, RRD.qty\n"
+                    + "FROM rep_request RR \n"
+                    + "JOIN rep_request_details RRD\n"
+                    + "ON RR.repID = RRD.repID\n"
+                    + "JOIN product P\n"
+                    + "ON RRD.itemCode = P.itemCode\n"
+                    + "JOIN ref_location L\n"
+                    + "ON RR.location = L.locationID GROUP BY RR.repID;");
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                RepRequestView temp = new RepRequestView();
+                temp.setRepID(rs.getInt("repID"));
+                temp.setBranchName(rs.getString("branchName"));
+                temp.setSupervisor(rs.getInt("supervisor"));
+                temp.setDateMade(rs.getDate("dateMade"));
+                temp.setProductName(rs.getString("productName"));
+                temp.setColor(rs.getString("color"));
+                temp.setSize(rs.getString("size"));
+                temp.setQty(rs.getDouble("qty"));
+                ConsumptionReport.add(temp);
+            }
+            pstmt.close();
+            conn.close();
+            return ConsumptionReport;
+        } catch (SQLException ex) {
+            Logger.getLogger(ReplenishmentDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    
+    /**
+     * Get Replenishment View
+     *
+     * @return
+     * @throws ParseException
+     */
+    public ArrayList<RepRequestView> ReplenishmentReportSpecView(int ReportID) throws ParseException {
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            ArrayList<RepRequestView> ConsumptionReport = new ArrayList<RepRequestView>();
+            Connection conn = myFactory.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement("SELECT "
+                    + "RR.repID, L.branchName, "
                     + "RR.supervisor, RR.dateMade, P.productName, P.color, P.size, RRD.qty\n"
                     + "FROM rep_request RR \n"
                     + "JOIN rep_request_details RRD\n"
@@ -45,12 +90,12 @@ public class ReplenishmentDAO {
                     + "JOIN ref_location L\n"
                     + "ON RR.location = L.locationID\n"
                     + "WHERE RR.repID = ?;");
+            pstmt.setInt(1, ReportID);
             ResultSet rs = pstmt.executeQuery();
-
+            
             while (rs.next()) {
                 RepRequestView temp = new RepRequestView();
                 temp.setRepID(rs.getInt("repID"));
-                temp.setVersion(rs.getInt("version"));
                 temp.setBranchName(rs.getString("branchName"));
                 temp.setSupervisor(rs.getInt("supervisor"));
                 temp.setDateMade(rs.getDate("dateMade"));
@@ -110,14 +155,13 @@ public class ReplenishmentDAO {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
             String query = "INSERT INTO rep_request_details"
-                    + "(version, repID, itemCode, qty) "
-                    + "VALUES (?, ?, ?, ?) ";
+                    + "(repID, itemCode, qty) "
+                    + "VALUES  (?, ?, ?) ";
             PreparedStatement pstmt = conn.prepareStatement(query);
-
-            pstmt.setInt(1, newRepRequestDetails.getVersion());
-            pstmt.setDouble(2, newRepRequestDetails.getRepID());
-            pstmt.setDouble(3, newRepRequestDetails.getItemCode());
-            pstmt.setDouble(4, newRepRequestDetails.getQty());
+            
+            pstmt.setDouble(1, newRepRequestDetails.getRepID());
+            pstmt.setDouble(2, newRepRequestDetails.getItemCode());
+            pstmt.setDouble(3, newRepRequestDetails.getQty());
 
             int rows = pstmt.executeUpdate();
             pstmt.close();

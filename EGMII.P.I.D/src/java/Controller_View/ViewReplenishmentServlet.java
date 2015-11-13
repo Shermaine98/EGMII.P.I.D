@@ -49,44 +49,34 @@ public class ViewReplenishmentServlet extends BaseServlet {
         ReplenishmentDAO ReplenishmentDAO = new ReplenishmentDAO();
         ArrayList<InventoryReportView> irv = new ArrayList<InventoryReportView>();
         InventoryReportDAO inventoryReportDAO = new InventoryReportDAO();
-        ArrayList<RepRequestView> RepRequestView = new   ArrayList<RepRequestView>();
+        ArrayList<RepRequestView> RepRequestView = new ArrayList<RepRequestView>();
         String action = request.getParameter("action");
         ServletContext context = getServletContext();
         Integer repID = 0;
-        
+
         try {
-                irv = inventoryReportDAO.GetAllInventoryView();
-            } catch (ParseException ex) {
-                Logger.getLogger(ViewReplenishmentServlet.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        
+            irv = inventoryReportDAO.GetAllInventoryView();
+        } catch (ParseException ex) {
+            Logger.getLogger(ViewReplenishmentServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         if (action.equalsIgnoreCase("create")) {
             RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Delivery/ReplenishmentRequest.jsp");
             request.setAttribute("inventoryReports", irv);
-             request.setAttribute("data", "null");
-            rd.forward(request, response);
-            
-        } else if (action.equalsIgnoreCase("revise")) {
-            try {
-                RepRequestView =  ReplenishmentDAO.ReplenishmentReportView();
-            } catch (ParseException ex) {
-                Logger.getLogger(ViewInventoryReportServlet.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Delivery/ViewReplenishmentRequest.jsp");
             request.setAttribute("data", "null");
-            request.setAttribute("RepRequestView", RepRequestView);
             rd.forward(request, response);
-        } else if(action.equalsIgnoreCase("specific")){
-             ArrayList<InventoryReportCom> inventoryCom = new ArrayList<InventoryReportCom>();
-             ArrayList<WarehouseInventoryView> warehouseView = new ArrayList<>();
-             InventoryDAO invDAO = new InventoryDAO();
-             
+
+        } else if (action.equalsIgnoreCase("specific")) {
+            ArrayList<InventoryReportCom> inventoryCom = new ArrayList<InventoryReportCom>();
+            ArrayList<WarehouseInventoryView> warehouseView = new ArrayList<>();
+            InventoryDAO invDAO = new InventoryDAO();
+
             try {
                 warehouseView = invDAO.GetAllWarehouse();
             } catch (ParseException ex) {
                 Logger.getLogger(ViewReplenishmentServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-             
+
             try {
                 String invId = request.getParameter("invId");
                 inventoryCom = inventoryReportDAO.GetInventoryReportRep(invId);
@@ -96,7 +86,7 @@ public class ViewReplenishmentServlet extends BaseServlet {
             } catch (ParseException ex) {
                 Logger.getLogger(ViewReplenishmentServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
             RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Delivery/ReplenishmentRequest.jsp");
             request.setAttribute("data", "specific");
             request.setAttribute("inventoryReports", irv);
@@ -104,8 +94,37 @@ public class ViewReplenishmentServlet extends BaseServlet {
             request.setAttribute("repID", repID);
             request.setAttribute("warehouseView", warehouseView);
             rd.forward(request, response);
-            
+
+        } else if (action.equalsIgnoreCase("view")) {
+            try {
+                RepRequestView = ReplenishmentDAO.ReplenishmentReportView();
+            } catch (ParseException ex) {
+                Logger.getLogger(ViewInventoryReportServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Delivery/ViewReplenishmentRequest.jsp");
+            request.setAttribute("data", "null");
+            request.setAttribute("RepRequestView", RepRequestView);
+            rd.forward(request, response);
+        } else if (action.equalsIgnoreCase("viewSpecific")) {
+
+            try {
+                RepRequestView = ReplenishmentDAO.ReplenishmentReportView();
+            } catch (ParseException ex) {
+                Logger.getLogger(ViewInventoryReportServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            String reportID = request.getParameter("reportID");
+            ArrayList<RepRequestView> RepRequestViewSpec = new ArrayList<RepRequestView>();
+            try {
+                RepRequestViewSpec = ReplenishmentDAO.ReplenishmentReportSpecView(Integer.parseInt(reportID));
+            } catch (ParseException ex) {
+                Logger.getLogger(ViewInventoryReportServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Delivery/ViewReplenishmentRequest.jsp");
+            request.setAttribute("data", "viewSpecific");
+            request.setAttribute("RepRequestView", RepRequestView);
+            request.setAttribute("RepRequestViewSpec", RepRequestViewSpec);
+            rd.forward(request, response);
         }
-        
+
     }
 }
