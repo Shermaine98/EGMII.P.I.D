@@ -62,7 +62,6 @@ public class EncodeDeliveryInvoiceServlet extends BaseServlet {
         DeliveryInvoice.setDiNumber(dirNUmber);
         DeliveryInvoice.setLocation(Integer.parseInt(locationID));
         DeliveryInvoice.setMadeBy(Integer.parseInt(madeBy));
-        DeliveryInvoice.setApprovedBy(0);
         try {
             DeliveryInvoice.setDateMade();
              DeliveryInvoice.setDeliveryDate(deliveryDate);

@@ -3,6 +3,7 @@ package DAO;
 import Database.DBConnectionFactory;
 import Model.DeliveryInvoice;
 import Model.DeliveryInvoiceDetails;
+import Model.PurchaseOrder;
 import Model_View.DeliveryInvoiceView;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,13 +23,153 @@ import java.util.logging.Logger;
  * @author Dimaandal
  *
  */
-
 public class DeliveryInvoiceDAO {
-/**
- * View ReplenishmentReport All
- * @return
- * @throws ParseException 
- */
+
+    /**
+     * View ReplenishmentReport All
+     *
+     * @return
+     * @throws ParseException
+     */
+    /**
+     * Get Replenishment View
+     *
+     * @return
+     * @throws ParseException
+     */
+    public ArrayList<DeliveryInvoiceView> DeliveryInvoiceViewApproval() throws ParseException {
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            ArrayList<DeliveryInvoiceView> DeliveryInvoiceView = new ArrayList<DeliveryInvoiceView>();
+            Connection conn = myFactory.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement("SELECT di.diNumber, di.approvedBy, \n"
+                    + "di.dateMade, di.deliveryDate, CONCAT(U.firstName,\" \",U.lastName) as 'name', l.branchName, l.address\n"
+                    + "FROM delivery_invoice di \n"
+                    + "JOIN delivery_invoice_details did\n"
+                    + "		ON di.diNumber = did.diNumber\n"
+                    + " JOIN USER U ON\n"
+                    + "	U.employeeID = di.madeby "
+                    + "JOIN ref_location l \n"
+                    + "ON l.locationID = di.location \n"
+                    + "WHERE di.approvedBy IS NULL GROUP BY di.diNumber\n"
+                    + " ORDER BY di.deliveryDate;");
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                DeliveryInvoiceView temp = new DeliveryInvoiceView();
+                temp.setDiNumber(rs.getInt("diNumber"));
+                temp.setBranchName(rs.getString("branchName"));
+                temp.setDateMade(rs.getDate("dateMade"));
+                temp.setAddress(rs.getString("address"));
+                temp.setName(rs.getString("name"));
+                temp.setApprovedBy(rs.getInt("approvedBy"));
+                temp.setDeliveryDate(rs.getDate("deliveryDate"));
+                DeliveryInvoiceView.add(temp);
+            }
+            pstmt.close();
+            conn.close();
+            return DeliveryInvoiceView;
+        } catch (SQLException ex) {
+            Logger.getLogger(DeliveryInvoiceDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    
+    public ArrayList<DeliveryInvoiceView> DeliveryInvoiceView() throws ParseException {
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            ArrayList<DeliveryInvoiceView> DeliveryInvoiceView = new ArrayList<DeliveryInvoiceView>();
+            Connection conn = myFactory.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement("SELECT di.diNumber, di.approvedBy, \n"
+                    + "di.dateMade, di.deliveryDate, CONCAT(U.firstName,\" \",U.lastName) as 'name', l.branchName, l.address\n"
+                    + "FROM delivery_invoice di \n"
+                    + "JOIN delivery_invoice_details did\n"
+                    + "		ON di.diNumber = did.diNumber\n"
+                    + " JOIN USER U ON\n"
+                    + "	U.employeeID = di.madeby"
+                    + "JOIN ref_location l \n"
+                    + "ON l.locationID = di.location \n"
+                    + "WHERE di.approvedBy IS NOT NULL \n"
+                    + "ORDER BY di.deliveryDate;");
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                DeliveryInvoiceView temp = new DeliveryInvoiceView();
+                temp.setDiNumber(rs.getInt("diNumber"));
+                temp.setBranchName(rs.getString("branchName"));
+                temp.setDateMade(rs.getDate("dateMade"));
+                temp.setAddress(rs.getString("address"));
+                temp.setName(rs.getString("name"));
+                temp.setApprovedBy(rs.getInt("approvedBy"));
+                temp.setDeliveryDate(rs.getDate("deliveryDate"));
+                DeliveryInvoiceView.add(temp);
+            }
+            pstmt.close();
+            conn.close();
+            return DeliveryInvoiceView;
+        } catch (SQLException ex) {
+            Logger.getLogger(DeliveryInvoiceDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    /**
+     * Get Replenishment View
+     *
+     * @return
+     * @throws ParseException
+     */
+    public ArrayList<DeliveryInvoiceView> DeliveryInvoiceViewSpec(int diNumber) throws ParseException {
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            ArrayList<DeliveryInvoiceView> DeliveryInvoiceView = new ArrayList<DeliveryInvoiceView>();
+            Connection conn = myFactory.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement("SELECT di.diNumber, di.approvedBy, \n"
+                    + "di.dateMade, di.deliveryDate, \n"
+                    + "p.itemCode, p.itemCode, p.productName,\n"
+                    + "p.productType,\n"
+                    + "p.size, p.color, CONCAT(U.firstName,\" \",U.lastName) as 'name',l.branchName, l.address, did.qty\n"
+                    + "FROM delivery_invoice di \n"
+                    + "JOIN delivery_invoice_details did\n"
+                    + "		ON di.diNumber = did.diNumber\n"
+                    + "JOIN Product p \n"
+                    + "		ON did.itemCode = p.itemCode\n"
+                    + "JOIN USER U ON\n"
+                    + "	U.employeeID = di.madeby\n"
+                    + "JOIN ref_location l\n"
+                    + "	ON l.locationID = di.location\n"
+                    + "WHERE di.diNumber = ? \n"
+                    + "ORDER BY di.deliveryDate;");
+            pstmt.setInt(1, diNumber);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                DeliveryInvoiceView temp = new DeliveryInvoiceView();
+                temp.setDiNumber(rs.getInt("diNumber"));
+                  temp.setProductID(rs.getInt("itemCode"));
+                temp.setBranchName(rs.getString("branchName"));
+                temp.setDateMade(rs.getDate("dateMade"));
+                temp.setAddress(rs.getString("address"));
+                temp.setName(rs.getString("name"));
+                temp.setApprovedBy(rs.getInt("approvedBy"));
+                temp.setDeliveryDate(rs.getDate("deliveryDate"));
+                temp.setProductName(rs.getString("productName"));
+                temp.setProductType(rs.getString("productType"));
+                 temp.setColor(rs.getString("color"));
+                temp.setSize(rs.getString("size"));
+                temp.setQty(rs.getDouble("qty"));
+                DeliveryInvoiceView.add(temp);
+            }
+            pstmt.close();
+            conn.close();
+            return DeliveryInvoiceView;
+        } catch (SQLException ex) {
+            Logger.getLogger(ReplenishmentDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
     public ArrayList<DeliveryInvoiceView> ReplenishmentReportView() throws ParseException {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -70,7 +211,7 @@ public class DeliveryInvoiceDAO {
         }
         return null;
     }
-    
+
     /**
      * Encode Delivery Invoice Details
      *
@@ -82,16 +223,15 @@ public class DeliveryInvoiceDAO {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
             String query = "INSERT INTO delivery_invoice"
-                    + "(diNumber, location, madeby, approvedby, dateMade, deliveryDate)"
-                    + "VALUES (?, ?, ?, ?, ?, ?);";
+                    + "(diNumber, location, madeby, dateMade, deliveryDate)"
+                    + "VALUES (?, ?, ?, ?, ?);";
             PreparedStatement pstmt = conn.prepareStatement(query);
 
             pstmt.setInt(1, newDeliveryInvoice.getDiNumber());
             pstmt.setInt(2, newDeliveryInvoice.getLocation());
             pstmt.setInt(3, newDeliveryInvoice.getMadeBy());
-            pstmt.setInt(4, newDeliveryInvoice.getApprovedBy());
-            pstmt.setDate(5, newDeliveryInvoice.getDateMade());
-            pstmt.setDate(6, newDeliveryInvoice.getDeliveryDate());
+            pstmt.setDate(4, newDeliveryInvoice.getDateMade());
+            pstmt.setDate(5, newDeliveryInvoice.getDeliveryDate());
 
             int rows = pstmt.executeUpdate();
             pstmt.close();
@@ -133,8 +273,7 @@ public class DeliveryInvoiceDAO {
         }
         return false;
     }
-    
-    
+
     /**
      * Get delivery Number
      *
@@ -162,5 +301,28 @@ public class DeliveryInvoiceDAO {
         conn.close();
         rs.close();
         return i;
+    }
+    
+    public boolean updateApproval(DeliveryInvoice newDeliveryInvoice) throws ParseException {
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+
+            String query = "UPDATE delivery_invoice\n"
+                    + "SET approvedBy = ?\n"
+                    + "WHERE diNumber = ?;";
+
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, newDeliveryInvoice.getApprovedBy());
+            pstmt.setInt(2, newDeliveryInvoice.getDiNumber());
+
+            int rows = pstmt.executeUpdate();
+            conn.close();
+            pstmt.close();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(DeliveryInvoiceDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 }

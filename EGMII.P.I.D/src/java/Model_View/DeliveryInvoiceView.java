@@ -25,6 +25,11 @@ public class DeliveryInvoiceView {
     private String color;
     private String size;
     private double qty;
+    private String name;
+    private String productType;
+    private int productID;
+    
+    
     
      private DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
     /**
@@ -236,6 +241,48 @@ public class DeliveryInvoiceView {
      */
     public void setSize(String size) {
         this.size = size;
+    }
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * @return the productType
+     */
+    public String getProductType() {
+        return productType;
+    }
+
+    /**
+     * @param productType the productType to set
+     */
+    public void setProductType(String productType) {
+        this.productType = productType;
+    }
+
+    /**
+     * @return the productID
+     */
+    public int getProductID() {
+        return productID;
+    }
+
+    /**
+     * @param productID the productID to set
+     */
+    public void setProductID(int productID) {
+        this.productID = productID;
     }
     
 }

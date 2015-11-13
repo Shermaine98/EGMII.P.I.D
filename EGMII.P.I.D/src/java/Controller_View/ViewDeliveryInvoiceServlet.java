@@ -46,16 +46,16 @@ public class ViewDeliveryInvoiceServlet extends BaseServlet {
     @Override
     public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         DeliveryInvoiceDAO DeliveryInvoiceDAO = new DeliveryInvoiceDAO();
-        ArrayList<DeliveryInvoiceView> DeliveryInvoiceView = new   ArrayList<DeliveryInvoiceView> ();
+       
         String action = request.getParameter("action");
         ServletContext context = getServletContext();
         
-        ArrayList<RepRequestView> RepRequestView = new ArrayList<RepRequestView>();
+        
         ReplenishmentDAO ReplenishmentDAO = new ReplenishmentDAO();
         
 
          if (action.equalsIgnoreCase("create")) {
-              
+              ArrayList<RepRequestView> RepRequestView = new ArrayList<RepRequestView>();
             try {
                 RepRequestView = ReplenishmentDAO.ReplenishmentReportView();
             } catch (ParseException ex) {
@@ -66,6 +66,8 @@ public class ViewDeliveryInvoiceServlet extends BaseServlet {
             request.setAttribute("RepRequestView", RepRequestView);
             rd.forward(request, response);
         } else if (action.equalsIgnoreCase("viewSpecific")) {
+             ArrayList<RepRequestView> RepRequestView = new ArrayList<RepRequestView>();
+            
             Integer dirNumber =0;
             try {
                 dirNumber = DeliveryInvoiceDAO.getDirNumber();
@@ -92,35 +94,69 @@ public class ViewDeliveryInvoiceServlet extends BaseServlet {
             request.setAttribute("RepRequestViewSpec", RepRequestViewSpec);
             rd.forward(request, response);
         }else if (action.equalsIgnoreCase("approve")) {
+             ArrayList<DeliveryInvoiceView> DeliveryInvoiceViewA = new   ArrayList<DeliveryInvoiceView> ();
             
-            
-//            try {
-//                 //DeliveryInvoiceView =  DeliveryInvoiceDAO.ReplenishmentReportView();
-//            } catch (ParseException ex) {
-//                Logger.getLogger(ViewInventoryReportServlet.class.getName()).log(Level.SEVERE, null, ex);
-//            }
+            try {
+                 DeliveryInvoiceViewA =  DeliveryInvoiceDAO.DeliveryInvoiceViewApproval();
+            } catch (ParseException ex) {
+                Logger.getLogger(ViewInventoryReportServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
             RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Delivery/ApproveInvoice.jsp");
-           request.setAttribute("data", "viewSpecificApprove");
-           // request.setAttribute("RepRequestViewA", RepRequestViewA);
-          //  request.setAttribute("RepRequestViewSpecA", RepRequestViewSpecA);
+           request.setAttribute("data", "null");
+            request.setAttribute("DeliveryInvoiceViewA", DeliveryInvoiceViewA);
             rd.forward(request, response);
         }else if (action.equalsIgnoreCase("viewSpecificApprove")) {
+             ArrayList<DeliveryInvoiceView> DeliveryInvoiceViewA = new   ArrayList<DeliveryInvoiceView> ();
+            String diNumber = request.getParameter("diNumber");
+            ArrayList<DeliveryInvoiceView> DeliveryInvoiceViewSpecA = new   ArrayList<DeliveryInvoiceView> ();
+            
             try {
-                DeliveryInvoiceView =  DeliveryInvoiceDAO.ReplenishmentReportView();
+                 DeliveryInvoiceViewA =  DeliveryInvoiceDAO.DeliveryInvoiceViewApproval();
             } catch (ParseException ex) {
                 Logger.getLogger(ViewInventoryReportServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Delivery/ViewDeliveryInvoice.jsp");
-            request.setAttribute("DeliveryInvoiceView", DeliveryInvoiceView);
+            
+            try {
+                DeliveryInvoiceViewSpecA =  DeliveryInvoiceDAO.DeliveryInvoiceViewSpec(Integer.parseInt(diNumber));
+            } catch (ParseException ex) {
+                Logger.getLogger(ViewInventoryReportServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Delivery/ApproveInvoice.jsp");
+            request.setAttribute("DeliveryInvoiceViewA", DeliveryInvoiceViewA);
+            request.setAttribute("data", "viewSpecificApprove");
+            request.setAttribute("DeliveryInvoiceViewSpecA", DeliveryInvoiceViewSpecA);
             rd.forward(request, response);
         }else if (action.equalsIgnoreCase("view")) {
+            
+            ArrayList<DeliveryInvoiceView> DeliveryInvoiceView = new   ArrayList<DeliveryInvoiceView> ();
             try {
-                DeliveryInvoiceView =  DeliveryInvoiceDAO.ReplenishmentReportView();
+                DeliveryInvoiceView =  DeliveryInvoiceDAO.DeliveryInvoiceView();
             } catch (ParseException ex) {
                 Logger.getLogger(ViewInventoryReportServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
             RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Delivery/ViewDeliveryInvoice.jsp");
             request.setAttribute("DeliveryInvoiceView", DeliveryInvoiceView);
+            request.setAttribute("data", "null");
+            rd.forward(request, response);
+        }else if (action.equalsIgnoreCase("viewSpcific")) {
+            ArrayList<DeliveryInvoiceView> DeliveryInvoiceView = new   ArrayList<DeliveryInvoiceView> ();
+            ArrayList<DeliveryInvoiceView> DeliveryInvoiceViewSpecView = new   ArrayList<DeliveryInvoiceView> ();
+             String diNumber = request.getParameter("diNumber");
+            try {
+                DeliveryInvoiceView =  DeliveryInvoiceDAO.DeliveryInvoiceView();
+            } catch (ParseException ex) {
+                Logger.getLogger(ViewInventoryReportServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+              try {
+                DeliveryInvoiceViewSpecView =  DeliveryInvoiceDAO.DeliveryInvoiceViewSpec(Integer.parseInt(diNumber));
+            } catch (ParseException ex) {
+                Logger.getLogger(ViewInventoryReportServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Delivery/ViewDeliveryInvoice.jsp");
+            request.setAttribute("DeliveryInvoiceView", DeliveryInvoiceView);
+            request.setAttribute("data", "spec");
+            request.setAttribute("DeliveryInvoiceSpec", DeliveryInvoiceViewSpecView);
             rd.forward(request, response);
         }
         
