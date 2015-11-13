@@ -85,13 +85,13 @@ public class DeliveryInvoiceDAO {
                     + "di.dateMade, di.deliveryDate, CONCAT(U.firstName,\" \",U.lastName) as 'name', l.branchName, l.address\n"
                     + "FROM delivery_invoice di \n"
                     + "JOIN delivery_invoice_details did\n"
-                    + "		ON di.diNumber = did.diNumber\n"
+                    + " ON di.diNumber = did.diNumber\n"
                     + " JOIN USER U ON\n"
                     + "	U.employeeID = di.madeby"
-                    + "JOIN ref_location l \n"
-                    + "ON l.locationID = di.location \n"
-                    + "WHERE di.approvedBy IS NOT NULL \n"
-                    + "ORDER BY di.deliveryDate;");
+                    + " JOIN ref_location l \n"
+                    + " ON l.locationID = di.location \n"
+                    + " WHERE di.approvedBy IS NOT NULL GROUP BY di.diNumber \n"
+                    + " ORDER BY di.deliveryDate;");
             ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) {
@@ -139,7 +139,7 @@ public class DeliveryInvoiceDAO {
                     + "	U.employeeID = di.madeby\n"
                     + "JOIN ref_location l\n"
                     + "	ON l.locationID = di.location\n"
-                    + "WHERE di.diNumber = ? \n"
+                    + "WHERE di.diNumber = ?  \n"
                     + "ORDER BY di.deliveryDate;");
             pstmt.setInt(1, diNumber);
             ResultSet rs = pstmt.executeQuery();
