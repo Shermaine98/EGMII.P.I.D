@@ -17,8 +17,24 @@
         <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="bootstrap/css/sub-menu.css">
         <link href="bootstrap/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
-         <script src="js/Validation.js"></script>
+        <script src="js/Validation.js"></script>
         <title>Inventory Report</title>
+
+        <script>
+            function SolveEndingInv() {
+                  var endingT =0;
+                $(".trclass").each(function () {
+                    var $this = $(this);
+                    var begQty = parseFloat($this.find('[id="bgQty\\[\\]"]').val());
+                    var soldQty = parseFloat($this.find('[id="soldQty\\[\\]"]').val());
+                    var pulledQty = parseFloat($this.find('[id="pulledQty\\[\\]"]').val());
+                    endingT = begQty - (soldQty + pulledQty);
+                    console.log(endingT);
+                    $this.find('[id="endingT\\[\\]"]').val(endingT);
+                });
+                return false;
+            }
+        </script>
     </head>
     <body>
         <form method="post" action="EncodeInventoryReportServlet">
@@ -27,7 +43,7 @@
                 <h2>Inventory Report</h2>
                 <% ArrayList<RetailInventoryView> retailInventoryView = (ArrayList<RetailInventoryView>) request.getAttribute("retailInventoryView");
                     if (retailInventoryView.size() > 0) {%>
-                
+
 
                 <div class="panel panel-default col-md-3" style="padding-bottom:10px;">
                     <div class="panel-heading">
@@ -56,15 +72,15 @@
                                 <th>Ending Inventory</th>
                             </tr>
                             <%for (int i = 0; i < retailInventoryView.size(); i++) {%>
-                            <tr>
+                            <tr class="trclass">
                                 <td><%=retailInventoryView.get(i).getProductName()%>
-                                <input type="hidden" value="<%= retailInventoryView.get(i).getItemCode()%>" name="itemCode" /></td>
+                                    <input type="hidden" value="<%= retailInventoryView.get(i).getItemCode()%>" name="itemCode" /></td>
                                 <td><%=retailInventoryView.get(i).getColor()%></td>
                                 <td><%=retailInventoryView.get(i).getSize()%></td>
-                                <td><input type="text" class="transparentBg inputSize" id="bgQty" readonly name="begQty" value="<%=retailInventoryView.get(i).getQty()%>"</td>
-                                <td><input type="number" class="transparentBg inputSize" id="pulledQty" name="pulledQty" value="0" min="0"></td>
-                                <td><input type="number" class="transparentBg inputSize" id="soldQty" name="soldQty" value="0" min="0"></td>
-                                <td><input type="number" class="transparentBg inputSize" id="endingT" readonly value="0" /></td>
+                                <td><input type="text" class="transparentBg inputSize"  readonly name="begQty" id="bgQty[]" value="<%=retailInventoryView.get(i).getQty()%>"</td>
+                                <td><input type="number" onkeypress="return event.charCode >= 48 && event.charCode <= 57" class="transparentBg inputSize"  name="pulledQty" id="pulledQty[]" onchange="SolveEndingInv()" value="0" min="0"></td>
+                                <td><input type="number" onkeypress="return event.charCode >= 48 && event.charCode <= 57" class="transparentBg inputSize" name="soldQty" id="soldQty[]" onchange="SolveEndingInv()" value="0" min="0"></td>
+                                <td><input type="text" class="transparentBg inputSize" id="endingT[]" readonly value="0" /></td>
                             </tr>
                             <%}%>
                         </table>
