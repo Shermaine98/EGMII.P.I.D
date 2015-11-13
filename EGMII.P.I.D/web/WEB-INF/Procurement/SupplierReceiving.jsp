@@ -28,12 +28,11 @@
                     "info": true
                 });
 
-                $(".SupplierPOReceiving").on("click", (function () {
-                    var purchaseOrderNum = $(this).closest("tr").find(".poNumber").text();
+                 $("#dataTable tbody").on("click", 'input[type="text"]', (function () {
+                     var purchaseOrderNum = $(this).closest("tr").find(".poNumber").text();
                     document.getElementById('hiddenValue').value = purchaseOrderNum;
                     document.getElementById("form1").submit();
                 }));
-
 
                 $(".trclass").on("keyup", (function () {
                     var volumeQty = parseInt($(this).closest("tr").find(".volQty").text());
@@ -75,11 +74,11 @@
                     <tbody>
                         <%for (int i = 0; i < PurchaseOrderList.size(); i++) {%>
                         <tr class="SupplierPOReceiving">
-                            <td class="poNumber"><%=PurchaseOrderList.get(i).getPoNumber()%></td>
-                            <td><%=PurchaseOrderList.get(i).getCompanyName()%></td>
-                            <td><%=PurchaseOrderList.get(i).getDeliveryDate()%></td>
-                            <td><%=PurchaseOrderList.get(i).getPreparedByName()%></td>
-                            <td><%=PurchaseOrderList.get(i).isIsCompleted()%></td>
+                            <td class="poNumber"><%=PurchaseOrderList.get(i).getPoNumber()%><input type="text" class="transparentBg inputSize"/></td>
+                            <td><input type="text" class="transparentBg inputSize" value="<%=PurchaseOrderList.get(i).getCompanyName()%>"/></td>
+                            <td><input type="text" class="transparentBg inputSize" value="<%=PurchaseOrderList.get(i).getDeliveryDate()%>"/></td>
+                            <td><input type="text" class="transparentBg inputSize" value="<%=PurchaseOrderList.get(i).getPreparedByName()%>"/></td>
+                            <td><input type="text" class="transparentBg inputSize" value="<%=PurchaseOrderList.get(i).isIsCompleted()%>"/></td>
                         </tr>
                         <%} %>
                     </tbody>

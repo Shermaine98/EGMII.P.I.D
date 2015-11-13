@@ -30,12 +30,13 @@
                     "paging": true,
                     "info": true
                 });
-
-                $(".SubconPO").on("click", (function () {
-                    var poNumber = $(this).closest("tr").find(".poNumber").text();
+                
+                $("#dataTable tbody").on("click", 'input[type="text"]', (function () {
+                   var poNumber = $(this).closest("tr").find(".poNumber").text();
                     document.getElementById('hiddenValue').value = poNumber;
                     document.getElementById("form1").submit();
                 }));
+                
                 $("#datepicker").datepicker({minDate: 1, maxDate: "+4M +10D", dateFormat: 'yy-mm-dd'});
 
                 var x = document.getElementById('trigger').value;
@@ -66,12 +67,12 @@
                         <tbody>
                             <%for (int i = 0; i < ConsumptionReportView.size(); i++) {%>
                             <tr class="SubconPO">  
-                                <td class="poNumber"><%=ConsumptionReportView.get(i).getPoNumber()%></td>
-                                <td><input type="text" name="productionNumber" value="<%=ConsumptionReportView.get(i).getProductionNumber()%>"/></td>
-                                <td><%=ConsumptionReportView.get(i).getProductName()%></td>
-                                <td><%=ConsumptionReportView.get(i).getProductType()%></td>
-                                <td><%=ConsumptionReportView.get(i).getDateMade()%></td>
-                                <td><%=ConsumptionReportView.get(i).getPreparedBy()%></td>
+                                <td class="poNumber"><%=ConsumptionReportView.get(i).getPoNumber()%><input type="text" class="transparentBg inputSize"/></td>
+                                <td><input type="text" name="productionNumber" class="transparentBg inputSize" value="<%=ConsumptionReportView.get(i).getProductionNumber()%>"/></td>
+                                <td><input type="text" class="transparentBg inputSize" value="<%=ConsumptionReportView.get(i).getProductName()%>"/></td>
+                                <td><input type="text" class="transparentBg inputSize" value="<%=ConsumptionReportView.get(i).getProductType()%>"/></td>
+                                <td><input type="text" class="transparentBg inputSize" value="<%=ConsumptionReportView.get(i).getDateMade()%>"/></td>
+                                <td><input type="text" class="transparentBg inputSize" value="<%=ConsumptionReportView.get(i).getPreparedBy()%>"/></td>
 
                             </tr> 
                             <%}%>

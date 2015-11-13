@@ -23,8 +23,7 @@
             $(document).ready(function () {
                 $('#dataTable').DataTable({
                     "paging": false,
-                    "info": false,
-                    "dom": '<"pull-left "f>'
+                    "info": false
                 });
             });
         </script>

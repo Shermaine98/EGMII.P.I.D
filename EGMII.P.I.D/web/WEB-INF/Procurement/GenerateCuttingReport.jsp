@@ -37,8 +37,8 @@
                     "paging": true,
                     "info": true
                 });
-
-                $(".cuttingReport").on("click", (function () {
+                
+                 $("#dataTable tbody").on("click", 'input[type="text"]', (function () {
                     var purchaseOrderNum = $(this).closest("tr").find(".poNumber").text();
                     document.getElementById('hiddenValue').value = purchaseOrderNum;
                     document.getElementById("form1").submit();
@@ -65,11 +65,11 @@
                         <tbody>
                             <% for (int i = 0; i < ConsumptionReportView.size(); i++) {%>
                             <tr class="cuttingReport">
-                                <td class="poNumber"><%=ConsumptionReportView.get(i).getProductionNumber()%></td>
-                                <td><%=ConsumptionReportView.get(i).getProductName()%></td>
-                                <td><%=ConsumptionReportView.get(i).getDateMade()%></td>
-                                <td><%=ConsumptionReportView.get(i).getColor()%></td>
-                                <td><%=ConsumptionReportView.get(i).getPreparedBy()%></td>
+                                <td class="poNumber"><%=ConsumptionReportView.get(i).getProductionNumber()%><input type="text" class="transparentBg inputSize"/></td>
+                                <td><input type="text" class="transparentBg inputSize" value="<%=ConsumptionReportView.get(i).getProductName()%>"/></td>
+                                <td><input type="text" class="transparentBg inputSize" value="<%=ConsumptionReportView.get(i).getDateMade()%>"/></td>
+                                <td><input type="text" class="transparentBg inputSize" value="<%=ConsumptionReportView.get(i).getColor()%>"/></td>
+                                <td><input type="text" class="transparentBg inputSize" value="<%=ConsumptionReportView.get(i).getPreparedBy()%>"/></td>
                             </tr>
                             <%
                                 }

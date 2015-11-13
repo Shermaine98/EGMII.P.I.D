@@ -41,12 +41,35 @@
                     "paging": true,
                     "info": true
                 });
-                $(".repView").on("click", (function () {
+
+                $("#Replenish tbody").on("click", 'input[type="text"]', (function () {
                     var purchaseOrderNum = $(this).closest("tr").find(".reportID").text();
                     document.getElementById('hiddenValue').value = purchaseOrderNum;
                     document.getElementById("form1").submit();
                 }));
+
+                $('#warehouseT tbody').on('click', 'input[type="checkbox"]', function (e) {
+                    var check = this.checked;
+                    console.log(check);
+                    if (check === true) {
+                        document.getElementById("order").style.visibility = 'visible';
+                        var productName = $(this).closest("tr").find(".productName").text();
+                        var color = $(this).closest("tr").find(".color").text();
+                        var size = $(this).closest("tr").find(".size").text();
+                        var Qty = $(this).closest("tr").find(".Qty").text();
+                        $('#data').append('<tr>\n\
+                                          <td><input type="text" name="productName" value="' + productName + '"/></td>\n\
+                                          <td><input type="text" name="" value="' + color + '"/></td>\n\
+                                          <td><input type="text" name="" value="' + size + '"/></td>\n\\n\
+                                          <td><input type="text" name="" value="' + Qty + '"/></td>\n\\n\
+                                          <td><input type="number" name="" value="0"/></td>\n\
+                                        </tr>');
+                    }
+                });
             });
+
+
+
         </script>
     </head>
     <body>
@@ -69,15 +92,16 @@
                                     <th>Branch Name</th>
                                     <th>Promoter</th>
                                     <th>Date Made</th>
+
                                 </tr>
                             </thead>
                             <tbody>
                                 <% for (int i = 0; i < InventoryReport.size(); i++) {%>
                                 <tr class="repView">
-                                    <td class="reportID"><%=InventoryReport.get(i).getReportID()%></td>
-                                    <td><%=InventoryReport.get(i).getBranchName()%></td>
-                                    <td><%=InventoryReport.get(i).getPromo()%></td>
-                                    <td><%=InventoryReport.get(i).getDateMade()%></td>
+                                    <td class="reportID"><%=InventoryReport.get(i).getReportID()%><input type="text" class="transparentBg inputSize"></td>
+                                    <td><input type="text" class="transparentBg inputSize" value="<%=InventoryReport.get(i).getBranchName()%>"></td>
+                                    <td><input type="text" class="transparentBg inputSize" value="<%=InventoryReport.get(i).getPromo()%>"</td>
+                                    <td><input type="text" class="transparentBg inputSize" value="<%=InventoryReport.get(i).getDateMade()%>"</td>
                                 </tr>
                                 <%
                                         }
@@ -130,6 +154,33 @@
                         %>
                     </tbody>
                 </table>
+                <div style="width:60%;">
+                    <table id="warehouseT" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Order</th>
+                                <th>Product Name</th>
+                                <th>Color</th>
+                                <th>Size</th>
+                                <th>Current Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for (int i = 0; i < warehouseInv.size(); i++) {%>
+                            <tr>
+                                <td class="check" ><input type = "checkbox" value="1"/></td>
+                                <td class="productName"><%=warehouseInv.get(i).getProductName()%></td>
+                                <td class="color"><%=warehouseInv.get(i).getColor()%></td>
+                                <td class="size"><%=warehouseInv.get(i).getSize()%></td>
+                                <td class="Qty"><%=warehouseInv.get(i).getQty()%></td>
+                            </tr>
+                            <%
+
+                                }
+                            %>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
             <div class="panel panel-default col-md-3">
@@ -152,49 +203,25 @@
             <div class="panel panel-default col-md-7">
                 <br> 
                 <h2>Warehouse Inventory</h2><br/>
-                <div style="width:60%;">
-                    <table id="warehouseT" class="table table-bordered">
+                <div id="order" style=" width:60%; visibility: hidden">
+                    <h2>Replenishment Request</h2><br/>
+                    <table id="data" class="table table-bordered" >
                         <thead>
                             <tr>
-                                <th>Order</th>
+
                                 <th>Product Name</th>
                                 <th>Color</th>
                                 <th>Size</th>
                                 <th>Current Quantity</th>
+                                <th>Quantity To Be send (?)</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <% for (int i = 0; i < warehouseInv.size(); i++) {%>
-                            <tr>
-                                <td><input type = "checkbox" name = "order" /></td>
-                                <td><%=warehouseInv.get(i).getProductName()%></td>
-                                <td><%=warehouseInv.get(i).getColor()%></td>
-                                <td><%=warehouseInv.get(i).getSize()%></td>
-                                <td><%=warehouseInv.get(i).getQty()%></td>
-                            </tr>
-                            <%
+                        <tbody id="info">
 
-                                }
-                            %>
                         </tbody>
                     </table>
                 </div>
                 <br>
-                <div class="panel-body">
-                    <table id="ReplenishItem" class="table table-bordered">
-
-                        <!--                        <tr><td><input type="text" class="transparentBg" name="productName" /></td><td><select name="color" class="transparentBg"><option value="sample">Sample</option></select></td>
-                                                    <td>
-                                                        <select name="size" class="transparentBg">
-                                                            <option value="sample">Sample</option>
-                                                        </select>  
-                                                    </td>
-                                                    <td>
-                                                        <input type="number" class="transparentBg inputSize" name="quantity" />  
-                                                    </td>
-                                                </tr>-->
-                    </table>
-                </div>
             </div>
 
         </div>

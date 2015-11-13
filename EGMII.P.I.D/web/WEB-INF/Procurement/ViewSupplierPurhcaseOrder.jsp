@@ -27,11 +27,13 @@
                     "paging": true,
                     "info": true
                 });
-                $(".SPO").on("click", (function () {
+                
+                 $("#dataTable tbody").on("click", 'input[type="text"]', (function () {
                     var productionNumber = $(this).closest("tr").find(".poNumber").text();
                     document.getElementById('hiddenValue').value = productionNumber;
                     document.getElementById("form1").submit();
                 }));
+                
               $(".trclass").each(function () {
                     var $this = $(this);
                     var unitPrice = parseFloat($this.find('[id="unitPrice\\[\\]"]').val());
@@ -86,12 +88,12 @@
                         for (int i = 0; i < SupplierPurchaseOrderList.size(); i++) {
                     %> 
                     <tr class="SPO">
-                        <td class="poNumber"><%= SupplierPurchaseOrderList.get(i).getPoNumber()%></td>
-                        <td><%= SupplierPurchaseOrderList.get(i).getCompanyName()%></td>
-                        <td><%= SupplierPurchaseOrderList.get(i).getDateMade()%></td>
-                        <td><%= SupplierPurchaseOrderList.get(i).getDeliveryDate()%></td>
-                        <td><%= SupplierPurchaseOrderList.get(i).getPreparedBy()%></td>
-                        <td><%= SupplierPurchaseOrderList.get(i).getApprovedBy()%></td>        
+                        <td class="poNumber"><%= SupplierPurchaseOrderList.get(i).getPoNumber()%><input type="text" class="transparentBg inputSize"/></td>
+                        <td><input type="text" class="transparentBg inputSize" value="<%= SupplierPurchaseOrderList.get(i).getCompanyName()%>"/></td>
+                        <td><input type="text" class="transparentBg inputSize" value="<%= SupplierPurchaseOrderList.get(i).getDateMade()%>"/></td>
+                        <td><input type="text" class="transparentBg inputSize" value="<%= SupplierPurchaseOrderList.get(i).getDeliveryDate()%>"/></td>
+                        <td><input type="text" class="transparentBg inputSize" value="<%= SupplierPurchaseOrderList.get(i).getPreparedBy()%>"/></td>
+                        <td><input type="text" class="transparentBg inputSize" value="<%= SupplierPurchaseOrderList.get(i).getApprovedBy()%>"/></td>        
                     </tr>
                     <%
                         }

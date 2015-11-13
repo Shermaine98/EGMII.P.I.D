@@ -29,7 +29,7 @@
                     "info": true
                 });
 
-                $(".SupplierPOView").on("click", (function () {
+                $("#dataTable tbody").on("click", 'input[type="text"]', (function () {
                     var purchaseOrderNum = $(this).closest("tr").find(".poNumber").text();
                     document.getElementById('hiddenValue').value = purchaseOrderNum;
                     document.getElementById("form1").submit();
@@ -77,12 +77,12 @@
                         </thead>
                         <tbody>
                             <% for (int i = 0; i < PurchaseOrderList.size(); i++) {%>
-                            <tr class="SupplierPOView">
-                                <td class="poNumber"><%=PurchaseOrderList.get(i).getPoNumber()%></td>
-                                <td><%=PurchaseOrderList.get(i).getCompanyName()%></td>
-                                <td><%=PurchaseOrderList.get(i).getDateMade()%></td>
-                                <td><%=PurchaseOrderList.get(i).getDeliveryDate()%></td>
-                                <td><%=PurchaseOrderList.get(i).getPreparedBy()%></td>
+                            <tr>
+                                <td class="poNumber"><%=PurchaseOrderList.get(i).getPoNumber()%><input type="text" class="transparentBg inputSize"/></td>
+                                <td><input type="text" class="transparentBg inputSize" value="<%=PurchaseOrderList.get(i).getCompanyName()%>"></td>
+                                <td><input type="text" class="transparentBg inputSize" value="<%=PurchaseOrderList.get(i).getDateMade()%>"></td>
+                                <td><input type="text" class="transparentBg inputSize" value="<%=PurchaseOrderList.get(i).getDeliveryDate()%>"</td>
+                                <td><input type="text" class="transparentBg inputSize" value="<%=PurchaseOrderList.get(i).getPreparedBy()%>"</td>
                             </tr>
                             <%
                                 }

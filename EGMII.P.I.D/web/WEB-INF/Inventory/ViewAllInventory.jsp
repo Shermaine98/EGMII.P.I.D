@@ -121,7 +121,7 @@
                 <br/><br/>
                 <h3>Out of Stock</h3>
                 <div>
-                    <table id="AccessoriesInventory2" class="table table-bordered table-hover">
+                    <table id="AccessoriesInventory2" class="table table-bordered">
                         <thead>
                             <tr>
                                 <th>Item Code</th>

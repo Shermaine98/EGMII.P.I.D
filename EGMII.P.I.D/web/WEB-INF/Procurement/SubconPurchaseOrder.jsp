@@ -29,9 +29,8 @@
                     "paging": true,
                     "info": true
                 });
-
-                $(".SubconPO").on("click", (function () {
-                    var purchaseOrderNum = $(this).closest("tr").find(".productionNumber").text();
+                $("#dataTable tbody").on("click", 'input[type="text"]', (function () {
+                   var purchaseOrderNum = $(this).closest("tr").find(".productionNumber").text();
                     document.getElementById('hiddenValue').value = purchaseOrderNum;
                     document.getElementById("form1").submit();
                 }));
@@ -69,11 +68,11 @@
                         <tbody>
                             <%for (int i = 0; i < ConsumptionReportView.size(); i++) {%>
                             <tr class="SubconPO">  
-                                <td class="productionNumber"><%=ConsumptionReportView.get(i).getProductionNumber()%></td>
-                                <td><%=ConsumptionReportView.get(i).getProductName()%></td>
-                                <td><%=ConsumptionReportView.get(i).getProductType()%></td>
-                                <td><%=ConsumptionReportView.get(i).getColor()%></td>
-                                <td><%=ConsumptionReportView.get(i).getName()%></td>
+                                <td class="productionNumber"><%=ConsumptionReportView.get(i).getProductionNumber()%><input type="text" class="transparentBg inputSize"/></td>
+                                <td><input type="text" class="transparentBg inputSize" value="<%=ConsumptionReportView.get(i).getProductName()%>"/></td>
+                                <td><input type="text" class="transparentBg inputSize" value="<%=ConsumptionReportView.get(i).getProductType()%>"/></td>
+                                <td><input type="text" class="transparentBg inputSize" value="<%=ConsumptionReportView.get(i).getColor()%>"/></td>
+                                <td><input type="text" class="transparentBg inputSize" value="<%=ConsumptionReportView.get(i).getName()%>"/></td>
                             </tr> 
                             <%}%>
                         </tbody>

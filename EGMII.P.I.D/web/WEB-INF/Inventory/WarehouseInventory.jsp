@@ -38,7 +38,7 @@
         %>
         <div align="center" class="container">
             <h2>Warehouse Inventory</h2>
-            <table id="WarehouseInventory" class="table table-bordered table-hover">
+            <table id="WarehouseInventory" class="table table-bordered">
                 <thead>
                     <tr>
                         <th>Product ID</th>
@@ -72,7 +72,7 @@
         <div align="center" class="container">
             <br/><br/>
             <h3>Out of Stock</h3>
-            <table id="WarehouseInventory2" class="table table-bordered table-hover">
+            <table id="WarehouseInventory2" class="table table-bordered">
                 <thead>
                     <tr>
                         <th>Product ID</th>

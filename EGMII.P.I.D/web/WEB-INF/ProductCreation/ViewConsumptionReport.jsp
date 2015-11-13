@@ -27,9 +27,8 @@
                     "paging": true,
                     "info": true
                 });
-
-                $(".production").on("click", (function () {
-                    var productionNumber = $(this).closest("tr").find(".productionNumber").text();
+                $("#view tbody").on("click", 'input[type="text"]', (function () {
+                 var productionNumber = $(this).closest("tr").find(".productionNumber").text();
                     document.getElementById('hiddenValue').value = productionNumber;
                     document.getElementById("form1").submit();
                 }));
@@ -73,12 +72,12 @@
                             for (int i = 0; i < cr.size(); i++) {
                         %>
                         <tr class="production">
-                            <td class="productionNumber"><%= cr.get(i).getProductionNumber()%></td>
-                            <td><%= cr.get(i).getProductName()%></td>
-                            <td><%= cr.get(i).getProductType()%></td>
-                            <td><%= cr.get(i).getDateMade()%></td>
-                            <td><%= cr.get(i).getColor()%></td>
-                            <td><%= cr.get(i).getName()%></td>
+                            <td class="productionNumber"><%= cr.get(i).getProductionNumber()%><input type="text" class="transparentBg inputSize"/></td>
+                            <td><input type="text" class="transparentBg inputSize" value="<%= cr.get(i).getProductName()%>"/></td>
+                            <td><input type="text" class="transparentBg inputSize" value="<%= cr.get(i).getProductType()%>"/></td>
+                            <td><input type="text" class="transparentBg inputSize" value="<%= cr.get(i).getDateMade()%>"/></td>
+                            <td><input type="text" class="transparentBg inputSize" value="<%= cr.get(i).getColor()%>"/></td>
+                            <td><input type="text" class="transparentBg inputSize" value="<%= cr.get(i).getName()%>"/></td>
                         </tr>
                         <%
                             }
