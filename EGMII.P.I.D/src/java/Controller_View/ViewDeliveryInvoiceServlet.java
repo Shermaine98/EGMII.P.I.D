@@ -92,13 +92,26 @@ public class ViewDeliveryInvoiceServlet extends BaseServlet {
             request.setAttribute("RepRequestViewSpec", RepRequestViewSpec);
             rd.forward(request, response);
         }else if (action.equalsIgnoreCase("approve")) {
+            
+            
+//            try {
+//                 //DeliveryInvoiceView =  DeliveryInvoiceDAO.ReplenishmentReportView();
+//            } catch (ParseException ex) {
+//                Logger.getLogger(ViewInventoryReportServlet.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+            RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Delivery/ApproveInvoice.jsp");
+           request.setAttribute("data", "viewSpecificApprove");
+           // request.setAttribute("RepRequestViewA", RepRequestViewA);
+          //  request.setAttribute("RepRequestViewSpecA", RepRequestViewSpecA);
+            rd.forward(request, response);
+        }else if (action.equalsIgnoreCase("viewSpecificApprove")) {
             try {
-                 DeliveryInvoiceView =  DeliveryInvoiceDAO.ReplenishmentReportView();
+                DeliveryInvoiceView =  DeliveryInvoiceDAO.ReplenishmentReportView();
             } catch (ParseException ex) {
                 Logger.getLogger(ViewInventoryReportServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Delivery/ApproveInvoice.jsp");
-            //request.setAttribute("InventoryReportList", inventoryReportView);
+            RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Delivery/ViewDeliveryInvoice.jsp");
+            request.setAttribute("DeliveryInvoiceView", DeliveryInvoiceView);
             rd.forward(request, response);
         }else if (action.equalsIgnoreCase("view")) {
             try {
