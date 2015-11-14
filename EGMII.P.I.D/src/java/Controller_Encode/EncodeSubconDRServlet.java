@@ -139,7 +139,7 @@ public class EncodeSubconDRServlet extends BaseServlet {
 
         if (x) {
             ServletContext context = getServletContext();
-            RequestDispatcher rd = context.getRequestDispatcher("/SetSubconPOReceivingServlet");
+            RequestDispatcher rd = context.getRequestDispatcher("/SetSubconPOReceivingServlet?action=view");
             rd.forward(request, response);
         } else {
             ServletContext context = getServletContext();

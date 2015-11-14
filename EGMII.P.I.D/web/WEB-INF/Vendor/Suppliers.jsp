@@ -26,10 +26,10 @@
                         var supplierName = document.getElementById('supplierName').value;
                         $.ajax({
                             type: 'POST',
-                            url: 'SetWarehouseInvServlet',
+                            url: '',
                             dataType: 'json',
                             data: {
-                                supplierName supplierName
+                                supplierName: supplierName
                             },
                             success: function (data) {
                                 if (x) {
