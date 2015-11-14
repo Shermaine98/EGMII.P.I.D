@@ -54,7 +54,7 @@
         <form id="form1" method="post" action="SetSubconPOSpecificSerlvet">
             <div class="container" align="center">
                 <h2>Encode Subcontractor Purchase Order</h2><br/>
-                <div style="width:60%;">
+                <div style="width:70%;">
                     <table id="dataTable" class="table table-bordered table-hover">
                         <thead>
                             <tr>
@@ -68,11 +68,11 @@
                         <tbody>
                             <%for (int i = 0; i < ConsumptionReportView.size(); i++) {%>
                             <tr class="SubconPO">  
-                                <td class="productionNumber"><%=ConsumptionReportView.get(i).getProductionNumber()%><input type="text" class="transparentBg inputSize"/></td>
-                                <td><input type="text" class="transparentBg inputSize" value="<%=ConsumptionReportView.get(i).getProductName()%>"/></td>
-                                <td><input type="text" class="transparentBg inputSize" value="<%=ConsumptionReportView.get(i).getProductType()%>"/></td>
-                                <td><input type="text" class="transparentBg inputSize" value="<%=ConsumptionReportView.get(i).getColor()%>"/></td>
-                                <td><input type="text" class="transparentBg inputSize" value="<%=ConsumptionReportView.get(i).getName()%>"/></td>
+                                <td class="productionNumber"><%=ConsumptionReportView.get(i).getProductionNumber()%><input type="text" readonly  class="transparentBg inputSize"/></td>
+                                <td><input type="text" class="transparentBg " value="<%=ConsumptionReportView.get(i).getProductName()%>" readonly /></td>
+                                <td><input type="text" class="transparentBg inputSize" value="<%=ConsumptionReportView.get(i).getProductType()%>" readonly /></td>
+                                <td><input type="text" class="transparentBg inputSize" value="<%=ConsumptionReportView.get(i).getColor()%>" readonly /></td>
+                                <td><input type="text" class="transparentBg" value="<%=ConsumptionReportView.get(i).getName()%>" readonly /></td>
                             </tr> 
                             <%}%>
                         </tbody>
@@ -127,6 +127,10 @@
                     </div>
                     <div class="panel-body table-responsive">
                         <table id="dataTable3" class="table table-bordered table-hover">
+                            <colgroup>
+                                <col style="width: 60%" />
+                                <col style="width: 40%" />
+                            </colgroup>
                             <thead>
                                 <tr>
                                     <th>Item Name</th>
@@ -137,7 +141,8 @@
                                 <%for (int i = 0; i < rmwi.size(); i++) {
                                         if (rmwi.get(i).getQtyNeeded() < 0) {
                                 %>
-                                <tr style="background-color:#FF8080"> 
+                                <tr style="background-color: #B20000;
+                                    color: #FFF;"> 
                                     <td><input onload="disabled()" type="text" value="<%=rmwi.get(i).getItemName()%>" class="transparentBg" readonly/> 
                                     <td><input type="hidden" id="trigger" value="true"/><input type="text" value="<%=rmwi.get(i).getQtyNeeded()%>" class="transparentBg" readonly/> 
                                 </tr> 
@@ -164,8 +169,8 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">Sizes</h3>
                     </div>
-                    <div class="panel-body">
-                        <table class="table table-bordered table-responsive">
+                    <div class="panel-body table-responsive">
+                        <table class="table table-bordered">
                             <%
                                 ArrayList<ConsumptionReportView> productSizes = (ArrayList<ConsumptionReportView>) request.getAttribute("CRforSizes");
                             %>
@@ -173,7 +178,7 @@
                                 <%
                                     for (int i = 0; i < productSizes.size(); i++) {
                                 %>
-                                <th><input name="sizeType" class="transparentBg readonlyWhite" value="<%=productSizes.get(i).getSize()%>" readonly/></th>
+                                <th><input name="sizeType" class="transparentBg readonlyWhite inputSize" value="<%=productSizes.get(i).getSize()%>" readonly/></th>
                                     <%
                                         }
                                     %>
@@ -184,12 +189,12 @@
                                     for (int i = 0; i < productSizes.size(); i++) {
 
                                 %>
-                                <td><input type="number" readonly class="transparentBg" name="volumeQty" id="sizeS" value="<%=productSizes.get(i).getVolumeQty()%>" /></td>
+                                <td><input type="number" readonly class="transparentBg inputSize" name="volumeQty" id="sizeS" value="<%=productSizes.get(i).getVolumeQty()%>" /></td>
                                     <%
                                             total += productSizes.get(i).getVolumeQty();
                                         }
                                     %>  
-                                <td><input name="TotalS" class="transparentBg" id="TotalS" value="<%=total%>" readonly/></td>
+                                <td><input name="TotalS" class="transparentBg inputSize" id="TotalS" value="<%=total%>" readonly/></td>
                             </tr>
                         </table>
                     </div>
@@ -275,13 +280,15 @@
                         <table id="dataSubcon"></table>
                     </div>
                     <br/>
-                    <div class="container" align="center">
-                        <br/><br/>
-                        <a href="/EGMII.P.I.D/Account?action=goToHome"><button type="button" class="btn btn-danger" >Cancel</button></a>
-                        <input type="submit" class="btn btn-danger" value="Submit"/>
-                    </div>
+
                 </div>
 
+            </div>
+
+            <div class="container" align="center">
+                <br/><br/>
+                <a href="/EGMII.P.I.D/Account?action=goToHome"><button type="button" class="btn btn-primary" >Cancel</button></a>
+                <input type="submit" class="btn btn-danger" value="Submit"/>
             </div>
         </form>
         <%}%>
