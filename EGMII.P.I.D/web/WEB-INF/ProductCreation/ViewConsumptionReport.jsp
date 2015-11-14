@@ -69,12 +69,12 @@
                             for (int i = 0; i < cr.size(); i++) {
                         %>
                         <tr class="production">
-                            <td class="productionNumber"><%= cr.get(i).getProductionNumber()%><input type="text" class="transparentBg inputSize"/></td>
-                            <td><input type="text" class="transparentBg inputSize" value="<%= cr.get(i).getProductName()%>"/></td>
+                            <td class="productionNumber"><%= cr.get(i).getProductionNumber()%><input type="text" class="transparentBg inputSize" readonly /></td>
+                            <td><input type="text" class="transparentBg" value="<%= cr.get(i).getProductName()%>"/></td>
                             <td><input type="text" class="transparentBg inputSize" value="<%= cr.get(i).getProductType()%>"/></td>
-                            <td><input type="text" class="transparentBg inputSize" value="<%= cr.get(i).getDateMade()%>"/></td>
+                            <td><input type="text" class="transparentBg" value="<%= cr.get(i).getDateMade()%>"/></td>
                             <td><input type="text" class="transparentBg inputSize" value="<%= cr.get(i).getColor()%>"/></td>
-                            <td><input type="text" class="transparentBg inputSize" value="<%= cr.get(i).getName()%>"/></td>
+                            <td><input type="text" class="transparentBg" value="<%= cr.get(i).getName()%>"/></td>
                         </tr>
                         <%
                             }
@@ -117,8 +117,8 @@
                 <div class="panel-heading">
                     <h3 class="panel-title">Sizes</h3>
                 </div>
-                <div class="panel-body">
-                    <table class="table table-bordered table-responsive">
+                <div class="panel-body table-responsive">
+                    <table class="table table-bordered">
                         <%
                             ArrayList<ConsumptionReportView> productSizes = (ArrayList<ConsumptionReportView>) request.getAttribute("CRforSizes");
                         %>
@@ -126,7 +126,7 @@
                             <%
                                 for (int i = 0; i < productSizes.size(); i++) {
                             %>
-                            <th><input name="sizeType" class="transparentBg readonlyWhite" value="<%=productSizes.get(i).getSize()%>" readonly/></th>
+                            <th><input name="sizeType" class="transparentBg readonlyWhite input" value="<%=productSizes.get(i).getSize()%>" readonly/></th>
                                 <%
                                     }
                                 %>
@@ -136,12 +136,12 @@
                                 double total = 0;
                                 for (int i = 0; i < productSizes.size(); i++) {
                             %>
-                            <td><input type="number" readonly class="transparentBg" name="volumeQty" id="sizeS" value="<%=productSizes.get(i).getVolumeQty()%>" /></td>
+                            <td><input type="number" readonly class="transparentBg inputSize" name="volumeQty" id="sizeS" value="<%=productSizes.get(i).getVolumeQty()%>" /></td>
                                 <%
                                         total += productSizes.get(i).getVolumeQty();
                                     }
                                 %>  
-                            <td><input name="TotalS" class="transparentBg" id="TotalS" value="<%=total%>" readonly/></td>
+                            <td><input name="TotalS" class="transparentBg inputSize" id="TotalS" value="<%=total%>" readonly/></td>
                         </tr>
                     </table>
                 </div>
@@ -233,7 +233,7 @@
         <div align="center">
             <form method="POST" action="PrintConsumptionReport" target="_blank">
                 <input type="hidden" id="printPONumber" name="printPONumber" value="<%= cr1.get(0).getProductionNumber()%>"/>
-                <input type="submit" class="btn btn-default" value="Save" />
+                <input type="submit" class="btn btn-danger" value="Save" />
                 <a href="/EGMII.P.I.D/Account?action=goToHome"><button type="button" class="btn btn-primary" >Cancel</button></a>
             </form>
         </div>
