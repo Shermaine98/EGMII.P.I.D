@@ -5,7 +5,6 @@ import DAO.ProductDAO;
 import DAO.RefSizesDAO;
 import Model.Product;
 import Model.ProductBM;
-import Model.ProductTypeSize;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -23,7 +22,8 @@ import javax.servlet.http.HttpServletResponse;
  * @author Atayan
  * @author Lapidario
  * @author Sy
- * @author
+ * @author Nunez
+ * @author Dimaandal
  *
  */
 public class EncodeProductServlet extends BaseServlet {
@@ -38,7 +38,6 @@ public class EncodeProductServlet extends BaseServlet {
     @Override
     public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        //   ProductBM productBM = new ProductBM();
         ArrayList<ProductBM> ProductListBM = new ArrayList<>();
         ArrayList<Product> ProductList = new ArrayList<>();
         ProductDAO productDAO = new ProductDAO();
@@ -53,12 +52,10 @@ public class EncodeProductServlet extends BaseServlet {
         //itemCode   
         String[] itemCode = request.getParameterValues("itemCode");
         String[] itemConsumption = request.getParameterValues("itemConsumption");
-        String[] unitMeasurement = request.getParameterValues("unitMeasurement");
+       
 
         //fabric  
         String[] itemCodefabric = request.getParameterValues("fabricCode");
-        String[] unitMeasurementfabric = request.getParameterValues("unitMeasurement");
-        String[] size = request.getParameterValues("size");
         String[] itemConsumptionfabric = request.getParameterValues("fabricItemConsumption");
 
         try {
@@ -148,9 +145,9 @@ public class EncodeProductServlet extends BaseServlet {
             rd.forward(request, response);
         } else {
             ServletContext context = getServletContext();
-            RequestDispatcher rd = context.getRequestDispatcher("/Accounts/Homepage.jsp");
+            RequestDispatcher rd = context.getRequestDispatcher("/Error.jsp");
+            request.setAttribute("Error", "Error");
             rd.forward(request, response);
-
         }
 
     }

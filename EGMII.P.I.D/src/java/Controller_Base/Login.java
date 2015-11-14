@@ -21,6 +21,7 @@ import javax.servlet.http.HttpSession;
  * @author Lapidario
  * @author Sy
  * @author Nunez
+ * @author Dimaandal
  *
  */
 public class Login extends HttpServlet {
@@ -56,13 +57,13 @@ public class Login extends HttpServlet {
                 session.setAttribute("login", user);
                 session.setAttribute("successful", "successful");
                 rd.forward(request, response);
-            } else if(!successful){
+            } else if (!successful) {
                 ServletContext context = getServletContext();
                 RequestDispatcher rd = context.getRequestDispatcher("/index.jsp");
                 request.setAttribute("message", "Wrong Password");
                 out.print("Wrong Password!");
                 rd.forward(request, response);
-            }else {
+            } else {
                 ServletContext context = getServletContext();
                 RequestDispatcher rd = context.getRequestDispatcher("/index.jsp");
                 rd.forward(request, response);
