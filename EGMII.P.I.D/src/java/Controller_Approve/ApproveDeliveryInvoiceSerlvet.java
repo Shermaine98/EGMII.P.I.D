@@ -73,12 +73,10 @@ public class ApproveDeliveryInvoiceSerlvet extends BaseServlet {
                     RetailInventory RetailInventory = new RetailInventory();
                     RetailInventory = InventoryRetailDAO.GetRetailInventory(Integer.parseInt(itemCode[i]), Integer.parseInt(locationID));
                     if (RetailInventory.getItemCode() != 0) {
-                        System.out.println("NOTNULL");
                         double addedQty = RetailInventory.getQty() + Double.parseDouble(qty[i]);
                         InventoryRetailDAO.updateRetailInventoryQty(addedQty, Integer.parseInt(locationID), Integer.parseInt(itemCode[i]));
                         x = true;
                     } else if (RetailInventory.getItemCode() == 0) {
-                        System.out.println("NULL");
                         InventoryRetailDAO.InsertRetialInventory(Integer.parseInt(locationID), Integer.parseInt(itemCode[i]), Double.parseDouble(qty[i]));
                         x = true;
                     }
