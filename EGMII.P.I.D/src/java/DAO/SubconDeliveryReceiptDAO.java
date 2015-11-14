@@ -38,8 +38,8 @@ public class SubconDeliveryReceiptDAO {
             pstmt.setInt(2, newDeliveryReceipt.getPoNumber());
             pstmt.setBoolean(3, newDeliveryReceipt.isIsSupplier());
             pstmt.setInt(4, newDeliveryReceipt.getProductionNumber());
-            pstmt.setInt(4, newDeliveryReceipt.getReceivedBy());
-            pstmt.setDate(5, newDeliveryReceipt.getDateReceived());
+            pstmt.setInt(5, newDeliveryReceipt.getReceivedBy());
+            pstmt.setDate(6, newDeliveryReceipt.getDateReceived());
 
             int rows = pstmt.executeUpdate();
             pstmt.close();

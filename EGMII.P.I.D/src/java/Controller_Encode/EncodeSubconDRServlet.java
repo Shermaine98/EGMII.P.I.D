@@ -58,7 +58,7 @@ public class EncodeSubconDRServlet extends BaseServlet {
         String[] deliveredQty = request.getParameterValues("deliveredQty");
 
         boolean x = false;
-
+        /*start of encode header*/
         DeliveryReceipt.setDrNumber(Integer.parseInt(drNumber));
         DeliveryReceipt.setPoNumber(Integer.parseInt(poNumber));
         DeliveryReceipt.setReceivedBy(Integer.parseInt(receivedBy));
@@ -75,6 +75,7 @@ public class EncodeSubconDRServlet extends BaseServlet {
         } else {
             x = false;
         }
+        /*end of encode header*/
 
         /*start of encode details*/
         boolean complete = false;
@@ -94,8 +95,8 @@ public class EncodeSubconDRServlet extends BaseServlet {
                             WarehouseInventoryView rm = new WarehouseInventoryView();
                             rm = inventoryDAO.GetWarehouseInventorySpecific(deliveryReceiptDetails.getItemCode());
                             inventoryDAO.updateInventory(currentDeliveredQty + rm.getQty(), rm.getItemCode());
-                            if (Double.parseDouble(QtyOrdered[y]) == currentDeliveredQty) {} 
-                            else {
+                            if (Double.parseDouble(QtyOrdered[y]) == currentDeliveredQty) {
+                            } else {
                                 checking++;
                             }
                         } else {
@@ -114,28 +115,24 @@ public class EncodeSubconDRServlet extends BaseServlet {
         /*end of encode details*/
 
         /*check if purchase order is complete*/
-         if(checking > 0){
+        if (checking > 0) {
             complete = false;
-        } else{
+        } else {
             complete = true;
         }
-         
+
         try {
-            x = subDAO.updateIsComplete(complete, Integer.parseInt(poNumber));
-            
             /*update consumption report status*/
-            if(x){
-                x = DAO.updateConsumptionStatus(Integer.parseInt(productionNumber), "fulfilled");
+            if (subDAO.updateIsComplete(complete, Integer.parseInt(poNumber))) {
+                x = true;
+            } else {
+                x = false;
             }
-            
-            
+
         } catch (ParseException ex) {
             Logger.getLogger(EncodeSubconDRServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
         /*end of checking*/
-        
-        
-
 
         if (x) {
             ServletContext context = getServletContext();
