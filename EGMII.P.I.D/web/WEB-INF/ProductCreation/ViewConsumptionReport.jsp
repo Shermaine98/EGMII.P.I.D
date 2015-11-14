@@ -1,5 +1,5 @@
 <%-- 
-    Document   : View COnsumption Report
+    Document   : View Connsumption Report
     Created on : Nov 14, 2015, 6:57:10 PM
     Author     : Atayan, Dimaandal, Lapidario, Nunez, Sy
 --%>
