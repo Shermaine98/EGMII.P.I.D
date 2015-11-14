@@ -43,6 +43,7 @@ public class ViewConsumptionReportServlet extends BaseServlet {
         
         ConsumptionReportDAO DAO = new ConsumptionReportDAO();
         ArrayList<ConsumptionReportView> crList = new ArrayList();
+        ArrayList<ConsumptionReportView> CRforSizes = new ArrayList();
         
         String goToC = request.getParameter("goToC");
 
@@ -65,6 +66,7 @@ public class ViewConsumptionReportServlet extends BaseServlet {
              try {
                 crListSpecific = DAO.GetAllConsumptionReportSpecific(Integer.parseInt(productionNumber));
                 CRforFabric = DAO.GetCRforFabric(Integer.parseInt(productionNumber));
+                CRforSizes = DAO.GetCRForSizes(Integer.parseInt(productionNumber));
             } catch (ParseException ex) {
                 Logger.getLogger(ViewConsumptionReportServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -75,6 +77,7 @@ public class ViewConsumptionReportServlet extends BaseServlet {
             request.setAttribute("data", "ViewConsumptionReportSpecific");
             request.setAttribute("crListSpecific", crListSpecific);
             request.setAttribute("CRforFabric", CRforFabric);
+            request.setAttribute("CRforSizes", CRforSizes);
             request.setAttribute("crList", crList);
             rd.forward(request, response);
             
