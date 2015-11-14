@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controller_Encode;
 
 import Controller_Base.BaseServlet;
@@ -25,7 +20,12 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Gerard
+ * @author Atayan
+ * @author Lapidario
+ * @author Sy
+ * @author Nunez
+ * @author Dimaandal
+ *
  */
 public class EncodeSupplierDRServlet extends BaseServlet {
 
@@ -115,17 +115,16 @@ public class EncodeSupplierDRServlet extends BaseServlet {
             Logger.getLogger(EncodeSupplierDRServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        if (x == true) {
+        if (x) {
             ServletContext context = getServletContext();
-            RequestDispatcher rd = context.getRequestDispatcher("/index.jsp");
-            request.setAttribute("SupplierPurchaseOrder", DeliveryReceipt);
-            request.setAttribute("SupplierDeliveryDetails", DeliveryReceiptDetails);
+            RequestDispatcher rd = context.getRequestDispatcher("/SetSupplierReceivingServlet");
+            request.setAttribute("success", "success");
             rd.forward(request, response);
         } else {
             ServletContext context = getServletContext();
-            RequestDispatcher rd = context.getRequestDispatcher("/Accounts/Homepage.jsp");
+            RequestDispatcher rd = context.getRequestDispatcher("/Error.jsp");
+            request.setAttribute("Error", "Error");
             rd.forward(request, response);
-
         }
 
     }

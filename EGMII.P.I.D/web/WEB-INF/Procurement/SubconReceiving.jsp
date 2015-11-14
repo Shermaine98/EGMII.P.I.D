@@ -48,7 +48,7 @@
 
     </head>
     <body>
-        <form id="form1" method="post" action="SetSubconSpecificReceivingServlet?action=viewSpecific">
+        <form id="form1" method="post" action="SetSubconPOReceivingServlet?action=viewSpecific">
             <br/><br/><br/>
             <center><h2>Subcontractor Purchase Order Receiving</h2></center>
 
