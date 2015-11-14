@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Lapidario
  * @author Sy
  * @author Nunez
+ * @author Dimaandal
  *
  */
 public class EncodeConsumptionReportServlet extends BaseServlet {
@@ -111,10 +112,10 @@ public class EncodeConsumptionReportServlet extends BaseServlet {
             rd.forward(request, response);
         } else {
             ServletContext context = getServletContext();
-            RequestDispatcher rd = context.getRequestDispatcher("/Accounts/Homepage.jsp");
+            RequestDispatcher rd = context.getRequestDispatcher("/Error.jsp");
+            request.setAttribute("Error", "Error");
             rd.forward(request, response);
         }
-
     }
 
 }

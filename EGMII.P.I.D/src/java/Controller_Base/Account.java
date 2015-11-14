@@ -1,7 +1,5 @@
 package Controller_Base;
 
-import DAO.UserDAO;
-import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
@@ -13,7 +11,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -21,6 +18,7 @@ import javax.servlet.http.HttpSession;
  * @author Lapidario
  * @author Sy
  * @author Nunez
+ * @author Dimaandal
  *
  */
 public class Account extends HttpServlet {

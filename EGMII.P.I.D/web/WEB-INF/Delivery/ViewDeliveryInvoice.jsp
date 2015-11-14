@@ -23,14 +23,12 @@
         <link href="bootstrap/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <script src="js/Validation.js"></script>
         <title>Delivery Invoice</title>
-
         <script>
             $(document).ready(function () {
                 $('#Replenish').DataTable({
                     "paging": true,
                     "info": true
                 });
-
                 $("#Replenish tbody").on("click", 'input[type="text"]', (function () {
                     var diNumber = $(this).closest("tr").find(".diNumber").text();
                     document.getElementById('hiddenValue').value = diNumber;
@@ -40,7 +38,6 @@
         </script>
     </head>
     <body>
-
         <%             ArrayList<DeliveryInvoiceView> DeliveryInvoiceView = (ArrayList<DeliveryInvoiceView>) request.getAttribute("DeliveryInvoiceView");
             if (DeliveryInvoiceView.size() > 0) {
         %>

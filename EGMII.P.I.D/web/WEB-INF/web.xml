@@ -221,10 +221,6 @@
         <servlet-class>Controller_Json.searchWarehouseInv</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ErrorCatchingServlet</servlet-name>
-        <servlet-class>Controller_Base.ErrorCatchingServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>PrintAccessoriesInventory</servlet-name>
         <servlet-class>Controller_Print.PrintAccessoriesInventory</servlet-class>
     </servlet>
@@ -467,10 +463,6 @@
     <servlet-mapping>
         <servlet-name>searchWarehouseInv</servlet-name>
         <url-pattern>/searchWarehouseInv</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ErrorCatchingServlet</servlet-name>
-        <url-pattern>/ErrorCatchingServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>PrintAccessoriesInventory</servlet-name>

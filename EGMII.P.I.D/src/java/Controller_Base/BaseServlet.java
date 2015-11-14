@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
  * @author Lapidario
  * @author Sy
  * @author Nunez
+ * @author Dimaandal
  *
  */
 public abstract class BaseServlet extends HttpServlet {
