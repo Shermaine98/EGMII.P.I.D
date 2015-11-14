@@ -3,7 +3,9 @@
     
         User user = (User) session.getAttribute("login");
         String position = user.getPosition().toLowerCase().trim();
-        if (position.equalsIgnoreCase("promoter")) {
+        if(session.getAttribute("login")==null){
+             response.sendRedirect("index.jsp");
+        } else if (position.equalsIgnoreCase("promoter")) {
 %>         <jsp:include page ="/NavBar/nPromoNavBar.jsp" />
 <%
 } else if (position.equalsIgnoreCase("receipt handler")) {

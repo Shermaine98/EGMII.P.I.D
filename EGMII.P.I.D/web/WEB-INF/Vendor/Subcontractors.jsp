@@ -1,5 +1,5 @@
 <%-- 
-    Document   : Subcontractor and Service
+    Document   : Subcontractor
     Created on : Nov 14, 2015, 6:57:10 PM
     Author     : Atayan, Dimaandal, Lapidario, Nunez, Sy
 --%>
@@ -39,10 +39,10 @@
             </table>
         </div>
 
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myAddService">Add Service</button>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myAddSubcontractor">Add Subcontractor</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myAddItem">Add Item</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myAddSupplier">Add Supplier</button>
 
-        <div class="modal fade" id="myAddService" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal fade" id="myAddItem" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -55,7 +55,8 @@
                                 <thead>
                                     <tr>
                                         <th></th>
-                                        <th>Service<th>
+                                        <th>Item Code<th>
+                                        <th>Item Name<th>
                                     </tr>
                                 </thead>
                                 <tbody id ="dataTable1" >
@@ -74,51 +75,6 @@
                             <button type="submit" class="btn btn-primary">Submit</button>
                             <input type="button" class="btn btn-danger" value="Add Row" onclick="addRow('dataTable1')" />
                             <input type="button" class="btn btn-danger" value="Delete Row" onclick="deleteRow('dataTable1')" />
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal-dialog modal-lg" id="myAddSubcontractor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Add Item</h4>
-                    </div>
-                    <form  method="POST" action="EncodeSupplierServlet">
-                        <div class="modal-body">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>Subcontractor ID</th>
-                                        <th>Company Name</th>
-                                        <th>Company  Address</th>
-                                        <th>Company Contact Person</th>
-                                        <th>Company Contact Number</th>
-                                        <th>Service</th>
-                                    </tr>
-                                </thead>
-                                <tbody id = "dataTable2">
-                                    <tr>
-                                        <td><input type="checkbox" name="chk" /></td>
-                                        <td><input type="text" class="form-control" placeholder="" name="Subcontractorvalue" id="suppliervalue"></td>
-                                        <td><input type="text" class="form-control" placeholder="" name="companyName" id="companyName"></td>
-                                        <td><input type="text" class="form-control" placeholder="" name="companyAddress" id="companyAddress"></td>
-                                        <td><input type="text" class="form-control" placeholder="" name="contactPerson" id="contactPerson"></td>
-                                        <td><input type="text" class="form-control" placeholder="" name="contactNumber" id="contactNumber"></td>
-                                        <td><input type="text" class="form-control" placeholder="" name="service" id="itemCode"></td>
-                                    </tr>
-                                </tbody> 
-                            </table>  
-                        </div>
-                        <div class="modal-footer">
-                            <input type="button" class="btn btn-danger" value="Add Row" onclick="addRow('dataTable2')" />
-                            <input type="button" class="btn btn-danger" value="Delete Row" onclick="deleteRow('dataTable2')" />
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </form>
                 </div>
