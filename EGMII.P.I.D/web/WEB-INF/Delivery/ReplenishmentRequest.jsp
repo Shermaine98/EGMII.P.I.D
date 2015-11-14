@@ -92,7 +92,7 @@
             %>
             <form id="form1" method="POST" action="ViewReplenishmentServlet?action=specific">
                 <div class="container" align="center">
-                    <h2>Inventory Reports</h2><br/>
+                    <h3>Inventory Reports</h3><br/>
                     <div style="width:60%;">
                         <table id="Replenish" class="table table-bordered table-hover">
                             <thead>
@@ -101,16 +101,15 @@
                                     <th>Branch Name</th>
                                     <th>Promoter</th>
                                     <th>Date Made</th>
-
                                 </tr>
                             </thead>
                             <tbody>
                                 <% for (int i = 0; i < InventoryReport.size(); i++) {%>
                                 <tr class="repView">
-                                    <td class="reportID"><%=InventoryReport.get(i).getReportID()%><input type="text" class="transparentBg inputSize"></td>
-                                    <td><input type="text" class="transparentBg inputSize" value="<%=InventoryReport.get(i).getBranchName()%>"></td>
-                                    <td><input type="text" class="transparentBg inputSize" value="<%=InventoryReport.get(i).getPromo()%>"</td>
-                                    <td><input type="text" class="transparentBg inputSize" value="<%=InventoryReport.get(i).getDateMade()%>"</td>
+                                    <td class="reportID"><%=InventoryReport.get(i).getReportID()%><input type="text" class="transparentBg inputSize" readonly /></td>
+                                    <td><input type="text" class="transparentBg" value="<%=InventoryReport.get(i).getBranchName()%>"readonly /></td>
+                                    <td><input type="text" class="transparentBg inputSize" value="<%=InventoryReport.get(i).getPromo()%>"readonly /></td>
+                                    <td><input type="text" class="transparentBg" value="<%=InventoryReport.get(i).getDateMade()%>"readonly /></td>
                                 </tr>
                                 <%
                                         }
@@ -131,39 +130,55 @@
                     Integer repID = (Integer) request.getAttribute("repID");
             %>
 
+            <br/><br/>
+            <form method="POST" action="EncodeReplenishmentRequestServlet"> 
+                <!--Inventory Report Data Table-->
+                <div class="panel panel-default col-md-3">
+                    <div class="panel-body">
+                        <label for="outlet">Outlet</label>
+                        <input type="hidden" class="form-control" readonly name="location" value="<%=InventoryReportS.get(0).getLocationID()%>" /><br/>
+                        <input type="text" class="form-control" readonly name="outlet" value="<%=InventoryReportS.get(0).getBranchName()%>" />
+                        <label for="promo">Promoter</label>
+                        <input type="hidden" class="form-control" readonly name="promo" value="<%=InventoryReportS.get(0).getPromoid()%>" />
+                        <input type="text" class="form-control" readonly  value="<%=InventoryReportS.get(0).getName()%>" /><br/>
+                        <label for="date">Date Inventory </label>
+                        <input type="text" class="form-control" readonly name="date" value="<%=InventoryReportS.get(0).getDateMade()%>" /><br/>
+                        <label for="repID">Replenishment ID</label>
+                        <input type="text" class="form-control" readonly name="repID" value="<%=repID%>" /><br/>
+                        <input type="hidden" class="form-control" readonly name="supervisor" value="<%=user.getEmployeeNumber()%>" /><br/>
+                    </div>
+                </div>
 
-            <!--Inventory Report Data Table-->
+                <div class="panel panel-collapse col-md-7">
+                    <h3>Inventory Report Details</h3>
+                    <table id="invR" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Product Name</th>
+                                <th>Color</th>
+                                <th>Size</th>
+                                <th>Sold Out</th>
+                                <th>Pulled Out</th>
+                                <th>Current Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for (int i = 0; i < InventoryReportS.size(); i++) {%>
+                            <tr>
+                                <td><%=InventoryReportS.get(i).getProductName()%></td>
+                                <td><%=InventoryReportS.get(i).getColor()%></td>
+                                <td><%=InventoryReportS.get(i).getSize()%></td>
+                                <td><%=InventoryReportS.get(i).getSoldQty()%></td>
+                                <td><%=InventoryReportS.get(i).getPulledQty()%></td>
+                                <td><%=InventoryReportS.get(i).getCurrentQty()%></td>
+                            </tr>
+                            <%
 
-            <h2>Inventory Report Details</h2><br/>
-            <div style="width:60%;">
-                <table id="invR" class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Product Name</th>
-                            <th>Color</th>
-                            <th>Size</th>
-                            <th>Sold Out</th>
-                            <th>Pulled Out</th>
-                            <th>Current Quantity</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% for (int i = 0; i < InventoryReportS.size(); i++) {%>
-                        <tr>
-                            <td><%=InventoryReportS.get(i).getProductName()%></td>
-                            <td><%=InventoryReportS.get(i).getColor()%></td>
-                            <td><%=InventoryReportS.get(i).getSize()%></td>
-                            <td><%=InventoryReportS.get(i).getSoldQty()%></td>
-                            <td><%=InventoryReportS.get(i).getPulledQty()%></td>
-                            <td><%=InventoryReportS.get(i).getCurrentQty()%></td>
-                        </tr>
-                        <%
-
-                            }
-                        %>
-                    </tbody>
-                </table>
-                <div style="width:60%;">
+                                }
+                            %>
+                        </tbody>
+                    </table>
+                        <br/><br/><br/>
                     <table id="warehouseT" class="table table-bordered">
                         <thead>
                             <tr>
@@ -196,62 +211,39 @@
                         </tbody>
                     </table>
                 </div>
-            </div>         
         </div>
-        <div class="container" align="center">
-            <form method="POST" action="EncodeReplenishmentRequestServlet"> 
-                <div class="panel panel-default col-md-3">
 
-                    <div class="panel-body">
-                        <label for="outlet">Outlet</label>
-                        <input type="hidden" class="form-control" readonly name="location" value="<%=InventoryReportS.get(0).getLocationID()%>" /><br/>
-                        <input type="text" class="form-control" readonly name="outlet" value="<%=InventoryReportS.get(0).getBranchName()%>" />
-                        <label for="promo">Promoter</label>
-                        <input type="hidden" class="form-control" readonly name="promo" value="<%=InventoryReportS.get(0).getPromoid()%>" />
-                        <input type="text" class="form-control" readonly  value="<%=InventoryReportS.get(0).getName()%>" /><br/>
-                        <label for="date">Date Inventory </label>
-                        <input type="text" class="form-control" readonly name="date" value="<%=InventoryReportS.get(0).getDateMade()%>" /><br/>
-                        <label for="repID">Replenishment ID</label>
-                        <input type="text" class="form-control" readonly name="repID" value="<%=repID%>" /><br/>
-                        <input type="hidden" class="form-control" readonly name="supervisor" value="<%=user.getEmployeeNumber()%>" /><br/>
-                    </div>
-                </div>
+        <div class="panel panel-collapse" id="order" style="visibility: hidden" align="center">
+            <div class="panel-body">
+                <h2>Warehouse Inventory</h2>
+                <h4>Replenishment Request</h4><br/>
+                <table id="data" class="table table-bordered" >
+                    <thead>
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Color</th>
+                            <th>Size</th>
+                            <th>Current Quantity</th>
+                            <th>Quantity To Be send (?)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="info">
 
-                <div class="panel panel-default col-md-7">
-                    <br> 
-                    <h2>Warehouse Inventory</h2><br/>
-                    <div id="order" style=" width:60%; visibility: hidden">
-                        <h2>Replenishment Request</h2><br/>
-                        <table id="data" class="table table-bordered" >
-                            <thead>
-                                <tr>
-
-                                    <th>Product Name</th>
-                                    <th>Color</th>
-                                    <th>Size</th>
-                                    <th>Current Quantity</th>
-                                    <th>Quantity To Be send (?)</th>
-                                </tr>
-                            </thead>
-                            <tbody id="info">
-
-                            </tbody>
-                        </table>
-                    </div>
-                    <br>
-                </div>
-
-
-                <!--Buttons-->
-                <div id="buttonz" align="center" style="visibility: hidden">
-                    <input type="submit" class="btn btn-default" value="SUBMIT"/>
-                </div>
-
-
-                <%
-                    }
-                %>
-            </form>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </body>
+
+        <!--Buttons-->
+        <div id="buttonz" align="center" style="visibility: hidden">
+            <input type="submit" class="btn btn-danger" value="Submit"/>
+        </div>
+
+
+        <%
+            }
+        %>
+    </form>
+
+</body>
 </html>
