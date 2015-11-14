@@ -110,6 +110,20 @@
                             </ul>
                         </li>
                         
+                        <!--Vendor-->
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Vendor
+                                <span class="caret"></span></a> 
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a href="/EGMII.P.I.D/">Supplier</a>
+                                </li>
+                                <li>
+                                    <a href="/EGMII.P.I.D/">Subcontractor</a>
+                                </li>
+                            </ul>
+                        </li>
+                        
                     </ul>
 
 

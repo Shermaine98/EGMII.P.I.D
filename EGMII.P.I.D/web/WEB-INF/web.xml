@@ -248,6 +248,26 @@
         <servlet-name>EncodeSubconDRServlet</servlet-name>
         <servlet-class>Controller_Encode.EncodeSubconDRServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EncodeItemServlet</servlet-name>
+        <servlet-class>Controller_Encode.EncodeItemServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EncodeSubconServlet</servlet-name>
+        <servlet-class>Controller_Encode.EncodeSubconServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EncodeSupplierServlet</servlet-name>
+        <servlet-class>Controller_Encode.EncodeSupplierServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewSupplierServlet</servlet-name>
+        <servlet-class>Controller_View.ViewSupplierServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewSubconServlet</servlet-name>
+        <servlet-class>Controller_View.ViewSubconServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SearchProductServlet</servlet-name>
         <url-pattern>/SearchProductServlet</url-pattern>
@@ -495,6 +515,26 @@
     <servlet-mapping>
         <servlet-name>EncodeSubconDRServlet</servlet-name>
         <url-pattern>/EncodeSubconDRServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EncodeItemServlet</servlet-name>
+        <url-pattern>/EncodeItemServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EncodeSubconServlet</servlet-name>
+        <url-pattern>/EncodeSubconServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EncodeSupplierServlet</servlet-name>
+        <url-pattern>/EncodeSupplierServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewSupplierServlet</servlet-name>
+        <url-pattern>/ViewSupplierServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewSubconServlet</servlet-name>
+        <url-pattern>/ViewSubconServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
