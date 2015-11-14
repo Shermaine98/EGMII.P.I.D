@@ -43,19 +43,35 @@ public class ViewSubconPurchaseOrderServlet extends BaseServlet {
      */
     @Override
     public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-       
-        String poNumber = request.getParameter("poNumber");
-        SubconPurchaseOrderDAO DAO = new SubconPurchaseOrderDAO();
-        if (poNumber != null) {
-             ArrayList<SubconPurchaseOrderView> PurchaseOrderSpecific = new ArrayList();
-             PurchaseOrderSpecific = DAO.getSubconPurchaseNumberView(Integer.parseInt(poNumber));
-             
-        } else {
-            ServletContext context = getServletContext();
-            RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Procurement/ViewSubconPurchaseOrder.jsp");
-            request.setAttribute("SubconPurchaseOrderList","SubconPurchaseOrderList" );
-            rd.forward(request, response);
+        SubconPurchaseOrderDAO PurchaseOrderDAO = new SubconPurchaseOrderDAO();
+        ArrayList<SubconPurchaseOrderView> SubconPOApproved = new ArrayList<>();
+        ConsumptionReportDAO DAO = new ConsumptionReportDAO();
+        ArrayList<ConsumptionReportView> CRforSizesA = new ArrayList();
+        ArrayList<SubconPurchaseOrderView> CRHeaderA =  new ArrayList<>();
+        
+        String poNumber = request.getParameter("hiddenValue");
+        String productionNumber = request.getParameter("productionNumber");
+
+        SubconPOApproved = PurchaseOrderDAO.GetAllSubconPurchaseOrderApproved();
+        
+        try {
+            CRforSizesA = DAO.GetCRForSizes(Integer.parseInt(productionNumber));
+            CRHeaderA = PurchaseOrderDAO.getSubconHeader(Integer.parseInt(poNumber));
             
+        } catch (ParseException ex) {
+            Logger.getLogger(ViewSubconPurchaseOrderServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        ServletContext context = getServletContext();
+        RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Procurement/ViewSubconPurchaseOrder.jsp");
+
+        request.setAttribute("SubconPOApproved", SubconPOApproved);
+        request.setAttribute("CRforSizesA", CRforSizesA);
+        request.setAttribute("CRHeaderA", CRHeaderA);
+        request.setAttribute("data", "subconApproval");
+
+        rd.forward(request, response);
+
     }
+
 }

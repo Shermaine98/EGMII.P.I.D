@@ -164,6 +164,47 @@ public class SubconPurchaseOrderDAO {
 
     }
     
+    public ArrayList<SubconPurchaseOrderView> GetAllSubconPurchaseOrderApproved() {
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+            ArrayList<SubconPurchaseOrderView> poList = new ArrayList<>();
+            String query = "SELECT DISTINCT PO.poNumber,PO.productionNumber, S.companyName,\n" +
+                "PO.dateMade, PO.deliveryDate, PO.preparedBy, P.productName, P.productType\n" +
+                "FROM purchase_order PO\n" +
+                "JOIN ref_subcon S\n" +
+                "ON PO.subconID = S.subconID\n" +
+                "JOIN cr_details CRD\n" +
+                "ON PO.productionNumber = CRD.productionNumber\n" +
+                "JOIN product P\n" +
+                "ON P.itemCode = CRD.itemCode\n" +
+                "WHERE PO.isSupplier = FALSE AND PO.approvedBy IS NOT NULL;";
+            PreparedStatement ps = conn.prepareStatement(query);
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                SubconPurchaseOrderView po = new SubconPurchaseOrderView();
+                po.setPoNumber(rs.getInt("poNumber"));
+                po.setProductionNumber(rs.getInt("productionNumber"));
+                po.setPreparedBy(rs.getInt("preparedBy"));
+                po.setDateMade(rs.getDate("dateMade"));
+                po.setDeliveryDate(rs.getDate("deliveryDate"));
+                po.setCompanyName(rs.getString("companyName"));
+                po.setProductName(rs.getString("productName"));
+                po.setProductType(rs.getString("productType"));
+                poList.add(po);
+            }
+            ps.close();
+            conn.close();
+            rs.close();
+            return poList;
+        } catch (SQLException ex) {
+            Logger.getLogger(SubconPurchaseOrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+
+    }
+    
     /**
      *
      * @param newSupplierPurchaseOrder
