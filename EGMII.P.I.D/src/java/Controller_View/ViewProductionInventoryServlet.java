@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controller_View;
 
 import Controller_Base.BaseServlet;
@@ -21,7 +16,12 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author shermainesy
+ * @author Atayan
+ * @author Lapidario
+ * @author Sy
+ * @author Nunez
+ * @author Dimaandal
+ *
  */
 public class ViewProductionInventoryServlet extends BaseServlet {
 
@@ -35,17 +35,17 @@ public class ViewProductionInventoryServlet extends BaseServlet {
     @Override
     public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         InventoryDAO InventoryDAO = new InventoryDAO();
-        ArrayList<RawMaterialsInventoryView> ProductionInventoryList = new  ArrayList<RawMaterialsInventoryView> ();
+        ArrayList<RawMaterialsInventoryView> ProductionInventoryList = new ArrayList<RawMaterialsInventoryView>();
         try {
             ProductionInventoryList = InventoryDAO.GetProductionInventory();
         } catch (ParseException ex) {
             Logger.getLogger(ViewProductionInventoryServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
         ServletContext context = getServletContext();
-       
+
         RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Inventory/ProductionInventory.jsp");
         request.setAttribute("ProductionInventoryList", ProductionInventoryList);
-        rd.forward(request, response); 
+        rd.forward(request, response);
     }
 
 }

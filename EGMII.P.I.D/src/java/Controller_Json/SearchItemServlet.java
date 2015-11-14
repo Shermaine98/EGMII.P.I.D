@@ -20,9 +20,9 @@ import com.google.gson.Gson;
  * @author Lapidario
  * @author Sy
  * @author Nunez
+ * @author Dimaandal
  *
  */
-
 public class SearchItemServlet extends HttpServlet {
 
     /**

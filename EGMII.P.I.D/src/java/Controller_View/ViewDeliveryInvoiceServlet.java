@@ -26,7 +26,6 @@ import javax.servlet.http.HttpServletResponse;
  * @author Dimaandal
  *
  */
-
 public class ViewDeliveryInvoiceServlet extends BaseServlet {
 
     /**

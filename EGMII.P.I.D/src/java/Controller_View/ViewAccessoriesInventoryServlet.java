@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controller_View;
 
 import Controller_Base.BaseServlet;
@@ -21,7 +16,12 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author shermainesy
+ * @author Atayan
+ * @author Lapidario
+ * @author Sy
+ * @author Nunez
+ * @author Dimaandal
+ *
  */
 public class ViewAccessoriesInventoryServlet extends BaseServlet {
 
@@ -35,16 +35,17 @@ public class ViewAccessoriesInventoryServlet extends BaseServlet {
     @Override
     public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         InventoryDAO AccessoriesInventoryDAO = new InventoryDAO();
-        ArrayList<RawMaterialsInventoryView> AccessoriesInventoryList = new  ArrayList<RawMaterialsInventoryView> ();
+        ArrayList<RawMaterialsInventoryView> AccessoriesInventoryList = new ArrayList<RawMaterialsInventoryView>();
         try {
             AccessoriesInventoryList = AccessoriesInventoryDAO.GetAccessoriesInventory();
         } catch (ParseException ex) {
             Logger.getLogger(ViewAccessoriesInventoryServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
         ServletContext context = getServletContext();
-       
+
         RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Inventory/AccessoriesInventory.jsp");
         request.setAttribute("AccessoriesInventoryList", AccessoriesInventoryList);
-        rd.forward(request, response); 
+        rd.forward(request, response);
+
     }
 }

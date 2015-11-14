@@ -18,8 +18,10 @@ import javax.servlet.http.HttpServletResponse;
  * @author Lapidario
  * @author Sy
  * @author Nunez
+ * @author Dimaandal
  *
  */
+
 public class SetConsumptionNumberServlet extends BaseServlet {
 
     /**
@@ -33,7 +35,7 @@ public class SetConsumptionNumberServlet extends BaseServlet {
     public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         ConsumptionReportDAO DAO = new ConsumptionReportDAO();
-        Integer productionnumber=0;
+        Integer productionnumber = 0;
         try {
             productionnumber = DAO.getProductionNumber();
         } catch (SQLException ex) {

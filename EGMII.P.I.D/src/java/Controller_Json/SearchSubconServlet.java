@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controller_Json;
 
 import DAO.RefSubconDAO;
@@ -21,7 +16,12 @@ import com.google.gson.Gson;
 
 /**
  *
- * @author Gerard
+ * @author Atayan
+ * @author Lapidario
+ * @author Sy
+ * @author Nunez
+ * @author Dimaandal
+ *
  */
 public class SearchSubconServlet extends HttpServlet {
 
@@ -37,19 +37,19 @@ public class SearchSubconServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
-      response.setContentType("text/html;charset=UTF-8");
-      try (PrintWriter out = response.getWriter()) {
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
             String subconName = request.getParameter("query");
             ArrayList<RefSubcon> refSupplier = new RefSubconDAO().searchSubcon(subconName);
             ArrayList<String> SubconList = new ArrayList<String>();
-           System.out.println(subconName);
-            for (int i=0; i<refSupplier.size();i++){
-              SubconList.add(refSupplier.get(i).getCompanyName());
-            } 
+            System.out.println(subconName);
+            for (int i = 0; i < refSupplier.size(); i++) {
+                SubconList.add(refSupplier.get(i).getCompanyName());
+            }
             Gson gson = new Gson();
-             String json = gson.toJson(SubconList);
-            response.getWriter().write("{\"suggestions\":"+json+"}");
-          
+            String json = gson.toJson(SubconList);
+            response.getWriter().write("{\"suggestions\":" + json + "}");
+
         }
     }
 

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controller_View;
 
 import Controller_Base.BaseServlet;
@@ -21,7 +16,12 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author shermainesy
+ * @author Atayan
+ * @author Lapidario
+ * @author Sy
+ * @author Nunez
+ * @author Dimaandal
+ *
  */
 public class ViewWarehouseInventoryServlet extends BaseServlet {
 
@@ -35,18 +35,25 @@ public class ViewWarehouseInventoryServlet extends BaseServlet {
     @Override
     public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         InventoryDAO InventoryDAO = new InventoryDAO();
-        ArrayList<WarehouseInventoryView> WarehouseInventoryList = new  ArrayList<> ();
+
+        ArrayList<WarehouseInventoryView> WarehouseInventoryList = new ArrayList<>();
         try {
             WarehouseInventoryList = InventoryDAO.GetWarehouseInventory();
         } catch (ParseException ex) {
             Logger.getLogger(ViewWarehouseInventoryServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        ServletContext context = getServletContext();
-       
-        RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Inventory/WarehouseInventory.jsp");
-        request.setAttribute("WarehouseInventoryList", WarehouseInventoryList);
-        rd.forward(request, response); 
-    }
 
+        ServletContext context = getServletContext();
+
+        if (!WarehouseInventoryList.isEmpty()) {
+            RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Inventory/WarehouseInventory.jsp");
+            request.setAttribute("WarehouseInventoryList", WarehouseInventoryList);
+            rd.forward(request, response);
+        } else {
+            RequestDispatcher rd = context.getRequestDispatcher("/Error.jsp");
+            request.setAttribute("Error", "Error");
+            rd.forward(request, response);
+        }
+    }
 
 }

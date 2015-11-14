@@ -1,4 +1,3 @@
-
 package Controller_Json;
 
 import DAO.RefItemDAO;
@@ -14,15 +13,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
+
 /**
  *
  * @author Atayan
  * @author Lapidario
  * @author Sy
  * @author Nunez
+ * @author Dimaandal
  *
  */
-
 public class SearchFabricItemServlet extends HttpServlet {
 
     /**
@@ -37,19 +37,19 @@ public class SearchFabricItemServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
-      response.setContentType("text/html;charset=UTF-8");
-      try (PrintWriter out = response.getWriter()) {
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
             String itemName = request.getParameter("query");
             ArrayList<RefItem> refitem = new RefItemDAO().searchPDItemName(itemName);
             ArrayList<String> ItemName = new ArrayList<String>();
-           
-            for (int i=0; i<refitem.size();i++){
-              ItemName.add(refitem.get(i).getItemName());
-            } 
+
+            for (int i = 0; i < refitem.size(); i++) {
+                ItemName.add(refitem.get(i).getItemName());
+            }
             Gson gson = new Gson();
-             String json = gson.toJson(ItemName);
-            response.getWriter().write("{\"suggestions\":"+json+"}");
-          
+            String json = gson.toJson(ItemName);
+            response.getWriter().write("{\"suggestions\":" + json + "}");
+
         }
     }
 

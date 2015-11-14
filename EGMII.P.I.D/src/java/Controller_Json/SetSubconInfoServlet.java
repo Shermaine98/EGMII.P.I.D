@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controller_Json;
 
 import DAO.RefSubconDAO;
@@ -23,7 +18,12 @@ import org.json.JSONObject;
 
 /**
  *
- * @author shermainesy
+ * @author Atayan
+ * @author Lapidario
+ * @author Sy
+ * @author Nunez
+ * @author Dimaandal
+ *
  */
 public class SetSubconInfoServlet extends HttpServlet {
 
@@ -40,9 +40,9 @@ public class SetSubconInfoServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-       try (PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-           
+
             String subcon = request.getParameter("subconName");
             ArrayList<RefSubcon> RefSubcon = new RefSubconDAO().searchSubcon(subcon);
             JSONArray array = new JSONArray();
@@ -55,8 +55,7 @@ public class SetSubconInfoServlet extends HttpServlet {
                     obj.put("companyAddress", RefSubcon.get(i).getCompanyAddress());
                     obj.put("contactNumber", RefSubcon.get(i).getContactNumber());
                     obj.put("contactPerson", RefSubcon.get(i).getContactPerson());
-                    
-                   
+
                     array.put(obj);
 
                 } catch (JSONException ex) {

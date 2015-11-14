@@ -46,7 +46,7 @@ public class EncodeConsumptionReportServlet extends BaseServlet {
         ConsumptionReportDAO consumptionReportDAO = new ConsumptionReportDAO();
 
         ArrayList<ConsumptionReportDetails> ConsumptionReportDetailsArr = new ArrayList<>();
-       // ArrayList<Integer> itemCode1 = new ArrayList<>();
+        // ArrayList<Integer> itemCode1 = new ArrayList<>();
         // get purpose
         String productName = request.getParameter("productName");
         String color = request.getParameter("color");
@@ -57,10 +57,10 @@ public class EncodeConsumptionReportServlet extends BaseServlet {
         //status = created
         //details
 
-     //   String[] size = request.getParameterValues("size");
+        //   String[] size = request.getParameterValues("size");
         String[] qty = request.getParameterValues("volumeQty");
        //delvieryqty = 0
-        
+
         //header encode
         try {
             consumptionReport.setProductionNumber(consumptionReportDAO.getProductionNumber());
@@ -68,7 +68,7 @@ public class EncodeConsumptionReportServlet extends BaseServlet {
             Logger.getLogger(EncodeConsumptionReportServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
         consumptionReport.setPreparedBy(Integer.parseInt(preparedBy));
-         consumptionReport.setStatus("created");
+        consumptionReport.setStatus("created");
         try {
             consumptionReport.setDateMade();
         } catch (ParseException ex) {
@@ -81,29 +81,28 @@ public class EncodeConsumptionReportServlet extends BaseServlet {
         }
         ArrayList<String> productNumber = new ArrayList<String>();
         try {
-            productNumber = productDAO.GetProductNumber(productName,color);
+            productNumber = productDAO.GetProductNumber(productName, color);
         } catch (SQLException ex) {
             Logger.getLogger(EncodeConsumptionReportServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         //encode cr_details
-        if(x == true){
-            for(int y = 0; y < productNumber.size(); y++){
+        if (x == true) {
+            for (int y = 0; y < productNumber.size(); y++) {
                 ConsumptionReportDetails ConsumptionReportDetails = new ConsumptionReportDetails();
                 ConsumptionReportDetails.setProductionNumber(Integer.parseInt(ProductionNumber));
                 ConsumptionReportDetails.setItemCode(Integer.parseInt(productNumber.get(y)));
                 ConsumptionReportDetails.setQty(Double.parseDouble(qty[y]));
                 ConsumptionReportDetails.setDeliveredQty(0);
-                if(consumptionReportDAO.EncodeConsumptionReportDetails(ConsumptionReportDetails)){
+                if (consumptionReportDAO.EncodeConsumptionReportDetails(ConsumptionReportDetails)) {
                     x = true;
                     ConsumptionReportDetailsArr.add(ConsumptionReportDetails);
                 } else {
                     x = false;
                 }
-                
+
             }
         }
-   
 
         if (x) {
             ServletContext context = getServletContext();

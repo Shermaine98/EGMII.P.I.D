@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Lapidario
  * @author Sy
  * @author Nunez
+ * @author Dimaandal
  *
  */
 public class SetSPONumberServlet extends BaseServlet {
@@ -31,21 +32,21 @@ public class SetSPONumberServlet extends BaseServlet {
      */
     @Override
     public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      
+
         SupplierPurchaseOrderDAO DAO = new SupplierPurchaseOrderDAO();
-        Integer SupplierpurchaseOrder=0;
+        Integer SupplierpurchaseOrder = 0;
         try {
             SupplierpurchaseOrder = DAO.getSupplierPurchaseOrderNumber();
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(SetSPONumberServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-            
+
         ServletContext context = getServletContext();
 
         RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Procurement/SupplierPurchaseOrder.jsp");
-        request.setAttribute("SPONumber",SupplierpurchaseOrder );
-    
+        request.setAttribute("SPONumber", SupplierpurchaseOrder);
+
         rd.forward(request, response);
 
     }

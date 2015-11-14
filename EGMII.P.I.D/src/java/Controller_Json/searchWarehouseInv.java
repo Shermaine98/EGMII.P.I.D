@@ -15,7 +15,12 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author gcla109
+ * @author Atayan
+ * @author Lapidario
+ * @author Sy
+ * @author Nunez
+ * @author Dimaandal
+ *
  */
 public class searchWarehouseInv extends BaseServlet {
 
@@ -28,18 +33,18 @@ public class searchWarehouseInv extends BaseServlet {
      */
     @Override
     public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-            String productName1 = request.getParameter("query");
+        String productName1 = request.getParameter("query");
 
         try (PrintWriter out = response.getWriter()) {
-            
+
             ArrayList<String> productName = new InventoryDAO().searchWarehouse(productName1);
             ArrayList<String> productNameList = new ArrayList<String>();
-           
-             for (int i=0; i<productName.size();i++){
+
+            for (int i = 0; i < productName.size(); i++) {
                 if (!productNameList.contains(productName.get(i))) {
                     productNameList.add(productName.get(i));
                 }
-             }
+            }
             Gson gson = new Gson();
             String json = gson.toJson(productNameList);
             response.getWriter().write("{\"suggestions\":" + json + "}");

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controller_Json;
 
 import java.io.IOException;
@@ -14,7 +9,12 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author shermainesy
+ * @author Atayan
+ * @author Lapidario
+ * @author Sy
+ * @author Nunez
+ * @author Dimaandal
+ *
  */
 public class SetInventoryReportServlet extends HttpServlet {
 
@@ -35,7 +35,7 @@ public class SetInventoryReportServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet SetInventoryReportServlet</title>");            
+            out.println("<title>Servlet SetInventoryReportServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet SetInventoryReportServlet at " + request.getContextPath() + "</h1>");

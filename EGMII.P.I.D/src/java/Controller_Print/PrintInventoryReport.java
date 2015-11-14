@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controller_Print;
 
 import Controller_Base.BaseServlet;
@@ -13,14 +8,12 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import net.sf.jasperreports.engine.JRException;
@@ -30,7 +23,12 @@ import net.sf.jasperreports.engine.JasperRunManager;
 
 /**
  *
- * @author Geraldine
+ * @author Atayan
+ * @author Lapidario
+ * @author Sy
+ * @author Nunez
+ * @author Dimaandal
+ *
  */
 public class PrintInventoryReport extends BaseServlet {
 
@@ -42,35 +40,35 @@ public class PrintInventoryReport extends BaseServlet {
      * @throws IOException
      */
     @Override
-    public void servletAction(HttpServletRequest request, HttpServletResponse response) 
+    public void servletAction(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.reset();
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
         OutputStream outStream = response.getOutputStream();
         JasperReport jasperReport = null;
-        
+
         User u = (User) request.getAttribute("login");
         String path = getServletContext().getRealPath("/Reports/Inventory/");
-       
+
         Map map = new HashMap();
-        map.put("UserID",  u.getEmployeeNumber());
-        
+        map.put("UserID", u.getEmployeeNumber());
+
         InputStream f = new FileInputStream(new File(path + "/InventoryReport.jrxml"));
         try {
             jasperReport = JasperCompileManager.compileReport(f);
         } catch (JRException ex) {
             Logger.getLogger(PrintInventoryReport.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         byte[] byteStream = null;
         try {
             byteStream = JasperRunManager.runReportToPdf(jasperReport, map, conn);
         } catch (JRException ex) {
             Logger.getLogger(PrintInventoryReport.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        response.addHeader("content-disposition", "attachment; filename=InventoryReport.pdf");   
+
+        response.addHeader("content-disposition", "attachment; filename=InventoryReport.pdf");
         response.setContentType("application/pdf");
         response.setContentLength(byteStream.length);
         outStream.write(byteStream, 0, byteStream.length);

@@ -43,7 +43,7 @@ public class EncodeSupplierDRServlet extends BaseServlet {
         SupplierDeliveryReceiptDAO SupplierDeliveryReceiptDAO = new SupplierDeliveryReceiptDAO();
         SupplierPurchaseOrderDAO SupplierPurchaseOrderDAO = new SupplierPurchaseOrderDAO();
         InventoryDAO inventoryDAO = new InventoryDAO();
-        
+
         //header
         String drNumber = request.getParameter("drNumber");
         String poNumber = request.getParameter("poNumber");

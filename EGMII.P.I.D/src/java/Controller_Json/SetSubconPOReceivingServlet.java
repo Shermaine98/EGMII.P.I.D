@@ -1,21 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controller_Json;
 
 import Controller_Base.BaseServlet;
 import DAO.ConsumptionReportDAO;
 import DAO.SubconPurchaseOrderDAO;
-import DAO.SupplierDeliveryReceiptDAO;
-import DAO.SupplierPurchaseOrderDAO;
-import Model.PurchaseOrder;
 import Model_View.ConsumptionReportView;
 import Model_View.SubconPurchaseOrderView;
-import Model_View.SupplierPurchaseOrderView;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -23,13 +13,17 @@ import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Geraldine
+ * @author Atayan
+ * @author Lapidario
+ * @author Sy
+ * @author Nunez
+ * @author Dimaandal
+ *
  */
 public class SetSubconPOReceivingServlet extends BaseServlet {
 

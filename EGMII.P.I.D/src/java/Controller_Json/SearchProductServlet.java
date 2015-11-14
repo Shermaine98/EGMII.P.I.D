@@ -18,7 +18,12 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author gcla109
+ * @author Atayan
+ * @author Lapidario
+ * @author Sy
+ * @author Nunez
+ * @author Dimaandal
+ *
  */
 public class SearchProductServlet extends BaseServlet {
 
@@ -35,18 +40,17 @@ public class SearchProductServlet extends BaseServlet {
         ArrayList<ProductAll> productALLProduction = new ArrayList<ProductAll>();
         String productName = request.getParameter("query");
         String productName1 = request.getParameter("productName1");
-        
+
         String action = (String) request.getParameter("action");
-         
-         
+
         ProductDAO productDAO = new ProductDAO();
         ArrayList<ProductAll> ProductList = new ArrayList<ProductAll>();
-       
-       if (productName == null) {
-           if(action.equalsIgnoreCase("specific")){
-               String productNameSpecific = (String) request.getAttribute("productNameSpecific");
-               productName1 = productNameSpecific;
-           }
+
+        if (productName == null) {
+            if (action.equalsIgnoreCase("specific")) {
+                String productNameSpecific = (String) request.getAttribute("productNameSpecific");
+                productName1 = productNameSpecific;
+            }
             ServletContext context = getServletContext();
             try {
                 ProductList = new ProductDAO().searchProduct(productName1);
@@ -61,10 +65,10 @@ public class SearchProductServlet extends BaseServlet {
             } catch (SQLException ex) {
                 Logger.getLogger(SearchProductServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
             try {
-              productALLAccessories =  productDAO.GetAccessoriesInventory(productName1);
-              productALLProduction =  productDAO.GetProductionInventory(productName1);
+                productALLAccessories = productDAO.GetAccessoriesInventory(productName1);
+                productALLProduction = productDAO.GetProductionInventory(productName1);
             } catch (SQLException ex) {
                 Logger.getLogger(SearchProductServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -97,9 +101,9 @@ public class SearchProductServlet extends BaseServlet {
             } catch (SQLException ex) {
                 Logger.getLogger(SearchProductServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-             try {
-              productALLAccessories =  productDAO.GetAccessoriesInventory(productName);
-              productALLProduction =  productDAO.GetProductionInventory(productName);
+            try {
+                productALLAccessories = productDAO.GetAccessoriesInventory(productName);
+                productALLProduction = productDAO.GetProductionInventory(productName);
             } catch (SQLException ex) {
                 Logger.getLogger(SearchProductServlet.class.getName()).log(Level.SEVERE, null, ex);
             }

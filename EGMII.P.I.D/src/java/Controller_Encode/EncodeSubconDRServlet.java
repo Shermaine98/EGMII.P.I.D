@@ -29,10 +29,8 @@ public class EncodeSubconDRServlet extends BaseServlet {
     @Override
     public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        
-       boolean x= false;
-        
-        
+        boolean x = false;
+
         if (x) {
             ServletContext context = getServletContext();
             RequestDispatcher rd = context.getRequestDispatcher("");

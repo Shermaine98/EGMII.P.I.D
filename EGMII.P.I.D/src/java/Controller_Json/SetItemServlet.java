@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controller_Json;
 
 import DAO.RefItemDAO;
@@ -23,7 +18,12 @@ import org.json.JSONObject;
 
 /**
  *
- * @author shermainesy
+ * @author Atayan
+ * @author Lapidario
+ * @author Sy
+ * @author Nunez
+ * @author Dimaandal
+ *
  */
 public class SetItemServlet extends HttpServlet {
 
@@ -40,9 +40,9 @@ public class SetItemServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-       try (PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-           
+
             String itemName = request.getParameter("itemName");
             ArrayList<RefItem> RefItemList = new RefItemDAO().searchAIitemName(itemName);
             JSONArray array = new JSONArray();
@@ -53,7 +53,7 @@ public class SetItemServlet extends HttpServlet {
                     obj.put("itemCode", RefItemList.get(i).getItemCode());
                     obj.put("inventoryType", RefItemList.get(i).getInventoryType());
                     obj.put("unitMeasurement", RefItemList.get(i).getUnitMeasurement());
-                   
+
                     array.put(obj);
 
                 } catch (JSONException ex) {

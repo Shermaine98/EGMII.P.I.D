@@ -1,4 +1,3 @@
-
 package Controller_Json;
 
 import DAO.RefSupplierDAO;
@@ -14,15 +13,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
+
 /**
  *
  * @author Atayan
  * @author Lapidario
  * @author Sy
  * @author Nunez
+ * @author Dimaandal
  *
  */
-
 public class SearchSupplierServlet extends HttpServlet {
 
     /**
@@ -37,19 +37,19 @@ public class SearchSupplierServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
-      response.setContentType("text/html;charset=UTF-8");
-      try (PrintWriter out = response.getWriter()) {
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
             String supplierName = request.getParameter("query");
             ArrayList<RefSupplier> refSupplier = new RefSupplierDAO().searchSupplier(supplierName);
             ArrayList<String> SupplierName = new ArrayList<String>();
-           System.out.println(supplierName);
-            for (int i=0; i<refSupplier.size();i++){
-              SupplierName.add(refSupplier.get(i).getCompanyName());
-            } 
+            System.out.println(supplierName);
+            for (int i = 0; i < refSupplier.size(); i++) {
+                SupplierName.add(refSupplier.get(i).getCompanyName());
+            }
             Gson gson = new Gson();
-             String json = gson.toJson(SupplierName);
-            response.getWriter().write("{\"suggestions\":"+json+"}");
-          
+            String json = gson.toJson(SupplierName);
+            response.getWriter().write("{\"suggestions\":" + json + "}");
+
         }
     }
 

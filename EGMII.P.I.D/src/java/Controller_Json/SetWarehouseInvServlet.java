@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controller_Json;
 
 import DAO.InventoryDAO;
@@ -24,7 +19,12 @@ import org.json.JSONObject;
 
 /**
  *
- * @author shermainesy
+ * @author Atayan
+ * @author Lapidario
+ * @author Sy
+ * @author Nunez
+ * @author Dimaandal
+ *
  */
 public class SetWarehouseInvServlet extends HttpServlet {
 
@@ -41,9 +41,9 @@ public class SetWarehouseInvServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-       try (PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-           
+
             String productName = request.getParameter("productName");
             ArrayList<WarehouseInventoryView> WarehouseInventoryList = new InventoryDAO().GetWarehouse(productName);
             JSONArray array = new JSONArray();
@@ -56,7 +56,7 @@ public class SetWarehouseInvServlet extends HttpServlet {
                     obj.put("size", WarehouseInventoryList.get(i).getSize());
                     obj.put("color", WarehouseInventoryList.get(i).getColor());
                     obj.put("qty", WarehouseInventoryList.get(i).getQty());
-                   
+
                     array.put(obj);
 
                 } catch (JSONException ex) {

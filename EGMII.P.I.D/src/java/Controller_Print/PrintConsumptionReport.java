@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controller_Print;
 
 import Controller_Base.BaseServlet;
@@ -17,7 +12,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.faces.context.FacesContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,7 +22,12 @@ import net.sf.jasperreports.engine.JasperRunManager;
 
 /**
  *
- * @author Geraldine
+ * @author Atayan
+ * @author Lapidario
+ * @author Sy
+ * @author Nunez
+ * @author Dimaandal
+ *
  */
 public class PrintConsumptionReport extends BaseServlet {
 
@@ -40,18 +39,18 @@ public class PrintConsumptionReport extends BaseServlet {
      * @throws IOException
      */
     @Override
-    public void servletAction(HttpServletRequest request, HttpServletResponse response) 
+    public void servletAction(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.reset();
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
-       
+
         JasperReport jasperReport = null;
         String productionNumber = request.getParameter("printPONumber");
         int productionNumberInt = Integer.parseInt(productionNumber);
-        
+
         String path = getServletContext().getRealPath("/Reports/ProductionCreationReport/");
-       
+
         Map map = new HashMap();
         map.put("prodNum", productionNumberInt);
 
@@ -61,7 +60,7 @@ public class PrintConsumptionReport extends BaseServlet {
         } catch (JRException ex) {
             Logger.getLogger(PrintConsumptionReport.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         byte[] byteStream = null;
         try {
             byteStream = JasperRunManager.runReportToPdf(jasperReport, map, conn);
@@ -69,7 +68,7 @@ public class PrintConsumptionReport extends BaseServlet {
             Logger.getLogger(PrintConsumptionReport.class.getName()).log(Level.SEVERE, null, ex);
         }
         OutputStream outStream = response.getOutputStream();
-        response.addHeader("content-disposition", "attachment; filename=ConsumptionReport.pdf");   
+        response.addHeader("content-disposition", "attachment; filename=ConsumptionReport.pdf");
         response.setContentType("application/pdf");
         response.setContentLength(byteStream.length);
         outStream.write(byteStream, 0, byteStream.length);

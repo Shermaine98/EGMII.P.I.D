@@ -1,18 +1,14 @@
 package Controller_View;
 
 import Controller_Base.BaseServlet;
-import DAO.ConsumptionReportDAO;
 import DAO.InventoryDAO;
 import DAO.InventoryReportDAO;
 import DAO.ReplenishmentDAO;
-import Model.ConsumptionReport;
 import Model.InventoryReportCom;
-import Model_View.ConsumptionReportView;
 import Model_View.InventoryReportView;
 import Model_View.RepRequestView;
 import Model_View.WarehouseInventoryView;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -23,9 +19,6 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 /**
  *
@@ -33,6 +26,7 @@ import org.json.JSONObject;
  * @author Lapidario
  * @author Sy
  * @author Nunez
+ * @author Dimaandal
  *
  */
 public class ViewReplenishmentServlet extends BaseServlet {

@@ -52,7 +52,6 @@ public class EncodeProductServlet extends BaseServlet {
         //itemCode   
         String[] itemCode = request.getParameterValues("itemCode");
         String[] itemConsumption = request.getParameterValues("itemConsumption");
-       
 
         //fabric  
         String[] itemCodefabric = request.getParameterValues("fabricCode");

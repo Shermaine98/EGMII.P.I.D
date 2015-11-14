@@ -65,7 +65,7 @@ public class ApproveRejectSubconPOServlet extends BaseServlet {
                 x = true;
                 System.out.println("passed approval");
                 for (int i = 0; i < CRforRM.size(); i++) {
-                     x = true;
+                    x = true;
                     RawMaterialsInventoryView rm = new RawMaterialsInventoryView();
                     rm = inventoryDAO.GetAAndPInventorySpecific(CRforRM.get(i).getItemCode());
                     inventoryDAO.updateInventory(rm.getQty() - CRforRM.get(i).getTotalQty(), rm.getItemCode());
@@ -74,15 +74,13 @@ public class ApproveRejectSubconPOServlet extends BaseServlet {
         } catch (ParseException ex) {
             Logger.getLogger(ApproveRejectSubconPOServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+
         if (x) {
             ServletContext context = getServletContext();
             RequestDispatcher rd = context.getRequestDispatcher("/ApproveSubconPurchaseOrderServlet");
             request.setAttribute("Approval", "Approved");
             rd.forward(request, response);
-        }
-        else {
+        } else {
             ServletContext context = getServletContext();
             RequestDispatcher rd = context.getRequestDispatcher("/Accounts/Homepage.jsp");
             rd.forward(request, response);
