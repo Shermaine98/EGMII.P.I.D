@@ -6,9 +6,13 @@
 package Controller_Json;
 
 import Controller_Base.BaseServlet;
+import DAO.ConsumptionReportDAO;
+import DAO.SubconPurchaseOrderDAO;
 import DAO.SupplierDeliveryReceiptDAO;
 import DAO.SupplierPurchaseOrderDAO;
 import Model.PurchaseOrder;
+import Model_View.ConsumptionReportView;
+import Model_View.SubconPurchaseOrderView;
 import Model_View.SupplierPurchaseOrderView;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -38,18 +42,38 @@ public class SetSubconPOReceivingServlet extends BaseServlet {
      */
     @Override
     public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        SupplierDeliveryReceiptDAO SupplierDeliveryReceiptDAO = new SupplierDeliveryReceiptDAO();
-        ArrayList<SupplierPurchaseOrderView> SupplierPurchaseOrderView = new ArrayList<>();
+        String action = request.getParameter("action");
 
-//        try {
-//          //  SupplierPurchaseOrderView = SupplierDeliveryReceiptDAO.GetPurchaseOrderForReceiving();
-//        } catch (ParseException ex) {
-//            Logger.getLogger(SetSupplierReceivingServlet.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        SubconPurchaseOrderDAO PurchaseOrderDAO = new SubconPurchaseOrderDAO();
+        ArrayList<SubconPurchaseOrderView> SubconPOApproved = new ArrayList<>();
+        ConsumptionReportDAO DAO = new ConsumptionReportDAO();
+        ArrayList<ConsumptionReportView> CRforSizesA = new ArrayList();
+        ArrayList<SubconPurchaseOrderView> CRHeaderA = new ArrayList<>();
+
+        SubconPOApproved = PurchaseOrderDAO.GetAllSubconPurchaseOrderApproved();
+
+        if (action.equalsIgnoreCase("view")) {
+            request.setAttribute("SubconPOApproved", SubconPOApproved);
+            request.setAttribute("data", "null");
+        } else if (action.equalsIgnoreCase("viewSpecific")) {
+            String poNumber = request.getParameter("hiddenValue");
+            String productionNumber = request.getParameter("productionNumber");
+
+            try {
+                CRforSizesA = DAO.GetCRForSizes(Integer.parseInt(productionNumber));
+                CRHeaderA = PurchaseOrderDAO.getSubconHeader(Integer.parseInt(poNumber));
+
+            } catch (ParseException ex) {
+                Logger.getLogger(SetSubconPOReceivingServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            request.setAttribute("SubconPOApproved", SubconPOApproved);
+            request.setAttribute("CRforSizesA", CRforSizesA);
+            request.setAttribute("CRHeaderA", CRHeaderA);
+            request.setAttribute("data", "subconApproval");
+        }
         ServletContext context = getServletContext();
         RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Procurement/SubconReceiving.jsp");
-        request.setAttribute("receivingData", "null");
-        request.setAttribute("","");
         rd.forward(request, response);
     }
 }

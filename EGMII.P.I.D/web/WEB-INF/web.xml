@@ -248,6 +248,10 @@
         <servlet-name>PrintInventoryReport</servlet-name>
         <servlet-class>Controller_Print.PrintInventoryReport</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EncodeSubconDRServlet</servlet-name>
+        <servlet-class>Controller_Encode.EncodeSubconDRServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SearchProductServlet</servlet-name>
         <url-pattern>/SearchProductServlet</url-pattern>
@@ -495,6 +499,10 @@
     <servlet-mapping>
         <servlet-name>PrintInventoryReport</servlet-name>
         <url-pattern>/PrintInventoryReport</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EncodeSubconDRServlet</servlet-name>
+        <url-pattern>/EncodeSubconDRServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

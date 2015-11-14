@@ -4,6 +4,10 @@
     Author     : Geraldine
 --%>
 
+<%@page import="Model_View.ConsumptionReportView"%>
+<%@page import="Model_View.SubconPurchaseOrderView"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="/LevelOfAccess/LevelOFAccess.jsp"%>
 <!DOCTYPE html>
@@ -15,159 +19,150 @@
         <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="bootstrap/css/sub-menu.css">
         <link href="bootstrap/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
-         <script src="js/Validation.js"></script>
+        <link rel="stylesheet" type="text/css" href="bootstrap/css/jquery.dataTables.min.css">
+        <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+        <script src="js/Validation.js"></script>
         <title>Receiving</title>
+
+        <script>
+            $(document).ready(function () {
+                $('#dataTable').DataTable({
+                    "paging": true,
+                    "info": true
+                });
+
+                $("#dataTable tbody").on("click", 'input[type="text"]', (function () {
+                    var poNumber = $(this).closest("tr").find(".poNumber").text();
+                    document.getElementById('hiddenValue').value = poNumber;
+                    document.getElementById("form1").submit();
+                }));
+
+                $("#datepicker").datepicker({minDate: 1, maxDate: "+4M +10D", dateFormat: 'yy-mm-dd'});
+
+                var x = document.getElementById('trigger').value;
+                if (x === "true") {
+                    $('input[type="submit').prop('disabled', true);
+                }
+            });
+        </script>
+
     </head>
     <body>
-        <div class="container" align="center">
-            <h2>Subcontractor Purchase Order Receiving</h2><br/>
+        <form id="form1" method="post" action="SetSubconSpecificReceivingServlet?action=viewSpecific">
+            <br/><br/><br/>
+            <center><h2>Subcontractor Purchase Order Receiving</h2></center>
 
-            <table class="table table-bordered" style="width:60%;">
-                <colgroup>
-                    <col style="width:23%" />
-                    <col style="width:30%" />
+            <br/><br/>
+            <%            ArrayList<SubconPurchaseOrderView> ConsumptionReportView = (ArrayList<SubconPurchaseOrderView>) request.getAttribute("SubconPOApproved");
+            %>
+            <div class="container" align="center">
+                <div style="width:60%;">
+                    <table id="dataTable" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Purchase Order Number</th>
+                                <th>Production Number</th>
+                                <th>Product Name</th>
+                                <th>Product Type</th>
+                                <th>Date Made</th>
+                                <th>Prepared By</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%for (int i = 0; i < ConsumptionReportView.size(); i++) {%>
+                            <tr class="SubconPO">  
+                                <td class="poNumber"><%=ConsumptionReportView.get(i).getPoNumber()%><input type="text" class="transparentBg inputSize"/></td>
+                                <td><input type="text" name="productionNumber" class="transparentBg inputSize" value="<%=ConsumptionReportView.get(i).getProductionNumber()%>"/></td>
+                                <td><input type="text" class="transparentBg inputSize" value="<%=ConsumptionReportView.get(i).getProductName()%>"/></td>
+                                <td><input type="text" class="transparentBg inputSize" value="<%=ConsumptionReportView.get(i).getProductType()%>"/></td>
+                                <td><input type="text" class="transparentBg inputSize" value="<%=ConsumptionReportView.get(i).getDateMade()%>"/></td>
+                                <td><input type="text" class="transparentBg inputSize" value="<%=ConsumptionReportView.get(i).getPreparedBy()%>"/></td>
 
-                </colgroup>
-                <tr>
-                    <th>Purchase Order No.</th>
-                    <th>Subcontractor</th>
-                    <th>Delivery Date</th>
-                    <th>Prepared By</th>
-                    <th>Status</th>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </table>
-
-            <div class="panel panel-default col-md-4 pull-left" style="padding-bottom:10px; margin-left: 60px;">
-                <div class="panel-body">
-                    <label for="poNumber">Purchase Order No.</label>
-                    <input type="text" class="form-control readonlyWhite" readonly name="poNumber" /><br/>
-                    <label for="preparedBy">Prepared By</label>
-                    <input type="text" class="form-control readonlyWhite" readonly name="preparedBy" /><br/>
-                    <label for="dateMade">Date Made</label>
-                    <input type="text" class="form-control readonlyWhite" readonly name="dateMade" /><br/>
-                    <label for="deliveryDate">Delivery Date</label>
-                    <input type="date" class="form-control" id="datepicker" name="deliveryDate" /><br/>
-                    <label for="subcon">Subcontractor</label>
-                    <input type="text" class="form-control readonlyWhite" readonly name="subcon" /><br/>
-                </div>
-            </div>
-
-            <div class="panel panel-default col-md-6 pull-right" style="padding-bottom:10px;">
-                <div class="panel-body">
-
-                    <div class="form-inline">
-                        <label for="drNumber">Delivery Receipt Number</label>
-                        <input type="text" class="form-control" name="drNumber" />
-                    </div>
-                    <br/>
-
-                    <table class="table table-bordered" >
-                        <colgroup>
-                            <col style="width:60%" />
-                        </colgroup>
-                        <tr>
-                            <th>Item Name</th>
-                            <th>Quantity</th>
-                            <th>Received</th>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td><input type="number" name="received" class="transparentBg inputSize" /></td>
-                        </tr>
-                    </table>
-                    <br/>
-                </div>
-            </div>
-
-            <!--IF STATEMENT AGAIN HERE-->
-
-            <div class="panel panel-default col-md-6 pull-right">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Sizes</h3>
-                </div>
-                <div class="panel-body">
-                    <table class="table table-bordered" style="width:50%">
-                        <tr>
-                            <th><input name="sizeType" class="transparentBg readonlyWhite" value="XS" readonly/></th>
-                            <td><input type="number" class="transparentBg" name="volumeQty" id="sizeXS" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalShirt();" value="0" /></td>
-                        </tr>
-                        <tr>
-                            <th><input name="sizeType" class="transparentBg readonlyWhite" value="S" readonly/></th>
-                            <td><input type="number" class="transparentBg" name="volumeQty" id="sizeS" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalShirt();" value="0" /></td>
-                        </tr>
-                        <tr>
-                            <th><input name="sizeType" class="transparentBg readonlyWhite" value="M" readonly/></th>
-                            <td><input type="number" class="transparentBg" name="volumeQty" id="sizeM" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalShirt();" value="0" /></td>
-                        </tr>
-                        <tr>
-                            <th><input name="sizeType" class="transparentBg readonlyWhite" value="L" readonly/></th>
-                            <td><input type="number" class="transparentBg" name="volumeQty" id="sizeL" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalShirt();" value="0" /></td>
-                        </tr>
-                        <tr>
-                            <th><input name="sizeType" class="transparentBg readonlyWhite" value="XL" readonly/></th>
-                            <td><input type="number" class="transparentBg" name="volumeQty" id="sizeXL" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalShirt();" value="0" /></td>
-                        </tr>
+                            </tr> 
+                            <%}%>
+                        </tbody>
                     </table>
                 </div>
+                <input type="hidden" name="hiddenValue" id="hiddenValue" value=""/>
             </div>
+        </form>
 
-            <!--ELSE HERE-->
-            <div class="panel panel-default col-md-6 pull-right">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Sizes</h3>
-                </div>
-                <div class="panel-body">
-                    <input type="hidden" name="sizeName"  value="" />
-                    <table class="table table-bordered" style="width:50%">
-                        <tr>
-                            <th><input name="sizeType" class="transparentBg readonlyWhite" value="29" readonly/></th>
-                            <td><input type="number" class="transparentBg" name="volumeQty" id="size29" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
-                        </tr>
-                        <tr>
-                            <th><input name="sizeType" class="transparentBg readonlyWhite" value="30" readonly/></th>
-                            <td><input type="number" class="transparentBg" name="volumeQty" id="size30" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
-                        </tr>
-                        <tr>
-                            <th><input name="sizeType" class="transparentBg readonlyWhite" value="31" readonly/></th>
-                            <td><input type="number" class="transparentBg" name="volumeQty" id="size31" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
-                        </tr>
-                        <tr>
-                            <th><input name="sizeType" class="transparentBg readonlyWhite" value="32" readonly/></th>
-                            <td><input type="number" class="transparentBg" name="volumeQty" id="size32" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
-                        </tr>
-                        <tr>
-                            <th><input name="sizeType" class="transparentBg readonlyWhite" value="33" readonly/></th>
-                            <td><input type="number" class="transparentBg" name="volumeQty" id="size33" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
-                        </tr>
-                        <tr>
-                            <th><input name="sizeType" class="transparentBg readonlyWhite" value="34" readonly/></th>
-                            <td><input type="number" class="transparentBg" name="volumeQty" id="size34" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
-                        </tr>
-                        <tr>
-                            <th><input name="sizeType" class="transparentBg readonlyWhite" value="36" readonly/></th>
-                            <td><input type="number" class="transparentBg" name="volumeQty" id="size36" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
-                        </tr>
-                        <tr>
-                            <th><input name="sizeType" class="transparentBg readonlyWhite" value="38" readonly/></th>
-                            <td><input type="number" class="transparentBg" name="volumeQty" id="size38" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
-                        </tr>
-                    </table>
-                </div>
+        <%
+            String data = (String) request.getAttribute("data");
+            if (data.equalsIgnoreCase("subconApproval")) {
+                ArrayList<ConsumptionReportView> productSizes = (ArrayList<ConsumptionReportView>) request.getAttribute("CRforSizesA");
+                ArrayList<SubconPurchaseOrderView> crHeader = (ArrayList<SubconPurchaseOrderView>) request.getAttribute("CRHeaderA");
+
+        %>
+        <form method="post" action="EncodeSubconDRServlet">
+        <!--Start Header-->
+        <div class="panel panel-default col-md-3">
+            <div class="panel-heading">
+                <h3 class="panel-title">Subcontractor Purchase Order</h3>
             </div>
+            <div class="panel-body">
+                <label for="poNumber">Purchase Order No.</label>
+                <input type="text" class="form-control" readonly name="poNumber" value ="<%=crHeader.get(0).getPoNumber()%>" /><br/>
+                <label for="preparedBy">Prepared By</label>
+                <input type="text" class="form-control" readonly name="preparedBy" value="<%=crHeader.get(0).getPreparedBy()%>"/><br/>
+                <label for="deliveryDate">Delivery Date</label>
+                <input type="text" class="form-control " readonly name="deliveryDate" value="<%=crHeader.get(0).getDeliveryDate()%>"/><br/>
+                <label for="supplier">Subcontractor</label>
+                <input type="text" class="form-control " readonly name="subcon" value="<%=crHeader.get(0).getSubconID()%>"/><br/>
+                <label for="productionNumber">Production Number</label>
+                <input type="text" class="form-control " readonly name="productionNumber" value="<%=crHeader.get(0).getProductionNumber()%>"/><br/>
+                <label for="productName">Product Name</label>
+                <input type="text" class="form-control " readonly name="productName" value="<%=crHeader.get(0).getProductName()%>"/><br/>
+                <label for="productType">Product Type</label>
+                <input type="text" class="form-control " readonly name="productType" value="<%=crHeader.get(0).getProductType()%>"/><br/>
+                <label for="color">Color</label>
+                <input type="text" class="form-control " readonly name="color" value="<%=crHeader.get(0).getProductColor()%>"/><br/>
 
+                <input type="text" class="hidden" readonly name="employeeNumber" value="<%=user.getEmployeeNumber()%>"/>
+            </div>
         </div>
+        <!--End Header-->
+
+
+        <!--Start Sizes-->
+        <div class="panel panel-default col-md-7" style="float:left">
+            <div class="panel-heading">
+                <h3 class="panel-title">Sizes</h3>
+            </div>
+            <div class="panel-body">
+                <table class="table table-bordered table-responsive">
+                    <tr>
+                        <%                                for (int i = 0; i < productSizes.size(); i++) {
+                        %>
+                        <th><input name="sizeType" class="transparentBg readonlyWhite" value="<%=productSizes.get(i).getSize()%>" readonly/></th>
+                            <%
+                                }
+                            %>
+                        <th>Total</th></tr>
+                    <tr>
+                        <%
+                            double total = 0;
+                            for (int i = 0; i < productSizes.size(); i++) {
+
+                        %>
+                        <td><input type="number" readonly class="transparentBg" name="volumeQty" id="sizeS" value="<%=productSizes.get(i).getVolumeQty()%>" /></td>
+                            <%
+                                    total += productSizes.get(i).getVolumeQty();
+                                }
+                            %>  
+                        <td><input name="TotalS" class="transparentBg" id="TotalS" value="<%=total%>" readonly/></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <%}%>
+        <!--End Sizes-->
+
         <!--Buttons-->
         <div id="buttonz" align="center">
             <button class="btn btn-danger">Receive</button>
             <button class="btn btn-danger">Receive All</button>
         </div>
-    </body>
+        </form>
+</body>
 </html>
