@@ -94,6 +94,7 @@
             $(function () {
                 $("#datepicker").datepicker({minDate: 1, maxDate: "+4M +10D", dateFormat: 'yy-mm-dd'});
             });
+            
             $(document).ready(function () {
                 var spoNumber = '${SPONumber}';
                 document.getElementById('poNumber').value = spoNumber;

@@ -13,6 +13,7 @@
         <link href="bootstrap/Fornax/css/bootstrap-responsive.css" rel="stylesheet">
         <link href="bootstrap/Fornax/css/style.css" rel="stylesheet"> 
         <link href="bootstrap/css/EGMI-style-home.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="bootstrap/css/jquery-ui-datePicker.css">
 
         <!--Font-->
         <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600' rel='stylesheet' type='text/css'>
@@ -26,13 +27,14 @@
         ============================================================-->  
         <script src="bootstrap/js/jquery.js"></script>
         <script src="bootstrap/js/bootstrap.js"></script>
+        <script type="text/javascript" src="bootstrap/js/jquery-ui.js"></script>
         <title>Sign Up</title>
 
         <style>
             label{
                 color: #FFF;
             }
-            
+
             .form-control{
                 width:160px;
             }
@@ -49,7 +51,28 @@
                 float: left;
             }
         </style>
+        <script>
 
+            $(function () {
+                $("#datepicker").datepicker({
+                    minDate: new Date(1900, 1 - 1, 1), maxDate: '-18Y',
+                    dateFormat: 'dd/mm/yy',
+                    defaultDate: new Date(1970, 1 - 1, 1),
+                    changeMonth: true,
+                    changeYear: true,
+                    yearRange: '-110:-18'
+                });
+            });
+            
+            function This(){
+                
+                
+                
+                
+            }
+            
+            
+        </script>
     </head>
 
     <body>
@@ -89,22 +112,22 @@
                 <br/>
                 <h1>SIGN UP</h1>
 
-                <form class="form-inline" role="form" action="SignUp" method="POST" name="sign-up">
+                <form id="form" class="form-inline" role="form" action="SignUp" method="POST" name="sign-up">
                     <label for="firstName">First Name:</label>
-                    <input type="text" name="firstName" placeholder="First Name" class="form-control"/><br/><br/>
+                    <input type="text" name="firstName" placeholder="First Name" class="form-control" pattern=".{3,}" required title="Please Input First Name."/><br/><br/>
                     <label for="lastName">Last Name: </label>
-                    <input type="text" name="lastName" placeholder="Last Name" class="form-control"/><br/><br/>
+                    <input type="text" name="lastName" placeholder="Last Name" class="form-control" pattern=".{3,}" required title="Please Input Last Name." /><br/><br/>
                     <label for="email">Email:   </label>
-                    <input type="text" name="email" placeholder="Email Address" class="form-control"/><br/><br/>
+                    <input type="text" name="email" placeholder="Email Address" class="form-control" pattern=".{3,}" required title="Please Input Last Name."/><br/><br/>
                     <label for="password">Password: </label>
-                    <input type="password" name="newPassword" placeholder="Password" class="form-control"><br/><br/>
-                    <label for="birthDate">Birthdate:</label>
-                    <input type="date" name="birthDate" class="form-control"/><br/><br/>
+                    <input type="password" name="newPassword" placeholder="Password" class="form-control" pattern=".{8,}" required title="Password Should be minimum of 8 Characters"/><br/><br/>
+                    <label for="birthDate">Birth date:</label>
+                    <input type="text" name="birthDate" id="datepicker" class="form-control" pattern=".{9,}" required title="Please Input Birth Date"/><br/><br/>
                     <label for="verCode"></label>
-                    <input type="text" name="verCode" placeholder="Verification Code Here" class="form-control" style=" height:30px;"/><br/>
+                    <input type="text" name="verCode" placeholder="Verification Code Here" class="form-control" style=" height:30px;" pattern=".{9,}" required title="Please Input Verification Code"/><br/>
                     <br/><br/>
-                    <input type="submit" name="submit" class="btn btn-danger" value="Sign-up" style="float:none;"/>
-                    <a href="redirect.jsp">
+                    <button type="button" name="submit" id="submit" class="btn btn-danger" onClick="myFunction()" style="float:none;"/>Sign-up</button>
+                    <a href="index.jsp">
                         <button type="button" name="button" class="btn btn-danger"/>Cancel</button></a><br/>
                 </form>
             </div>
