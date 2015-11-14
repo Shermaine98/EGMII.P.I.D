@@ -95,26 +95,26 @@
                         <h3 class="panel-title">Subcontractor Purchase Order</h3>
                     </div>
                     <div class="panel-body">
+                        <label for="subconName">Subcontractor</label>
+                        <input type="text" class="form-control" name="subconName" id="subconName" pattern=".{1,}" required title="lease Input Subcontractor" onkeypress="autoCompleteSubcon();" placeholder="Search Subcon"/>
+                        <br/>  
+                        <label class="" for="deliveryDate">Delivery Date</label>
+                        <input type="text" name="deliveryDate" placeholder="yyyy-mm-dd" class="form-control" id="datepicker" pattern=".{1,}" required title="Please Input Delivery Date" /><br/>
+                        <!--Search Subcon-->
                         <label class="" for="poNumber">Purchase Order No.</label>
                         <input type="text" name="poNumber" class="form-control " id="poNumber" value="<%=poNumber%>" readonly /><br/>
                         <label class="" for="preparedBy">Prepared By</label>
                         <input type="hidden" name="preparedBy" class="form-control "   value="<%=user.getEmployeeNumber()%>"/><br/>
                         <input type="text" class="form-control " readonly  value="<%=user.getFirstName()%> <%=user.getLastName()%>"/><br/>
-                        <label class="" for="deliveryDate">Delivery Date</label>
-                        <input type="text" name="deliveryDate" placeholder="yyyy-mm-dd" class="form-control" id="datepicker" pattern=".{1,}" required title="Please Input Delivery Date" /><br/>
-                        <!--Search Subcon-->
-                        <label for="subconName">Subcontractor</label>
-                        <input type="text" class="form-control" name="subconName" id="subconName" pattern=".{1,}" required title="lease Input Subcontractor" onkeypress="autoCompleteSubcon();" placeholder="Search Subcon"/>
-                        <br/>  
-
+                        
                         <label class="" for="productionNumber">Production Number</label>
-                        <input type="text" name="productionNumber" id="productionNumber" class="form-control readonlyWhite" readonly value=<%=PurchaseOrderSpecific.get(0).getProductionNumber()%>  /><br/>
+                        <input type="text" name="productionNumber" id="productionNumber" class="form-control" readonly value=<%=PurchaseOrderSpecific.get(0).getProductionNumber()%>  /><br/>
                         <label class="" for="productName">Product Name</label>
-                        <input type="text" name="productName" class="form-control readonlyWhite" value="<%=PurchaseOrderSpecific.get(0).getProductName()%>" readonly /><br/>
+                        <input type="text" name="productName" class="form-control" value="<%=PurchaseOrderSpecific.get(0).getProductName()%>" readonly /><br/>
                         <label for="productType">Product Type</label>
-                        <input type="text" name="productType"  class="form-control readonlyWhite" readonly id="productType" value="<%=PurchaseOrderSpecific.get(0).getProductType()%>" /><br/>
+                        <input type="text" name="productType"  class="form-control" readonly id="productType" value="<%=PurchaseOrderSpecific.get(0).getProductType()%>" /><br/>
                         <label for="color">Color</label>
-                        <input type="text" name="color" class="form-control readonlyWhite" value="<%=PurchaseOrderSpecific.get(0).getColor()%>" readonly /><br/>
+                        <input type="text" name="color" class="form-control" value="<%=PurchaseOrderSpecific.get(0).getColor()%>" readonly /><br/>
 
                     </div>
                 </div>
