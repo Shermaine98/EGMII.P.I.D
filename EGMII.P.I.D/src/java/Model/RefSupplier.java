@@ -6,8 +6,10 @@ package Model;
  * @author Lapidario
  * @author Sy
  * @author Nunez
+ * @author Dimaandal
  *
  */
+
 public class RefSupplier {
 
     private int supplierID;

@@ -28,6 +28,7 @@ public class SupplierPurchaseOrderView {
     private String preparedbyname;
     private int itemCode;
     private double deliveredQty;
+    private String name;
 
     private DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
     /**
@@ -304,5 +305,19 @@ public class SupplierPurchaseOrderView {
      */
     public void setDeliveredQty(double deliveredQty) {
         this.deliveredQty = deliveredQty;
+    }
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
     }
 }

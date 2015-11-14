@@ -10,8 +10,10 @@ import java.text.SimpleDateFormat;
  * @author Lapidario
  * @author Sy
  * @author Nunez
+ * @author Dimaandal
  *
  */
+
 public class User {
 
     private int employeeNumber;

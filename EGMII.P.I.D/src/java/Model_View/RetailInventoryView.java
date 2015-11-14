@@ -19,6 +19,7 @@ public class RetailInventoryView {
     private String productType;
     private String color;
     private String size;
+    private String name;
     
 
     /**
@@ -145,5 +146,19 @@ public class RetailInventoryView {
      */
     public void setSize(String size) {
         this.size = size;
+    }
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
     }
 }

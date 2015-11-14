@@ -27,6 +27,7 @@ public class PurchaseOrderAll {
     private int itemCode;
     private double qty;
     private double deliveredQty;
+    private String name;
 
     private DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
     /**
@@ -267,5 +268,19 @@ public class PurchaseOrderAll {
      */
     public void setDeliveredQty(double deliveredQty) {
         this.deliveredQty = deliveredQty;
+    }
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
     }
 }

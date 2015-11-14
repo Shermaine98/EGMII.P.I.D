@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat;
  * @author Dimaandal
  *
  */
+
 public class ConsumptionReportView {
     private int productionNumber;
     private int preparedBy;

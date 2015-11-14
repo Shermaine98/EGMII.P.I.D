@@ -11,8 +11,10 @@ import java.text.SimpleDateFormat;
  * @author Lapidario
  * @author Sy
  * @author Nunez
+ * @author Dimaandal
  *
  */
+
 public class ConsumptionReport {
 
     private int productionNumber;

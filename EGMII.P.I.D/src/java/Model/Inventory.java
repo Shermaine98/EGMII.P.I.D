@@ -1,14 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Model;
 
 /**
  *
- * @author Gerard
+ * @author Atayan
+ * @author Lapidario
+ * @author Sy
+ * @author Nunez
+ * @author Dimaandal
+ *
  */
+
 public class Inventory {
     private int itemCode;
     private double qty;

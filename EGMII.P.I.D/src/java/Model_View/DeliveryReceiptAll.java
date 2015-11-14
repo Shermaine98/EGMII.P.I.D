@@ -24,7 +24,7 @@ public class DeliveryReceiptAll {
     private String note;
     private int itemCode;
     private double qty;
-
+    private String name;
     
     private DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
     
@@ -170,6 +170,20 @@ public class DeliveryReceiptAll {
      */
     public void setQty(double qty) {
         this.qty = qty;
+    }
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
     }
     
 }

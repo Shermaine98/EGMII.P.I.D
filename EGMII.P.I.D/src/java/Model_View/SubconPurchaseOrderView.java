@@ -33,6 +33,7 @@ public class SubconPurchaseOrderView {
     private boolean isCompleted;
     private int subconID;
     private int itemCode;
+    private String name;
     private DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
     /**
      * @return the dateMade
@@ -364,5 +365,19 @@ public class SubconPurchaseOrderView {
      */
     public void setItemCode(int itemCode) {
         this.itemCode = itemCode;
+    }
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
     }
 }

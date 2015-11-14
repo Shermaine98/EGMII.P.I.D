@@ -20,6 +20,7 @@ public class ProductAll {
     private int productID;
     private double qty;
     private String unitMeasurement;
+    private String name;
 
     /**
      * @return the itemCode
@@ -159,5 +160,19 @@ public class ProductAll {
      */
     public void setUnitMeasurement(String unitMeasurement) {
         this.unitMeasurement = unitMeasurement;
+    }
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
     }
 }

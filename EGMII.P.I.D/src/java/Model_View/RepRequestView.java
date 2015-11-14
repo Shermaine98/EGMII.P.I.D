@@ -27,6 +27,7 @@ public class RepRequestView {
     private int location;
     private String address;
     private int promo;
+    private String name;
     
     
     
@@ -245,6 +246,20 @@ public class RepRequestView {
      */
     public void setPromo(int promo) {
         this.promo = promo;
+    }
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
     }
 
 }

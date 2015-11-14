@@ -25,6 +25,7 @@ public class InventoryReportView {
     private double soldQty;
     private double pulledOutQty;
     private String address;
+    private String name;
 
     
     private DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -215,6 +216,20 @@ public class InventoryReportView {
      */
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
     }
     
 }

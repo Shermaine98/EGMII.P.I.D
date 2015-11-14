@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
  * @author Dimaandal
  *
  */
+
 public class DeliveryInvoiceView {
     private int diNumber;
     private int madeBy;
@@ -29,7 +30,7 @@ public class DeliveryInvoiceView {
     private String productType;
     private int productID;
     private int locationID;
-    
+
     
     
     

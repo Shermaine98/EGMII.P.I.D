@@ -15,6 +15,7 @@ public class RawMaterialsInventoryView {
     private String unitMeasurement;
     private double qty;
     private double qtyNeeded;
+    private String name;
 
     /**
      * @return the itemCode
@@ -98,5 +99,19 @@ public class RawMaterialsInventoryView {
      */
     public void setQtyNeeded(double qtyNeeded) {
         this.qtyNeeded = qtyNeeded;
+    }
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
     }
 }

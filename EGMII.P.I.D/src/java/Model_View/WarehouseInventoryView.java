@@ -16,6 +16,7 @@ public class WarehouseInventoryView {
     private String color;
     private String size;
     private double qty;
+    private String name;
 
     /**
      * @return the itemCode
@@ -99,5 +100,19 @@ public class WarehouseInventoryView {
      */
     public void setQty(double qty) {
         this.qty = qty;
+    }
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
     }
 }
