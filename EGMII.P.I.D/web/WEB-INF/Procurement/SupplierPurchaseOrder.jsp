@@ -80,7 +80,7 @@
                             <input type="button" class="btn btn-primary" value="Delete Row" onclick="deleteRowSupplier('table')" />
 
                             <br/><br/>
-                            <input type="submit" class="btn btn-default" value="Submit">
+                            <input type="submit" class="btn btn-danger" value="Submit">
                             <a href="/EGMII.P.I.D/Account?action=goToHome"><button type="button" class="btn btn-primary" >Cancel</button></a>
                         </div>
 

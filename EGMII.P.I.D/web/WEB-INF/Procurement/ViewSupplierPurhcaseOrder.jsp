@@ -71,8 +71,12 @@
         ArrayList<SupplierPurchaseOrderView> SupplierPurchaseOrderList = (ArrayList<SupplierPurchaseOrderView>) request.getAttribute("SupplierPurchaseOrder");
     %>
     <form id="form1" method="post" action="ViewSupplierPurchaseOrderServlet">
-        <div align="center" class="container" style="width:70%">
+        <div align="center" class="container">
             <table id="dataTable" class="table table-bordered table-hover">
+                <colgroup>
+                    <col style="width: 12%" />
+                    <col style="width: 40%" />
+                </colgroup>
                 <thead>
                     <tr>
                         <th>Purchase Order Number</th>
@@ -88,12 +92,12 @@
                         for (int i = 0; i < SupplierPurchaseOrderList.size(); i++) {
                     %> 
                     <tr class="SPO">
-                        <td class="poNumber"><%= SupplierPurchaseOrderList.get(i).getPoNumber()%><input type="text" class="transparentBg inputSize"/></td>
-                        <td><input type="text" class="transparentBg inputSize" value="<%= SupplierPurchaseOrderList.get(i).getCompanyName()%>"/></td>
-                        <td><input type="text" class="transparentBg inputSize" value="<%= SupplierPurchaseOrderList.get(i).getDateMade()%>"/></td>
-                        <td><input type="text" class="transparentBg inputSize" value="<%= SupplierPurchaseOrderList.get(i).getDeliveryDate()%>"/></td>
-                        <td><input type="text" class="transparentBg inputSize" value="<%= SupplierPurchaseOrderList.get(i).getPreparedBy()%>"/></td>
-                        <td><input type="text" class="transparentBg inputSize" value="<%= SupplierPurchaseOrderList.get(i).getApprovedBy()%>"/></td>        
+                        <td class="poNumber"><%= SupplierPurchaseOrderList.get(i).getPoNumber()%><input type="text" readonly  class="transparentBg"/></td>
+                        <td><input type="text" class="transparentBg" readonly  style="width:100%" value="<%= SupplierPurchaseOrderList.get(i).getCompanyName()%>"/></td>
+                        <td><input type="text" class="transparentBg" readonly  value="<%= SupplierPurchaseOrderList.get(i).getDateMade()%>"/></td>
+                        <td><input type="text" class="transparentBg" readonly  value="<%= SupplierPurchaseOrderList.get(i).getDeliveryDate()%>"/></td>
+                        <td><input type="text" class="transparentBg" readonly  value="<%= SupplierPurchaseOrderList.get(i).getPreparedBy()%>"/></td>
+                        <td><input type="text" class="transparentBg" readonly  value="<%= SupplierPurchaseOrderList.get(i).getApprovedBy()%>"/></td>        
                     </tr>
                     <%
                         }

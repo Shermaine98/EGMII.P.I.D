@@ -74,11 +74,11 @@
                     <tbody>
                         <%for (int i = 0; i < PurchaseOrderList.size(); i++) {%>
                         <tr class="SupplierPOReceiving">
-                            <td class="poNumber"><%=PurchaseOrderList.get(i).getPoNumber()%><input type="text" class="transparentBg inputSize"/></td>
-                            <td><input type="text" class="transparentBg inputSize" value="<%=PurchaseOrderList.get(i).getCompanyName()%>"/></td>
-                            <td><input type="text" class="transparentBg inputSize" value="<%=PurchaseOrderList.get(i).getDeliveryDate()%>"/></td>
-                            <td><input type="text" class="transparentBg inputSize" value="<%=PurchaseOrderList.get(i).getPreparedByName()%>"/></td>
-                            <td><input type="text" class="transparentBg inputSize" value="<%=PurchaseOrderList.get(i).isIsCompleted()%>"/></td>
+                            <td class="poNumber"><%=PurchaseOrderList.get(i).getPoNumber()%><input type="text" class="transparentBg inputSize" readonly /></td>
+                            <td><input type="text" class="transparentBg" value="<%=PurchaseOrderList.get(i).getCompanyName()%>" readonly /></td>
+                            <td><input type="text" class="transparentBg" value="<%=PurchaseOrderList.get(i).getDeliveryDate()%>" readonly /></td>
+                            <td><input type="text" class="transparentBg" value="<%=PurchaseOrderList.get(i).getPreparedByName()%>" readonly /></td>
+                            <td><input type="text" class="transparentBg inputSize" value="<%=PurchaseOrderList.get(i).isIsCompleted()%>" readonly /></td>
                         </tr>
                         <%} %>
                     </tbody>

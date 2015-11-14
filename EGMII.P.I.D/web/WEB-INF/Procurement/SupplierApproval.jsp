@@ -63,7 +63,7 @@
         <form id="form1" method="POST" action="SetApprovalSupplierPO">
             <div class="container" align="center">
                 <h2>Approve Supplier Purchase Order</h2><br/>
-                <div style="width:60%;">
+                <div style="width: 70%">
                     <table id="dataTable" class="table table-bordered table-hover">
                         <thead>
                             <tr>
@@ -77,11 +77,11 @@
                         <tbody>
                             <% for (int i = 0; i < PurchaseOrderList.size(); i++) {%>
                             <tr>
-                                <td class="poNumber"><%=PurchaseOrderList.get(i).getPoNumber()%><input type="text" class="transparentBg inputSize"/></td>
-                                <td><input type="text" class="transparentBg inputSize" value="<%=PurchaseOrderList.get(i).getCompanyName()%>"></td>
-                                <td><input type="text" class="transparentBg inputSize" value="<%=PurchaseOrderList.get(i).getDateMade()%>"></td>
-                                <td><input type="text" class="transparentBg inputSize" value="<%=PurchaseOrderList.get(i).getDeliveryDate()%>"</td>
-                                <td><input type="text" class="transparentBg inputSize" value="<%=PurchaseOrderList.get(i).getPreparedBy()%>"</td>
+                                <td class="poNumber"><%=PurchaseOrderList.get(i).getPoNumber()%><input type="text" class="transparentBg"/></td>
+                                <td><input type="text" class="transparentBg" value="<%=PurchaseOrderList.get(i).getCompanyName()%>"></td>
+                                <td><input type="text" class="transparentBg" value="<%=PurchaseOrderList.get(i).getDateMade()%>"></td>
+                                <td><input type="text" class="transparentBg" value="<%=PurchaseOrderList.get(i).getDeliveryDate()%>"</td>
+                                <td><input type="text" class="transparentBg" value="<%=PurchaseOrderList.get(i).getPreparedBy()%>"</td>
                             </tr>
                             <%
                                 }

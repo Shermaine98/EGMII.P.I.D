@@ -70,11 +70,11 @@
                         %>
                         <tr class="production">
                             <td class="productionNumber"><%= cr.get(i).getProductionNumber()%><input type="text" class="transparentBg inputSize" readonly /></td>
-                            <td><input type="text" class="transparentBg" value="<%= cr.get(i).getProductName()%>"/></td>
-                            <td><input type="text" class="transparentBg inputSize" value="<%= cr.get(i).getProductType()%>"/></td>
-                            <td><input type="text" class="transparentBg" value="<%= cr.get(i).getDateMade()%>"/></td>
-                            <td><input type="text" class="transparentBg inputSize" value="<%= cr.get(i).getColor()%>"/></td>
-                            <td><input type="text" class="transparentBg" value="<%= cr.get(i).getName()%>"/></td>
+                            <td><input type="text" class="transparentBg" value="<%= cr.get(i).getProductName()%>" readonly /></td>
+                            <td><input type="text" class="transparentBg inputSize" value="<%= cr.get(i).getProductType()%>" readonly /></td>
+                            <td><input type="text" class="transparentBg" value="<%= cr.get(i).getDateMade()%>" readonly /></td>
+                            <td><input type="text" class="transparentBg inputSize" value="<%= cr.get(i).getColor()%>" readonly /></td>
+                            <td><input type="text" class="transparentBg" value="<%= cr.get(i).getName()%>" readonly /></td>
                         </tr>
                         <%
                             }
