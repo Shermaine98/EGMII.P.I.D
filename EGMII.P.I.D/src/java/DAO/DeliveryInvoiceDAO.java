@@ -129,7 +129,7 @@ public class DeliveryInvoiceDAO {
                     + "di.dateMade, di.deliveryDate, \n"
                     + "p.itemCode, p.itemCode, p.productName,\n"
                     + "p.productType,\n"
-                    + "p.size, p.color, CONCAT(U.firstName,\" \",U.lastName) as 'name',l.branchName, l.address, did.qty\n"
+                    + "p.size, p.color, CONCAT(U.firstName,\" \",U.lastName) as 'name', l.locationID, l.branchName, l.address, did.qty\n"
                     + "FROM delivery_invoice di \n"
                     + "JOIN delivery_invoice_details did\n"
                     + "		ON di.diNumber = did.diNumber\n"
@@ -146,6 +146,7 @@ public class DeliveryInvoiceDAO {
 
             while (rs.next()) {
                 DeliveryInvoiceView temp = new DeliveryInvoiceView();
+                temp.setLocationID(rs.getInt("locationID"));
                 temp.setDiNumber(rs.getInt("diNumber"));
                   temp.setProductID(rs.getInt("itemCode"));
                 temp.setBranchName(rs.getString("branchName"));

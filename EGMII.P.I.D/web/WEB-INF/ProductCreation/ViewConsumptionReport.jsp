@@ -4,7 +4,7 @@
     Author     : Geraldine
 --%>
 
-<%@page import="Model_General.ProductAll"%>
+<%@page import="Model_View.ProductAll"%>
 <%@page import="Model_View.ConsumptionReportView"%>
 <%@page import="Model.ConsumptionReport"%>
 <%@page import="java.util.ArrayList"%>

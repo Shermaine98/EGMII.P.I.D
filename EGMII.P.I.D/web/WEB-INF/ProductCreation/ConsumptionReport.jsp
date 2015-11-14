@@ -4,7 +4,7 @@
     Author     : Geraldine
 --%>
 
-<%@page import="Model_General.ProductAll"%>
+<%@page import="Model_View.ProductAll"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="/LevelOfAccess/LevelOFAccess.jsp"%>

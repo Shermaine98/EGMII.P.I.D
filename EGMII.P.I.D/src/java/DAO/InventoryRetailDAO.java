@@ -72,34 +72,25 @@ public class InventoryRetailDAO {
      * @throws ParseException 
      */
 
-    public ArrayList<RetailInventory> GetRetailInventory() throws ParseException {
-        ArrayList<RetailInventory> RetailInventory = new ArrayList<>();
-
+    public RetailInventory GetRetailInventory(int itemCode, int locationID) throws ParseException {
+       RetailInventory RetailInventory = new RetailInventory();
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement("SELECT IR.reportID ,L.branchName, IR.promo, IR.dateMade, P.productName, \n"
-                    + "P.color, P.size, RI.qty, IRD.pulledOutQty, IRD.soldQty\n"
-                    + "FROM product P\n"
-                    + "JOIN retail_inventory RI\n"
-                    + "ON P.itemCode = RI.itemCode \n"
-                    + "JOIN ref_location L \n"
-                    + "ON RI.locationID = L.locationID\n"
-                    + "JOIN inventory_report IR \n"
-                    + "ON RI.location = IR.location\n"
-                    + "JOIN inventory_report_details IRD\n"
-                    + "ON IR.reportID = IRD.reportID\n"
-                    + "WHERE IR.reportID = ?;");
-
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM retail_inventory WHERE itemCode = ? AND locationID = ?;");
+           
+            pstmt.setInt(1, itemCode);
+            pstmt.setInt(2, locationID);
+            System.out.println(itemCode);
+              System.out.println(locationID);
             ResultSet rs = pstmt.executeQuery();
-
             while (rs.next()) {
-                RetailInventory newRetailInventory = new RetailInventory();
-
-                newRetailInventory.setItemCode(rs.getInt("reportID"));
+                 RetailInventory newRetailInventory = new RetailInventory();
+                System.out.println("line");
+                newRetailInventory.setLocationID(rs.getInt("locationID"));
+                newRetailInventory.setItemCode(rs.getInt("itemCode"));
                 newRetailInventory.setQty(rs.getDouble("qty"));
-                RetailInventory.add(newRetailInventory);
-
+                RetailInventory = newRetailInventory;
             }
             conn.close();
             pstmt.close();
@@ -137,6 +128,36 @@ public class InventoryRetailDAO {
             return true;
         } catch (SQLException ex) {
             Logger.getLogger(InventoryRetailDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    
+       /**
+     * INSERT into Inventory
+     *
+     * @param qty
+     * @param itemCode
+     * @return
+     * @throws ParseException
+     */
+    public boolean InsertRetialInventory(int locationID, int itemCode, double qty) throws ParseException {
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+
+            String query = "INSERT INTO retail_inventory (locationID, itemCode, qty) VALUES (?, ?, ?);";
+
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, locationID);
+            pstmt.setInt(2, itemCode);
+            pstmt.setDouble(3, qty);
+            
+            int rows = pstmt.executeUpdate();
+            conn.close();
+            pstmt.close();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(InventoryDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }

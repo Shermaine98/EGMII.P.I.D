@@ -28,6 +28,8 @@ public class DeliveryInvoiceView {
     private String name;
     private String productType;
     private int productID;
+    private int locationID;
+    
     
     
     
@@ -283,6 +285,20 @@ public class DeliveryInvoiceView {
      */
     public void setProductID(int productID) {
         this.productID = productID;
+    }
+
+    /**
+     * @return the locationID
+     */
+    public int getLocationID() {
+        return locationID;
+    }
+
+    /**
+     * @param locationID the locationID to set
+     */
+    public void setLocationID(int locationID) {
+        this.locationID = locationID;
     }
     
 }

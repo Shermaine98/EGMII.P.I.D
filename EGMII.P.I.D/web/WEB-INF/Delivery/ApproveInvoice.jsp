@@ -64,7 +64,7 @@
                             <tr class="repView">
                                 <td class="diNumber"><%=DeliveryInvoiceView.get(i).getDiNumber()%></td>
                                 <td><input type="text" class="transparentBg inputSize" value="<%=DeliveryInvoiceView.get(i).getBranchName()%>"></td>
-                                <td><input type="text" class="transparentBg inputSize" value="<%=DeliveryInvoiceView.get(i).getMadeBy()%>"</td>
+                                <td><input type="text" class="transparentBg inputSize" value="<%=DeliveryInvoiceView.get(i).getName()%>"</td>
                                 <td><input type="text" class="transparentBg inputSize" value="<%=DeliveryInvoiceView.get(i).getDeliveryDate()%>"</td>
                                 <td><input type="text" class="transparentBg inputSize" value="<%=DeliveryInvoiceView.get(i).getDateMade()%>"</td>
                             </tr>
@@ -98,6 +98,7 @@
                         <label for="promo">Promo</label>
                         <input type="text" class="form-control " readonly name="promo" value="" /><br/>
                         <label for="branch">Branch</label>
+                        <input type="hidden" class="form-control" readonly name="location" value="<%=DeliveryInvoiceS.get(0).getLocationID()%>" />
                         <input type="text" class="form-control" readonly name="outlet" value="<%=DeliveryInvoiceS.get(0).getBranchName()%>" />
                         <label for="address">Address</label>
                         <input type="text" class="form-control" readonly name="outlet" value="<%=DeliveryInvoiceS.get(0).getAddress()%>" />
