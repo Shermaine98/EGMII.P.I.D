@@ -52,11 +52,10 @@
             }
         </style>
         <script>
-
             $(function () {
                 $("#datepicker").datepicker({
                     minDate: new Date(1900, 1 - 1, 1), maxDate: '-18Y',
-                    dateFormat: 'dd/mm/yy',
+                   dateFormat: 'yy-mm-dd',
                     defaultDate: new Date(1970, 1 - 1, 1),
                     changeMonth: true,
                     changeYear: true,
@@ -64,13 +63,24 @@
                 });
             });
             
-            function This(){
-                
-                
-                
-                
-            }
+             $(function () {
+                $("#entryDate").datepicker({minDate: new Date(1900, 1 - 1, 1), maxDate: "0", dateFormat: 'yy-mm-dd'});
+            });
+
             
+            function verification() {
+                var ver = document.getElementById("verCode").value;
+                if (ver === "E101") {
+                     document.getElementById('position').value = "promoter";
+                    document.getElementById("form").submit();
+                } else if(ver === "E102"){
+                     document.getElementById('position').value = "delivery manager";
+                    document.getElementById("form").submit();
+                }else {
+                    window.alert("Wrong Verification Code, Please talk with the administrator");
+                    location.reload();
+                }
+            }
             
         </script>
     </head>
@@ -123,12 +133,17 @@
                     <input type="password" name="newPassword" placeholder="Password" class="form-control" pattern=".{8,}" required title="Password Should be minimum of 8 Characters"/><br/><br/>
                     <label for="birthDate">Birth date:</label>
                     <input type="text" name="birthDate" id="datepicker" class="form-control" pattern=".{9,}" required title="Please Input Birth Date"/><br/><br/>
+                    <label for="birthDate">Entry date:</label>
+                    <input type="text" name="entryDate" id="entryDate" class="form-control" pattern=".{9,}" required title="Please Input Entry Date"/><br/><br/>
                     <label for="verCode"></label>
-                    <input type="text" name="verCode" placeholder="Verification Code Here" class="form-control" style=" height:30px;" pattern=".{9,}" required title="Please Input Verification Code"/><br/>
+                    <input type="password" name="verCode" id="verCode" placeholder="Verification Code Here" class="form-control" style=" height:30px;" pattern=".{9,}" required title="Please Input Verification Code"/><br/>
+                    <input type="hidden" id="position" name="position" value="" /> 
+                    
                     <br/><br/>
-                    <button type="button" name="submit" id="submit" class="btn btn-danger" onClick="myFunction()" style="float:none;"/>Sign-up</button>
+                    <button type="button"  class="btn btn-danger" onclick="verification()" style="float:none;"/>Sign-up</button>
                     <a href="index.jsp">
                         <button type="button" name="button" class="btn btn-danger"/>Cancel</button></a><br/>
+                        
                 </form>
             </div>
         </div>

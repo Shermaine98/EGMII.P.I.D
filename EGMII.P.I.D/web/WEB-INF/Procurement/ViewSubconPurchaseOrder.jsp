@@ -149,6 +149,12 @@
                 </tr>
             </table>
         </div>
+                <div class="container" align="center">
+                        <br/><br/>
+                        <button type="submit" class="btn btn-danger"/>Print</button>
+                        <a href="/EGMII.P.I.D/Account?action=goToHome"><button type="button" class="btn btn-primary" >Cancel</button></a>
+                        
+                    </div>
     </div>
     <%}%>
     <!--End Sizes-->

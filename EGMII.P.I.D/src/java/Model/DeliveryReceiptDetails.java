@@ -46,6 +46,7 @@ public class DeliveryReceiptDetails {
      * @return the qty
      */
     public double getQty() {
+        
         return qty;
     }
 
@@ -53,6 +54,7 @@ public class DeliveryReceiptDetails {
      * @param qty the qty to set
      */
     public void setQty(double qty) {
+         qty = Math.round(qty*100.0)/100.0;
         this.qty = qty;
     }
     

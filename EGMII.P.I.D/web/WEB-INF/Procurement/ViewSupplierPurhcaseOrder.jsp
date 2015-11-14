@@ -27,14 +27,14 @@
                     "paging": true,
                     "info": true
                 });
-                
-                 $("#dataTable tbody").on("click", 'input[type="text"]', (function () {
+
+                $("#dataTable tbody").on("click", 'input[type="text"]', (function () {
                     var productionNumber = $(this).closest("tr").find(".poNumber").text();
                     document.getElementById('hiddenValue').value = productionNumber;
                     document.getElementById("form1").submit();
                 }));
-                
-              $(".trclass").each(function () {
+
+                $(".trclass").each(function () {
                     var $this = $(this);
                     var unitPrice = parseFloat($this.find('[id="unitPrice\\[\\]"]').val());
                     var volumeQty = parseFloat($this.find('[id="volumeQty\\[\\]"]').val());
@@ -168,12 +168,14 @@
             }
         %>
         <br/><br/>
-
+        <div>
+            <center>
+                <input type="button" class="btn btn-default" onclick="printDiv('printableArea')" value="Print" />
+            </center>
+        </div>
         <%}%>
     </div>
-    <center>
-        <input type="button" class="btn btn-default" onclick="printDiv('printableArea')" value="Print" />
-    </center>
+
 </body>
 
 </html>

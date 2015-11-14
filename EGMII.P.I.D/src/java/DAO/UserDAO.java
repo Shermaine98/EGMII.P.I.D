@@ -31,20 +31,20 @@ public class UserDAO {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
             String query = "insert into user"
-                    + "(employeeID,lastName,firstName,position,birthDate,entryDate,leftDate,email,password) "
+                    + "(employeeID,lastName,firstName,email,position,birthDate,leftDate,entryDate,password) "
                     + "values (?,?,?,?,?,?,?,?,?)";
             PreparedStatement pstmt = conn.prepareStatement(query);
 
             pstmt.setInt(1, newUser.getEmployeeNumber());
             pstmt.setString(2, newUser.getLastName());
             pstmt.setString(3, newUser.getFirstName());
-            pstmt.setString(4, newUser.getPosition());
-            pstmt.setDate(5, newUser.getBirthDate());
-            pstmt.setDate(6, newUser.getEntryDate());
+            pstmt.setString(4, newUser.getEmail());
+            pstmt.setString(5, newUser.getPosition());
+            pstmt.setDate(6, newUser.getBirthDate());
             pstmt.setDate(7, newUser.getLeftDate());
-            pstmt.setString(8, newUser.getEmail());
+            pstmt.setDate(8, newUser.getEntryDate());
             pstmt.setString(9, newUser.getPassword());
-
+            
             int rows = pstmt.executeUpdate();
             conn.close();
             return rows == 1;
@@ -149,8 +149,9 @@ public class UserDAO {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement("select * from user where email= '"+ username +"' and password= '"+password+"'");
-
+            PreparedStatement pstmt = conn.prepareStatement("select * from user where email= ? and password= ?");
+            pstmt.setString(1, username);
+            pstmt.setString(2, password);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
 

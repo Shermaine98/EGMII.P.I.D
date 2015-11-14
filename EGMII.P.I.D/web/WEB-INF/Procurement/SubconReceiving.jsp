@@ -170,13 +170,14 @@
                         </tr>
                     </table>
                 </div>
-            </div>
-            <!--End Sizes-->
-            <!--Buttons-->
+                        <!--Buttons-->
             <div id="buttonz" align="center">
                 <button class="btn btn-danger">Receive</button>
-                <button class="btn btn-danger">Receive All</button>
+                <a href="/EGMII.P.I.D/Account?action=goToHome"><button type="button" class="btn btn-primary" >Cancel</button></a>
             </div>
+            </div>
+            <!--End Sizes-->
+            
             <%}%>
         </form>
     </body>

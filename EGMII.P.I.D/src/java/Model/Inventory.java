@@ -1,5 +1,7 @@
 package Model;
 
+import static java.lang.Math.round;
+
 /**
  *
  * @author Atayan
@@ -32,6 +34,7 @@ public class Inventory {
      * @return the qty
      */
     public double getQty() {
+       
         return qty;
     }
 
@@ -39,6 +42,7 @@ public class Inventory {
      * @param qty the qty to set
      */
     public void setQty(double qty) {
+         qty = Math.round(qty*100.0)/100.0;
         this.qty = qty;
     }
 }

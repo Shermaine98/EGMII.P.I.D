@@ -55,6 +55,8 @@ public class PurchaseOrderDetails {
      * @param qty the qty to set
      */
     public void setQty(double qty) {
+        
+         qty = Math.round(qty*100.0)/100.0;
         this.qty = qty;
     }
 
@@ -69,6 +71,7 @@ public class PurchaseOrderDetails {
      * @param deliveredQty the deliveredQty to set
      */
     public void setDeliveredQty(double deliveredQty) {
+         deliveredQty = Math.round(deliveredQty*100.0)/100.0;
         this.deliveredQty = deliveredQty;
     }
     

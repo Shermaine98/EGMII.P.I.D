@@ -147,7 +147,7 @@
             <!--Buttons-->
             <div id="buttonz" align="center">
                 <input type="submit" class="btn btn-default"/>
-                <button class="btn btn-default">Receive All</button>
+                <a href="/EGMII.P.I.D/Account?action=goToHome"><button type="button" class="btn btn-primary" >Cancel</button></a>
             </div>
             <%}%>
         </form>

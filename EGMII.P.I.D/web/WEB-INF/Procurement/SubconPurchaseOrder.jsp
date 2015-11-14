@@ -30,12 +30,12 @@
                     "info": true
                 });
                 $("#dataTable tbody").on("click", 'input[type="text"]', (function () {
-                   var purchaseOrderNum = $(this).closest("tr").find(".productionNumber").text();
+                    var purchaseOrderNum = $(this).closest("tr").find(".productionNumber").text();
                     document.getElementById('hiddenValue').value = purchaseOrderNum;
                     document.getElementById("form1").submit();
                 }));
                 $("#datepicker").datepicker({minDate: 1, maxDate: "+4M +10D", dateFormat: 'yy-mm-dd'});
-       
+
                 var x = document.getElementById('trigger').value;
                 if (x === "true") {
                     $('input[type="submit').prop('disabled', true);
@@ -159,7 +159,7 @@
 
                 <!--view here-->
                 <!--sizes here-->
-                
+
                 <div class="panel panel-default col-md-7" style="float:left">
                     <div class="panel-heading">
                         <h3 class="panel-title">Sizes</h3>
@@ -171,7 +171,7 @@
                             %>
                             <tr>
                                 <%
-                                for (int i = 0; i < productSizes.size(); i++) {
+                                    for (int i = 0; i < productSizes.size(); i++) {
                                 %>
                                 <th><input name="sizeType" class="transparentBg readonlyWhite" value="<%=productSizes.get(i).getSize()%>" readonly/></th>
                                     <%
@@ -180,13 +180,13 @@
                                 <th>Total</th></tr>
                             <tr>
                                 <%
-                                 double  total = 0;
+                                    double total = 0;
                                     for (int i = 0; i < productSizes.size(); i++) {
-                                       
+
                                 %>
-                                <td><input type="number" readonly class="transparentBg" name="volumeQty" id="sizeS" value="<%=productSizes.get(i).getVolumeQty() %>" /></td>
+                                <td><input type="number" readonly class="transparentBg" name="volumeQty" id="sizeS" value="<%=productSizes.get(i).getVolumeQty()%>" /></td>
                                     <%
-                                    total += productSizes.get(i).getVolumeQty();
+                                            total += productSizes.get(i).getVolumeQty();
                                         }
                                     %>  
                                 <td><input name="TotalS" class="transparentBg" id="TotalS" value="<%=total%>" readonly/></td>
@@ -194,7 +194,7 @@
                         </table>
                     </div>
                 </div>
-                
+
                 <!--sizes end here-->
 
 
@@ -272,17 +272,16 @@
                                 %>
                             </tbody>
                         </table>
-                        <table id="dataSubcon">
-
-                        </table>
+                        <table id="dataSubcon"></table>
                     </div>
                     <br/>
+                    <div class="container" align="center">
+                        <br/><br/>
+                        <a href="/EGMII.P.I.D/Account?action=goToHome"><button type="button" class="btn btn-danger" >Cancel</button></a>
+                        <input type="submit" class="btn btn-danger" value="Submit"/>
+                    </div>
                 </div>
-                <div class="container" align="center">
-                    <br/><br/>
-                    <a href="/EGMII.P.I.D/Account?action=goToHome"><button type="button" class="btn btn-danger" >Cancel</button></a>
-                    <input type="submit" class="btn btn-danger" value="Submit"/>
-                </div>
+
             </div>
         </form>
         <%}%>

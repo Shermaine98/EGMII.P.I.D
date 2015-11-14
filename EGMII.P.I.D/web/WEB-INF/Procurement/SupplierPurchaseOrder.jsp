@@ -38,15 +38,16 @@
                         <h3 class="panel-title">Supplier Purchase Order</h3>
                     </div>
                     <div class="panel-body">
+                         <label class="" for="supplier">Supplier</label>
+                        <input type="text" name="supplier" class="form-control" id="supplierName" onkeypress="autoCompleteSupplier()" placeholder="Search Supplier" /><br/>
+                        <label class="" for="deliveryDate">Delivery Date</label>
+                        <input type="text" name="deliveryDate" placeholder="yyyy-mm-dd" class="form-control" id="datepicker" pattern=".{1,}" required title="Please Input Delivery Date" /><br/>
                         <label class="" for="poNumber">Purchase Order Number</label>
                         <input type="text" name="poNumber" class="form-control" id="poNumber" readonly /><br/>
                         <label class="" for="preparedBy">Prepared By</label>
                         <input type="hidden" name="preparedBy" class="readonlyWhite" id="preparedBy" value="<%=user.getEmployeeNumber()%>" />
                         <input type="text" class="form-control" readonly value="<%= user.getFirstName()%> <%= user.getLastName()%>" /><br/>
-                        <label class="" for="deliveryDate">Delivery Date</label>
-                        <input type="text" name="deliveryDate" placeholder="yyyy-mm-dd" class="form-control" id="datepicker" pattern=".{1,}" required title="Please Input Delivery Date" /><br/>
-                        <label class="" for="supplier">Supplier</label>
-                        <input type="text" name="supplier" class="form-control" id="supplierName" onkeypress="autoCompleteSupplier()" placeholder="Search Supplier" /><br/>
+                        
                     </div>
                 </div>
 

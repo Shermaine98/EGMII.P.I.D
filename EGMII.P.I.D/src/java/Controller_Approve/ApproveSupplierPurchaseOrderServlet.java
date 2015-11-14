@@ -31,17 +31,11 @@ public class ApproveSupplierPurchaseOrderServlet extends BaseServlet {
 
         PurchaseOrderList = PurchaseOrderDAO.GetAllSupplierPurchaseOrderForApproval();
 
-        if (!PurchaseOrderList.isEmpty()) {
             ServletContext context = getServletContext();
             RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Procurement/SupplierApproval.jsp");
             request.setAttribute("data", "null");
             request.setAttribute("SupplierPurchaseOrderList", PurchaseOrderList);
             rd.forward(request, response);
-        } else {
-            ServletContext context = getServletContext();
-            RequestDispatcher rd = context.getRequestDispatcher("/Error.jsp");
-            request.setAttribute("Error", "Error");
-            rd.forward(request, response);
-        }
+       
     }
 }

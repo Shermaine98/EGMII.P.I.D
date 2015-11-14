@@ -210,7 +210,6 @@
             </div>
             <div align="center">
                 <input type="submit" class="btn btn-default" value="Create"/><br/><br/>
-                <button type="button" class="btn btn-primary">Delete</button>
                 <a href="/EGMII.P.I.D/Account?action=goToHome"><button type="button" class="btn btn-primary" >Cancel</button></a>
             </div>
         </form>

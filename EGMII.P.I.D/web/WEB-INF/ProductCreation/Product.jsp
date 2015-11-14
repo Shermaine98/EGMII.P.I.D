@@ -76,7 +76,7 @@
                             </table>
                             <br/>
                             <div id="buttons" style="visibility: hidden">
-                                <input type="button" class="btn btn-danger" value="Delete Row" onclick="deleteRow('dataTable')" />
+                                <input type="button" class="btn btn-primary" value="Delete Row" onclick="deleteRow('dataTable')" />
                                 <br/><br/>
                             </div>
                         </div>
@@ -104,7 +104,7 @@
                             <br/>
                             <!--Should be a different js-->
                             <div id="buttonsFabric" style="visibility: hidden">
-                                <input type="button" class="btn btn-danger" value="Delete Row" onclick="deleteRowF('thisTableFabric')" />
+                                <input type="button" class="btn btn-primary" value="Delete Row" onclick="deleteRowF('thisTableFabric')" />
                                 <br/><br/>
                             </div>
                         </div>
@@ -114,7 +114,6 @@
 
             <div align="center">
                 <input type="submit" class="btn btn-default" value="Create"><br/><br/>
-                <button type="button" class="btn btn-primary">Delete</button>
                 <a href="/EGMII.P.I.D/Account?action=goToHome"><button type="button" class="btn btn-primary" >Cancel</button></a>
             </div>
         </form>

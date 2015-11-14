@@ -55,6 +55,7 @@ public class InventoryReportDetails {
      * @param soldQty the soldQty to set
      */
     public void setSoldQty(double soldQty) {
+         soldQty = Math.round(soldQty*100.0)/100.0;
         this.soldQty = soldQty;
     }
 
@@ -69,6 +70,7 @@ public class InventoryReportDetails {
      * @param pulledOutQty the pulledOutQty to set
      */
     public void setPulledOutQty(double pulledOutQty) {
+         pulledOutQty = Math.round(pulledOutQty*100.0)/100.0;
         this.pulledOutQty = pulledOutQty;
     }
     

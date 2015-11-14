@@ -69,6 +69,7 @@ public class CuttingReportDetails {
      * @param qty the qty to set
      */
     public void setQty(double qty) {
+        qty = Math.round(qty*100.0)/100.0;
         this.qty = qty;
     }
 
