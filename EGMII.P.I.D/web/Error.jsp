@@ -1,7 +1,7 @@
 <%-- 
     Document   : Error
     Created on : Nov 14, 2015, 6:57:10 PM
-    Author     : shermainesy
+    Author     : Atayan, Dimaandal, Lapidario, Nunez, Sy
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

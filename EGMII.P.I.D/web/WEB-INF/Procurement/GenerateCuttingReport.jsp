@@ -1,7 +1,7 @@
 <%-- 
-    Document   : ViewCuttingReport
-    Created on : Oct 18, 2015, 8:51:06 PM
-    Author     : shermainesy
+    Document   : Generate Cutting Report
+    Created on : Nov 14, 2015, 6:57:10 PM
+    Author     : Atayan, Dimaandal, Lapidario, Nunez, Sy
 --%>
 
 <%@page import="Model_View.ConsumptionReportView"%>

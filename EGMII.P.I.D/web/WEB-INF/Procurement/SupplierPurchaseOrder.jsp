@@ -1,7 +1,7 @@
 <%-- 
-    Document   : SupplierPurchaseOrder
-    Created on : 11 4, 15, 10:21:39 AM
-    Author     : Geraldine
+    Document   : Supplier Purchase Order
+    Created on : Nov 14, 2015, 6:57:10 PM
+    Author     : Atayan, Dimaandal, Lapidario, Nunez, Sy
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

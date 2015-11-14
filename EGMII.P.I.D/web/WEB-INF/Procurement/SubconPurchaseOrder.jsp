@@ -1,7 +1,7 @@
 <%-- 
-    Document   : SubconPurchaseOrder
-    Created on : 11 4, 15, 10:28:18 AM
-    Author     : Geraldine
+    Document   : Subcon Purchase Order
+    Created on : Nov 14, 2015, 6:57:10 PM
+    Author     : Atayan, Dimaandal, Lapidario, Nunez, Sy
 --%>
 
 <%@page import="Model_View.RawMaterialsInventoryView"%>

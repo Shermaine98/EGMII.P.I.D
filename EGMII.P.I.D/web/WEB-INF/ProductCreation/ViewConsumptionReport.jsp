@@ -1,7 +1,7 @@
 <%-- 
-    Document   : ViewConsumptionReport
-    Created on : 10 1, 15, 12:10:28 AM
-    Author     : Geraldine
+    Document   : View COnsumption Report
+    Created on : Nov 14, 2015, 6:57:10 PM
+    Author     : Atayan, Dimaandal, Lapidario, Nunez, Sy
 --%>
 
 <%@page import="Model_View.ProductAll"%>

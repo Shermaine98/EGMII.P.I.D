@@ -1,7 +1,7 @@
 <%-- 
-    Document   : contact
-    Created on : 11 2, 15, 1:30:27 PM
-    Author     : Geraldine
+    Document   : Contact
+    Created on : Nov 14, 2015, 6:57:10 PM
+    Author     : Atayan, Dimaandal, Lapidario, Nunez, Sy
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

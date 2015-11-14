@@ -1,7 +1,7 @@
 <%-- 
-    Document   : ReplenishmentRequest
-    Created on : 11 4, 15, 10:06:53 PM
-    Author     : Geraldine
+    Document   : View Replenishment Request
+    Created on : Nov 14, 2015, 6:57:10 PM
+    Author     : Atayan, Dimaandal, Lapidario, Nunez, Sy
 --%>
 
 <%@page import="Model_View.RepRequestView"%>

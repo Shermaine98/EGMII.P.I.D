@@ -1,7 +1,7 @@
 <%-- 
     Document   : sign_up
-    Created on : 10 2, 15, 8:13:06 PM
-    Author     : Geraldine
+    Created on : Nov 14, 2015, 6:57:10 PM
+    Author     : Atayan, Dimaandal, Lapidario, Nunez, Sy
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

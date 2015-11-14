@@ -1,7 +1,7 @@
 <%-- 
-    Document   : Bill of Materials
-    Created on : 08 20, 15, 6:43:37 PM
-    Author     : Geraldine
+    Document   : View Supplier Purchase Order
+    Created on : Nov 14, 2015, 6:57:10 PM
+    Author     : Atayan, Dimaandal, Lapidario, Nunez, Sy
 --%>
 
 <%@page import="Model_View.SupplierPurchaseOrderView"%>

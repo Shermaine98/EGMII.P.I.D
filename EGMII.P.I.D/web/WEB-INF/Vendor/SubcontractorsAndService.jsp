@@ -1,7 +1,7 @@
 <%-- 
-    Document   : EncodeSubcontractorServlet
-    Created on : 02 20, 15, 11:42:38 AM
-    Author     : Shermaine
+    Document   : Subcontractor and Service
+    Created on : Nov 14, 2015, 6:57:10 PM
+    Author     : Atayan, Dimaandal, Lapidario, Nunez, Sy
 --%>
 <%@page import="Model.RefSubcon"%>
 <%@page import="java.util.ArrayList"%>

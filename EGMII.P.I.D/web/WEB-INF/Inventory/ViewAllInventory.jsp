@@ -1,7 +1,7 @@
 <%-- 
-    Document   : EncodeConsumptionReport
-    Created on : 02 20, 15, 12:15:10 PM
-    Author     : Shermaine
+    Document   : View All Inventory
+    Created on : Nov 14, 2015, 6:57:10 PM
+    Author     : Atayan, Dimaandal, Lapidario, Nunez, Sy
 --%>
 
 

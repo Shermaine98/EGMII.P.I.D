@@ -1,8 +1,9 @@
 <%-- 
-    Document   : DeliveryReceipt
-    Created on : 08 20, 15, 6:43:37 PM
-    Author     : Geraldine
+    Document   : Boutique Inventory
+    Created on : Nov 14, 2015, 6:57:10 PM
+    Author     : Atayan, Dimaandal, Lapidario, Nunez, Sy
 --%>
+
 <%@page import="Model_View.RetailInventoryView"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

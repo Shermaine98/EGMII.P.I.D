@@ -1,7 +1,7 @@
 <%-- 
-    Document   : ViewInventoryReport
-    Created on : 11 4, 15, 9:59:08 PM
-    Author     : Geraldine
+    Document   : View Inventory Report
+    Created on : Nov 14, 2015, 6:57:10 PM
+    Author     : Atayan, Dimaandal, Lapidario, Nunez, Sy
 --%>
 
 <%@page import="Model_View.InventoryReportView"%>
