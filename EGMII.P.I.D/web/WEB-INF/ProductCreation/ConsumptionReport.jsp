@@ -128,7 +128,7 @@
                                 <td><input type="number" min="0" class="numericControl inputSize" name="volumeQty" id="size36" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
                                 <td><input type="number" min="0" class="numericControl inputSize" name="volumeQty" id="size38" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
                                 <td><input type="number" min="0" class="numericControl inputSize" name="volumeQty" id="size40" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
-                                <td><input name="TotalP" class="transparentBg readonlyWhite input" id="TotalP" value="0" readonly/></td>
+                                <td><input name="TotalP" class="transparentBg readonlyWhite inputSize" id="TotalP" value="0" readonly/></td>
                             </tr>
                         </table>
                     </div>
