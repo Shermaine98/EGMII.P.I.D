@@ -74,6 +74,7 @@ public class EncodeSupplierDRServlet extends BaseServlet {
         }
 
         boolean complete = false;
+        int checking = 0;
         //encode supplierdetails
         if (x == true) {
             for (int y = 0; y < itemCode.length; y++) {
@@ -90,10 +91,9 @@ public class EncodeSupplierDRServlet extends BaseServlet {
                             RawMaterialsInventoryView rm = new RawMaterialsInventoryView();
                             rm = inventoryDAO.GetAAndPInventorySpecific(deliveryReceiptDetails.getItemCode());
                             inventoryDAO.updateInventory(currentDeliveredQty + rm.getQty(), rm.getItemCode());
-                            if (Double.parseDouble(QtyOrdered[y]) == currentDeliveredQty) {
-                                complete = true;
-                            } else {
-                                complete = false;
+                            if (Double.parseDouble(QtyOrdered[y]) == currentDeliveredQty) {} 
+                            else {
+                                checking++;
                             }
                         } else {
                             x = false;
@@ -107,6 +107,12 @@ public class EncodeSupplierDRServlet extends BaseServlet {
                     x = false;
                 }
             }
+        }
+        
+        if(checking > 0){
+            complete = false;
+        } else{
+            complete = true;
         }
 
         try {

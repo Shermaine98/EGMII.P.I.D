@@ -4,6 +4,7 @@
     Author     : Geraldine
 --%>
 
+<%@page import="Model.ConsumptionReportDetails"%>
 <%@page import="Model_View.ConsumptionReportView"%>
 <%@page import="Model_View.SubconPurchaseOrderView"%>
 <%@page import="java.util.ArrayList"%>
@@ -92,77 +93,91 @@
             if (data.equalsIgnoreCase("subconApproval")) {
                 ArrayList<ConsumptionReportView> productSizes = (ArrayList<ConsumptionReportView>) request.getAttribute("CRforSizesA");
                 ArrayList<SubconPurchaseOrderView> crHeader = (ArrayList<SubconPurchaseOrderView>) request.getAttribute("CRHeaderA");
+                ArrayList<ConsumptionReportDetails> delQty = (ArrayList<ConsumptionReportDetails>) request.getAttribute("CRdelivered");
 
         %>
         <form method="post" action="EncodeSubconDRServlet">
-        <!--Start Header-->
-        <div class="panel panel-default col-md-3">
-            <div class="panel-heading">
-                <h3 class="panel-title">Subcontractor Purchase Order</h3>
+            <!--Start Header-->
+            <div class="panel panel-default col-md-3">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Subcontractor Purchase Order</h3>
+                </div>
+                <div class="panel-body">
+                    <label for="poNumber">Purchase Order No.</label>
+                    <input type="text" class="form-control" readonly name="poNumber" value ="<%=crHeader.get(0).getPoNumber()%>" /><br/>
+                    <label for="preparedBy">Prepared By</label>
+                    <input type="text" class="form-control" readonly name="preparedBy" value="<%=crHeader.get(0).getPreparedBy()%>"/><br/>
+                    <label for="preparedBy">Received By</label>
+                    <input type="hidden" class="form-control " name="receivedBy" value="<%=user.getEmployeeNumber()%>" /><br/>
+                    <input type="text" class="form-control " readonly  value="<%=user.getFirstName()%> <%=user.getLastName()%>" /><br/>
+                    <label for="deliveryDate">Delivery Date</label>
+                    <input type="text" class="form-control " readonly name="deliveryDate" value="<%=crHeader.get(0).getDeliveryDate()%>"/><br/>
+                    <label for="supplier">Subcontractor</label>
+                    <input type="text" class="form-control " readonly name="subcon" value="<%=crHeader.get(0).getSubconID()%>"/><br/>
+                    <label for="productionNumber">Production Number</label>
+                    <input type="text" class="form-control " readonly name="productionNumber" value="<%=crHeader.get(0).getProductionNumber()%>"/><br/>
+                    <label for="productName">Product Name</label>
+                    <input type="text" class="form-control " readonly name="productName" value="<%=crHeader.get(0).getProductName()%>"/><br/>
+                    <label for="productType">Product Type</label>
+                    <input type="text" class="form-control " readonly name="productType" value="<%=crHeader.get(0).getProductType()%>"/><br/>
+                    <label for="color">Color</label>
+                    <input type="text" class="form-control " readonly name="color" value="<%=crHeader.get(0).getProductColor()%>"/><br/>
+                </div>
             </div>
-            <div class="panel-body">
-                <label for="poNumber">Purchase Order No.</label>
-                <input type="text" class="form-control" readonly name="poNumber" value ="<%=crHeader.get(0).getPoNumber()%>" /><br/>
-                <label for="preparedBy">Prepared By</label>
-                <input type="text" class="form-control" readonly name="preparedBy" value="<%=crHeader.get(0).getPreparedBy()%>"/><br/>
-                <label for="deliveryDate">Delivery Date</label>
-                <input type="text" class="form-control " readonly name="deliveryDate" value="<%=crHeader.get(0).getDeliveryDate()%>"/><br/>
-                <label for="supplier">Subcontractor</label>
-                <input type="text" class="form-control " readonly name="subcon" value="<%=crHeader.get(0).getSubconID()%>"/><br/>
-                <label for="productionNumber">Production Number</label>
-                <input type="text" class="form-control " readonly name="productionNumber" value="<%=crHeader.get(0).getProductionNumber()%>"/><br/>
-                <label for="productName">Product Name</label>
-                <input type="text" class="form-control " readonly name="productName" value="<%=crHeader.get(0).getProductName()%>"/><br/>
-                <label for="productType">Product Type</label>
-                <input type="text" class="form-control " readonly name="productType" value="<%=crHeader.get(0).getProductType()%>"/><br/>
-                <label for="color">Color</label>
-                <input type="text" class="form-control " readonly name="color" value="<%=crHeader.get(0).getProductColor()%>"/><br/>
+            <!--End Header-->
 
-                <input type="text" class="hidden" readonly name="employeeNumber" value="<%=user.getEmployeeNumber()%>"/>
+            <!--start delivery receipt-->
+            <div class="form-inline">
+                <label for="drNumber">Delivery Receipt Number</label>
+                <input type="text" class="form-control" name="drNumber" pattern=".{8,}" required title="Please Input Delivery Receipt Number." />
             </div>
-        </div>
-        <!--End Header-->
+            <!--end delivery receipt-->
 
-
-        <!--Start Sizes-->
-        <div class="panel panel-default col-md-7" style="float:left">
-            <div class="panel-heading">
-                <h3 class="panel-title">Sizes</h3>
-            </div>
-            <div class="panel-body">
-                <table class="table table-bordered table-responsive">
-                    <tr>
-                        <%                                for (int i = 0; i < productSizes.size(); i++) {
-                        %>
-                        <th><input name="sizeType" class="transparentBg readonlyWhite" value="<%=productSizes.get(i).getSize()%>" readonly/></th>
-                            <%
-                                }
-                            %>
-                        <th>Total</th></tr>
-                    <tr>
+            <!--Start Sizes-->
+            <div class="panel panel-default col-md-7" style="float:left">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Sizes</h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-bordered table-responsive">
+                        <thead>
+                        <th>Sizes</th>
+                        <th>Quantity</th>
+                        <th>Delivered Quantity</th>
+                        <th>Received</th>
+                        </thead>
                         <%
                             double total = 0;
                             for (int i = 0; i < productSizes.size(); i++) {
 
                         %>
-                        <td><input type="number" readonly class="transparentBg" name="volumeQty" id="sizeS" value="<%=productSizes.get(i).getVolumeQty()%>" /></td>
+                        <tr>
+                            <td><input name="sizeType" class="transparentBg readonlyWhite" value="<%=productSizes.get(i).getSize()%>" readonly/></td>
+                            <td><input type="number" readonly class="transparentBg" name="QtyOrdered" id="sizeS" value="<%=productSizes.get(i).getVolumeQty()%>" /></td>
+                            <td class="deliveredQty"><%=delQty.get(i).getDeliveredQty()%><input type="hidden" value="<%=delQty.get(i).getDeliveredQty()%>" id="deliveredQty[]" name ="deliveredQty" readonly class="transparentBg inputSize" /></td>
+                            <td><input type="number" name="receivedqty" id="receivedqty[]" class="transparentBg inputSize" min="0" value="0" required title="Please Input getDeliveredQty()%>Received Quantity." /></td>
+
+                        <input type="text" class="hidden" readonly name="itemCode" value="<%=delQty.get(i).getItemCode()%>"/>
+
+                        </tr>
+                        <tr>    
                             <%
                                     total += productSizes.get(i).getVolumeQty();
                                 }
                             %>  
-                        <td><input name="TotalS" class="transparentBg" id="TotalS" value="<%=total%>" readonly/></td>
-                    </tr>
-                </table>
+                            <td>total</td>
+                            <td><input name="TotalS" class="transparentBg" id="TotalS" value="<%=total%>" readonly/></td>
+                        </tr>
+                    </table>
+                </div>
             </div>
-        </div>
-        <%}%>
-        <!--End Sizes-->
-
-        <!--Buttons-->
-        <div id="buttonz" align="center">
-            <button class="btn btn-danger">Receive</button>
-            <button class="btn btn-danger">Receive All</button>
-        </div>
+            <!--End Sizes-->
+            <!--Buttons-->
+            <div id="buttonz" align="center">
+                <button class="btn btn-danger">Receive</button>
+                <button class="btn btn-danger">Receive All</button>
+            </div>
+            <%}%>
         </form>
-</body>
+    </body>
 </html>

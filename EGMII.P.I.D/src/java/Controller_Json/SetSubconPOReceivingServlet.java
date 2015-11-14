@@ -2,7 +2,12 @@ package Controller_Json;
 
 import Controller_Base.BaseServlet;
 import DAO.ConsumptionReportDAO;
+import DAO.SubconDeliveryReceiptDAO;
 import DAO.SubconPurchaseOrderDAO;
+import DAO.SupplierDeliveryReceiptDAO;
+import DAO.SupplierPurchaseOrderDAO;
+import Model.ConsumptionReportDetails;
+import Model.PurchaseOrder;
 import Model_View.ConsumptionReportView;
 import Model_View.SubconPurchaseOrderView;
 import java.io.IOException;
@@ -39,10 +44,13 @@ public class SetSubconPOReceivingServlet extends BaseServlet {
         String action = request.getParameter("action");
 
         SubconPurchaseOrderDAO PurchaseOrderDAO = new SubconPurchaseOrderDAO();
+        
         ArrayList<SubconPurchaseOrderView> SubconPOApproved = new ArrayList<>();
         ConsumptionReportDAO DAO = new ConsumptionReportDAO();
+        SubconDeliveryReceiptDAO deliveryDAO = new SubconDeliveryReceiptDAO();
         ArrayList<ConsumptionReportView> CRforSizesA = new ArrayList();
         ArrayList<SubconPurchaseOrderView> CRHeaderA = new ArrayList<>();
+        ArrayList<ConsumptionReportDetails> CRdelivered = new ArrayList();
 
         SubconPOApproved = PurchaseOrderDAO.GetAllSubconPurchaseOrderApproved();
 
@@ -56,6 +64,7 @@ public class SetSubconPOReceivingServlet extends BaseServlet {
             try {
                 CRforSizesA = DAO.GetCRForSizes(Integer.parseInt(productionNumber));
                 CRHeaderA = PurchaseOrderDAO.getSubconHeader(Integer.parseInt(poNumber));
+                CRdelivered =deliveryDAO.getConsumptionQuantity(Integer.parseInt(productionNumber));
 
             } catch (ParseException ex) {
                 Logger.getLogger(SetSubconPOReceivingServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -64,6 +73,7 @@ public class SetSubconPOReceivingServlet extends BaseServlet {
             request.setAttribute("SubconPOApproved", SubconPOApproved);
             request.setAttribute("CRforSizesA", CRforSizesA);
             request.setAttribute("CRHeaderA", CRHeaderA);
+            request.setAttribute("CRdelivered", CRdelivered);
             request.setAttribute("data", "subconApproval");
         }
         ServletContext context = getServletContext();
