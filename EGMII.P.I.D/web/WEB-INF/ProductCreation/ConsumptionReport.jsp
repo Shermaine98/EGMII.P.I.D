@@ -24,6 +24,7 @@
             .input {
                 width: 20px;
             }
+            
         </style>
     </head>
     <body>
@@ -83,12 +84,12 @@
                                 <th><input name="sizeType" class="transparentBg readonlyWhite input" value="XL" readonly/></th>
                                 <th>Total</th></tr>
                             <tr>
-                                <td><input type="number" min="0" class="form-control inputSize" name="volumeQty" id="sizeXS" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalShirt();" value="0" /></td>
-                                <td><input type="number" min="0" class="form-control inputSize" name="volumeQty" id="sizeS" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalShirt();" value="0" /></td>
-                                <td><input type="number" min="0" class="form-control inputSize" name="volumeQty" id="sizeM" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalShirt();" value="0" /></td>
-                                <td><input type="number" min="0" class="form-control inputSize" name="volumeQty" id="sizeL" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalShirt();" value="0" /></td>
-                                <td><input type="number" min="0" class="form-control inputSize" name="volumeQty" id="sizeXL" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalShirt();" value="0" /></td>
-                                <td><input name="TotalS" min="0" class="form-control inputSize" id="TotalS" value="0" readonly/></td>
+                                <td><input type="number" min="0" class="numericControl inputSize" name="volumeQty" id="sizeXS" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalShirt();" value="0" /></td>
+                                <td><input type="number" min="0" class="numericControl inputSize" name="volumeQty" id="sizeS" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalShirt();" value="0" /></td>
+                                <td><input type="number" min="0" class="numericControl inputSize" name="volumeQty" id="sizeM" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalShirt();" value="0" /></td>
+                                <td><input type="number" min="0" class="numericControl inputSize" name="volumeQty" id="sizeL" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalShirt();" value="0" /></td>
+                                <td><input type="number" min="0" class="numericControl inputSize" name="volumeQty" id="sizeXL" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalShirt();" value="0" /></td>
+                                <td><input name="TotalS" min="0" class="numericControl inputSize" id="TotalS" value="0" readonly/></td>
                             </tr>
                         </table>
                     </div>
@@ -117,16 +118,16 @@
                                 <th>Total</th>
                             </tr>
                             <!--2-->  
-                            <tr><td><input type="number" min="0" class="form-control inputSize" name="volumeQty" id="size28" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
-                                <td><input type="number" min="0" class="form-control inputSize"name="volumeQty" id="size29" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
-                                <td><input type="number" min="0" class="form-control inputSize" name="volumeQty" id="size30" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
-                                <td><input type="number" min="0" class="form-control inputSize" name="volumeQty" id="size31" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
-                                <td><input type="number" min="0" class="form-control inputSize" name="volumeQty" id="size32" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
-                                <td><input type="number" min="0" class="form-control inputSize" name="volumeQty" id="size33" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
-                                <td><input type="number" min="0" class="form-control inputSize" name="volumeQty" id="size34" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
-                                <td><input type="number" min="0" class="form-control inputSize" name="volumeQty" id="size36" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
-                                <td><input type="number" min="0" class="form-control inputSize" name="volumeQty" id="size38" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
-                                <td><input type="number" min="0" class="form-control inputSize" name="volumeQty" id="size40" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
+                            <tr><td><input type="number" min="0" class="numericControl inputSize" name="volumeQty" id="size28" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
+                                <td><input type="number" min="0" class="numericControl inputSize"name="volumeQty" id="size29" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
+                                <td><input type="number" min="0" class="numericControl inputSize" name="volumeQty" id="size30" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
+                                <td><input type="number" min="0" class="numericControl inputSize" name="volumeQty" id="size31" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
+                                <td><input type="number" min="0" class="numericControl inputSize" name="volumeQty" id="size32" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
+                                <td><input type="number" min="0" class="numericControl inputSize" name="volumeQty" id="size33" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
+                                <td><input type="number" min="0" class="numericControl inputSize" name="volumeQty" id="size34" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
+                                <td><input type="number" min="0" class="numericControl inputSize" name="volumeQty" id="size36" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
+                                <td><input type="number" min="0" class="numericControl inputSize" name="volumeQty" id="size38" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
+                                <td><input type="number" min="0" class="numericControl inputSize" name="volumeQty" id="size40" onkeypress="return event.charCode >= 48 && event.charCode <= 57" onChange="calculateTotalPants();" value="0" /></td>
                                 <td><input name="TotalP" class="transparentBg readonlyWhite input" id="TotalP" value="0" readonly/></td>
                             </tr>
                         </table>
@@ -209,7 +210,7 @@
                 </div>
             </div>
             <div align="center">
-                <input type="submit" class="btn btn-default" value="Create"/><br/><br/>
+                <input type="submit" class="btn btn-danger" value="Create"/><br/><br/>
                 <a href="/EGMII.P.I.D/Account?action=goToHome"><button type="button" class="btn btn-primary" >Cancel</button></a>
             </div>
         </form>
@@ -364,7 +365,7 @@
                 });
                 return false;
             }
-   
+
 
         </script>              
     </body>

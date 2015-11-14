@@ -113,7 +113,7 @@
             </div> 
 
             <div align="center">
-                <input type="submit" class="btn btn-default" value="Create"><br/><br/>
+                <input type="submit" class="btn btn-danger" value="Create"><br/><br/>
                 <a href="/EGMII.P.I.D/Account?action=goToHome"><button type="button" class="btn btn-primary" >Cancel</button></a>
             </div>
         </form>
