@@ -116,7 +116,7 @@
                                 <span class="caret"></span></a> 
                             <ul class="dropdown-menu" role="menu">
                                 <li>
-                                    <a href="/EGMII.P.I.D/">Supplier</a>
+                                    <a href="/EGMII.P.I.D/ViewSupplierServlet?action=view">Supplier</a>
                                 </li>
                                 <li>
                                     <a href="/EGMII.P.I.D/">Subcontractor</a>

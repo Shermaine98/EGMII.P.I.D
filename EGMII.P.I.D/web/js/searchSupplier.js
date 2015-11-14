@@ -52,7 +52,7 @@ function getSupplierItem() {
     var itemNameSupplier = document.getElementById('itemNameSupplier').value;
     var supplierName = document.getElementById('supplierName').value;
 
-    if (x == true) {
+    if (x === true) {
         $.ajax({
             url: "SetSupplierItemServlet",
             type: 'POST',

@@ -25,9 +25,6 @@
                 width:25px;
 
             }
-            
-            
-            
         </style>
         <title>Encode Supplier Purchase Order</title>
     </head>
@@ -50,7 +47,6 @@
                         <input type="text" name="deliveryDate" placeholder="yyyy-mm-dd" class="form-control" id="datepicker" pattern=".{1,}" required title="Please Input Delivery Date" /><br/>
                         <label class="" for="supplier">Supplier</label>
                         <input type="text" name="supplier" class="form-control" id="supplierName" onkeypress="autoCompleteSupplier()" placeholder="Search Supplier" /><br/>
-                        <input type="hidden" name="supplier" id ="supplierName" disabled="disabled" style="color: #CCC; position: absolute; background: transparent;"/>
                     </div>
                 </div>
 
