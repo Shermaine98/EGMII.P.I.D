@@ -43,35 +43,39 @@ public class ViewSubconPurchaseOrderServlet extends BaseServlet {
      */
     @Override
     public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+
         SubconPurchaseOrderDAO PurchaseOrderDAO = new SubconPurchaseOrderDAO();
         ArrayList<SubconPurchaseOrderView> SubconPOApproved = new ArrayList<>();
         ConsumptionReportDAO DAO = new ConsumptionReportDAO();
         ArrayList<ConsumptionReportView> CRforSizesA = new ArrayList();
-        ArrayList<SubconPurchaseOrderView> CRHeaderA =  new ArrayList<>();
-        
-        String poNumber = request.getParameter("hiddenValue");
-        String productionNumber = request.getParameter("productionNumber");
+        ArrayList<SubconPurchaseOrderView> CRHeaderA = new ArrayList<>();
 
         SubconPOApproved = PurchaseOrderDAO.GetAllSubconPurchaseOrderApproved();
-        
-        try {
-            CRforSizesA = DAO.GetCRForSizes(Integer.parseInt(productionNumber));
-            CRHeaderA = PurchaseOrderDAO.getSubconHeader(Integer.parseInt(poNumber));
-            
-        } catch (ParseException ex) {
-            Logger.getLogger(ViewSubconPurchaseOrderServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
+        if (action.equalsIgnoreCase("view")) {
+            request.setAttribute("SubconPOApproved", SubconPOApproved);
+            request.setAttribute("data", "null");
+        } else if (action.equalsIgnoreCase("viewSpecific")) {
+            String poNumber = request.getParameter("hiddenValue");
+            String productionNumber = request.getParameter("productionNumber");
+
+            try {
+                CRforSizesA = DAO.GetCRForSizes(Integer.parseInt(productionNumber));
+                CRHeaderA = PurchaseOrderDAO.getSubconHeader(Integer.parseInt(poNumber));
+
+            } catch (ParseException ex) {
+                Logger.getLogger(ViewSubconPurchaseOrderServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            request.setAttribute("SubconPOApproved", SubconPOApproved);
+            request.setAttribute("CRforSizesA", CRforSizesA);
+            request.setAttribute("CRHeaderA", CRHeaderA);
+            request.setAttribute("data", "subconApproval");
+        }
         ServletContext context = getServletContext();
         RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Procurement/ViewSubconPurchaseOrder.jsp");
-
-        request.setAttribute("SubconPOApproved", SubconPOApproved);
-        request.setAttribute("CRforSizesA", CRforSizesA);
-        request.setAttribute("CRHeaderA", CRHeaderA);
-        request.setAttribute("data", "subconApproval");
-
         rd.forward(request, response);
-
     }
 
 }
