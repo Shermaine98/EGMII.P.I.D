@@ -65,11 +65,11 @@
                         var Qty = $(this).closest("tr").find(".Qty").text();
                         $('#data').append('<tr id="rowNum' + index + '">\n\
                                       <td><input type="hidden" name="itemCode" value="' + itemCode + '"/>\n\
-                                           <input type="text" value="' + productName + '"/></td>\n\
-                                      <td><input type="text"  value="' + color + '"/></td>\n\
-                                      <td><input type="text" value="' + size + '"/></td>\n\\n\
-                                      <td><input type="text" value="' + Qty + '"/></td>\n\\n\
-                                      <td><input type="number" name="qty" value="0"/></td>\n\
+                                           <input type="text" class="transparentBg" readonly value="' + productName + '"/></td>\n\
+                                      <td><input type="text"  class="transparentBg inputSize" readonly value="' + color + '"/></td>\n\
+                                      <td><input type="text" class="transparentBg inputSize" readonly value="' + size + '"/></td>\n\\n\
+                                      <td><input type="text" class="transparentBg inputSize" readonly value="' + Qty + '"/></td>\n\\n\
+                                      <td><input type="number" class="numericControl inputSize" name="qty" value="0"/></td>\n\
                                     </tr>');
                     } else {
                         $('#data').find("#rowNum" + index).remove();
@@ -137,7 +137,7 @@
                     <div class="panel-body">
                         <label for="outlet">Outlet</label>
                         <input type="hidden" class="form-control" readonly name="location" value="<%=InventoryReportS.get(0).getLocationID()%>" /><br/>
-                        <input type="text" class="form-control" readonly name="outlet" value="<%=InventoryReportS.get(0).getBranchName()%>" />
+                        <input type="text" class="form-control" readonly name="outlet" value="<%=InventoryReportS.get(0).getBranchName()%>" /><br/>
                         <label for="promo">Promoter</label>
                         <input type="hidden" class="form-control" readonly name="promo" value="<%=InventoryReportS.get(0).getPromoid()%>" />
                         <input type="text" class="form-control" readonly  value="<%=InventoryReportS.get(0).getName()%>" /><br/>
@@ -145,11 +145,11 @@
                         <input type="text" class="form-control" readonly name="date" value="<%=InventoryReportS.get(0).getDateMade()%>" /><br/>
                         <label for="repID">Replenishment ID</label>
                         <input type="text" class="form-control" readonly name="repID" value="<%=repID%>" /><br/>
-                        <input type="hidden" class="form-control" readonly name="supervisor" value="<%=user.getEmployeeNumber()%>" /><br/>
+                        <input type="hidden" class="form-control" readonly name="supervisor" value="<%=user.getEmployeeNumber()%>" />
                     </div>
                 </div>
 
-                <div class="panel panel-collapse col-md-7">
+                <div class="panel panel-collapse col-md-7 ">
                     <h3>Inventory Report Details</h3>
                     <table id="invR" class="table table-bordered">
                         <thead>
@@ -213,7 +213,7 @@
                 </div>
         </div>
 
-        <div class="panel panel-collapse" id="order" style="visibility: hidden" align="center">
+        <div class="panel panel-collapse container" id="order" style="visibility: hidden; width: 60%" align="center">
             <div class="panel-body">
                 <h2>Warehouse Inventory</h2>
                 <h4>Replenishment Request</h4><br/>
@@ -224,7 +224,7 @@
                             <th>Color</th>
                             <th>Size</th>
                             <th>Current Quantity</th>
-                            <th>Quantity To Be send (?)</th>
+                            <th>Quantity To Be Sent (?)</th>
                         </tr>
                     </thead>
                     <tbody id="info">
