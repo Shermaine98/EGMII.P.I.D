@@ -405,4 +405,26 @@ public class ConsumptionReportDAO {
         }
         return null;
     }
+    
+    public boolean UpdateConsumptionStatus (int productionNumber, String status) {
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+            String query = "UPDATE consumption_report\n"
+                    + "SET status = ?\n"
+                    + "WHERE productionNumber = ?";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+
+            pstmt.setString(1, status);
+            pstmt.setInt(2, productionNumber);
+
+            int rows = pstmt.executeUpdate();
+            conn.close();
+            pstmt.close();
+            return rows == 1;
+        } catch (SQLException ex) {
+            Logger.getLogger(ConsumptionReportDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
 }

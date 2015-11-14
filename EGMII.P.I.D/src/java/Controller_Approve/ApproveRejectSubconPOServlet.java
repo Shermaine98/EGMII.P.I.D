@@ -49,7 +49,6 @@ public class ApproveRejectSubconPOServlet extends BaseServlet {
         int PoNumber = Integer.parseInt(request.getParameter("poNumber"));
         int employeeNumber = Integer.parseInt(request.getParameter("employeeNumber"));
         int productionNumber = Integer.parseInt(request.getParameter("productionNumber"));
-        System.out.println("Production Number: " + productionNumber);
 
         purchaseOrder.setApprovedBy(employeeNumber);
         purchaseOrder.setPoNumber(PoNumber);
@@ -57,13 +56,12 @@ public class ApproveRejectSubconPOServlet extends BaseServlet {
 
         try {
             CRforRM = DAO.getCRTotalForUpdate(productionNumber);
-            System.out.println("RM: " + CRforRM.size());
         } catch (ParseException ex) {
             Logger.getLogger(ApproveRejectSubconPOServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         try {
-            if (PurchaseOrderDAO.updateApproval(purchaseOrder)) {
+            if (PurchaseOrderDAO.updateApproval(purchaseOrder) && DAO.UpdateConsumptionStatus(productionNumber, "ordered")) {
                 x = true;
                 System.out.println("passed approval");
                 for (int i = 0; i < CRforRM.size(); i++) {
