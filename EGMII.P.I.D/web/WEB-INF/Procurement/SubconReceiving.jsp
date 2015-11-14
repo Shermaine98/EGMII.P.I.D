@@ -47,9 +47,6 @@
             });
         </script>
         <style>
-            .inputSize{
-                width: 60px;
-            }
             .numericControl{
                 width:100%;
             }
@@ -57,7 +54,7 @@
     </head>
     <body>
         <form id="form1" method="post" action="SetSubconPOReceivingServlet?action=viewSpecific">
-            <br/><br/><br/>
+            <br/>
             <center><h2>Subcontractor Purchase Order Receiving</h2></center>
 
             <br/><br/>
@@ -79,12 +76,12 @@
                         <tbody>
                             <%for (int i = 0; i < ConsumptionReportView.size(); i++) {%>
                             <tr class="SubconPO">  
-                                <td class="poNumber"><%=ConsumptionReportView.get(i).getPoNumber()%><input type="text" class="transparentBg inputSize"/></td>
-                                <td><input type="text" name="productionNumber" class="transparentBg inputSize" value="<%=ConsumptionReportView.get(i).getProductionNumber()%>"/></td>
-                                <td><input type="text" class="transparentBg" value="<%=ConsumptionReportView.get(i).getProductName()%>"/></td>
-                                <td><input type="text" class="transparentBg inputSize" value="<%=ConsumptionReportView.get(i).getProductType()%>"/></td>
-                                <td><input type="text" class="transparentBg" value="<%=ConsumptionReportView.get(i).getDateMade()%>"/></td>
-                                <td><input type="text" class="transparentBg inputSize" value="<%=ConsumptionReportView.get(i).getPreparedBy()%>"/></td>
+                                <td class="poNumber"><%=ConsumptionReportView.get(i).getPoNumber()%><input type="text" readonly class="transparentBg inputSize"/></td>
+                                <td><input type="text" name="productionNumber" readonly class="transparentBg inputSize" value="<%=ConsumptionReportView.get(i).getProductionNumber()%>"/></td>
+                                <td><input type="text" readonly class="transparentBg" value="<%=ConsumptionReportView.get(i).getProductName()%>"/></td>
+                                <td><input type="text" readonly class="transparentBg inputSize" value="<%=ConsumptionReportView.get(i).getProductType()%>"/></td>
+                                <td><input type="text" readonly class="transparentBg" value="<%=ConsumptionReportView.get(i).getDateMade()%>"/></td>
+                                <td><input type="text" readonly class="transparentBg inputSize" value="<%=ConsumptionReportView.get(i).getPreparedBy()%>"/></td>
 
                             </tr> 
                             <%}%>

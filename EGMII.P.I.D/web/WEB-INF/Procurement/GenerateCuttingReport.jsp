@@ -66,8 +66,8 @@
                             <% for (int i = 0; i < ConsumptionReportView.size(); i++) {%>
                             <tr class="cuttingReport">
                                 <td class="poNumber"><%=ConsumptionReportView.get(i).getProductionNumber()%><input type="text" class="transparentBg inputSize"/></td>
-                                <td><input type="text" class="transparentBg inputSize" value="<%=ConsumptionReportView.get(i).getProductName()%>"/></td>
-                                <td><input type="text" class="transparentBg inputSize" value="<%=ConsumptionReportView.get(i).getDateMade()%>"/></td>
+                                <td><input type="text" class="transparentBg" value="<%=ConsumptionReportView.get(i).getProductName()%>"/></td>
+                                <td><input type="text" class="transparentBg" value="<%=ConsumptionReportView.get(i).getDateMade()%>"/></td>
                                 <td><input type="text" class="transparentBg inputSize" value="<%=ConsumptionReportView.get(i).getColor()%>"/></td>
                                 <td><input type="text" class="transparentBg inputSize" value="<%=ConsumptionReportView.get(i).getPreparedBy()%>"/></td>
                             </tr>
