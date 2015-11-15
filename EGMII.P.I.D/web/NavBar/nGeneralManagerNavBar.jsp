@@ -96,8 +96,7 @@
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="#">Replenishment Request</a>
                                     <ul class="dropdown-menu sub-menu">
-                                        <li><a href="/EGMII.P.I.D/ViewReplenishmentServlet?action=create">Encode Replenishment Request and View Inventory</a></li>
-                                        <li><a href="/EGMII.P.I.D/ViewReplenishmentServlet">Encode Replenishment Request</a></li>
+                                        <li><a href="/EGMII.P.I.D/ViewReplenishmentServlet?action=create">Encode Replenishment Request</a></li>
                                         <li><a href="/EGMII.P.I.D/ViewReplenishmentServlet?action=view">View Replenishment Request</a></li>
                                     </ul>
                                 </li>
