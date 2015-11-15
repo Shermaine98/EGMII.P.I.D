@@ -283,7 +283,7 @@ public class InventoryReportDAO {
                     "IR.reportID, IR.promo, IR.dateMade, \n" +
                     "IRD.itemCode, P.productName,\n" +
                     "IRD.soldQty, IRD.pulledOutQty, RI.qty as 'currentQty',\n" +
-                    "P.size, P.color, Concat(u.firstName, u.lastName) as 'name'\n" +
+                    "P.size, P.color, Concat(u.firstName,\" \",u.lastName) as 'name'\n" +
                     "FROM inventory_report_details IRD\n" +
                     "JOIN inventory_report IR\n" +
                     "ON IRD.reportID = IR.reportID\n" +
