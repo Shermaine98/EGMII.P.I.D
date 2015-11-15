@@ -107,8 +107,7 @@
                     <label>Color: </label>
                     <%=cr1.get(0).getColor()%> <br/><br/>
                     <label>Prepared By: </label>
-                    <input type="hidden" name="preparedBy" class="form-control readonlyWhite" value="<%= cr1.get(0).getName()%>" /> 
-                    <%=user.getFirstName()%> <%=user.getLastName()%><br/>
+                    <%=cr1.get(0).getName()%><br/>
 
                 </div>
             </div>
