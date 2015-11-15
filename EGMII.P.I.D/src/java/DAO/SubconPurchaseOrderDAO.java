@@ -294,7 +294,7 @@ public class SubconPurchaseOrderDAO {
                 "PO.isSupplier, PO.subconID, S.companyName, CR.productionNumber, \n" +
                 "PO.dateMade, PO.deliveryDate, PO.approvedBy, PO.preparedBy, \n" +
                 "CRD.itemCode, P.productName, P.productType, P.color, P.size, \n" +
-                "CRD.qty, CRD.deliveredQty\n" +
+                " CRD.qty, CRD.deliveredQty \n" +
                 "FROM ref_subcon S\n" +
                 "JOIN purchase_order PO\n" +
                 "ON PO.subconID = S.subconID\n" +
