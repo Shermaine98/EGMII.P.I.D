@@ -119,7 +119,7 @@
                                     <a href="/EGMII.P.I.D/ViewSupplierServlet?action=view">Supplier</a>
                                 </li>
                                 <li>
-                                    <a href="/EGMII.P.I.D/">Subcontractor</a>
+                                    <a href="/EGMII.P.I.D/ViewSubconServlet?action=view">Subcontractor</a>
                                 </li>
                             </ul>
                         </li>

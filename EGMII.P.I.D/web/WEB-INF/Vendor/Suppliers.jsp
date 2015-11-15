@@ -76,7 +76,7 @@
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myAddItem">Add Item</button>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myAddSupplier">Add Supplier</button>
 
-        <div class="modal fade" id="myAddItem" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal fade" id="myAddSupplier" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -115,6 +115,45 @@
             </div>
         </div>
 
+        
+        <div class="modal fade" id="myAddItem" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Add Item</h4>
+                    </div>
+                    <form action="EncodeItemServlet" method="POST">
+                        <div class="modal-body">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Item Code<th>
+                                        <th>Item Name<th>
+                                    </tr>
+                                </thead>
+                                <tbody id ="dataTable1" >
+                                    <tr> 
+                                        <td><input type="checkbox" name="chk" /></td>
+                                        <td><input type="text" class="form-control" placeholder="" name="itemCode" id="itemname"></td>
+                                        <td><input type="text" class="form-control" placeholder="" name="itemName" id="itemmodel"></td>
+                                        <td><input type="text" class="form-control" placeholder="" name="inventoryType" id="inventoryType"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <input type="hidden" name="suppliervalue" id="suppliervalue" value="">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <input type="button" class="btn btn-danger" value="Add Row" onclick="addRow('dataTable1')" />
+                            <input type="button" class="btn btn-danger" value="Delete Row" onclick="deleteRow('dataTable1')" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
         <br/><br/>
 
         <br/><br/>

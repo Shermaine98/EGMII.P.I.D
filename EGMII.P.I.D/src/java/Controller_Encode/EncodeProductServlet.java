@@ -130,7 +130,7 @@ public class EncodeProductServlet extends BaseServlet {
                         System.out.println("input: " + input);
                         
                         productBM.setProductID(ProductList.get(y).getItemCode());
-                        productBM.setQty(Integer.parseInt(itemConsumptionfabric[input]));
+                        productBM.setQty(Double.parseDouble(itemConsumptionfabric[input]));
                         if (productDAO.EncodeProductBM(productBM)) {
                             ProductListBM.add(productBM);
                         } else {
