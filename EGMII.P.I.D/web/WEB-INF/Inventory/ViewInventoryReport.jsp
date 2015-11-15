@@ -72,10 +72,10 @@
                                 <td><%=InventoryReportView.get(i).getProductName()%></td>
                                 <td><%=InventoryReportView.get(i).getColor()%></td>
                                 <td><%=InventoryReportView.get(i).getSize()%></td>
-                                <td><%=InventoryReportView.get(i).getQty()%></td>
+                                <td><%= InventoryReportView.get(i).getQty() + (InventoryReportView.get(i).getPulledOutQty() + InventoryReportView.get(i).getSoldQty())%></td>
                                 <td><%=InventoryReportView.get(i).getPulledOutQty()%></td>
                                 <td><%=InventoryReportView.get(i).getSoldQty()%></td>
-                                <td><%= InventoryReportView.get(i).getQty()- (InventoryReportView.get(i).getPulledOutQty() + InventoryReportView.get(i).getSoldQty()) %></td>
+                                <td><%=InventoryReportView.get(i).getQty()%></td>
                             </tr>
                             <%}%>
                         </tbody>

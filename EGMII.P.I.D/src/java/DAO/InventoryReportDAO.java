@@ -40,21 +40,23 @@ public class InventoryReportDAO {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(""
-                    + "SELECT IR.reportID ,L.branchName, "
-                    + "IR.promo, IR.dateMade, "
-                    + "P.productName, \n"
-                    + "P.color, P.size, RI.qty, "
-                    + "IRD.pulledOutQty, IRD.soldQty\n"
-                    + "FROM product P\n"
-                    + "JOIN retail_inventory RI\n"
-                    + "ON P.itemCode = RI.itemCode \n"
-                    + "JOIN ref_location L \n"
-                    + "ON RI.locationID = L.locationID\n"
-                    + "JOIN inventory_report IR \n"
-                    + "ON L.locationID = IR.location\n"
-                    + "JOIN inventory_report_details IRD\n"
-                    + "ON IR.reportID = IRD.reportID\n"
-                    + "WHERE IR.promo = ?;");
+                    + "SELECT IR.reportID ,L.branchName,\n" +
+                    "IR.promo, IR.dateMade, \n" +
+                    "P.productName, \n" +
+                    "P.color, P.size, RI.qty, \n" +
+                    "IRD.pulledOutQty, IRD.soldQty\n" +
+                    "FROM inventory_report_details IRD\n" +
+                    "JOIN inventory_report IR\n" +
+                    "ON IRD.reportID = IR.reportID\n" +
+                    "JOIN product P\n" +
+                    "ON IRD.itemCode = P.itemCode\n" +
+                    "JOIN retail_inventory RI\n" +
+                    "ON IR.location = RI.locationID AND IRD.itemCode = RI.itemCode\n" +
+                    "JOIN ref_location L\n" +
+                    "ON RI.locationID = L.locationID\n" +
+                    "JOIN user U\n" +
+                    "ON IR.promo = U.employeeID\n" +
+                    "WHERE IR.promo = ?");
 
             pstmt.setInt(1, empNum);
             ResultSet rs = pstmt.executeQuery();
