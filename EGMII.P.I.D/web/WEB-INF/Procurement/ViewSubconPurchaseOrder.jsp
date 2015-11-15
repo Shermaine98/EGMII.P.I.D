@@ -19,6 +19,7 @@
         <link rel="stylesheet" type="text/css" href="bootstrap/css/jquery.dataTables.min.css">
         <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
         <script src="js/Validation.js"></script>
+        <script src="js/Print.js"></script>
         <title>View Subcontractor Purchase Order</title>
         <script>
             $(document).ready(function () {
@@ -88,7 +89,7 @@
             ArrayList<SubconPurchaseOrderView> crHeader = (ArrayList<SubconPurchaseOrderView>) request.getAttribute("CRHeaderA");
 
     %>
-    <div class="container" align="center">
+    <div class="container" align="center" id="printableArea">
         <!--Start Header-->
         <div class="panel panel-default col-md-3">
             <div class="panel-heading">
@@ -154,8 +155,7 @@
     </div>
     <div class="container" align="center">
         <br/><br/>
-        <button type="submit" class="btn btn-default"/>Print</button>
-    <a href="/EGMII.P.I.D/Account?action=goToHome"><button type="button" class="btn btn-primary" >Cancel</button></a>
+        <input type="button" class="btn btn-default" onclick="printDiv('printableArea')" value="Print" />
 </div>
 </body>
 
