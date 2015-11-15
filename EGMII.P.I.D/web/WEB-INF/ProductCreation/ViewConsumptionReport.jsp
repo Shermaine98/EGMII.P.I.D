@@ -49,7 +49,7 @@
             ArrayList<ConsumptionReportView> cr = (ArrayList<ConsumptionReportView>) request.getAttribute("crList"); %>
         <!--View Consumption Report-->
         <form id="form1" method="post" action="ViewConsumptionReportServlet?goToC=ViewThis">
-            <div class="col-md-8 center1" align="center">
+            <div class="center1" align="center" style="width:80%">
                 <h2>View Consumption Report</h2>
                 <br/>
                 <table id="view" class="table table-bordered table-hover dataTable">
@@ -236,7 +236,7 @@
         <div align="center">
             <form method="POST" action="PrintConsumptionReport" target="_blank">
                 <input type="hidden" id="printPONumber" name="printPONumber" value="<%= cr1.get(0).getProductionNumber()%>"/>
-                <input type="submit" class="btn btn-danger" value="Save" />
+                <input type="submit" class="btn btn-default" value="Save" />
                 <a href="/EGMII.P.I.D/Account?action=goToHome"><button type="button" class="btn btn-primary" >Cancel</button></a>
             </form>
         </div>
