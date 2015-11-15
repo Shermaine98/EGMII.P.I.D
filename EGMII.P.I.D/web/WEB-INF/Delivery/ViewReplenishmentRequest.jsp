@@ -4,6 +4,7 @@
     Author     : Atayan, Dimaandal, Lapidario, Nunez, Sy
 --%>
 
+<%@page import="DAO.UserDAO"%>
 <%@page import="Model_View.RepRequestView"%>
 <%@page import="Model_View.WarehouseInventoryView"%>
 <%@page import="Model.InventoryReportCom"%>
@@ -68,9 +69,9 @@
                         <% for (int i = 0; i < RepRequestView.size(); i++) {%>
                         <tr class="repView">
                             <td class="reportID"><%=RepRequestView.get(i).getRepID()%></td>
-                            <td><input type="text" class="transparentBg inputSize" value="<%=RepRequestView.get(i).getBranchName()%>"></td>
-                            <td><input type="text" class="transparentBg inputSize" value="<%=RepRequestView.get(i).getDateMade()%>"</td>
-                            <td><input type="text" class="transparentBg inputSize" value="<%=RepRequestView.get(i).getSupervisor()%>"</td>
+                            <td><input type="text" class="transparentBg " value="<%=RepRequestView.get(i).getBranchName()%>" readonly /></td>
+                            <td><input type="text" class="transparentBg " value="<%=RepRequestView.get(i).getDateMade()%>" readonly /></td>
+                            <td><input type="text" class="transparentBg inputSize" value="<%=RepRequestView.get(i).getSupervisor()%>" readonly /></td>
                         </tr>
                         <%
                                 }
@@ -89,13 +90,14 @@
             ArrayList<RepRequestView> RepRequestViewSpecific = (ArrayList<RepRequestView>) request.getAttribute("RepRequestViewSpec");
                 if (RepRequestView.size() > 0) {
         %>          
-          <div class="container" align="center">
+        <br/><br/>  
+        <div class="container" align="center">
             
                 <div class="panel panel-default col-md-3">
 
                     <div class="panel-body">
                         <label for="outlet">Outlet</label>
-                        <input type="text" class="form-control" readonly name="outlet" value="<%=RepRequestViewSpecific.get(0).getBranchName()%>" />
+                        <input type="text" class="form-control" readonly name="outlet" value="<%=RepRequestViewSpecific.get(0).getBranchName()%>" /><br/>
                         <label for="date">Date Made</label>
                         <input type="text" class="form-control" readonly name="date" value="<%=RepRequestViewSpecific.get(0).getDateMade()%>" /><br/>
                         <label for="repID">Replenishment ID</label>

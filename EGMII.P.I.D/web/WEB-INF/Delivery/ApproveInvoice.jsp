@@ -47,7 +47,7 @@
         <form id="form1" method="POST" action="ViewDeliveryInvoiceServlet?action=viewSpecificApprove">
             <div class="container" align="center">
                 <h2>Inventory Reports</h2><br/>
-                <div style="width:60%;">
+                <div style="width:80%;">
                     <table id="Replenish" class="table table-bordered table-hover">
                         <thead>
                             <tr>
@@ -63,10 +63,10 @@
                             <% for (int i = 0; i < DeliveryInvoiceView.size(); i++) {%>
                             <tr class="repView">
                                 <td class="diNumber"><%=DeliveryInvoiceView.get(i).getDiNumber()%></td>
-                                <td><input type="text" class="transparentBg inputSize" value="<%=DeliveryInvoiceView.get(i).getBranchName()%>"></td>
-                                <td><input type="text" class="transparentBg inputSize" value="<%=DeliveryInvoiceView.get(i).getName()%>"</td>
-                                <td><input type="text" class="transparentBg inputSize" value="<%=DeliveryInvoiceView.get(i).getDeliveryDate()%>"</td>
-                                <td><input type="text" class="transparentBg inputSize" value="<%=DeliveryInvoiceView.get(i).getDateMade()%>"</td>
+                                <td><input type="text" readonly class="transparentBg " value="<%=DeliveryInvoiceView.get(i).getBranchName()%>"></td>
+                                <td><input type="text" readonly class="transparentBg " value="<%=DeliveryInvoiceView.get(i).getName()%>"</td>
+                                <td><input type="text" readonly class="transparentBg " value="<%=DeliveryInvoiceView.get(i).getDeliveryDate()%>"</td>
+                                <td><input type="text" readonly class="transparentBg " value="<%=DeliveryInvoiceView.get(i).getDateMade()%>"</td>
                             </tr>
                             <%
                                     }
@@ -89,12 +89,12 @@
             <div class="container" align="center">
                 <div class="panel panel-default col-md-3">
                     <div class="panel-body">
+                        <label for="deliveryDate">Delivery Date</label>
+                        <input type="text" class="form-control" readonly   name="deliveryDate" value="<%=DeliveryInvoiceS.get(0).getDeliveryDate()%>" /><br/>
                         <label for="invoiceNum">Invoice No.</label>
                         <input type="text" class="form-control " readonly name="diNumber" value="<%=DeliveryInvoiceView.get(0).getDiNumber()%>" /><br/>
                         <label for="date">Date Made</label>
                         <input type="text" class="form-control" readonly name="date" value="<%=DeliveryInvoiceS.get(0).getDateMade()%>" /><br/>
-                        <label for="deliveryDate">Delivery Date</label>
-                        <input type="text" class="form-control"   name="deliveryDate" value="<%=DeliveryInvoiceS.get(0).getDeliveryDate()%>" /><br/>
                         <label for="promo">Promo</label>
                         <input type="text" class="form-control " readonly name="promo" value="" /><br/>
                         <label for="branch">Branch</label>
@@ -106,8 +106,6 @@
                     </div>
                 </div>
                 <div class="panel panel-default col-md-7">
-                    <br> 
-                    <h2></h2><br/>
                     <div>
                         <h2>Replenishment Request</h2><br/>
                         <table id="data" class="table table-bordered" >
@@ -128,7 +126,7 @@
                                     <td><input type="hidden" name="itemCode" value="<%=DeliveryInvoiceS.get(i).getProductID()%>"/><%=DeliveryInvoiceS.get(i).getProductName()%></td>
                                     <td><%=DeliveryInvoiceS.get(i).getColor()%></td>
                                     <td><%=DeliveryInvoiceS.get(i).getSize()%></td>
-                                    <td><input type="text" name ="qty" value="<%=DeliveryInvoiceS.get(i).getQty()%>"</td>
+                                    <td><input type="text" class="readonlyWhite transparentBg" readonly name ="qty" value="<%=DeliveryInvoiceS.get(i).getQty()%>"</td>
                                 </tr>
 
                                 <%
@@ -140,14 +138,6 @@
                     </div>
                     <br>
                 </div>
-                <<div id="buttonz" align="center">
-                    <button class="btn btn-default">Approve</button>
-                    <button class="btn btn-primary">Reject</button><br/><br/>
-                    <button class="btn btn-default" style="width:130px">Approve & Print</button>
-                </div>
-
-
-
                 <%
                         }
                     }
@@ -156,6 +146,11 @@
 
             <!--Buttons-->
 
+            <div id="buttonz" align="center">
+                <button class="btn btn-danger">Approve</button>
+                <button class="btn btn-primary">Reject</button><br/><br/>
+                <button class="btn btn-default" style="width:130px">Approve & Print</button>
+            </div>
         </form>
         <script>
 

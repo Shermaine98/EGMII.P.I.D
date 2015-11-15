@@ -103,8 +103,8 @@
                                 <li><a href="#">Delivery Invoice</a>
                                     <ul class="dropdown-menu sub-menu" style="margin-top: 35px;">
                                         <li><a href="/EGMII.P.I.D/ViewDeliveryInvoiceServlet?action=create">Encode Delivery Invoice</a></li>
-                                        <li><a href="/EGMII.P.I.D/ViewDeliveryInvoiceServlet?action=view">View Delivery Invoice</a></li>
                                         <li><a href="/EGMII.P.I.D/ViewDeliveryInvoiceServlet?action=approve">Approve Delivery Invoice</a></li>
+                                        <li><a href="/EGMII.P.I.D/ViewDeliveryInvoiceServlet?action=view">View Delivery Invoice</a></li>
                                     </ul>
                                 </li>
                             </ul>

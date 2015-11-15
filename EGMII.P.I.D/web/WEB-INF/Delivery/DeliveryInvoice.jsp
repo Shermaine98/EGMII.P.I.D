@@ -51,8 +51,8 @@
                             <tr>
                                 <th>Report ID</th>
                                 <th>Branch Name</th>
-                                <th>Promoter</th>
                                 <th>Date Made</th>
+                                <th>Promoter</th>
 
                             </tr>
                         </thead>
@@ -60,9 +60,9 @@
                             <% for (int i = 0; i < RepRequestView.size(); i++) {%>
                             <tr class="repView">
                                 <td class="reportID"><%=RepRequestView.get(i).getRepID()%></td>
-                                <td><input type="text" class="transparentBg inputSize" value="<%=RepRequestView.get(i).getBranchName()%>"></td>
-                                <td><input type="text" class="transparentBg inputSize" value="<%=RepRequestView.get(i).getDateMade()%>"</td>
-                                <td><input type="text" class="transparentBg inputSize" value="<%=RepRequestView.get(i).getSupervisor()%>"</td>
+                                <td><input type="text" readonly class="transparentBg" value="<%=RepRequestView.get(i).getBranchName()%>"></td>
+                                <td><input type="text" readonly class="transparentBg" value="<%=RepRequestView.get(i).getDateMade()%>"</td>
+                                <td><input type="text" readonly class="transparentBg inputSize" value="<%=RepRequestView.get(i).getSupervisor()%>"</td>
                             </tr>
                             <%
                                     }
@@ -86,6 +86,8 @@
         <div class="container" align="center">
             <div class="panel panel-default col-md-3">
                 <div class="panel-body">
+                    <label for="deliveryDate">Delivery Date</label>
+                    <input type="text" class="form-control" id="datepicker"  name="deliveryDate" /><br/>
                     <label for="invoiceNum">Invoice No.</label>
                     <input type="text" class="form-control " readonly name="dirNum" value="<%=dirNumber%>" /><br/>
                     <label for="repID">Replenishment ID</label>
@@ -94,8 +96,7 @@
                     <input type="text" class="form-control" readonly name="supervisor" value="<%=RepRequestViewSpecific.get(0).getSupervisor()%>" /><br/>
                     <label for="date">Date Made</label>
                     <input type="text" class="form-control" readonly name="date" value="<%=RepRequestViewSpecific.get(0).getDateMade()%>" /><br/>
-                    <label for="deliveryDate">Delivery Date</label>
-                    <input type="text" class="form-control" id="datepicker"  name="deliveryDate" /><br/>
+                    
                     <label for="promo">Promo</label>
                     <input type="text" class="form-control " readonly name="promo" value="" /><br/>
                     <label for="branch">Branch</label>
@@ -107,8 +108,6 @@
                 </div>
             </div>
             <div class="panel panel-default col-md-7">
-                <br> 
-                <h2></h2><br/>
                 <div>
                     <h2>Replenishment Request</h2><br/>
                     <table id="data" class="table table-bordered" >
@@ -129,7 +128,7 @@
                                 <td><input type="hidden"  name="itemCode" value="<%=RepRequestViewSpecific.get(i).getProductID()%>"/><%=RepRequestViewSpecific.get(i).getProductName()%></td>
                                 <td><%=RepRequestViewSpecific.get(i).getColor()%></td>
                                 <td><%=RepRequestViewSpecific.get(i).getSize()%></td>
-                                <td><input type="text" name ="qty" value="<%=RepRequestViewSpecific.get(i).getQty()%>"</td>
+                                <td><input type="text" class="readonlyWhite transparentBg inputSize" readonly name ="qty" value="<%=RepRequestViewSpecific.get(i).getQty()%>"</td>
                             </tr>
 
                             <%

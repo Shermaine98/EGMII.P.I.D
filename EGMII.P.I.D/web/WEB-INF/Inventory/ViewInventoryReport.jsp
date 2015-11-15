@@ -49,11 +49,11 @@
                 </div>
             </div>
 
-            <div class="panel panel-default col-md-6" style="padding-bottom: 10px;">
+            <div class="panel panel-collapse col-md-6" style="padding-bottom: 10px; margin-top:20px;">
                 <div class="panel-body">
                     <table class="table table-bordered">
                         <colgroup>
-                            <col style="width:25%" />
+                            <col style="width:30%" />
                         </colgroup>
                         <thead>
                             <tr>
