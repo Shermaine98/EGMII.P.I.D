@@ -138,24 +138,24 @@ function getFabricItem() {
                                              </tr> \n\
                                              <tr>\n\
                                                 <td><input class="transparentBg inputSize" value="XS" type="text"  name="size" readonly /></td>\n\\n\
-                                                <td><input  class="form-control inputSize" value="0" type="number"  id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
+                                                <td><input  class="form-control inputSize" value="0" type="number"  id="itemConsumption[]" name="fabricItemConsumption"  step="any"  /></td>\n\
                                             <td rowspan="5"><input class="transparentBg inputSize" name="unitMeasurementfabric" id="unitMeasurement[]" value="' + data[0].unitMeasurement + '" /> </td>\n\
                                             </tr>\n\\n\
                                              <tr>\n\
                                                 <td><input class="transparentBg inputSize" value="S" type="text"  name="size" readonly  /></td>\n\\n\
-                                                 <td><input class="form-control inputSize" value="0" type="number"  id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
+                                                 <td><input class="form-control inputSize" value="0" type="number"  id="itemConsumption[]" name="fabricItemConsumption"  step="any"  /></td>\n\
                                             </tr>\n\\n\
                                              <tr>\n\
                                                 <td><input class="transparentBg inputSize" value="M" type="text"  name="size" readonly  /></td>\n\\n\
-                                                 <td><input class="form-control inputSize" value="0" type="number" id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
+                                                 <td><input class="form-control inputSize" value="0" type="number" id="itemConsumption[]" name="fabricItemConsumption"  step="any"  /></td>\n\
                                             </tr>\n\\n\
                                              <tr>\n\
                                                 <td><input class="transparentBg inputSize" value="L" type="text"  name="size" readonly  /></td>\n\\n\
-                                                 <td><input class="form-control inputSize" value="0" type="number" id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
+                                                 <td><input class="form-control inputSize" value="0" type="number" id="itemConsumption[]" name="fabricItemConsumption"  step="any"  /></td>\n\
                                             </tr>\n\\n\
                                             <tr>\n\
                                                 <td><input class="transparentBg inputSize" value="XL" type="text"  name="size" readonly  /></td>\n\\n\
-                                                 <td><input class="form-control inputSize" value="0" type="number"  id="itemConsumption[]" name="fabricItemConsumption" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  /></td>\n\
+                                                 <td><input class="form-control inputSize" value="0" type="number"  id="itemConsumption[]" name="fabricItemConsumption"  step="any"  /></td>\n\
                                                   '
                             + '</tr>');
                     document.getElementById("buttonsFabric").style.visibility = 'visible';
@@ -198,15 +198,15 @@ function getFabricItem() {
                                             </tr>\n\\n\
                                             <tr>\n\
                                                 <td><input class="transparentBg inputSize" value="36" type="text"  name="size" readonly  /></td>\n\\n\
-                                                 <td><input class="form-control inputSize" value="0" type="number" min="1" id="itemConsumption[]"  step="any" /></td>\n\
+                                                 <td><input class="form-control inputSize" value="0" type="number" min="1" id="itemConsumption[]" name="fabricItemConsumption" step="any" /></td>\n\
                                             </tr>\n\\n\
                                             <tr>\n\
                                                 <td><input class="transparentBg inputSize" value="38" type="text"  name="size" readonly  /></td>\n\\n\
-                                                 <td><input class="form-control inputSize" value="0" type="number" min="1" id="itemConsumption[]"  step="any" /></td>\n\
+                                                 <td><input class="form-control inputSize" value="0" type="number" min="1" id="itemConsumption[]" name="fabricItemConsumption" step="any" /></td>\n\
                                             </tr>\n\\n\
                                             <tr>\n\
                                                 <td><input class="transparentBg inputSize" value="40" type="text"  name="size" readonly  /></td>\n\\n\
-                                                 <td><input class="form-control inputSize" value="0" type="number" min="1" id="itemConsumption[]"  step="any" /></td>\n\
+                                                 <td><input class="form-control inputSize" value="0" type="number" min="1" id="itemConsumption[]"  name="fabricItemConsumption" step="any" /></td>\n\
                                             </tr>\n\
                                                   ');
                     document.getElementById("buttonsFabric").style.visibility = 'visible';
