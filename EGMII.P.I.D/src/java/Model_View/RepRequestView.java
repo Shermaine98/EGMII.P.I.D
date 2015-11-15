@@ -18,6 +18,7 @@ public class RepRequestView {
     private int version;
     private String branchName;
     private int supervisor;
+    private String supervisorName;
     private java.sql.Date dateMade;
     private String productName;
     private int productID;
@@ -260,6 +261,20 @@ public class RepRequestView {
      */
     public void setName(String name) {
         this.name = name;
+    }
+
+    /**
+     * @return the supervisorName
+     */
+    public String getSupervisorName() {
+        return supervisorName;
+    }
+
+    /**
+     * @param supervisorName the supervisorName to set
+     */
+    public void setSupervisorName(String supervisorName) {
+        this.supervisorName = supervisorName;
     }
 
 }

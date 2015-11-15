@@ -23,6 +23,7 @@ import java.util.logging.Logger;
  *
  */
 public class SupplierPurchaseOrderDAO {
+    UserDAO DAO = new UserDAO();
 
     /**
      * Encode Supplier Purchase Order
@@ -221,6 +222,11 @@ public class SupplierPurchaseOrderDAO {
                 SupplierPurchaseOrderView po = new SupplierPurchaseOrderView();
                 po.setPoNumber(rs.getInt("poNumber"));
                 po.setPreparedBy(rs.getInt("preparedBy"));
+                try {
+                    po.setPreparedByName(DAO.getWholeName(rs.getInt("preparedBy")));
+                } catch (ParseException ex) {
+                    Logger.getLogger(SupplierPurchaseOrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 po.setDateMade(rs.getDate("dateMade"));
                 po.setDeliveryDate(rs.getDate("deliveryDate"));
                 po.setCompanyName(rs.getString("companyName"));
@@ -273,6 +279,11 @@ public class SupplierPurchaseOrderDAO {
                 SupplierPurchaseOrderView po = new SupplierPurchaseOrderView();
                 po.setPoNumber(rs.getInt("poNumber"));
                 po.setPreparedBy(rs.getInt("preparedBy"));
+                try {
+                    po.setPreparedByName(DAO.getWholeName(rs.getInt("preparedBy")));
+                } catch (ParseException ex) {
+                    Logger.getLogger(SupplierPurchaseOrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 po.setDateMade(rs.getDate("dateMade"));
                 po.setDeliveryDate(rs.getDate("deliveryDate"));
                 po.setCompanyName(rs.getString("companyName"));
@@ -324,6 +335,11 @@ public class SupplierPurchaseOrderDAO {
                 SupplierPurchaseOrderView po = new SupplierPurchaseOrderView();
                 po.setPoNumber(rs.getInt("poNumber"));
                 po.setPreparedBy(rs.getInt("preparedBy"));
+                try {
+                    po.setPreparedByName(DAO.getWholeName(rs.getInt("preparedBy")));
+                } catch (ParseException ex) {
+                    Logger.getLogger(SupplierPurchaseOrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 po.setDateMade(rs.getDate("dateMade"));
                 po.setDeliveryDate(rs.getDate("deliveryDate"));
                 po.setCompanyName(rs.getString("companyName"));

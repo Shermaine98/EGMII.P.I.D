@@ -23,6 +23,7 @@ import java.util.logging.Logger;
  *
  */
 public class SubconPurchaseOrderDAO {
+    UserDAO DAO = new UserDAO();
 
     /**
      * Subcontractor Purchase Order
@@ -146,6 +147,11 @@ public class SubconPurchaseOrderDAO {
                 po.setPoNumber(rs.getInt("poNumber"));
                 po.setProductionNumber(rs.getInt("productionNumber"));
                 po.setPreparedBy(rs.getInt("preparedBy"));
+                try {
+                    po.setPreparedByName(DAO.getWholeName(rs.getInt("preparedBy")));
+                } catch (ParseException ex) {
+                    Logger.getLogger(SubconPurchaseOrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 po.setDateMade(rs.getDate("dateMade"));
                 po.setDeliveryDate(rs.getDate("deliveryDate"));
                 po.setCompanyName(rs.getString("companyName"));
@@ -187,6 +193,11 @@ public class SubconPurchaseOrderDAO {
                 po.setPoNumber(rs.getInt("poNumber"));
                 po.setProductionNumber(rs.getInt("productionNumber"));
                 po.setPreparedBy(rs.getInt("preparedBy"));
+                try {
+                    po.setPreparedByName(DAO.getWholeName(rs.getInt("preparedBy")));
+                } catch (ParseException ex) {
+                    Logger.getLogger(SubconPurchaseOrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 po.setDateMade(rs.getDate("dateMade"));
                 po.setDeliveryDate(rs.getDate("deliveryDate"));
                 po.setCompanyName(rs.getString("companyName"));
@@ -319,7 +330,17 @@ public class SubconPurchaseOrderDAO {
                 po.setDateMade(rs.getDate("dateMade"));
                 po.setDeliveryDate(rs.getDate("deliveryDate"));
                 po.setApprovedBy(rs.getInt("approvedBy"));
+                try {
+                    po.setApprovedByName(DAO.getWholeName(rs.getInt("approvedBy")));
+                } catch (ParseException ex) {
+                    Logger.getLogger(SubconPurchaseOrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 po.setPreparedBy(rs.getInt("preparedBy"));
+                try {
+                    po.setPreparedByName(DAO.getWholeName(rs.getInt("preparedBy")));
+                } catch (ParseException ex) {
+                    Logger.getLogger(SubconPurchaseOrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 po.setItemCode(rs.getInt("itemCode"));
                 po.setProductName(rs.getString("productName"));
                 po.setProductType(rs.getString("productType"));
@@ -399,6 +420,11 @@ public class SubconPurchaseOrderDAO {
                 po.setProductionNumber(rs.getInt("productionNumber"));
                 po.setDeliveryDate(rs.getDate("deliveryDate"));
                 po.setPreparedBy(rs.getInt("preparedBy"));
+                try {
+                    po.setPreparedByName(DAO.getWholeName(rs.getInt("preparedBy")));
+                } catch (ParseException ex) {
+                    Logger.getLogger(SubconPurchaseOrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 po.setItemCode(rs.getInt("itemCode"));
                 po.setProductName(rs.getString("productName"));
                 po.setProductType(rs.getString("productType"));

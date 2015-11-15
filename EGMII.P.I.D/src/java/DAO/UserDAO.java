@@ -20,10 +20,12 @@ import java.util.logging.Logger;
  *
  */
 public class UserDAO {
+
     /**
      * Register User
+     *
      * @param newUser
-     * @return 
+     * @return
      */
 
     public boolean register(User newUser) {
@@ -44,7 +46,7 @@ public class UserDAO {
             pstmt.setDate(7, newUser.getLeftDate());
             pstmt.setDate(8, newUser.getEntryDate());
             pstmt.setString(9, newUser.getPassword());
-            
+
             int rows = pstmt.executeUpdate();
             conn.close();
             return rows == 1;
@@ -53,11 +55,13 @@ public class UserDAO {
         }
         return false;
     }
-  /**
-   * Authenticate
-   * @param User
-   * @return 
-   */
+
+    /**
+     * Authenticate
+     *
+     * @param User
+     * @return
+     */
 
     public boolean authenticate(User User) {
         boolean valid = false;
@@ -82,14 +86,16 @@ public class UserDAO {
         }
         return valid;
     }
+
     /**
      * change password
+     *
      * @param user
      * @param password
-     * @return 
+     * @return
      */
-    
-    public boolean changePassword(User user, String password){
+
+    public boolean changePassword(User user, String password) {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
@@ -110,7 +116,8 @@ public class UserDAO {
 
     /**
      * Get last Employee number
-     * @return 
+     *
+     * @return
      */
     public int getLastEmpNumber() {
         int lastEmployeeNumber = 0;
@@ -120,11 +127,11 @@ public class UserDAO {
             PreparedStatement pstmt = conn.prepareStatement("select max(employeeID)as employeeID from user");
 
             ResultSet rs = pstmt.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 lastEmployeeNumber = rs.getInt("employeeID");
                 return lastEmployeeNumber;
             }
-            
+
             pstmt.close();
             rs.close();
             conn.close();
@@ -136,13 +143,14 @@ public class UserDAO {
         return -1;
     }
 
-   /**
-    * Setting User
-    * @param username
-    * @param password
-    * @return
-    * @throws ParseException 
-    */
+    /**
+     * Setting User
+     *
+     * @param username
+     * @param password
+     * @return
+     * @throws ParseException
+     */
     public User getUser(String username, String password) throws ParseException {
         User User = new User();
 
@@ -155,16 +163,16 @@ public class UserDAO {
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
 
-               User.setEmployeeNumber(rs.getInt("employeeID"));
-               User.setLastName(rs.getString("lastName"));
-               User.setFirstName(rs.getString("firstName"));
-               User.setPosition(rs.getString("position"));
-               User.setBirthDate(rs.getString("birthDate"));
-               User.setEntryDate(rs.getString("entryDate"));
-               User.setEntryDate(rs.getString("entryDate"));
-               User.setUserName(rs.getString("email"));
-               User.setPassword(rs.getString("password"));
-               User.setLocationID(rs.getInt("locationID"));
+                User.setEmployeeNumber(rs.getInt("employeeID"));
+                User.setLastName(rs.getString("lastName"));
+                User.setFirstName(rs.getString("firstName"));
+                User.setPosition(rs.getString("position"));
+                User.setBirthDate(rs.getString("birthDate"));
+                User.setEntryDate(rs.getString("entryDate"));
+                User.setEntryDate(rs.getString("entryDate"));
+                User.setUserName(rs.getString("email"));
+                User.setPassword(rs.getString("password"));
+                User.setLocationID(rs.getInt("locationID"));
             }
 
             pstmt.close();
@@ -177,4 +185,32 @@ public class UserDAO {
         }
         return null;
     }
+
+    public String getWholeName(int employeeID) throws ParseException {
+        User User = new User();
+
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(""
+                    + "SELECT CONCAT(u.firstName,\" \",u.lastName) as 'name'\n"
+                    + "FROM user u \n"
+                    + "WHERE u.employeeID = ?");
+            pstmt.setInt(1, employeeID);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                User.setWholeName(rs.getString("name"));
+            }
+
+            pstmt.close();
+            rs.close();
+            conn.close();
+
+            return User.getWholeName();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
 }

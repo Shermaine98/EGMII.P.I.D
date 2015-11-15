@@ -20,6 +20,7 @@ public class User {
     private int locationID;
     private String lastName;
     private String firstName;
+    private String wholeName;
     private String position;
     private String gender;
     private java.sql.Date birthDate;
@@ -234,6 +235,20 @@ public class User {
         java.util.Date hDate = formatter.parse(LeftDate);
         java.sql.Date sqlLeftDate = new java.sql.Date(hDate.getTime());
         this.leftDate = sqlLeftDate;
+    }
+
+    /**
+     * @return the wholeName
+     */
+    public String getWholeName() {
+        return wholeName;
+    }
+
+    /**
+     * @param wholeName the wholeName to set
+     */
+    public void setWholeName(String wholeName) {
+        this.wholeName = wholeName;
     }
 
 }

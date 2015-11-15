@@ -21,6 +21,7 @@ public class InventoryReportCom {
     private String addresss;
     private int reportID;
     private int promoid;
+    private String promoName;
     private String Name;
    // private Date dateMade;
     private int itemCode;
@@ -279,5 +280,19 @@ public class InventoryReportCom {
      */
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    /**
+     * @return the promoName
+     */
+    public String getPromoName() {
+        return promoName;
+    }
+
+    /**
+     * @param promoName the promoName to set
+     */
+    public void setPromoName(String promoName) {
+        this.promoName = promoName;
     }
 }

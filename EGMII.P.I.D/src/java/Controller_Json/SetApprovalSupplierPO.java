@@ -34,9 +34,9 @@ public class SetApprovalSupplierPO extends BaseServlet {
 
         ArrayList<SupplierPurchaseOrderView> SupplierPurchaseOrderList = new ArrayList<>();
         SupplierPurchaseOrderDAO SupplierPurchaseOrderDAO = new SupplierPurchaseOrderDAO();
-
         String poNumber = request.getParameter("hiddenValue");
         SupplierPurchaseOrderList = SupplierPurchaseOrderDAO.getSupplierPurchaseNumber(Integer.parseInt(poNumber));
+        
         ArrayList<SupplierPurchaseOrderView> PurchaseOrderList = new ArrayList<>();
 
         PurchaseOrderList = SupplierPurchaseOrderDAO.GetAllSupplierPurchaseOrderForApproval();

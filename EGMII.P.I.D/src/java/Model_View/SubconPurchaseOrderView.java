@@ -18,6 +18,7 @@ public class SubconPurchaseOrderView {
     private int preparedBy;
     private String preparedByName;
     private int approvedBy;
+    private String approvedByName;
     private java.sql.Date dateMade;
     private java.sql.Date deliveryDate;
     private String companyName;
@@ -379,5 +380,19 @@ public class SubconPurchaseOrderView {
      */
     public void setName(String name) {
         this.name = name;
+    }
+
+    /**
+     * @return the approvedByName
+     */
+    public String getApprovedByName() {
+        return approvedByName;
+    }
+
+    /**
+     * @param approvedByName the approvedByName to set
+     */
+    public void setApprovedByName(String approvedByName) {
+        this.approvedByName = approvedByName;
     }
 }

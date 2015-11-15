@@ -25,7 +25,8 @@ public class SupplierPurchaseOrderView {
     private double unitPrice;
     private double qty;
     private boolean isCompleted;
-    private String preparedbyname;
+    private String preparedbyName;
+    private String approvedByName;
     private int itemCode;
     private double deliveredQty;
     private String name;
@@ -254,7 +255,7 @@ public class SupplierPurchaseOrderView {
      * @return the name
      */
     public String getPreparedByName() {
-        return getPreparedbyname();
+        return getPreparedByName();
     }
 
     /**
@@ -262,21 +263,7 @@ public class SupplierPurchaseOrderView {
      * @param name the name to set
      */
     public void setPreparedByName(String preparedbyname) {
-        this.setPreparedbyname(preparedbyname);
-    }
-
-    /**
-     * @return the preparedbyname
-     */
-    public String getPreparedbyname() {
-        return preparedbyname;
-    }
-
-    /**
-     * @param preparedbyname the preparedbyname to set
-     */
-    public void setPreparedbyname(String preparedbyname) {
-        this.preparedbyname = preparedbyname;
+        this.setPreparedByName(preparedbyname);
     }
 
     /**
@@ -319,5 +306,19 @@ public class SupplierPurchaseOrderView {
      */
     public void setName(String name) {
         this.name = name;
+    }
+
+    /**
+     * @return the approvedByName
+     */
+    public String getApprovedByName() {
+        return approvedByName;
+    }
+
+    /**
+     * @param approvedByName the approvedByName to set
+     */
+    public void setApprovedByName(String approvedByName) {
+        this.approvedByName = approvedByName;
     }
 }

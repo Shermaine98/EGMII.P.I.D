@@ -17,6 +17,7 @@ public class InventoryReportView {
     private int reportID;
     private String branchName;
     private int promo;
+    private String promoName;
     private java.sql.Date dateMade;
     private String productName;
     private String color;
@@ -230,6 +231,20 @@ public class InventoryReportView {
      */
     public void setName(String name) {
         this.name = name;
+    }
+
+    /**
+     * @return the promoName
+     */
+    public String getPromoName() {
+        return promoName;
+    }
+
+    /**
+     * @param promoName the promoName to set
+     */
+    public void setPromoName(String promoName) {
+        this.promoName = promoName;
     }
     
 }
