@@ -176,8 +176,8 @@
                             <tr>
                                 <td><input type="text" class="transparentBg readonlyWhite " name="itemName"  value = "<%= productAllAcce.get(i).getItemName()%>"  readonly/>
                                     <input type="hidden" class="transparentBg readonlyWhite inputSize" name="itemCode"  value = "<%= productAllAcce.get(i).getItemCode()%>" /></td>
-                                <td><input name="itemConsumption" class="transparentBg readonlyWhite inputSize" id="itemConsumption[]" value="<%= productAllAcce.get(i).getVolumeQty()%>"   readonly/></td> 
                                 <td><input name="totalConsumption" class="transparentBg readonlyWhite inputSize" id="totalConsumption[]" value="<%=productAllAcce.get(i).getConsumptionQty()%>"  readonly/></td>
+                                <td><input name="totalConsumption" class="transparentBg readonlyWhite inputSize" id="totalConsumption[]" value="<%=productAllAcce.get(i).getConsumptionQty() * total%>"  readonly/></td>
                                 <td><input name="unitMeasurement" class="transparentBg readonlyWhite inputSize" id="unitMeasurement" value="<%= productAllAcce.get(i).getUnitMeasurement()%>"  readonly /></td>
                             </tr> 
                             <%
@@ -203,6 +203,7 @@
                                 <th>Size</th> 
                                 <th>Volume Qty Per Size</th>
                                 <th>Consumption</th>
+                                <th>Total Consumption</th>
                                 <th>Unit Measurement</th>
                             </tr>
                         </thead>
@@ -217,6 +218,7 @@
                                 <td><input type="text" value="<%=productAllproduc.get(i).getSize()%>" class="transparentBg inputSize" readonly/> 
                                 <td><input type="text" id="fabricItemConsumption[]" value="<%=productAllproduc.get(i).getVolumeQty()%>" class="transparentBg inputSize" readonly/> 
                                 <td><input type="text" class="transparentBg readonlyWhite inputSize" id="totalConsumptionFabric[]" value="<%=productAllproduc.get(i).getConsumptionQty()%>"  readonly/></td>
+                                <td><input type="text" class="transparentBg readonlyWhite inputSize" id="totalConsumptionFabric[]" value="<%=productAllproduc.get(i).getConsumptionQty() * productAllproduc.get(i).getVolumeQty()%>"  readonly/></td>
                                 <td><input type="text" value="<%=productAllproduc.get(i).getUnitMeasurement()%>" class="transparentBg" readonly/> 
                             </tr> 
                             <%
