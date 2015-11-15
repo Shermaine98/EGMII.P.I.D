@@ -138,6 +138,7 @@ public class ConsumptionReportDAO {
                     + "ON P.itemCode = PBM.productID\n"
                     + "JOIN user u \n"
                     + "ON CR.preparedBy = u.employeeID\n"
+                    + "WHERE CR.status != \"fulfilled\""
                     + "group by CR.productionNumber;");
             ResultSet rs = pstmt.executeQuery();
 
