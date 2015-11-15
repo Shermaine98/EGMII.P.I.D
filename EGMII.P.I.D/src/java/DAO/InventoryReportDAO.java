@@ -279,22 +279,23 @@ public class InventoryReportDAO {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(""
-                    + "SELECT IR.reportID, RL.locationID, RL.branchName, RL.address,\n"
-                    + "IR.reportID, IR.promo, IR.dateMade, \n"
-                    + "IRD.itemCode, P.productName,\n"
-                    + "IRD.soldQty, IRD.pulledOutQty, RI.qty as 'currentQty',\n"
-                    + "P.size, P.color, Concat(u.firstName,\" \", u.lastName) as 'name'\n"
-                    + "FROM ref_location RL\n"
-                    + "JOIN retail_inventory RI\n"
-                    + "ON RL.locationID = RI.locationID\n"
-                    + "JOIN inventory_report IR \n"
-                    + "ON RI.locationID = IR.location\n"
-                    + "JOIN inventory_report_details IRD\n"
-                    + "ON IR.reportID =  IRD.reportID \n"
-                    + "JOIN product P \n"
-                    + "ON IRD.itemCode = P.itemCode\n"
-                    + "JOIN user U \n"
-                    + "ON IR.promo = U.employeeID  WHERE IR.reportID = ?;");
+                    + "SELECT IR.reportID, L.locationID, L.branchName, L.address,\n" +
+                    "IR.reportID, IR.promo, IR.dateMade, \n" +
+                    "IRD.itemCode, P.productName,\n" +
+                    "IRD.soldQty, IRD.pulledOutQty, RI.qty as 'currentQty',\n" +
+                    "P.size, P.color, Concat(u.firstName, u.lastName) as 'name'\n" +
+                    "FROM inventory_report_details IRD\n" +
+                    "JOIN inventory_report IR\n" +
+                    "ON IRD.reportID = IR.reportID\n" +
+                    "JOIN product P \n" +
+                    "ON IRD.itemCode = P.itemCode\n" +
+                    "JOIN retail_inventory RI\n" +
+                    "ON IR.location = RI.locationID AND IRD.itemCode = RI.itemCode\n" +
+                    "JOIN ref_location L \n" +
+                    "ON RI.locationID = L.locationID\n" +
+                    "JOIN user U \n" +
+                    "ON IR.promo = U.employeeID\n" +
+                    "WHERE IR.reportID = ?;");
             pstmt.setString(1, Reportid);
             ResultSet rs = pstmt.executeQuery();
 

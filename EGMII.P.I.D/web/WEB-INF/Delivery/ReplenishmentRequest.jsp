@@ -179,6 +179,7 @@
                         </tbody>
                     </table>
                         <br/><br/><br/>
+                        <h3>Warehouse Inventory</h3>
                     <table id="warehouseT" class="table table-bordered">
                         <thead>
                             <tr>
@@ -215,8 +216,7 @@
 
         <div class="panel panel-collapse container" id="order" style="visibility: hidden; width: 60%" align="center">
             <div class="panel-body">
-                <h2>Warehouse Inventory</h2>
-                <h4>Replenishment Request</h4><br/>
+                <h3>Request</h3><br/>
                 <table id="data" class="table table-bordered" >
                     <thead>
                         <tr>
@@ -224,7 +224,7 @@
                             <th>Color</th>
                             <th>Size</th>
                             <th>Current Quantity</th>
-                            <th>Quantity To Be Sent (?)</th>
+                            <th>Requested Quantity</th>
                         </tr>
                     </thead>
                     <tbody id="info">

@@ -61,6 +61,7 @@
                             <th>Date Made</th>
                             <th>Color</th>
                             <th>Prepared By</th>
+                            <th>status</th>
                         </tr>
                     </thead>
 
@@ -75,6 +76,7 @@
                             <td><input type="text" class="transparentBg" value="<%= cr.get(i).getDateMade()%>" readonly /></td>
                             <td><input type="text" class="transparentBg inputSize" value="<%= cr.get(i).getColor()%>" readonly /></td>
                             <td><input type="text" class="transparentBg" value="<%= cr.get(i).getName()%>" readonly /></td>
+                            <td><input type="text" class="transparentBg" value="<%= cr.get(i).getStatus()%>" readonly /></td>
                         </tr>
                         <%
                             }

@@ -116,7 +116,7 @@
                                     <th>Product Name</th>
                                     <th>Color</th>
                                     <th>Size</th>
-                                    <th>Quantity</th>
+                                    <th>Requested Quantity</th>
                                 </tr>
                             </thead>
                             <tbody>
