@@ -68,14 +68,14 @@
                         </thead>
                         <tbody>
                             <%for (int i = 0; i < InventoryReportView.size(); i++) {%>
-                            <tr>
-                                <td><%=InventoryReportView.get(0).getProductName()%></td>
-                                <td><%=InventoryReportView.get(0).getColor()%></td>
-                                <td><%=InventoryReportView.get(0).getSize()%></td>
-                                <td><%=InventoryReportView.get(0).getQty()%></td>
-                                <td><%=InventoryReportView.get(0).getPulledOutQty()%></td>
-                                <td><%=InventoryReportView.get(0).getSoldQty()%></td>
-                                <td>ending solve</td>
+                            <tr class="trclass">
+                                <td><%=InventoryReportView.get(i).getProductName()%></td>
+                                <td><%=InventoryReportView.get(i).getColor()%></td>
+                                <td><%=InventoryReportView.get(i).getSize()%></td>
+                                <td><%=InventoryReportView.get(i).getQty()%></td>
+                                <td><%=InventoryReportView.get(i).getPulledOutQty()%></td>
+                                <td><%=InventoryReportView.get(i).getSoldQty()%></td>
+                                <td><%= InventoryReportView.get(i).getQty()- (InventoryReportView.get(i).getPulledOutQty() + InventoryReportView.get(i).getSoldQty()) %></td>
                             </tr>
                             <%}%>
                         </tbody>
