@@ -45,7 +45,7 @@
                         console.log("this");
                         var remainingTotal = bgQty - (pulledQty + soldQty);
                         console.log("this" + Math.abs(remainingTotal));
-                        if ( Math.abs(remainingTotal) > bgQty) {
+                        if ( Math.abs(remainingTotal) > bgQty || remainingTotal < 0) {
                             console.log("this" + 2);
                             window.alert("Quantity exceeds possible beginning quantity");
                             $(this).closest("tr").find('[id="pulledQty\\[\\]"]').val(0);
