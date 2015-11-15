@@ -38,15 +38,9 @@
                     var pulledQty = parseFloat($(this).closest("tr").find('[id="pulledQty\\[\\]"]').val());
                     var soldQty = parseFloat($(this).closest("tr").find('[id="soldQty\\[\\]"]').val());
                     var bgQty = parseFloat($(this).closest("tr").find('[id="bgQty\\[\\]"]').val());
-                      console.log("pulled" + pulledQty);
-                       console.log("sold" + soldQty);
-                       console.log("beg" + bgQty);
                     if (pulledQty !== 0 || soldQty !==0) {
-                        console.log("this");
                         var remainingTotal = bgQty - (pulledQty + soldQty);
-                        console.log("this" + Math.abs(remainingTotal));
                         if ( Math.abs(remainingTotal) > bgQty || remainingTotal < 0) {
-                            console.log("this" + 2);
                             window.alert("Quantity exceeds possible beginning quantity");
                             $(this).closest("tr").find('[id="pulledQty\\[\\]"]').val(0);
                             $(this).closest("tr").find('[id="soldQty\\[\\]"]').val(0);
