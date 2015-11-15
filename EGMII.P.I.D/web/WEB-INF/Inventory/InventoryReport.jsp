@@ -22,18 +22,41 @@
 
         <script>
             function SolveEndingInv() {
-                  var endingT =0;
+                var endingT = 0;
                 $(".trclass").each(function () {
                     var $this = $(this);
                     var begQty = parseFloat($this.find('[id="bgQty\\[\\]"]').val());
                     var soldQty = parseFloat($this.find('[id="soldQty\\[\\]"]').val());
                     var pulledQty = parseFloat($this.find('[id="pulledQty\\[\\]"]').val());
                     endingT = begQty - (soldQty + pulledQty);
-                    console.log(endingT);
                     $this.find('[id="endingT\\[\\]"]').val(endingT);
                 });
                 return false;
             }
+            $(document).ready(function () {
+                $(".trclass").on("keyup", (function () {
+                    var pulledQty = parseFloat($(this).closest("tr").find('[id="pulledQty\\[\\]"]').val());
+                    var soldQty = parseFloat($(this).closest("tr").find('[id="soldQty\\[\\]"]').val());
+                    var bgQty = parseFloat($(this).closest("tr").find('[id="bgQty\\[\\]"]').val());
+                      console.log("pulled" + pulledQty);
+                       console.log("sold" + soldQty);
+                       console.log("beg" + bgQty);
+                    if (pulledQty !== 0 || soldQty !==0) {
+                        console.log("this");
+                        var remainingTotal = bgQty - (pulledQty + soldQty);
+                        console.log("this" + Math.abs(remainingTotal));
+                        if ( Math.abs(remainingTotal) > bgQty) {
+                            console.log("this" + 2);
+                            window.alert("Quantity exceeds possible beginning quantity");
+                            $(this).closest("tr").find('[id="pulledQty\\[\\]"]').val(0);
+                            $(this).closest("tr").find('[id="soldQty\\[\\]"]').val(0);
+                            $(this).closest("tr").find('[id="endingT\\[\\]"]').val(0);
+                        } 
+                    }
+                    SolveEndingInv();
+
+                }));
+            });
         </script>
     </head>
     <body>
@@ -78,8 +101,8 @@
                                 <td><%=retailInventoryView.get(i).getColor()%></td>
                                 <td><%=retailInventoryView.get(i).getSize()%></td>
                                 <td><input type="text" class="transparentBg inputSize"  readonly name="begQty" id="bgQty[]" value="<%=retailInventoryView.get(i).getQty()%>"</td>
-                                <td><input type="number" onkeypress="return event.charCode >= 48 && event.charCode <= 57" class="transparentBg inputSize"  name="pulledQty" id="pulledQty[]" onchange="SolveEndingInv()" value="0" min="0"></td>
-                                <td><input type="number" onkeypress="return event.charCode >= 48 && event.charCode <= 57" class="transparentBg inputSize" name="soldQty" id="soldQty[]" onchange="SolveEndingInv()" value="0" min="0"></td>
+                                <td><input type="number" onkeypress="return event.charCode >= 48 && event.charCode <= 57" class="form-control inputSize"  name="pulledQty" id="pulledQty[]"  value="0" min="0"></td>
+                                <td><input type="number" onkeypress="return event.charCode >= 48 && event.charCode <= 57" class="form-control inputSize" name="soldQty" id="soldQty[]"  value="0" min="0"></td>
                                 <td><input type="text" class="transparentBg inputSize" id="endingT[]" readonly value="0" /></td>
                             </tr>
                             <%}%>
