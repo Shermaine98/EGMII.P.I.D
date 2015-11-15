@@ -23,7 +23,6 @@ import java.util.logging.Logger;
  *
  */
 public class ReplenishmentDAO {
-    UserDAO DAO = new UserDAO();
 
     /**
      * Get Replenishment View
@@ -52,7 +51,6 @@ public class ReplenishmentDAO {
                 temp.setRepID(rs.getInt("repID"));
                 temp.setBranchName(rs.getString("branchName"));
                 temp.setSupervisor(rs.getInt("supervisor"));
-                temp.setSupervisorName(DAO.getWholeName(rs.getInt("supervisor")));
                 temp.setDateMade(rs.getDate("dateMade"));
                 temp.setProductName(rs.getString("productName"));
                 temp.setColor(rs.getString("color"));
@@ -102,7 +100,6 @@ public class ReplenishmentDAO {
                 temp.setProductID(rs.getInt("itemCode"));
                 temp.setBranchName(rs.getString("branchName"));
                 temp.setSupervisor(rs.getInt("supervisor"));
-                temp.setSupervisorName(DAO.getWholeName(rs.getInt("supervisor")));
                 temp.setDateMade(rs.getDate("dateMade"));
                 temp.setProductName(rs.getString("productName"));
                 temp.setColor(rs.getString("color"));

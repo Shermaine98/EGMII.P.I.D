@@ -18,6 +18,7 @@ import java.text.SimpleDateFormat;
 public class ConsumptionReportView {
     private int productionNumber;
     private int preparedBy;
+    private String preparedByName;
     private java.sql.Date dateMade;
     private String status;
     private int itemCode;
@@ -316,5 +317,19 @@ public class ConsumptionReportView {
      */
     public void setItemCodeRM(int itemCodeRM) {
         this.itemCodeRM = itemCodeRM;
+    }
+
+    /**
+     * @return the preparedByName
+     */
+    public String getPreparedByName() {
+        return preparedByName;
+    }
+
+    /**
+     * @param preparedByName the preparedByName to set
+     */
+    public void setPreparedByName(String preparedByName) {
+        this.preparedByName = preparedByName;
     }
 }

@@ -26,7 +26,6 @@ import java.util.logging.Logger;
  *
  */
 public class InventoryReportDAO {
-    UserDAO DAO = new UserDAO();
 
     /**
      * View All Inventory Report
@@ -68,7 +67,6 @@ public class InventoryReportDAO {
                 newInventoryReport.setReportID(rs.getInt("reportID"));
                 newInventoryReport.setBranchName(rs.getString("branchName"));
                 newInventoryReport.setPromo(rs.getInt("promo"));
-                newInventoryReport.setPromoName(DAO.getWholeName(rs.getInt("promo")));
                 newInventoryReport.setDateMade(rs.getDate("dateMade"));
                 newInventoryReport.setProductName(rs.getString("productName"));
                 newInventoryReport.setColor(rs.getString("color"));
@@ -166,7 +164,6 @@ public class InventoryReportDAO {
                 newInventoryReport.setReportID(rs.getInt("reportID"));
                 newInventoryReport.setBranchName(rs.getString("branchName"));
                 newInventoryReport.setPromo(rs.getInt("promo"));
-                newInventoryReport.setPromoName(DAO.getWholeName(rs.getInt("promo")));
                 newInventoryReport.setDateMade(rs.getDate("DateMade"));
                 newInventoryReport.setAddress(rs.getString("address"));
                 InventoryReportView.add(newInventoryReport);
@@ -310,7 +307,6 @@ public class InventoryReportDAO {
                 inventoryReportCom.setLocationID(rs.getInt("locationID"));
                 inventoryReportCom.setBranchName(rs.getString("branchName"));
                 inventoryReportCom.setPromoid(rs.getInt("promo"));
-                inventoryReportCom.setPromoName(DAO.getWholeName(rs.getInt("promo")));
                 inventoryReportCom.setDateMade(rs.getDate("DateMade"));
                 inventoryReportCom.setAddress(rs.getString("address"));
                 inventoryReportCom.setReportID(rs.getInt("reportID"));
