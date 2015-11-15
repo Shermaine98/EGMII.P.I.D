@@ -185,32 +185,4 @@ public class UserDAO {
         }
         return null;
     }
-
-    public String getWholeName(int employeeID) throws ParseException {
-        User User = new User();
-
-        try {
-            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
-            Connection conn = myFactory.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(""
-                    + "SELECT CONCAT(u.firstName,\" \",u.lastName) as 'name'\n"
-                    + "FROM user u \n"
-                    + "WHERE u.employeeID = ?");
-            pstmt.setInt(1, employeeID);
-            ResultSet rs = pstmt.executeQuery();
-            while (rs.next()) {
-                User.setWholeName(rs.getString("name"));
-            }
-
-            pstmt.close();
-            rs.close();
-            conn.close();
-
-            return User.getWholeName();
-        } catch (SQLException ex) {
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
-    }
-
 }
