@@ -43,7 +43,7 @@ public class ViewConsumptionReportServlet extends BaseServlet {
         String goToC = request.getParameter("goToC");
 
         try {
-            crList = DAO.GetAllConsumptionReportGroupBy();
+            crList = DAO.GetAllCR();
         } catch (ParseException ex) {
             Logger.getLogger(ViewConsumptionReportServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

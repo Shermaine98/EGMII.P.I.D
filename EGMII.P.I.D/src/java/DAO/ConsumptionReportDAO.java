@@ -162,6 +162,51 @@ public class ConsumptionReportDAO {
         }
         return null;
     }
+    
+    public ArrayList<ConsumptionReportView> GetAllCR() throws ParseException {
+
+        ArrayList<ConsumptionReportView> ConsumptionReport = new ArrayList<ConsumptionReportView>();
+
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(""
+                    + "SELECT CR.productionNumber, "
+                    + "CR.dateMade, CR.status, \n"
+                    + "CONCAT(u.firstName,\" \",u.lastName) as 'name', "
+                    + "P.productType, P.productName ,P.color, P.itemCode "
+                    + "FROM consumption_report CR\n"
+                    + "JOIN cr_details CRD\n"
+                    + "ON CR.productionNumber = CRD.productionNumber\n"
+                    + "JOIN product P \n"
+                    + "ON CRD.itemCode =  P.itemCode\n"
+                    + "JOIN product_bm PBM\n"
+                    + "ON P.itemCode = PBM.productID\n"
+                    + "JOIN user u \n"
+                    + "ON CR.preparedBy = u.employeeID\n"
+                    + "group by CR.productionNumber;");
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                ConsumptionReportView temp = new ConsumptionReportView();
+                temp.setProductionNumber(rs.getInt("productionNumber"));
+                temp.setDateMade(rs.getDate("dateMade"));
+                temp.setStatus(rs.getString("status"));
+                temp.setName(rs.getString("name"));
+                temp.setProductType(rs.getString("productType"));
+                temp.setProductName(rs.getString("productName"));
+                temp.setColor(rs.getString("color"));
+                temp.setProductNumber(rs.getInt("itemCode"));
+                ConsumptionReport.add(temp);
+            }
+            pstmt.close();
+            conn.close();
+            return ConsumptionReport;
+        } catch (SQLException ex) {
+            Logger.getLogger(ConsumptionReportDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 
     /**
      * Get Specific Consumption Report with All information - Details
