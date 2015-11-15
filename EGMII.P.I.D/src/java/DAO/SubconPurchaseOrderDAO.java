@@ -178,7 +178,7 @@ public class SubconPurchaseOrderDAO {
                 "ON PO.productionNumber = CRD.productionNumber\n" +
                 "JOIN product P\n" +
                 "ON P.itemCode = CRD.itemCode\n" +
-                "WHERE PO.isSupplier = FALSE AND PO.approvedBy IS NOT NULL;";
+                "WHERE PO.isSupplier = FALSE AND PO.approvedBy IS NOT NULL AND PO.isCompleted = FALSE;";
             PreparedStatement ps = conn.prepareStatement(query);
 
             ResultSet rs = ps.executeQuery();

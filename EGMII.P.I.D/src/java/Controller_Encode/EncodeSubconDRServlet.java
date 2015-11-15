@@ -124,6 +124,7 @@ public class EncodeSubconDRServlet extends BaseServlet {
         try {
             /*update consumption report status*/
             if (subDAO.updateIsComplete(complete, Integer.parseInt(poNumber))) {
+                DAO.updateConsumptionStatus(Integer.parseInt(productionNumber), "fulfilled");
                 x = true;
             } else {
                 x = false;
