@@ -16,7 +16,7 @@
         <title>Subcontractor</title>
 
         <script>
-            function autoCompleteSupplier() {
+            function autoCompletSubcon() {
                 $("#supplierName").devbridgeAutocomplete({
                     serviceUrl: 'SearchSubconServlet',
                     type: 'POST',
@@ -51,13 +51,13 @@
     </head>
     <body>  
         <br/><br/><br/>
-    <center><h2>Supplier</h2></center>
+    <center><h2>Subcontractor</h2></center>
 
     <div></div>
     <div class="input-group">
-        <input type="text" class="form-control" name="supplierName" id="supplierName" onkeypress="autoCompleteSupplier()" placeholder="Search Item"/>
+        <input type="text" class="form-control" name="supplierName" id="supplierName" onkeypress="autoCompletSubcon()" placeholder="Search Item"/>
         <span class="input-group-btn">
-            <a href="#" onClick="autoCompleteSupplier()" class="btn btn-default">
+            <a href="#" onClick="autoCompletSubcon()" class="btn btn-default">
                 <span class="glyphicon glyphicon-search"></span>
             </a></span>
     </div>
@@ -73,72 +73,29 @@
             </table>
         </div>
 
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myAddItem">Add Item</button>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myAddSupplier">Add Supplier</button>
-
-        <div class="modal fade" id="myAddItem" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Add Item</h4>
-                    </div>
-                    <form action="EncodeItemServlet" method="POST">
-                        <div class="modal-body">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>Item Code<th>
-                                        <th>Item Name<th>
-                                    </tr>
-                                </thead>
-                                <tbody id ="dataTable1" >
-                                    <tr> 
-                                        <td><input type="checkbox" name="chk" /></td>
-                                        <td><input type="text" class="form-control" placeholder="" name="itemCode" id="itemname"></td>
-                                        <td><input type="text" class="form-control" placeholder="" name="itemName" id="itemmodel"></td>
-                                        <td><input type="text" class="form-control" placeholder="" name="inventoryType" id="inventoryType"></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <input type="hidden" name="suppliervalue" id="suppliervalue" value="">
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                            <input type="button" class="btn btn-danger" value="Add Row" onclick="addRow('dataTable1')" />
-                            <input type="button" class="btn btn-danger" value="Delete Row" onclick="deleteRow('dataTable1')" />
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myAddItem">Add Subcontractor and Service</button>
         
-        <div class="modal fade" id="myAddSupplier" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal fade" id="myAddItem" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                         <h4 class="modal-title" id="myModalLabel">Add Subcontractor</h4>
                     </div>
-                    <form action="EncodeItemServlet" method="POST">
+                    <form action="" method="POST">
                         <div class="modal-body">
                             <table>
                                 <thead>
                                     <tr>
-                                        <th></th>
-                                        <th>Subcontractor Name<th>
-                                        <th>Subcontractor Address<th>
-                                        <th>Subcontractor Name<th>
-                                        <th>Subcontractor Address<th>
-                                        <th>Subcontractor Name<th>
-                                        <th>Subcontractor Address<th>
+                                        <th>Subcontractor Name</th>
+                                        <th>Subcontractor Address</th>
+                                        <th>Service Name<th>
+                                        <th>Service Name<th>  
+                                        <th>Service Name<th>
                                     </tr>
                                 </thead>
                                 <tbody id ="dataTable1" >
                                     <tr> 
-                                        <td><input type="checkbox" name="chk" /></td>
                                         <td><input type="text" class="form-control" placeholder="" name="itemCode" id="itemname"></td>
                                         <td><input type="text" class="form-control" placeholder="" name="itemName" id="itemmodel"></td>
                                         <td><input type="text" class="form-control" placeholder="" name="inventoryType" id="inventoryType"></td>

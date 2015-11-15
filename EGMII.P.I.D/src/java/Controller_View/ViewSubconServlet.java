@@ -41,7 +41,7 @@ public class ViewSubconServlet extends BaseServlet {
         
         
         ServletContext context = getServletContext();
-        RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Vendor/Subcontractor.jsp");
+        RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Vendor/Subcontractors.jsp");
         rd.forward(request, response);
 
     }
