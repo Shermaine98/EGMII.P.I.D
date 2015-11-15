@@ -53,6 +53,7 @@ public class ViewInventoryReportServlet extends BaseServlet {
                 Logger.getLogger(ViewInventoryReportServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
             RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Inventory/InventoryReport.jsp");
+            request.setAttribute("reportID", reportID);
             request.setAttribute("retailInventoryView", retailInventoryView);
             rd.forward(request, response);
         } else if (action.equalsIgnoreCase("view")) {

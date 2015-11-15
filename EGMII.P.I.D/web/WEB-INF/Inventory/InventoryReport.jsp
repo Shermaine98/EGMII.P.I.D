@@ -59,7 +59,9 @@
 
                 <h2>Inventory Report</h2>
                 <% ArrayList<RetailInventoryView> retailInventoryView = (ArrayList<RetailInventoryView>) request.getAttribute("retailInventoryView");
-                    if (retailInventoryView.size() > 0) {%>
+                    if (retailInventoryView.size() > 0) {
+                Integer reportID = (Integer) request.getAttribute("reportID");
+                %>
 
 
                 <div class="panel panel-default col-md-3" style="padding-bottom:10px;">
@@ -67,6 +69,8 @@
                         <h3 class="panel-title">Inventory Report</h3>
                     </div>
                     <div class="panel-body">
+                        <label for="outlet">Report ID</label>
+                        <input type="text" class="form-control readonlyWhite" readonly name="outlet" value="<%=reportID%>"/><br/>
                         <label for="outlet">Outlet</label>
                         <input type="text" class="form-control readonlyWhite" readonly name="outlet" value="<%=retailInventoryView.get(0).getBranchName()%>"/><br/>
                         <label for="promo">Promo</label>
