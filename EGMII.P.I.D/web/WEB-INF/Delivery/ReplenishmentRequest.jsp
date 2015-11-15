@@ -129,9 +129,11 @@
                     ArrayList<WarehouseInventoryView> warehouseInv = (ArrayList<WarehouseInventoryView>) request.getAttribute("warehouseView");
                     Integer repID = (Integer) request.getAttribute("repID");
             %>
-
+        </div>
             <br/><br/>
-            <form method="POST" action="EncodeReplenishmentRequestServlet"> 
+            
+     <form method="POST" action="EncodeReplenishmentRequestServlet"> 
+         <div class="container" align="center">
                 <!--Inventory Report Data Table-->
                 <div class="panel panel-default col-md-3">
                     <div class="panel-body">
@@ -198,7 +200,6 @@
                                 <td class="check" ><input type = "checkbox" value="1"/></td>
                                 <td class="itemCode"><%=warehouseInv.get(i).getItemCode()%></td>
                                 <td class="productName"><%=warehouseInv.get(i).getProductName()%></td>
-
                                 <td class="color"><%=warehouseInv.get(i).getColor()%></td>
                                 <td class="size"><%=warehouseInv.get(i).getSize()%></td>
                                 <td class="Qty"><%=warehouseInv.get(i).getQty()%></td>
