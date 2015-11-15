@@ -120,14 +120,9 @@ public class EncodeProductServlet extends BaseServlet {
 
             for (int i = 0; i < itemCodefabric.length; i++) {
                 productBM.setItemCode(Integer.parseInt(itemCodefabric[i]));
-                System.out.println("product list size: " + ProductList.size());
-                System.out.println("fabric count:" + itemCodefabric.length);
-                System.out.println("itemConsumptionFabric count: " + itemConsumptionfabric.length);
                 for (int y = 0; y < ProductList.size(); y++) {
                     if (y == 0 || x == true) {
                         int input = y + (i * ProductList.size());
-                        System.out.println("loop y: " + y);
-                        System.out.println("input: " + input);
                         
                         productBM.setProductID(ProductList.get(y).getItemCode());
                         productBM.setQty(Double.parseDouble(itemConsumptionfabric[input]));
