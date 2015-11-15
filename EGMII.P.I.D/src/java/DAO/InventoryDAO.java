@@ -394,7 +394,7 @@ public class InventoryDAO {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
-            
+
             PreparedStatement pstmt = conn.prepareStatement("SELECT I.itemCode, "
                     + "P.productName, P.productType, P.size, P.color, I.qty\n"
                     + "FROM inventory I \n"
@@ -424,21 +424,21 @@ public class InventoryDAO {
         }
         return null;
     }
-    
+
     public ArrayList<WarehouseInventoryView> GetAllWarehouse() throws ParseException {
         ArrayList<WarehouseInventoryView> WarehouseInventoryList = new ArrayList<>();
 
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
-            
+
             PreparedStatement pstmt = conn.prepareStatement("SELECT I.itemCode, "
                     + "P.productName, P.productType, P.size, P.color, I.qty\n"
                     + "FROM inventory I \n"
                     + "JOIN product P \n"
                     + "ON I.itemCode = P.itemCode\n"
                     + "WHERE I.qty > 0 AND P.inventoryType = 'warehouse';");
-          
+
             ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) {

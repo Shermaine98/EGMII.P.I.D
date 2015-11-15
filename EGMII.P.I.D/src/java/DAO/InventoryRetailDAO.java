@@ -49,12 +49,12 @@ public class InventoryRetailDAO {
             while (rs.next()) {
                 RetailInventoryView newRetailInventory = new RetailInventoryView();
 
-                newRetailInventory.setBranchName("branchName");
+                newRetailInventory.setBranchName(rs.getString("branchName"));
                 newRetailInventory.setItemCode(rs.getInt("itemCode"));
-                newRetailInventory.setProductName("productName");
-                newRetailInventory.setProductType("productType");
-                newRetailInventory.setColor("color");
-                newRetailInventory.setSize("size");
+                newRetailInventory.setProductName(rs.getString("productName"));
+                newRetailInventory.setProductType(rs.getString("productType"));
+                newRetailInventory.setColor(rs.getString("color"));
+                newRetailInventory.setSize(rs.getString("size"));
                 newRetailInventory.setQty(rs.getDouble("qty"));
                 RetailInventory.add(newRetailInventory);
             }

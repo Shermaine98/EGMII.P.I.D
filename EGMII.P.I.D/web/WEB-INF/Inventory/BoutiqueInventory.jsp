@@ -77,6 +77,7 @@
             <table id="BoutiqueInventory2" class="table table-bordered">
                 <thead>
                     <tr>
+                        <th>Branch Name</th>
                         <th>Product ID</th>
                         <th>Product Name</th>
                         <th>Product Type</th>
