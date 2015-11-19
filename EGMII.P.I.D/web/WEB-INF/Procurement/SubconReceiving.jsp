@@ -179,7 +179,7 @@
                             %>
                             <tr class="trclass">
                                 <td><input name="sizeType" class="transparentBg readonlyWhite inputSize" value="<%=productSizes.get(i).getSize()%>" readonly/></td>
-                                <td class="volumeQty"><%=productSizes.get(i).getVolumeQty()%></td>
+                                <td class="volumeQty"><%=productSizes.get(i).getVolumeQty()%><input type="hidden" value="<%=productSizes.get(i).getVolumeQty()%>" id="volQty[]" name ="volQty" readonly class="transparentBg" /></td>
                                 <td class="deliveredQty"><%=delQty.get(i).getDeliveredQty()%><input type="hidden" value="<%=delQty.get(i).getDeliveredQty()%>" id="deliveredQty[]" name ="deliveredQty" readonly class="transparentBg" /></td>
                                 <td><input type="number" name="receivedqty" id="receivedqty[]" class="numericControl inputSize" min="0" value="0" required title="Please Input getDeliveredQty()%>Received Quantity." /></td>
                                 <input type="text" class="hidden" readonly name="itemCode" value="<%=delQty.get(i).getItemCode()%>"/>

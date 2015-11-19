@@ -54,7 +54,7 @@ public class EncodeSubconDRServlet extends BaseServlet {
         /*details*/
         String[] itemCode = request.getParameterValues("itemCode");
         String[] qty = request.getParameterValues("receivedqty");
-        String[] QtyOrdered = request.getParameterValues("QtyOrdered");
+        String[] QtyOrdered = request.getParameterValues("volQty");
         String[] deliveredQty = request.getParameterValues("deliveredQty");
 
         boolean x = false;
