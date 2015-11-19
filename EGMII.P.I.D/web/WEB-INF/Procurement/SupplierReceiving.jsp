@@ -35,7 +35,7 @@
                 }));
 
                 $(".trclass").on("keyup", (function () {
-                    var volumeQty = parseInt($(this).closest("tr").find(".volQty").text());
+                    var volumeQty = parseInt($(this).closest("tr").find(".QtyOrdered").text());
                     var deliveredQty = parseInt($(this).closest("tr").find(".deliveredQty").text());
                     var receivedQty = parseInt($(this).closest("tr").find('[id="receivedqty\\[\\]"]').val());
 
@@ -131,7 +131,7 @@
                             <%for (int x = 0; x < PurchaseOrderSpecific.size(); x++) {%>
                             <tr class="trclass">
                                 <td><%=PurchaseOrderSpecific.get(x).getItemName()%><input type="hidden" name="itemCode" value="<%=PurchaseOrderSpecific.get(x).getItemCode()%>" /></td>
-                                <td class="volQty"><%=PurchaseOrderSpecific.get(x).getQty()%><input type="hidden" value="<%=PurchaseOrderSpecific.get(x).getQty()%>" id="volumeQty[]" name ="QtyOrdered" readonly class="transparentBg inputSize" /></td>
+                                <td class="volQty"><%=PurchaseOrderSpecific.get(x).getQty()%> <input type="hidden" value="<%=PurchaseOrderSpecific.get(x).getQty()%>" id="volumeQty[]" name ="QtyOrdered" readonly class="transparentBg inputSize" /></td>
                                 <td class="deliveredQty"><%=PurchaseOrderSpecific.get(x).getDeliveredQty()%><input type="hidden" value="<%=PurchaseOrderSpecific.get(x).getDeliveredQty()%>" id="deliveredQty[]" name ="deliveredQty" readonly class="transparentBg inputSize" /></td>
                                 <td><input type="number" name="receivedqty" id="receivedqty[]" class="transparentBg inputSize" min="0" value="0" required title="Please Input Received Quantity." /></td>
                             </tr>
