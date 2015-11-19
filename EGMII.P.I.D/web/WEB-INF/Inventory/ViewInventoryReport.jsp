@@ -89,6 +89,7 @@
 
         <form method="POST" action="PrintInventoryReport" target="_blank">
             <div align="center">
+                <input type="hidden" value="<%=user.getEmployeeNumber()%>" name="employeeNumber" />
                 <input type="submit" class="btn btn-danger" value="Save"  />
             </div>
         </form><br/>

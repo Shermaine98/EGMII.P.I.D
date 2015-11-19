@@ -18,6 +18,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.JasperRunManager;
 
@@ -47,12 +50,12 @@ public class PrintInventoryReport extends BaseServlet {
         Connection conn = myFactory.getConnection();
         OutputStream outStream = response.getOutputStream();
         JasperReport jasperReport = null;
-
+        JasperPrint jp = null;
         User u = (User) request.getAttribute("login");
         String path = getServletContext().getRealPath("/Reports/Inventory/");
 
         Map map = new HashMap();
-        map.put("UserID", u.getEmployeeNumber());
+        map.put("UserID", 10000005);
 
         InputStream f = new FileInputStream(new File(path + "/InventoryReport.jrxml"));
         try {
