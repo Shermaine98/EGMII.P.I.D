@@ -41,7 +41,8 @@
     </head>
     <body>
 
-        <%             ArrayList<DeliveryInvoiceView> DeliveryInvoiceView = (ArrayList<DeliveryInvoiceView>) request.getAttribute("DeliveryInvoiceViewA");
+        <%  int dNum = 0;
+            ArrayList<DeliveryInvoiceView> DeliveryInvoiceView = (ArrayList<DeliveryInvoiceView>) request.getAttribute("DeliveryInvoiceViewA");
             if (DeliveryInvoiceView.size() > 0) {
         %>
         <form id="form1" method="POST" action="ViewDeliveryInvoiceServlet?action=viewSpecificApprove">
@@ -60,13 +61,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <% for (int i = 0; i < DeliveryInvoiceView.size(); i++) {%>
+                            <%
+                                for (int i = 0; i < DeliveryInvoiceView.size(); i++) {
+                                    dNum = DeliveryInvoiceView.get(0).getDiNumber();%>
                             <tr class="repView">
                                 <td class="diNumber"><%=DeliveryInvoiceView.get(i).getDiNumber()%></td>
                                 <td><input type="text" readonly class="transparentBg " value="<%=DeliveryInvoiceView.get(i).getBranchName()%>"></td>
-                                <td><input type="text" readonly class="transparentBg " value="<%=DeliveryInvoiceView.get(i).getName()%>"</td>
-                                <td><input type="text" readonly class="transparentBg " value="<%=DeliveryInvoiceView.get(i).getDeliveryDate()%>"</td>
-                                <td><input type="text" readonly class="transparentBg " value="<%=DeliveryInvoiceView.get(i).getDateMade()%>"</td>
+                                <td><input type="text" readonly class="transparentBg " value="<%=DeliveryInvoiceView.get(i).getName()%>" /></td>
+                                <td><input type="text" readonly class="transparentBg " value="<%=DeliveryInvoiceView.get(i).getDeliveryDate()%>" /></td>
+                                <td><input type="text" readonly class="transparentBg " value="<%=DeliveryInvoiceView.get(i).getDateMade()%>" /></td>
                             </tr>
                             <%
                                     }
@@ -79,11 +82,12 @@
             </div>
         </form>
 
-        <form method="POST" action="ApproveDeliveryInvoiceSerlvet">
+        <form method="POST" action="ApproveDeliveryInvoiceSerlvet?action=approve">
             <%
                 String data = (String) request.getAttribute("data");
                 if (data.equalsIgnoreCase("viewSpecificApprove")) {
                     ArrayList<DeliveryInvoiceView> DeliveryInvoiceS = (ArrayList<DeliveryInvoiceView>) request.getAttribute("DeliveryInvoiceViewSpecA");
+
                     if (DeliveryInvoiceS.size() > 0) {
             %>          
             <div class="container" align="center">
@@ -95,14 +99,12 @@
                         <input type="text" class="form-control " readonly name="diNumber" value="<%=DeliveryInvoiceView.get(0).getDiNumber()%>" /><br/>
                         <label for="date">Date Made</label>
                         <input type="text" class="form-control" readonly name="date" value="<%=DeliveryInvoiceS.get(0).getDateMade()%>" /><br/>
-                        <label for="promo">Promo</label>
-                        <input type="text" class="form-control " readonly name="promo" value="" /><br/>
                         <label for="branch">Branch</label>
-                        <input type="hidden" class="form-control" readonly name="location" value="<%=DeliveryInvoiceS.get(0).getLocationID()%>" />
-                        <input type="text" class="form-control" readonly name="outlet" value="<%=DeliveryInvoiceS.get(0).getBranchName()%>" />
+                        <input type="hidden" class="form-control" name="location" value="<%=DeliveryInvoiceS.get(0).getLocationID()%>" /><br/>
+                        <input type="text" class="form-control" readonly name="outlet" value="<%=DeliveryInvoiceS.get(0).getBranchName()%>" /><br/>
                         <label for="address">Address</label>
                         <input type="text" class="form-control" readonly name="outlet" value="<%=DeliveryInvoiceS.get(0).getAddress()%>" />
-                        <input type="hidden" class="form-control" readonly name="approvedBy" value="<%=user.getEmployeeNumber()%>" />
+                        <input type="hidden" class="form-control" name="approvedBy" value="<%=user.getEmployeeNumber()%>" />
                     </div>
                 </div>
                 <div class="panel panel-default col-md-7">
@@ -126,7 +128,7 @@
                                     <td><input type="hidden" name="itemCode" value="<%=DeliveryInvoiceS.get(i).getProductID()%>"/><%=DeliveryInvoiceS.get(i).getProductName()%></td>
                                     <td><%=DeliveryInvoiceS.get(i).getColor()%></td>
                                     <td><%=DeliveryInvoiceS.get(i).getSize()%></td>
-                                    <td><input type="text" class="readonlyWhite transparentBg" readonly name ="qty" value="<%=DeliveryInvoiceS.get(i).getQty()%>"</td>
+                                    <td><input type="text" class="readonlyWhite transparentBg" readonly name ="qty" value="<%=DeliveryInvoiceS.get(i).getQty()%>" /></td>
                                 </tr>
 
                                 <%
@@ -138,20 +140,26 @@
                     </div>
                     <br>
                 </div>
-                <%
-                        }
-                    }
-                %>
+
             </div>
 
             <!--Buttons-->
 
             <div id="buttonz" align="center">
                 <button class="btn btn-danger">Approve</button>
-                <button class="btn btn-primary">Reject</button><br/><br/>
                 <button class="btn btn-default" style="width:130px">Approve & Print</button>
             </div>
         </form>
+        <form method="POST" action="ApproveDeliveryInvoiceSerlvet?action=reject">
+            <div align="center">
+                <input type="hidden" name="diNumber" value="<%=dNum%>" /><br/>
+                <button class="btn btn-primary">Reject</button>
+            </div>
+        </form>
+        <%
+                }
+            }
+        %>
         <script>
 
 

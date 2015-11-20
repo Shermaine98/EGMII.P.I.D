@@ -61,8 +61,8 @@
                             <tr class="repView">
                                 <td class="reportID"><%=RepRequestView.get(i).getRepID()%></td>
                                 <td><input type="text" readonly class="transparentBg" value="<%=RepRequestView.get(i).getBranchName()%>"></td>
-                                <td><input type="text" readonly class="transparentBg" value="<%=RepRequestView.get(i).getDateMade()%>"</td>
-                                <td><input type="text" readonly class="transparentBg inputSize" value="<%=RepRequestView.get(i).getSupervisor()%>"</td>
+                                <td><input type="text" readonly class="transparentBg" value="<%=RepRequestView.get(i).getDateMade()%>" /></td>
+                                <td><input type="text" readonly class="transparentBg inputSize" value="<%=RepRequestView.get(i).getSupervisor()%>" /></td>
                             </tr>
                             <%
                                     }
@@ -74,90 +74,90 @@
                 <input type="hidden" name="reportID" id="hiddenValue" value=""/>
             </div>
         </form>
-                        
+
         <form method="POST" action="EncodeDeliveryInvoiceServlet">
-        <%
-            String data = (String) request.getAttribute("data");
-            if (data.equalsIgnoreCase("viewSpecific")) {
-                ArrayList<RepRequestView> RepRequestViewSpecific = (ArrayList<RepRequestView>) request.getAttribute("RepRequestViewSpec");
-                if (RepRequestView.size() > 0) {
-                     Integer dirNumber = (Integer) request.getAttribute("dirNumber");
-        %>          
-        <div class="container" align="center">
-            <div class="panel panel-default col-md-3">
-                <div class="panel-body">
-                    <label for="deliveryDate">Delivery Date</label>
-                    <input type="text" class="form-control" id="datepicker"  name="deliveryDate" /><br/>
-                    <label for="invoiceNum">Invoice No.</label>
-                    <input type="text" class="form-control " readonly name="dirNum" value="<%=dirNumber%>" /><br/>
-                    <label for="repID">Replenishment ID</label>
-                    <input type="text" class="form-control" readonly name="repID" value="<%=RepRequestViewSpecific.get(0).getRepID()%>" /><br/>
-                    <label for="repID">Supervisor</label>
-                    <input type="text" class="form-control" readonly name="supervisor" value="<%=RepRequestViewSpecific.get(0).getSupervisor()%>" /><br/>
-                    <label for="date">Date Made</label>
-                    <input type="text" class="form-control" readonly name="date" value="<%=RepRequestViewSpecific.get(0).getDateMade()%>" /><br/>
-                    
-                    <label for="promo">Promo</label>
-                    <input type="text" class="form-control " readonly name="promo" value="" /><br/>
-                    <label for="branch">Branch</label>
-                    <input type="hidden" class="form-control" readonly name="location" value="<%=RepRequestViewSpecific.get(0).getLocation()%>" />
-                    <input type="text" class="form-control" readonly name="outlet" value="<%=RepRequestViewSpecific.get(0).getBranchName()%>" />
-                    <label for="address">Address</label>
-                    <input type="text" class="form-control" readonly name="outlet" value="<%=RepRequestViewSpecific.get(0).getAddress()%>" />
-                    <input type="hidden" class="form-control" readonly name="madeBy" value="<%=user.getEmployeeNumber()%>" />
+            <%
+                String data = (String) request.getAttribute("data");
+                if (data.equalsIgnoreCase("viewSpecific")) {
+                    ArrayList<RepRequestView> RepRequestViewSpecific = (ArrayList<RepRequestView>) request.getAttribute("RepRequestViewSpec");
+                    if (RepRequestView.size() > 0) {
+                        Integer dirNumber = (Integer) request.getAttribute("dirNumber");
+            %>          
+            <div class="container" align="center">
+                <div class="panel panel-default col-md-3">
+                    <div class="panel-body">
+                        <label for="deliveryDate">Delivery Date</label>
+                        <input type="text" class="form-control" id="datepicker"  name="deliveryDate" /><br/>
+                        <label for="invoiceNum">Invoice No.</label>
+                        <input type="text" class="form-control " readonly name="dirNum" value="<%=dirNumber%>" /><br/>
+                        <label for="repID">Replenishment ID</label>
+                        <input type="text" class="form-control" readonly name="repID" value="<%=RepRequestViewSpecific.get(0).getRepID()%>" /><br/>
+                        <label for="repID">Supervisor</label>
+                        <input type="text" class="form-control" readonly name="supervisor" value="<%=RepRequestViewSpecific.get(0).getSupervisor()%>" /><br/>
+                        <label for="date">Date Made</label>
+                        <input type="text" class="form-control" readonly name="date" value="<%=RepRequestViewSpecific.get(0).getDateMade()%>" /><br/>
+
+                        <label for="promo">Promo</label>
+                        <input type="text" class="form-control " readonly name="promo" value="" /><br/>
+                        <label for="branch">Branch</label>
+                        <input type="hidden" class="form-control"  name="location" value="<%=RepRequestViewSpecific.get(0).getLocation()%>" />
+                        <input type="text" class="form-control" readonly name="outlet" value="<%=RepRequestViewSpecific.get(0).getBranchName()%>" />
+                        <label for="address">Address</label>
+                        <input type="text" class="form-control" readonly name="outlet" value="<%=RepRequestViewSpecific.get(0).getAddress()%>" />
+                        <input type="hidden" class="form-control" name="madeBy" value="<%=user.getEmployeeNumber()%>" />
+                    </div>
+                </div>
+                <div class="panel panel-default col-md-7">
+                    <div>
+                        <h2>Replenishment Request</h2><br/>
+                        <table id="data" class="table table-bordered" >
+                            <thead>
+                                <tr>
+                                    <th>Product Name</th>
+                                    <th>Color</th>
+                                    <th>Size</th>
+                                    <th>Quantity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <%
+                                    for (int i = 0; i < RepRequestViewSpecific.size(); i++) {
+                                %>
+                                <tr>
+                                    <td><input type="hidden"  name="itemCode" value="<%=RepRequestViewSpecific.get(i).getProductID()%>"/><%=RepRequestViewSpecific.get(i).getProductName()%></td>
+                                    <td><%=RepRequestViewSpecific.get(i).getColor()%></td>
+                                    <td><%=RepRequestViewSpecific.get(i).getSize()%></td>
+                                    <td><input type="text" class="readonlyWhite transparentBg inputSize" readonly name ="qty" value="<%=RepRequestViewSpecific.get(i).getQty()%>" /></td>
+                                </tr>
+
+                                <%
+                                    }
+                                %>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <br>
                 </div>
             </div>
-            <div class="panel panel-default col-md-7">
-                <div>
-                    <h2>Replenishment Request</h2><br/>
-                    <table id="data" class="table table-bordered" >
-                        <thead>
-                            <tr>
-                                <th>Product Name</th>
-                                <th>Color</th>
-                                <th>Size</th>
-                                <th>Quantity</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                            <%
-                                for (int i = 0; i < RepRequestViewSpecific.size(); i++) {
-                            %>
-                            <tr>
-                                <td><input type="hidden"  name="itemCode" value="<%=RepRequestViewSpecific.get(i).getProductID()%>"/><%=RepRequestViewSpecific.get(i).getProductName()%></td>
-                                <td><%=RepRequestViewSpecific.get(i).getColor()%></td>
-                                <td><%=RepRequestViewSpecific.get(i).getSize()%></td>
-                                <td><input type="text" class="readonlyWhite transparentBg inputSize" readonly name ="qty" value="<%=RepRequestViewSpecific.get(i).getQty()%>"</td>
-                            </tr>
-
-                            <%
-                                }
-                            %>
-
-                        </tbody>
-                    </table>
-                </div>
-                <br>
+            <!--Buttons-->
+            <div id="buttonz" align="center" >
+                <input type="submit" class="btn btn-default" value="SUBMIT"/>
             </div>
 
-
-         
             <%
                     }
                 }
             %>
-        </div>
 
-  <!--Buttons-->
-                <div id="buttonz" align="center" >
-                    <input type="submit" class="btn btn-default" value="SUBMIT"/>
-                </div>
 
-</form>
+
+
+        </form>
         <script>
-            
-            
+
+
             $(function () {
                 $("#datepicker").datepicker({minDate: 1, maxDate: "+4M +10D", dateFormat: 'yy-mm-dd'});
 

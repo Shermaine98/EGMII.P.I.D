@@ -74,8 +74,7 @@ public class DeliveryInvoiceDAO {
         }
         return null;
     }
-    
-    
+
     public ArrayList<DeliveryInvoiceView> DeliveryInvoiceView() throws ParseException {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -148,7 +147,7 @@ public class DeliveryInvoiceDAO {
                 DeliveryInvoiceView temp = new DeliveryInvoiceView();
                 temp.setLocationID(rs.getInt("locationID"));
                 temp.setDiNumber(rs.getInt("diNumber"));
-                  temp.setProductID(rs.getInt("itemCode"));
+                temp.setProductID(rs.getInt("itemCode"));
                 temp.setBranchName(rs.getString("branchName"));
                 temp.setDateMade(rs.getDate("dateMade"));
                 temp.setAddress(rs.getString("address"));
@@ -157,7 +156,7 @@ public class DeliveryInvoiceDAO {
                 temp.setDeliveryDate(rs.getDate("deliveryDate"));
                 temp.setProductName(rs.getString("productName"));
                 temp.setProductType(rs.getString("productType"));
-                 temp.setColor(rs.getString("color"));
+                temp.setColor(rs.getString("color"));
                 temp.setSize(rs.getString("size"));
                 temp.setQty(rs.getDouble("qty"));
                 DeliveryInvoiceView.add(temp);
@@ -303,7 +302,7 @@ public class DeliveryInvoiceDAO {
         rs.close();
         return i;
     }
-    
+
     public boolean updateApproval(DeliveryInvoice newDeliveryInvoice) throws ParseException {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -316,6 +315,50 @@ public class DeliveryInvoiceDAO {
             PreparedStatement pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, newDeliveryInvoice.getApprovedBy());
             pstmt.setInt(2, newDeliveryInvoice.getDiNumber());
+
+            int rows = pstmt.executeUpdate();
+            conn.close();
+            pstmt.close();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(DeliveryInvoiceDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
+    public boolean rejectDeliveryDetails(int diNumber) {
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+
+            String query = "DELETE FROM delivery_invoice_details\n"
+                    + "WHERE diNumber = ?;\n"
+                    + "\n";
+
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, diNumber);
+
+            int rows = pstmt.executeUpdate();
+            conn.close();
+            pstmt.close();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(DeliveryInvoiceDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
+    public boolean rejectDeliveryInvoice(int diNumber) {
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+
+            String query = "DELETE FROM delivery_invoice\n"
+                    + "WHERE diNumber = ?;\n"
+                    + "\n";
+
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, diNumber);
 
             int rows = pstmt.executeUpdate();
             conn.close();
