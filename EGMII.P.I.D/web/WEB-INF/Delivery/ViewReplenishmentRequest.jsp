@@ -62,7 +62,6 @@
                             <th>Branch Name</th>
                              <th>Date Made</th>
                             <th>Prepared By</th>
-                            
                         </tr>
                     </thead>
                     <tbody>
@@ -109,8 +108,6 @@
                 </div>
 
                 <div class="panel panel-default col-md-7">
-                    <br> 
-                    <h2></h2><br/>
                     <div>
                         <h2>Replenishment Request</h2><br/>
                         <table id="data" class="table table-bordered" >

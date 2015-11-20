@@ -82,8 +82,6 @@
         </script>
     </head>
     <body>
-
-
         <div class="container" align="center">
             <h2>Replenishment Request</h2>
             <!--Click Inventory Reports-->
@@ -107,9 +105,10 @@
                                 <% for (int i = 0; i < InventoryReport.size(); i++) {%>
                                 <tr class="repView">
                                     <td class="reportID"><%=InventoryReport.get(i).getReportID()%><input type="text" class="transparentBg inputSize" readonly /></td>
-                                    <td><input type="text" class="transparentBg" value="<%=InventoryReport.get(i).getBranchName()%>"readonly /></td>
-                                    <td><input type="hidden" class="transparentBg inputSize" value="<%=InventoryReport.get(i).getPromo()%>"readonly /><input type="text" class="transparentBg inputSize" value="<%=InventoryReport.get(i).getPromoName()%>"readonly /></td>
-                                    <td><input type="text" class="transparentBg" value="<%=InventoryReport.get(i).getDateMade()%>"readonly /></td>
+                                    <td><input type="text" class="transparentBg" value="<%=InventoryReport.get(i).getBranchName()%>" readonly /></td>
+                                    <td><input type="hidden" class="transparentBg inputSize" value="<%=InventoryReport.get(i).getPromo()%>" />
+                                        <input type="text" class="transparentBg inputSize" value="<%=InventoryReport.get(i).getPromoName()%>" readonly /></td>
+                                    <td><input type="text" class="transparentBg" value="<%=InventoryReport.get(i).getDateMade()%>" readonly /></td>
                                 </tr>
                                 <%
                                         }
@@ -138,16 +137,16 @@
                 <div class="panel panel-default col-md-3">
                     <div class="panel-body">
                         <label for="outlet">Outlet</label>
-                        <input type="hidden" class="form-control" readonly name="location" value="<%=InventoryReportS.get(0).getLocationID()%>" /><br/>
+                        <input type="hidden" class="form-control" name="location" value="<%=InventoryReportS.get(0).getLocationID()%>" /><br/>
                         <input type="text" class="form-control" readonly name="outlet" value="<%=InventoryReportS.get(0).getBranchName()%>" /><br/>
                         <label for="promo">Promoter</label>
-                        <input type="hidden" class="form-control" readonly name="promo" value="<%=InventoryReportS.get(0).getPromoid()%>" />
+                        <input type="hidden" class="form-control" name="promo" value="<%=InventoryReportS.get(0).getPromoid()%>" />
                         <input type="text" class="form-control" readonly  value="<%=InventoryReportS.get(0).getName()%>" /><br/>
                         <label for="date">Date Inventory </label>
                         <input type="text" class="form-control" readonly name="date" value="<%=InventoryReportS.get(0).getDateMade()%>" /><br/>
                         <label for="repID">Replenishment ID</label>
                         <input type="text" class="form-control" readonly name="repID" value="<%=repID%>" /><br/>
-                        <input type="hidden" class="form-control" readonly name="supervisor" value="<%=user.getEmployeeNumber()%>" />
+                        <input type="hidden" name="supervisor" value="<%=user.getEmployeeNumber()%>" />
                     </div>
                 </div>
 
