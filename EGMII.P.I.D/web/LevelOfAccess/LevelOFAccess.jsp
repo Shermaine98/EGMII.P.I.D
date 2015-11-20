@@ -22,7 +22,7 @@
 <%          } else if (position.equalsIgnoreCase("cutting master")) {
 %>          <jsp:include page="/NavBar/nCuttingMasterNavBar.jsp"/>
 <%          } else if (position.equalsIgnoreCase("promoter supervisor")) {
-%>          <jsp:include page="/NavBar/nPromoterSupervisorNavBar.jsp"/>
+%>          <jsp:include page="/NavBar/nPromoSupervisorNavBar.jsp"/>
 <%          } else if (position.equalsIgnoreCase("warehouse manager")) {
 %>          <jsp:include page="/NavBar/nWarehouseManagerNavBar.jsp"/>
 <%          } else if (position.equalsIgnoreCase("administrator")) {
