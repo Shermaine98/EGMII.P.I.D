@@ -22,6 +22,7 @@
         <link rel="stylesheet" type="text/css" href="bootstrap/css/jquery.dataTables.min.css">
         <link href="bootstrap/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <script src="js/Validation.js"></script>
+        <script src="js/Print.js"></script>
         <title>Delivery Invoice</title>
         <script>
             $(document).ready(function () {
@@ -61,10 +62,10 @@
                             <tr class="repView">
                                 <td class="diNumber"><%=DeliveryInvoiceView.get(i).getDiNumber()%></td>
                                 <td><input type="text" class="transparentBg" value="<%=DeliveryInvoiceView.get(i).getBranchName()%>"></td>
-                                <td><input type="text" class="transparentBg inputSize" value="<%=DeliveryInvoiceView.get(i).getName()%>"</td>
-                                 <td><input type="text" class="transparentBg inputSize" value="<%=DeliveryInvoiceView.get(i).getApprovedName()%>"</td>
-                                <td><input type="text" class="transparentBg" value="<%=DeliveryInvoiceView.get(i).getDeliveryDate()%>"</td>
-                                <td><input type="text" class="transparentBg" value="<%=DeliveryInvoiceView.get(i).getDateMade()%>"</td>
+                                <td><input type="text" class="transparentBg inputSize" value="<%=DeliveryInvoiceView.get(i).getName()%>"/></td>
+                                <td><input type="text" class="transparentBg inputSize" value="<%=DeliveryInvoiceView.get(i).getApprovedName()%>"/></td>
+                                <td><input type="text" class="transparentBg" value="<%=DeliveryInvoiceView.get(i).getDeliveryDate()%>"/></td>
+                                <td><input type="text" class="transparentBg" value="<%=DeliveryInvoiceView.get(i).getDateMade()%>"/></td>
                             </tr>
                             <%
                                     }
@@ -84,7 +85,7 @@
                     ArrayList<DeliveryInvoiceView> DeliveryInvoiceS = (ArrayList<DeliveryInvoiceView>) request.getAttribute("DeliveryInvoiceSpec");
                     if (DeliveryInvoiceS.size() > 0) {
             %>          
-            <div class="container" align="center">
+            <div class="container" align="center" id="printableArea">
                 <div class="panel panel-default col-md-3">
                     <div class="panel-body">
                         <label for="invoiceNum">Invoice No.</label>
@@ -93,11 +94,11 @@
                         <input type="text" class="form-control" readonly name="date" value="<%=DeliveryInvoiceS.get(0).getDateMade()%>" /><br/>
                         <label for="deliveryDate">Delivery Date</label>
                         <input type="text" class="form-control" readonly  name="deliveryDate" value="<%=DeliveryInvoiceS.get(0).getDeliveryDate()%>" /><br/>
-                         <label for="branch">Branch</label>
+                        <label for="branch">Branch</label>
                         <input type="text" class="form-control" readonly name="outlet" value="<%=DeliveryInvoiceS.get(0).getBranchName()%>" />
                         <label for="address">Address</label>
                         <input type="text" class="form-control" readonly name="outlet" value="<%=DeliveryInvoiceS.get(0).getAddress()%>" />
-                        <input type="hidden" class="form-control" readonly name="approvedBy" value="<%=user.getEmployeeNumber()%>" />
+                        <input type="hidden" class="form-control" name="approvedBy" value="<%=user.getEmployeeNumber()%>" />
                     </div>
                 </div>
                 <div class="panel panel-default col-md-7">
@@ -121,7 +122,7 @@
                                     <td><%=DeliveryInvoiceS.get(i).getProductName()%></td>
                                     <td><%=DeliveryInvoiceS.get(i).getColor()%></td>
                                     <td><%=DeliveryInvoiceS.get(i).getSize()%></td>
-                                    <td><input type="text" readonly class="transparentBg inputSize" name ="qty" value="<%=DeliveryInvoiceS.get(i).getQty()%>"</td>
+                                    <td><input type="text" readonly class="transparentBg inputSize" name ="qty" value="<%=DeliveryInvoiceS.get(i).getQty()%>"/></td>
                                 </tr>
 
                                 <%
@@ -133,19 +134,17 @@
                     </div>
                     <br>
                 </div>
-
-
-
-                <%
-                        }
-                    }
-                %>
             </div>
-
             <!--Buttons-->
-            <<div id="buttonz" align="center">
-                <button class="btn btn-default">Print</button>
+            <div id="buttonz" align="center">
+                <button class="btn btn-default" onclick="printDiv('printableArea')">Print</button>
             </div>
+
+
+            <%
+                    }
+                }
+            %>
 
         </form>
         <script>

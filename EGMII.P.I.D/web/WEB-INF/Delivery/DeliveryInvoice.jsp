@@ -141,7 +141,7 @@
             </div>
             <!--Buttons-->
             <div id="buttonz" align="center" >
-                <input type="submit" class="btn btn-default" value="SUBMIT"/>
+                <input type="submit" class="btn btn-danger" value="Submit"/>
             </div>
 
             <%

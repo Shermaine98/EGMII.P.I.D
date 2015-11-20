@@ -144,7 +144,6 @@
             </div>
 
             <!--Buttons-->
-
             <div id="buttonz" align="center">
                 <button class="btn btn-danger">Approve</button>
                 <button class="btn btn-default" style="width:130px">Approve & Print</button>
@@ -156,6 +155,7 @@
                 <button class="btn btn-primary">Reject</button>
             </div>
         </form>
+
         <%
                 }
             }
