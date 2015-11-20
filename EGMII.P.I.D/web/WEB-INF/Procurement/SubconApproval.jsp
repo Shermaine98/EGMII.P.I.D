@@ -159,7 +159,6 @@
             <div align="center">
                 <!--Buttons-->
                 <input type="submit" value="Approve" class="btn btn-danger" />
-                <button class="btn btn-primary">Reject</button><br/><br/>
             </div>
         </form>
         <form method="POST" action="ApproveRejectSubconPOServlet?action=reject">
