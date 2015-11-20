@@ -44,7 +44,7 @@
         %>
         <form id="form1" method="POST" action="ViewDeliveryInvoiceServlet?action=viewSpecific">
             <div class="container" align="center">
-                <h2>Inventory Reports</h2><br/>
+                <h2>Choose Replenishment Reports</h2><br/>
                 <div style="width:60%;">
                     <table id="Replenish" class="table table-bordered table-hover">
                         <thead>
@@ -52,7 +52,7 @@
                                 <th>Report ID</th>
                                 <th>Branch Name</th>
                                 <th>Date Made</th>
-                                <th>Promoter</th>
+                                <th>Prepared By</th>
 
                             </tr>
                         </thead>
@@ -62,7 +62,7 @@
                                 <td class="reportID"><%=RepRequestView.get(i).getRepID()%></td>
                                 <td><input type="text" readonly class="transparentBg" value="<%=RepRequestView.get(i).getBranchName()%>"></td>
                                 <td><input type="text" readonly class="transparentBg" value="<%=RepRequestView.get(i).getDateMade()%>" /></td>
-                                <td><input type="text" readonly class="transparentBg inputSize" value="<%=RepRequestView.get(i).getSupervisor()%>" /></td>
+                                <td><input type="text" readonly class="transparentBg inputSize" value="<%=RepRequestView.get(i).getSupervisorName()%>" /></td>
                             </tr>
                             <%
                                     }
@@ -93,12 +93,10 @@
                         <label for="repID">Replenishment ID</label>
                         <input type="text" class="form-control" readonly name="repID" value="<%=RepRequestViewSpecific.get(0).getRepID()%>" /><br/>
                         <label for="repID">Supervisor</label>
-                        <input type="text" class="form-control" readonly name="supervisor" value="<%=RepRequestViewSpecific.get(0).getSupervisor()%>" /><br/>
+                        <input type="hidden" class="form-control" readonly name="supervisor" value="<%=RepRequestViewSpecific.get(0).getSupervisor()%>" /><br/>
+                        <input type="text" class="form-control" readonly name="supervisor" value="<%=RepRequestViewSpecific.get(0).getSupervisorName()%>" /><br/>
                         <label for="date">Date Made</label>
                         <input type="text" class="form-control" readonly name="date" value="<%=RepRequestViewSpecific.get(0).getDateMade()%>" /><br/>
-
-                        <label for="promo">Promo</label>
-                        <input type="text" class="form-control " readonly name="promo" value="" /><br/>
                         <label for="branch">Branch</label>
                         <input type="hidden" class="form-control"  name="location" value="<%=RepRequestViewSpecific.get(0).getLocation()%>" />
                         <input type="text" class="form-control" readonly name="outlet" value="<%=RepRequestViewSpecific.get(0).getBranchName()%>" />

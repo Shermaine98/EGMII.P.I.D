@@ -35,15 +35,19 @@ public class ReplenishmentDAO {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             ArrayList<RepRequestView> ConsumptionReport = new ArrayList<RepRequestView>();
             Connection conn = myFactory.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement("SELECT RR.repID, L.branchName, "
-                    + "RR.supervisor, RR.dateMade, P.productName, P.color, P.size, RRD.qty\n"
-                    + "FROM rep_request RR \n"
-                    + "JOIN rep_request_details RRD\n"
-                    + "ON RR.repID = RRD.repID\n"
-                    + "JOIN product P\n"
-                    + "ON RRD.itemCode = P.itemCode\n"
-                    + "JOIN ref_location L\n"
-                    + "ON RR.location = L.locationID GROUP BY RR.repID;");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT RR.repID, L.branchName, \n"
+                    + " RR.supervisor, RR.dateMade, P.productName, P.color, P.size, RRD.qty, \n"
+                    + " CONCAT(u.firstName,\" \",u.lastName) as 'name'\n"
+                    + " FROM rep_request RR \n"
+                    + " JOIN rep_request_details RRD\n"
+                    + " ON RR.repID = RRD.repID\n"
+                    + " JOIN product P\n"
+                    + " ON RRD.itemCode = P.itemCode\n"
+                    + " JOIN ref_location L\n"
+                    + " ON RR.location = L.locationID\n"
+                    + " JOIN user u \n"
+                    + " ON RR.supervisor = u.employeeID\n"
+                    + " GROUP BY RR.repID;");
             ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) {
@@ -51,6 +55,7 @@ public class ReplenishmentDAO {
                 temp.setRepID(rs.getInt("repID"));
                 temp.setBranchName(rs.getString("branchName"));
                 temp.setSupervisor(rs.getInt("supervisor"));
+                temp.setSupervisorName(rs.getString("name"));
                 temp.setDateMade(rs.getDate("dateMade"));
                 temp.setProductName(rs.getString("productName"));
                 temp.setColor(rs.getString("color"));
@@ -67,7 +72,6 @@ public class ReplenishmentDAO {
         return null;
     }
 
-    
     /**
      * Get Replenishment View
      *
@@ -82,18 +86,21 @@ public class ReplenishmentDAO {
             PreparedStatement pstmt = conn.prepareStatement("SELECT "
                     + "RR.repID, L.branchName, "
                     + "RR.supervisor, RR.dateMade, L.locationID, "
-                    + "L.address, P.itemCode, P.productName, P.color, P.size, RRD.qty\n"
+                    + "L.address, P.itemCode, P.productName, P.color, P.size, RRD.qty, "
+                    + "CONCAT(u.firstName,\" \",u.lastName) as 'name'\n"
                     + "FROM rep_request RR \n"
                     + "JOIN rep_request_details RRD\n"
                     + "ON RR.repID = RRD.repID\n"
                     + "JOIN product P\n"
                     + "ON RRD.itemCode = P.itemCode\n"
                     + "JOIN ref_location L\n"
-                    + "ON RR.location = L.locationID\n"
+                    + "ON RR.location = L.locationID"
+                    + " JOIN user u \n"
+                    + " ON RR.supervisor = u.employeeID\n"
                     + "WHERE RR.repID = ?;");
             pstmt.setInt(1, ReportID);
             ResultSet rs = pstmt.executeQuery();
-            
+
             while (rs.next()) {
                 RepRequestView temp = new RepRequestView();
                 temp.setRepID(rs.getInt("repID"));
@@ -105,6 +112,7 @@ public class ReplenishmentDAO {
                 temp.setColor(rs.getString("color"));
                 temp.setSize(rs.getString("size"));
                 temp.setQty(rs.getDouble("qty"));
+                temp.setSupervisorName(rs.getString("name"));
                 temp.setAddress(rs.getString("address"));
                 temp.setLocation(rs.getInt("locationID"));
                 ConsumptionReport.add(temp);
@@ -162,7 +170,7 @@ public class ReplenishmentDAO {
                     + "(repID, itemCode, qty) "
                     + "VALUES  (?, ?, ?) ";
             PreparedStatement pstmt = conn.prepareStatement(query);
-            
+
             pstmt.setDouble(1, newRepRequestDetails.getRepID());
             pstmt.setDouble(2, newRepRequestDetails.getItemCode());
             pstmt.setDouble(3, newRepRequestDetails.getQty());
