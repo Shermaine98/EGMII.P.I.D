@@ -53,15 +53,15 @@
         <br/><br/><br/>
     <center><h2>Supplier</h2></center>
 
-    <div></div>
-    <div class="input-group">
-        <input type="text" class="form-control" name="supplierName" id="supplierName" onkeypress="autoCompleteSupplier()" placeholder="Search Item"/>
-        <span class="input-group-btn">
-            <a href="#" onClick="autoCompleteSupplier()" class="btn btn-default">
-                <span class="glyphicon glyphicon-search"></span>
-            </a></span>
+    <div align="center">
+        <div class="input-group col-md-4">
+            <input type="text" class="form-control" name="supplierName" id="supplierName" onkeypress="autoCompleteSupplier()" placeholder="Search Item"/>
+            <span class="input-group-btn">
+                <a href="#" onClick="autoCompleteSupplier()" class="btn btn-default">
+                    <span class="glyphicon glyphicon-search"></span>
+                </a></span>
+        </div>
     </div>
-
 
     <div align="center">
         <div id="content">
@@ -69,7 +69,7 @@
                 <tbody></tbody>
             </table>
             <table id="productTable" data-height="299" data-search="true" class="table table-bordered" data-click-to-select="true">
-               
+
             </table>
         </div>
 
@@ -115,7 +115,7 @@
             </div>
         </div>
 
-        
+
         <div class="modal fade" id="myAddSupplier" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -128,7 +128,7 @@
                             <table>
                                 <thead>
                                     <tr>
-                                         <th>Subcontractor Name</th>
+                                        <th>Subcontractor Name</th>
                                         <th>Subcontractor Address</th>
                                         <th>Service Name<th>
                                         <th>Service Name<th>  

@@ -53,28 +53,28 @@
         <br/><br/><br/>
     <center><h2>Subcontractor</h2></center>
 
-    <div></div>
-    <div class="input-group">
-        <input type="text" class="form-control" name="supplierName" id="supplierName" onkeypress="autoCompletSubcon()" placeholder="Search Item"/>
-        <span class="input-group-btn">
-            <a href="#" onClick="autoCompletSubcon()" class="btn btn-default">
-                <span class="glyphicon glyphicon-search"></span>
-            </a></span>
+    <div align="center">
+        <div class="input-group col-md-4">
+            <input type="text" class="form-control" name="supplierName" id="supplierName" onkeypress="autoCompletSubcon()" placeholder="Search Item"/>
+            <span class="input-group-btn">
+                <a href="#" onClick="autoCompletSubcon()" class="btn btn-default">
+                    <span class="glyphicon glyphicon-search"></span>
+                </a></span>
+        </div>
     </div>
-
-
+    
     <div align="center">
         <div id="content">
             <table id="SupplierInformation" data-height="299" data-search="true" class="table table-bordered" data-click-to-select="true">
                 <tbody></tbody>
             </table>
             <table id="productTable" data-height="299" data-search="true" class="table table-bordered" data-click-to-select="true">
-               
+
             </table>
         </div>
 
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myAddItem">Add Subcontractor and Service</button>
-        
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myAddItem" style="width:250px">Add Subcontractor and Service</button>
+
         <div class="modal fade" id="myAddItem" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
