@@ -52,9 +52,8 @@
                         </li>
                         <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> Account<span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="myaccount.jsp">View Account</a></li>
-                                <li><a href="editaccount.jsp">Edit Account</a></li>
-                                <li><a href="index.jsp">Sign Out</a></li>
+                                <li><a href="/EGMII.P.I.D/Account?action=viewAccounts">View Account</a></li>
+                                <li><a href="/EGMII.P.I.D/Logout">Sign Out</a></li>
                             </ul>
                         </li>
                     </ul>

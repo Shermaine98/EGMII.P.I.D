@@ -29,7 +29,7 @@
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li> <a href="/EGMI/Login?action=goToHome">Home</a></li>
+                       <li> <a href="/EGMII.P.I.D/Account?action=goToHome">Home</a></li>
                         <!--Product Creation-->
                         <li class="dropdown">
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">Product Creation
@@ -88,8 +88,8 @@
                                 <span class="glyphicon glyphicon-user"></span>
                                 <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="/EGMI/Login?action=viewAccounts">View Account</a></li>
-                                <li><a href="/EGMI/Logout">Sign Out</a></li>
+                                <li><a href="/EGMII.P.I.D/Account?action=viewAccounts">View Account</a></li>
+                                <li><a href="/EGMII.P.I.D/Logout">Sign Out</a></li>
                             </ul>
                         </li>
                     </ul>

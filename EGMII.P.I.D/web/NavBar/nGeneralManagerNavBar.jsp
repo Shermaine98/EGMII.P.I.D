@@ -81,9 +81,6 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Inventory
                                 <span class="caret"></span></a> 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="/EGMII.P.I.D/ViewAccessoriesInventoryServlet">Accessories Inventory</a></li>
-                                <li><a href="/EGMII.P.I.D/ViewProductionInventoryServlet">Production Inventory</a></li>
-                                <li><a href="/EGMII.P.I.D/ViewWarehouseInventoryServlet">Warehouse Inventory</a></li>
                                  <li><a href="/EGMII.P.I.D/ViewAllInventoryServlet">View All Inventory</a></li>
                                 <li><a href="/EGMII.P.I.D/ViewBoutiqueInventoryServlet">Boutique Inventory</a></li>
                             </ul>
@@ -94,14 +91,8 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Delivery
                                 <span class="caret"></span></a> 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">Replenishment Request</a>
-                                    <ul class="dropdown-menu sub-menu">
-                                        <li><a href="/EGMII.P.I.D/ViewReplenishmentServlet?action=create">Encode Replenishment Request</a></li>
-                                        <li><a href="/EGMII.P.I.D/ViewReplenishmentServlet?action=view">View Replenishment Request</a></li>
-                                    </ul>
-                                </li>
                                 <li><a href="#">Delivery Invoice</a>
-                                    <ul class="dropdown-menu sub-menu" style="margin-top: 35px;">
+                                    <ul class="dropdown-menu sub-menu">
                                         <li><a href="/EGMII.P.I.D/ViewDeliveryInvoiceServlet?action=create">Encode Delivery Invoice</a></li>
                                         <li><a href="/EGMII.P.I.D/ViewDeliveryInvoiceServlet?action=approve">Approve Delivery Invoice</a></li>
                                         <li><a href="/EGMII.P.I.D/ViewDeliveryInvoiceServlet?action=view">View Delivery Invoice</a></li>
