@@ -24,7 +24,6 @@ import java.util.logging.Logger;
  */
 public class SupplierPurchaseOrderDAO {
 
-
     /**
      * Encode Supplier Purchase Order
      *
@@ -90,8 +89,7 @@ public class SupplierPurchaseOrderDAO {
 
     /**
      *
-     * @return
-     * @throws SQLException
+     * @return @throws SQLException
      */
     public Integer getSupplierPurchaseOrderNumber() throws SQLException {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
@@ -125,11 +123,16 @@ public class SupplierPurchaseOrderDAO {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
             ArrayList<SupplierPurchaseOrderView> poList = new ArrayList<>();
-            String query = "SELECT DISTINCT PO.poNumber, PO.preparedBy, PO.dateMade, PO.deliveryDate, S.companyName\n"
+            String query = "SELECT DISTINCT PO.poNumber,PO.preparedBy, "
+                    + "CONCAT(U.firstName,\" \", U.lastname) as 'name',\n"
+                    + "PO.dateMade, PO.deliveryDate, S.companyName\n"
                     + "FROM purchase_order PO\n"
-                    + "JOIN ref_supplier S \n"
+                    + "JOIN ref_supplier S\n"
                     + "ON PO.supplierID = S.supplierID\n"
-                    + "WHERE PO.isSupplier = TRUE AND PO.approvedBy IS NULL;";
+                    + "JOIN User U ON\n"
+                    + "PO.preparedBy = U.employeeID\n"
+                    + "WHERE PO.isSupplier = TRUE \n"
+                    + "AND PO.approvedBy IS NULL;";
             PreparedStatement ps = conn.prepareStatement(query);
 
             ResultSet rs = ps.executeQuery();
@@ -137,6 +140,7 @@ public class SupplierPurchaseOrderDAO {
                 SupplierPurchaseOrderView po = new SupplierPurchaseOrderView();
                 po.setPoNumber(rs.getInt("poNumber"));
                 po.setPreparedBy(rs.getInt("preparedBy"));
+                po.setName(rs.getString("name"));
                 po.setDateMade(rs.getDate("dateMade"));
                 po.setDeliveryDate(rs.getDate("deliveryDate"));
                 po.setCompanyName(rs.getString("companyName"));
@@ -160,11 +164,16 @@ public class SupplierPurchaseOrderDAO {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
             ArrayList<SupplierPurchaseOrderView> poList = new ArrayList<>();
-            String query = "SELECT DISTINCT PO.poNumber, PO.approvedBy, PO.preparedBy, PO.dateMade, PO.deliveryDate, S.companyName\n"
-                    + "FROM purchase_order PO\n"
-                    + "JOIN ref_supplier S \n"
-                    + "ON PO.supplierID = S.supplierID\n"
-                    + "WHERE PO.isSupplier = TRUE AND PO.approvedBy IS NOT NULL;";
+            String query = "SELECT DISTINCT PO.poNumber, PO.approvedBy, CONCAT(appr.firstName,\" \", appr.lastName) as 'approvedByName',\n"
+                    + " PO.preparedBy, CONCAT(prep.firstName,\" \", prep.lastName) as 'preparedByName', PO.dateMade, PO.deliveryDate, S.companyName\n"
+                    + " FROM purchase_order PO\n"
+                    + " JOIN ref_supplier S\n"
+                    + " ON PO.supplierID = S.supplierID\n"
+                    + " JOIN USER prep \n"
+                    + "	ON PO.preparedBy = prep.employeeID \n"
+                    + " JOIN USER appr \n"
+                    + "	ON PO.approvedBy = appr.employeeID \n"
+                    + " WHERE PO.isSupplier = TRUE AND PO.approvedBy IS NOT NULL;";
             PreparedStatement ps = conn.prepareStatement(query);
 
             ResultSet rs = ps.executeQuery();
@@ -176,6 +185,8 @@ public class SupplierPurchaseOrderDAO {
                 po.setDeliveryDate(rs.getDate("deliveryDate"));
                 po.setCompanyName(rs.getString("companyName"));
                 po.setApprovedBy(rs.getInt("approvedBy"));
+                po.setApprovedByName(rs.getString("approvedByName"));
+                po.setPreparedByName(rs.getString("preparedByName"));
                 poList.add(po);
             }
             ps.close();
@@ -199,19 +210,21 @@ public class SupplierPurchaseOrderDAO {
             Connection conn = myFactory.getConnection();
             ArrayList<SupplierPurchaseOrderView> poList = new ArrayList<>();
 
-            String query = ""
-                    + "SELECT PO.poNumber, PO.preparedBy, PO.dateMade, "
+            String query = "SELECT PO.poNumber, PO.preparedBy,CONCAT(prep.firstName,\" \", prep.lastName) as 'name'\n"
+                    + ", PO.dateMade,\n"
                     + "PO.deliveryDate, S.companyName, PO.isSupplier,\n"
-                    + "I.itemName, S.unitPrice, POD.qty, PO.approvedBy, "
+                    + "I.itemName, S.unitPrice, POD.qty,\n"
                     + "PO.isCompleted\n"
                     + "FROM purchase_order PO\n"
                     + "JOIN purchase_order_details POD\n"
                     + "ON PO.poNumber  =POD.poNumber\n"
-                    + "JOIN ref_item I \n"
+                    + "JOIN ref_item I\n"
                     + "ON POD.itemCode = I.itemCode\n"
-                    + "JOIN ref_supplier S \n"
+                    + "JOIN ref_supplier S\n"
                     + "ON I.itemCode = S.itemCode\n"
                     + "AND PO.supplierID = S.supplierID\n"
+                    + "JOIN USER prep \n"
+                    + "ON PO.preparedBy = prep.employeeID \n"
                     + "WHERE PO.poNumber = ? AND PO.isSupplier = TRUE\n"
                     + "AND PO.approvedBy IS NULL;";
 
@@ -222,6 +235,7 @@ public class SupplierPurchaseOrderDAO {
                 SupplierPurchaseOrderView po = new SupplierPurchaseOrderView();
                 po.setPoNumber(rs.getInt("poNumber"));
                 po.setPreparedBy(rs.getInt("preparedBy"));
+                po.setName(rs.getString("name"));
                 po.setDateMade(rs.getDate("dateMade"));
                 po.setDeliveryDate(rs.getDate("deliveryDate"));
                 po.setCompanyName(rs.getString("companyName"));
@@ -251,21 +265,24 @@ public class SupplierPurchaseOrderDAO {
             Connection conn = myFactory.getConnection();
             ArrayList<SupplierPurchaseOrderView> poList = new ArrayList<>();
 
-            String query = ""
-                    + "SELECT PO.poNumber, PO.preparedBy, PO.dateMade, "
-                    + "PO.deliveryDate, S.companyName, PO.isSupplier,\n"
-                    + "I.itemName, S.unitPrice, POD.qty, PO.approvedBy, "
-                    + "PO.isCompleted\n"
-                    + "FROM purchase_order PO\n"
-                    + "JOIN purchase_order_details POD\n"
-                    + "ON PO.poNumber  =POD.poNumber\n"
-                    + "JOIN ref_item I \n"
-                    + "ON POD.itemCode = I.itemCode\n"
-                    + "JOIN ref_supplier S \n"
-                    + "ON I.itemCode = S.itemCode\n"
-                    + "AND PO.supplierID = S.supplierID\n"
-                    + "WHERE PO.poNumber = ? AND PO.isSupplier = TRUE\n"
-                    + "AND PO.approvedBy IS NOT NULL;";
+            String query = "SELECT PO.poNumber, PO.approvedBy, CONCAT(appr.firstName,\" \", appr.lastName) as 'approvedByName',\n"
+                    + " PO.preparedBy, CONCAT(prep.firstName,\" \", prep.lastName) as 'preparedByName', PO.dateMade, \n"
+                    + " PO.deliveryDate, S.companyName, PO.isSupplier,\n"
+                    + " I.itemName, S.unitPrice, POD.qty,PO.isCompleted\n"
+                    + " FROM purchase_order PO\n"
+                    + " JOIN purchase_order_details POD\n"
+                    + " ON PO.poNumber=POD.poNumber\n"
+                    + " JOIN ref_item I \n"
+                    + " ON POD.itemCode = I.itemCode\n"
+                    + " JOIN ref_supplier S \n"
+                    + " ON I.itemCode = S.itemCode\n"
+                    + " AND PO.supplierID = S.supplierID\n"
+                    + " JOIN USER prep \n"
+                    + " ON PO.preparedBy = prep.employeeID \n"
+                    + " JOIN USER appr \n"
+                    + " ON PO.approvedBy = appr.employeeID \n"
+                    + " WHERE PO.poNumber = ? AND PO.isSupplier = TRUE\n"
+                    + " AND PO.approvedBy IS NOT NULL;";
 
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1, poNumber);
@@ -280,6 +297,8 @@ public class SupplierPurchaseOrderDAO {
                 po.setItemName(rs.getString("itemName"));
                 po.setUnitPrice(rs.getDouble("unitPrice"));
                 po.setQty(rs.getDouble("qty"));
+                po.setApprovedByName(rs.getString("approvedByName"));
+                po.setPreparedByName(rs.getString("preparedByName"));
                 poList.add(po);
             }
             ps.close();
@@ -303,20 +322,25 @@ public class SupplierPurchaseOrderDAO {
             Connection conn = myFactory.getConnection();
             ArrayList<SupplierPurchaseOrderView> poList = new ArrayList<>();
 
-            String query = "SELECT PO.poNumber, PO.preparedBy, "
-                    + "PO.dateMade, PO.deliveryDate, "
-                    + "S.companyName, PO.isSupplier,\n"
-                    + "I.itemName, I.itemCode, S.unitPrice, "
-                    + "POD.qty, PO.approvedBy, PO.isCompleted, POD.deliveredQty\n"
-                    + "FROM purchase_order PO\n"
-                    + "JOIN purchase_order_details POD\n"
-                    + "ON PO.poNumber  = POD.poNumber\n"
-                    + "JOIN ref_item I \n"
-                    + "ON POD.itemCode = I.itemCode\n"
-                    + "JOIN ref_supplier S \n"
-                    + "ON I.itemCode = S.itemCode\n"
-                    + "AND PO.supplierID = S.supplierID\n"
-                    + "WHERE PO.poNumber = ? AND PO.isSupplier = TRUE AND PO.approvedBy IS NOT NULL;";
+            String query = "SELECT PO.poNumber, CONCAT(appr.firstName,\" \", appr.lastName) as 'approvedByName',\n"
+                    + " PO.preparedBy, CONCAT(prep.firstName,\" \" , prep.lastName) as 'preparedByName',\n"
+                    + "  PO.dateMade, PO.deliveryDate, \n"
+                    + "  S.companyName, PO.isSupplier,\n"
+                    + "  I.itemName, I.itemCode, S.unitPrice, \n"
+                    + "  POD.qty, PO.isCompleted, POD.deliveredQty\n"
+                    + "  FROM purchase_order PO\n"
+                    + "  JOIN purchase_order_details POD\n"
+                    + "  ON PO.poNumber  = POD.poNumber\n"
+                    + "  JOIN ref_item I \n"
+                    + "  ON POD.itemCode = I.itemCode\n"
+                    + "  JOIN ref_supplier S \n"
+                    + "  ON I.itemCode = S.itemCode\n"
+                    + "  AND PO.supplierID = S.supplierID\n"
+                    + "  JOIN USER prep \n"
+                    + " ON PO.preparedBy = prep.employeeID \n"
+                    + " JOIN USER appr \n"
+                    + " ON PO.approvedBy = appr.employeeID \n"
+                    + "  WHERE PO.poNumber = ? AND PO.isSupplier = TRUE AND PO.approvedBy IS NOT NULL;";
 
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1, poNumber);
@@ -333,6 +357,8 @@ public class SupplierPurchaseOrderDAO {
                 po.setUnitPrice(rs.getDouble("unitPrice"));
                 po.setQty(rs.getDouble("qty"));
                 po.setDeliveredQty(rs.getDouble("deliveredQty"));
+                po.setPreparedByName(rs.getString("preparedByName"));
+                po.setApprovedByName(rs.getString("approvedByName"));
                 poList.add(po);
             }
             ps.close();
@@ -381,7 +407,6 @@ public class SupplierPurchaseOrderDAO {
      * @return
      * @throws ParseException
      */
-
     public ArrayList<SupplierPurchaseOrderView> GetSupplierPurchaseOrderForReceiving() throws ParseException {
 
         ArrayList<SupplierPurchaseOrderView> DeliveryReceipt = new ArrayList<>();
@@ -389,15 +414,18 @@ public class SupplierPurchaseOrderDAO {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement("SELECT "
-                    + "PO.poNumber, S.companyName, PO.deliveryDate, "
-                    + "PO.deliveryDate, CONCAT(u.firstName,\" \",u.lastName) as 'name' , "
-                    + "PO.isCompleted  \n"
+            PreparedStatement pstmt = conn.prepareStatement("SELECT PO.poNumber, S.companyName, PO.deliveryDate, \n"
+                    + "PO.deliveryDate, PO.approvedBy, CONCAT(appr.firstName,\" \", appr.lastName) as 'approvedByName',\n"
+                    + " PO.preparedBy, CONCAT(prep.firstName,\" \" , prep.lastName) as 'preparedByName',\n"
+                    + "PO.isCompleted\n"
                     + "FROM Purchase_Order PO JOIN ref_supplier S \n"
-                    + "ON PO.SupplierID = S.SupplierID JOIN user u "
-                    + "ON PO.preparedBy = u.employeeID\n"
-                    + "WHERE PO.approvedby IS NOT NULL AND "
-                    + "PO.isSupplier = TRUE AND PO.isCompleted = FALSE GROUP BY Po.poNumber; ");
+                    + "ON PO.SupplierID = S.SupplierID \n"
+                    + "JOIN user prep \n"
+                    + "ON PO.preparedBy = prep.employeeID\n"
+                    + "JOIN USER appr \n"
+                    + "ON PO.approvedBy = appr.employeeID \n"
+                    + "WHERE PO.approvedby IS NOT NULL AND \n"
+                    + "PO.isSupplier = TRUE AND PO.isCompleted = FALSE GROUP BY Po.poNumber;");
 
             ResultSet rs = pstmt.executeQuery();
 
@@ -407,7 +435,9 @@ public class SupplierPurchaseOrderDAO {
                 SupplierPurchaseOrderView.setPoNumber(rs.getInt("poNumber"));
                 SupplierPurchaseOrderView.setCompanyName(rs.getString("companyName"));
                 SupplierPurchaseOrderView.setDeliveryDate(rs.getDate("deliveryDate"));
-                SupplierPurchaseOrderView.setPreparedByName(rs.getString("name"));
+                SupplierPurchaseOrderView.setPreparedByName(rs.getString("preparedBy"));
+                SupplierPurchaseOrderView.setPreparedByName(rs.getString("preparedByName"));
+                SupplierPurchaseOrderView.setApprovedByName(rs.getString("approvedByName"));
                 SupplierPurchaseOrderView.setIsCompleted(rs.getBoolean("isCompleted"));
                 DeliveryReceipt.add(SupplierPurchaseOrderView);
             }

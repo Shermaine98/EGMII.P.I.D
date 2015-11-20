@@ -96,8 +96,8 @@
                         <td><input type="text" class="transparentBg" readonly  style="width:100%" value="<%= SupplierPurchaseOrderList.get(i).getCompanyName()%>"/></td>
                         <td><input type="text" class="transparentBg" readonly  value="<%= SupplierPurchaseOrderList.get(i).getDateMade()%>"/></td>
                         <td><input type="text" class="transparentBg" readonly  value="<%= SupplierPurchaseOrderList.get(i).getDeliveryDate()%>"/></td>
-                        <td><input type="text" class="transparentBg" readonly  value="<%= SupplierPurchaseOrderList.get(i).getPreparedBy()%>"/></td>
-                        <td><input type="text" class="transparentBg" readonly  value="<%= SupplierPurchaseOrderList.get(i).getApprovedBy()%>"/></td>        
+                        <td><input type="hidden" class="transparentBg" readonly  value="<%= SupplierPurchaseOrderList.get(i).getPreparedBy()%>"/><input type="text" class="transparentBg" readonly  value="<%= SupplierPurchaseOrderList.get(i).getPreparedByName()%>"/></td>
+                        <td><input type="hidden" class="transparentBg" readonly  value="<%= SupplierPurchaseOrderList.get(i).getApprovedBy()%>"/><input type="text" class="transparentBg" readonly  value="<%= SupplierPurchaseOrderList.get(i).getApprovedByName()%>"/></td>        
                     </tr>
                     <%
                         }
@@ -126,14 +126,16 @@
                     <label for="poNumber">Purchase Order No: </label>
                     <%=spo1.get(0).getPoNumber()%> <br/><br/>
                     <label for="preparedBy">Prepared By: </label>
-                    <%=spo1.get(0).getPreparedBy()%><br/><br/>
+                    <%=spo1.get(0).getPreparedByName()%><br/><br/>
                     <label for="dateMade">Date Made: </label>
                     <%=spo1.get(0).getDateMade()%> <br/><br/>
                     <label for="deliveryDate">Delivery Date: </label>
                     <%=spo1.get(0).getDeliveryDate()%><br/><br/>
                     <label for="supplier">Supplier: </label>
                     <%=spo1.get(0).getCompanyName()%><br/><br/>
-                    <input type="text" class="hidden" readonly name="employeeNumber" value="<%=user.getEmployeeNumber()%>"/>
+                    <label for="approveby">Approved By </label>
+                    <%=spo1.get(0).getApprovedByName()%><br/><br/>
+                    
                 </div>
             </div>
             <div class="panel panel-default col-md-7">

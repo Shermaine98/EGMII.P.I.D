@@ -255,7 +255,7 @@ public class SupplierPurchaseOrderView {
      * @return the name
      */
     public String getPreparedByName() {
-        return getPreparedByName();
+        return preparedbyName;
     }
 
     /**
@@ -263,7 +263,7 @@ public class SupplierPurchaseOrderView {
      * @param name the name to set
      */
     public void setPreparedByName(String preparedbyname) {
-        this.setPreparedByName(preparedbyname);
+       this.preparedbyName = preparedbyname;
     }
 
     /**

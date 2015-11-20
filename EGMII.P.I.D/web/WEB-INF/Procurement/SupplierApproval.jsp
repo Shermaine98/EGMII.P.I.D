@@ -78,10 +78,10 @@
                             <% for (int i = 0; i < PurchaseOrderList.size(); i++) {%>
                             <tr>
                                 <td class="poNumber"><%=PurchaseOrderList.get(i).getPoNumber()%><input type="text" class="transparentBg"/></td>
-                                <td><input type="text" class="transparentBg" value="<%=PurchaseOrderList.get(i).getCompanyName()%>"></td>
-                                <td><input type="text" class="transparentBg" value="<%=PurchaseOrderList.get(i).getDateMade()%>"></td>
-                                <td><input type="text" class="transparentBg" value="<%=PurchaseOrderList.get(i).getDeliveryDate()%>"</td>
-                                <td><input type="text" class="transparentBg" value="<%=PurchaseOrderList.get(i).getPreparedBy()%>"</td>
+                                <td><input type="text" class="transparentBg" value="<%=PurchaseOrderList.get(i).getCompanyName()%>"/></td>
+                                <td><input type="text" class="transparentBg" value="<%=PurchaseOrderList.get(i).getDateMade()%>"/></td>
+                                <td><input type="text" class="transparentBg" value="<%=PurchaseOrderList.get(i).getDeliveryDate()%>"/></td>
+                                <td><input type="hidden" class="transparentBg" value="<%=PurchaseOrderList.get(i).getPreparedBy()%>"/><input type="text" class="transparentBg" value="<%=PurchaseOrderList.get(i).getName()%>"/></td>
                             </tr>
                             <%
                                 }
@@ -109,7 +109,8 @@
                         <label for="poNumber">Purchase Order No.</label>
                         <input type="text" class="form-control" readonly name="poNumber" value ="<%=PurchaseOrderSpecific.get(0).getPoNumber()%>" /><br/>
                         <label for="preparedBy">Prepared By</label>
-                        <input type="text" class="form-control" readonly name="preparedBy" value="<%=PurchaseOrderSpecific.get(0).getPreparedBy()%>"/><br/>
+                        <input type="hidden" class="form-control" readonly value="<%=PurchaseOrderSpecific.get(0).getPreparedBy()%>"/><br/>
+                        <input type="text" class="form-control" readonly name="preparedBy" value="<%=PurchaseOrderSpecific.get(0).getName()%>"/><br/>
                         <label for="dateMade">Date Made</label>
                         <input type="text" class="form-control " readonly name="dateMade" value="<%=PurchaseOrderSpecific.get(0).getDateMade()%>"/><br/>
                         <label for="deliveryDate">Delivery Date</label>

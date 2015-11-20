@@ -35,7 +35,7 @@
                 }));
 
                 $(".trclass").on("keyup", (function () {
-                    var volumeQty = parseInt($(this).closest("tr").find(".QtyOrdered").text());
+                    var volumeQty = parseInt($(this).closest("tr").find(".volQty").text());
                     var deliveredQty = parseInt($(this).closest("tr").find(".deliveredQty").text());
                     var receivedQty = parseInt($(this).closest("tr").find('[id="receivedqty\\[\\]"]').val());
 
@@ -68,6 +68,7 @@
                             <th>Supplier</th>
                             <th>Delivery Date</th>
                             <th>Prepared By</th>
+                            <th>Approved By</th>
                             <th>Status</th>
                         </tr>
                     </thead>
@@ -78,6 +79,7 @@
                             <td><input type="text" class="transparentBg" value="<%=PurchaseOrderList.get(i).getCompanyName()%>" readonly /></td>
                             <td><input type="text" class="transparentBg" value="<%=PurchaseOrderList.get(i).getDeliveryDate()%>" readonly /></td>
                             <td><input type="text" class="transparentBg" value="<%=PurchaseOrderList.get(i).getPreparedByName()%>" readonly /></td>
+                            <td><input type="text" class="transparentBg" value="<%=PurchaseOrderList.get(i).getApprovedByName()%>" readonly /></td>
                             <td><input type="text" class="transparentBg inputSize" value="<%=PurchaseOrderList.get(i).isIsCompleted()%>" readonly /></td>
                         </tr>
                         <%} %>
@@ -98,7 +100,7 @@
                         <label for="poNumber">Purchase Order No.</label>
                         <input type="text" class="form-control " readonly name="poNumber" value="<%=PurchaseOrderSpecific.get(0).getPoNumber()%>" /><br/>
                         <label for="preparedBy">Prepared By</label>
-                        <input type="text" class="form-control " readonly name="preparedBy" value="<%=PurchaseOrderSpecific.get(0).getPreparedBy()%>" /><br/>
+                        <input type="text" class="form-control " readonly name="preparedBy" value="<%=PurchaseOrderSpecific.get(0).getPreparedByName()%>" /><br/>
                         <label for="preparedBy">Received By</label>
                         <input type="hidden" class="form-control " name="receivedBy" value="<%=user.getEmployeeNumber()%>" /><br/>
                         <input type="text" class="form-control " readonly  value="<%=user.getFirstName()%> <%=user.getLastName()%>" /><br/>
@@ -106,6 +108,8 @@
                         <input type="text" class="form-control "  name="deliveryDate" readonly value="<%=PurchaseOrderSpecific.get(0).getDeliveryDate()%>"/><br/>
                         <label for="supplier">Supplier</label>
                         <input type="text" class="form-control " readonly name="supplier" value="<%=PurchaseOrderSpecific.get(0).getCompanyName()%>" /><br/>
+                        <label for="approved by">Approved By</label>
+                        <input type="text" class="form-control " readonly name="supplier" value="<%=PurchaseOrderSpecific.get(0).getApprovedByName()%>" /><br/>
                     </div>
                 </div>
 
@@ -114,7 +118,7 @@
 
                         <div class="form-inline">
                             <label for="drNumber">Delivery Receipt Number</label>
-                            <input type="text" class="form-control" name="drNumber" pattern=".{8,}" required title="Please Input Delivery Receipt Number." />
+                            <input type="text" class="form-control" name="drNumber" pattern=".{2,}" required title="Please Input Delivery Receipt Number." />
                         </div>
                         <br/>
 
