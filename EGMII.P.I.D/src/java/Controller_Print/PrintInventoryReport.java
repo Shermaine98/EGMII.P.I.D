@@ -51,11 +51,11 @@ public class PrintInventoryReport extends BaseServlet {
         OutputStream outStream = response.getOutputStream();
         JasperReport jasperReport = null;
         JasperPrint jp = null;
-        User u = (User) request.getAttribute("login");
+        String userID = request.getParameter("employeeNumber");
         String path = getServletContext().getRealPath("/Reports/Inventory/");
 
         Map map = new HashMap();
-        map.put("UserID", 10000005);
+        map.put("UserID", Integer.parseInt(userID));
 
         InputStream f = new FileInputStream(new File(path + "/InventoryReport.jrxml"));
         try {

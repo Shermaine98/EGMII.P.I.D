@@ -29,7 +29,7 @@
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="/EGMI/Login?action=goToHome">Home</a></li>
+                        <li> <a href="/EGMII.P.I.D/Account?action=goToHome">Home</a></li>
 
                         <!--Product Creation-->
                         <li class="dropdown">
@@ -45,8 +45,8 @@
                                 <!--SUB-MENU OF CONSUMPTION REPORT-->
                                 <li><a href="">Consumption Report</a>
                                     <ul class="dropdown-menu sub-menu" style="margin-top: 35px;">
-                                        <li><a href="/EGMII.P.I.D/SearchProductServlet">Encode Consumption Report</a></li>
-                                        <li><a href="/EGMII.P.I.D/ViewConsumptionReportServlet">View Consumption Report</a></li></ul>
+                                        <li><a href="/EGMII.P.I.D/SearchProductServlet?action=Encode">Encode Consumption Report</a></li>
+                                        <li><a href="/EGMII.P.I.D/ViewConsumptionReportServlet?goToC=View">View Consumption Report</a></li></ul>
                                 </li>
 
                             </ul>
@@ -64,22 +64,18 @@
 
                                 <li><a href="">Subcontractor Purchase Order</a>
                                     <ul class="dropdown-menu sub-menu" style="margin-top: 35px;">
-                                        <li><a href="/EGMII.P.I.D.P.I.DMI/SearchProductsSubconServlet">Encode Subcontractor Purchase Order</a></li>
-                                        <li><a href="/EGMII.P.I.D/SetSPONumberServlet">Approve Subcontractor Purchase Order</a></li>
-                                        <li><a href="/EGMII.P.I.D/SetSPONumberServlet">Receive Subcontractor Purchase Order</a></li></ul></li>
+                                       <li><a href="/EGMII.P.I.D/SetSubconNumberServlet">Encode Subcontractor Purchase Order</a></li>
+                                        <li><a href="/EGMII.P.I.D/ApproveSubconPurchaseOrderServlet">Approve Subcontractor Purchase Order</a></li>
+                                        <li><a href="/EGMII.P.I.D/ViewSubconPurchaseOrderServlet?action=view">View Subcontractor Purchase Order</a></li>
+                                        <li><a href="/EGMII.P.I.D/SetSubconPOReceivingServlet?action=view">Receive Subcontractor Purchase Order</a></li></ul></li>
                             </ul>
                         </li>
 
 
                         <!--Inventory-->
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Inventory
-                                <span class="caret"></span></a> 
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="/EGMII.P.I.D/ViewAccessoriesInventoryServlet">Accessories Inventory</a></li>
-                                <li><a href="/EGMII.P.I.D/ViewProductionInventoryServlet">Production Inventory</a></li>
-                                <li><a href="/EGMII.P.I.D/ViewWarehouseInventoryServlet">Warehouse Inventory</a></li>
-                            </ul>
+                          
+                              <li><a href="/EGMII.P.I.D/ViewAllInventoryServlet">Inventory</a></li>
                         </li>
 
                     </ul>
@@ -96,8 +92,8 @@
                                 <span class="glyphicon glyphicon-user"></span>
                                 <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="/EGMI/Login?action=viewAccounts">View Account</a></li>
-                                <li><a href="/EGMI/Logout">Sign Out</a></li>
+                               <li><a href="/EGMII.P.I.D/Account?action=viewAccounts">View Account</a></li>
+                                <li><a href="/EGMII.P.I.D/Logout">Sign Out</a></li>
                             </ul>
                         </li>
                     </ul>
