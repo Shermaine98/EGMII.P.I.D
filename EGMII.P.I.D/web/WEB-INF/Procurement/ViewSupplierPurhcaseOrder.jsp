@@ -96,8 +96,8 @@
                         <td><input type="text" class="transparentBg" readonly  style="width:100%" value="<%= SupplierPurchaseOrderList.get(i).getCompanyName()%>"/></td>
                         <td><input type="text" class="transparentBg" readonly  value="<%= SupplierPurchaseOrderList.get(i).getDateMade()%>"/></td>
                         <td><input type="text" class="transparentBg" readonly  value="<%= SupplierPurchaseOrderList.get(i).getDeliveryDate()%>"/></td>
-                        <td><input type="hidden" class="transparentBg" readonly  value="<%= SupplierPurchaseOrderList.get(i).getPreparedBy()%>"/><input type="text" class="transparentBg" readonly  value="<%= SupplierPurchaseOrderList.get(i).getPreparedByName()%>"/></td>
-                        <td><input type="hidden" class="transparentBg" readonly  value="<%= SupplierPurchaseOrderList.get(i).getApprovedBy()%>"/><input type="text" class="transparentBg" readonly  value="<%= SupplierPurchaseOrderList.get(i).getApprovedByName()%>"/></td>        
+                        <td><input type="hidden" class="transparentBg"  value="<%= SupplierPurchaseOrderList.get(i).getPreparedBy()%>"/><input type="text" class="transparentBg" readonly  value="<%= SupplierPurchaseOrderList.get(i).getPreparedByName()%>"/></td>
+                        <td><input type="hidden" class="transparentBg"  value="<%= SupplierPurchaseOrderList.get(i).getApprovedBy()%>"/><input type="text" class="transparentBg" readonly  value="<%= SupplierPurchaseOrderList.get(i).getApprovedByName()%>"/></td>        
                     </tr>
                     <%
                         }
@@ -109,14 +109,14 @@
     </form>
 
 
-    <div id="printableArea">
-        <%
-            if (data.equalsIgnoreCase("SupplierPurchaseOrderSpecific")) {
-                ArrayList<SupplierPurchaseOrderView> spo1 = (ArrayList<SupplierPurchaseOrderView>) request.getAttribute("SupplierPurchaseOrderSpecific");
-                if (!spo1.isEmpty()) {
-        %>
-        <!--Consumption Report View From Encode of Bill of Materials-->
 
+    <%
+        if (data.equalsIgnoreCase("SupplierPurchaseOrderSpecific")) {
+            ArrayList<SupplierPurchaseOrderView> spo1 = (ArrayList<SupplierPurchaseOrderView>) request.getAttribute("SupplierPurchaseOrderSpecific");
+            if (!spo1.isEmpty()) {
+    %>
+    <!--Consumption Report View From Encode of Bill of Materials-->
+    <div id="printableArea">
         <div class="container" align="center">
             <div class="panel panel-default col-md-3">
                 <div class="panel-heading">
@@ -135,7 +135,7 @@
                     <%=spo1.get(0).getCompanyName()%><br/><br/>
                     <label for="approveby">Approved By </label>
                     <%=spo1.get(0).getApprovedByName()%><br/><br/>
-                    
+
                 </div>
             </div>
             <div class="panel panel-default col-md-7">
@@ -174,13 +174,14 @@
             }
         %>
         <br/><br/>
-        <div>
-            <center>
-                <input type="button" class="btn btn-default" onclick="printDiv('printableArea')" value="Print" />
-            </center>
-        </div>
-        <%}%>
     </div>
+    <div>
+        <center>
+            <input type="button" class="btn btn-default" onclick="printDiv('printableArea')" value="Print" />
+        </center>
+    </div>
+    <%}%>
+
 
 </body>
 
