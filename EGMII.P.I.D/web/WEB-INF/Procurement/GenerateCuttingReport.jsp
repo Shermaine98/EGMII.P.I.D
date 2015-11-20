@@ -69,7 +69,7 @@
                                 <td><input type="text" class="transparentBg" value="<%=ConsumptionReportView.get(i).getProductName()%>"/></td>
                                 <td><input type="text" class="transparentBg" value="<%=ConsumptionReportView.get(i).getDateMade()%>"/></td>
                                 <td><input type="text" class="transparentBg inputSize" value="<%=ConsumptionReportView.get(i).getColor()%>"/></td>
-                                <td><input type="text" class="transparentBg inputSize" value="<%=ConsumptionReportView.get(i).getPreparedBy()%>"/></td>
+                                <td><input type="text" class="transparentBg inputSize" value="<%=ConsumptionReportView.get(i).getName()%>"/></td>
                             </tr>
                             <%
                                 }
@@ -99,7 +99,9 @@
                     <label>Product</label>
                     <%=ConsumptionReportSpecific.get(0).getProductName() %><br/><br/>
                     <label>Cutting Master</label>
-                    <%= user.getEmployeeNumber()%><br/>
+                    <input type="text" class="transparentBg inputSize" name="size"  value = " <%= user.getEmployeeNumber()%>"  readonly/><br/>
+                    <input type="text" class="transparentBg inputSize" name="size"  value = " <%= user.getFirstName()%> <%= user.getLastName()%>"  readonly/><br/>
+                    
                 </div>
             </div>
 

@@ -48,7 +48,7 @@ public class GenerateCuttingReportServlet extends BaseServlet {
             Logger.getLogger(SetSupplierReceivingServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        //TODO: FIX FIX       
+       
         if (poNumber != null) {
             ArrayList<ConsumptionReportView> ConsumptionReportViewSpecific = new ArrayList<>();
             ArrayList<ConsumptionReportView> CRforCutting = new ArrayList();

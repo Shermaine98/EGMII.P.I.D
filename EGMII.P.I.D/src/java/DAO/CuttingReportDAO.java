@@ -64,6 +64,7 @@ public class CuttingReportDAO {
                 temp.setPreparedBy(rs.getInt("preparedBy"));
                 temp.setDateMade(rs.getDate("dateMade"));
                 temp.setColor(rs.getString("color"));
+                temp.setName(rs.getString("name"));
                 ConsumptionReport.add(temp);
             }
             pstmt.close();
