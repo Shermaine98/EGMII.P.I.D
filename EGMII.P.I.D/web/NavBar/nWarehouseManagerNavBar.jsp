@@ -79,16 +79,10 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Delivery
                                 <span class="caret"></span></a> 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">Replenishment Request</a>
-                                    <ul class="dropdown-menu sub-menu">
-                                        <li><a href="/EGMII.P.I.D/ViewReplenishmentServlet?action=revise">Revise Replenishment Request</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">Delivery Invoice</a>
-                                    <ul class="dropdown-menu sub-menu" style="margin-top: 35px;">
+                               
+                                        <li><a href="/EGMII.P.I.D/ViewReplenishmentServlet?action=view">View Replenishment Request</a></li>
                                         <li><a href="/EGMII.P.I.D/ViewDeliveryInvoiceServlet?action=view">View Delivery Invoice</a></li>
-                                    </ul>
-                                </li>
+                             
                             </ul>
                         </li>
 
