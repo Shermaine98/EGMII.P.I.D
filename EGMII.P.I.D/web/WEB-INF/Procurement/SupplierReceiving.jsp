@@ -59,7 +59,7 @@
     <% ArrayList<SupplierPurchaseOrderView> PurchaseOrderList = (ArrayList<SupplierPurchaseOrderView>) request.getAttribute("Receiving");%>
     <body>
         <form method="post" action="SetSupplierSpecificReceivingServlet" id="form1">
-            <div class="container" align="center" style="width:60%;">
+            <div class="container" align="center" style="width:70%;">
                 <h2>Supplier Purchase Order Receiving</h2><br/>
                 <table id ="dataTable" class="table table-bordered table-hover">
                     <thead>
@@ -108,7 +108,7 @@
                         <input type="text" class="form-control "  name="deliveryDate" readonly value="<%=PurchaseOrderSpecific.get(0).getDeliveryDate()%>"/><br/>
                         <label for="supplier">Supplier</label>
                         <input type="text" class="form-control " readonly name="supplier" value="<%=PurchaseOrderSpecific.get(0).getCompanyName()%>" /><br/>
-                        <label for="approved by">Approved By</label>
+                        <label for="approvedby">Approved By</label>
                         <input type="text" class="form-control " readonly name="supplier" value="<%=PurchaseOrderSpecific.get(0).getApprovedByName()%>" /><br/>
                     </div>
                 </div>
@@ -135,9 +135,9 @@
                             <%for (int x = 0; x < PurchaseOrderSpecific.size(); x++) {%>
                             <tr class="trclass">
                                 <td><%=PurchaseOrderSpecific.get(x).getItemName()%><input type="hidden" name="itemCode" value="<%=PurchaseOrderSpecific.get(x).getItemCode()%>" /></td>
-                                <td class="volQty"><%=PurchaseOrderSpecific.get(x).getQty()%> <input type="hidden" value="<%=PurchaseOrderSpecific.get(x).getQty()%>" id="volumeQty[]" name ="QtyOrdered" readonly class="transparentBg inputSize" /></td>
-                                <td class="deliveredQty"><%=PurchaseOrderSpecific.get(x).getDeliveredQty()%><input type="hidden" value="<%=PurchaseOrderSpecific.get(x).getDeliveredQty()%>" id="deliveredQty[]" name ="deliveredQty" readonly class="transparentBg inputSize" /></td>
-                                <td><input type="number" name="receivedqty" id="receivedqty[]" class="transparentBg inputSize" min="0" value="0" required title="Please Input Received Quantity." /></td>
+                                <td class="volQty"><%=PurchaseOrderSpecific.get(x).getQty()%> <input type="hidden" value="<%=PurchaseOrderSpecific.get(x).getQty()%>" id="volumeQty[]" name ="QtyOrdered" class="transparentBg inputSize" /></td>
+                                <td class="deliveredQty"><%=PurchaseOrderSpecific.get(x).getDeliveredQty()%><input type="hidden" value="<%=PurchaseOrderSpecific.get(x).getDeliveredQty()%>" id="deliveredQty[]" name ="deliveredQty" class="transparentBg inputSize" /></td>
+                                <td><input type="number" name="receivedqty" id="receivedqty[]" class="numericControl inputSize" min="0" value="0" required title="Please Input Received Quantity." /></td>
                             </tr>
                             <% } %>
                         </table>
