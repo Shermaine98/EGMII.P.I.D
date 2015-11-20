@@ -62,6 +62,8 @@
                         <th>Product Type</th>
                         <th>Date Made</th>
                         <th>Prepared By</th>
+                        <th>Approved By</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
@@ -72,8 +74,8 @@
                         <td><input type="text" class="transparentBg" value="<%=ConsumptionReportView.get(i).getProductName()%>" readonly /></td>
                         <td><input type="text" class="transparentBg" value="<%=ConsumptionReportView.get(i).getProductType()%>" readonly /></td>
                         <td><input type="text" class="transparentBg" value="<%=ConsumptionReportView.get(i).getDateMade()%>" readonly /></td>
-                        <td><input type="text" class="transparentBg" value="<%=ConsumptionReportView.get(i).getPreparedBy()%>" readonly /></td>
-
+                        <td><input type="text" class="transparentBg" value="<%=ConsumptionReportView.get(i).getPreparedByName()%>" readonly /></td>
+                        <td><input type="text" class="transparentBg" value="<%=ConsumptionReportView.get(i).getApprovedByName()%>" readonly /></td>
                     </tr> 
                     <%}%>
                 </tbody>
@@ -99,11 +101,11 @@
                 <label for="poNumber">Purchase Order No.</label>
                 <input type="text" class="form-control" readonly name="poNumber" value ="<%=crHeader.get(0).getPoNumber()%>" /><br/>
                 <label for="preparedBy">Prepared By</label>
-                <input type="text" class="form-control" readonly name="preparedBy" value="<%=crHeader.get(0).getPreparedBy()%>"/><br/>
+                <input type="text" class="form-control" readonly name="preparedBy" value="<%=crHeader.get(0).getPreparedByName()%>"/><br/>
                 <label for="deliveryDate">Delivery Date</label>
                 <input type="text" class="form-control " readonly name="deliveryDate" value="<%=crHeader.get(0).getDeliveryDate()%>"/><br/>
                 <label for="supplier">Subcontractor</label>
-                <input type="text" class="form-control " readonly name="subcon" value="<%=crHeader.get(0).getSubconID()%>"/><br/>
+                <input type="text" class="form-control " readonly name="subcon" value="<%=crHeader.get(0).getCompanyName()%>"/><br/>
                 <label for="productionNumber">Production Number</label>
                 <input type="text" class="form-control " readonly name="productionNumber" value="<%=crHeader.get(0).getProductionNumber()%>"/><br/>
                 <label for="productName">Product Name</label>
@@ -112,7 +114,6 @@
                 <input type="text" class="form-control " readonly name="productType" value="<%=crHeader.get(0).getProductType()%>"/><br/>
                 <label for="color">Color</label>
                 <input type="text" class="form-control " readonly name="color" value="<%=crHeader.get(0).getProductColor()%>"/><br/>
-
                 <input type="text" class="hidden" readonly name="employeeNumber" value="<%=user.getEmployeeNumber()%>"/>
             </div>
         </div>

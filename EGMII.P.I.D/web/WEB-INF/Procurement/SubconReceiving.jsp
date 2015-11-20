@@ -39,7 +39,7 @@
                 }));
                 
                 $(".trclass").on("keyup", (function () {
-                    var volumeQty = parseInt($(this).closest("tr").find(".volQty").text());
+                    var volumeQty = parseInt($(this).closest("tr").find(".volumeQty").text());
                     var deliveredQty = parseInt($(this).closest("tr").find(".deliveredQty").text());
                     var receivedQty = parseInt($(this).closest("tr").find('[id="receivedqty\\[\\]"]').val());
 
@@ -90,6 +90,7 @@
                                 <th>Product Type</th>
                                 <th>Date Made</th>
                                 <th>Prepared By</th>
+                                 <th>Approved By</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -100,8 +101,8 @@
                                 <td><input type="text" readonly class="transparentBg" value="<%=ConsumptionReportView.get(i).getProductName()%>"/></td>
                                 <td><input type="text" readonly class="transparentBg inputSize" value="<%=ConsumptionReportView.get(i).getProductType()%>"/></td>
                                 <td><input type="text" readonly class="transparentBg" value="<%=ConsumptionReportView.get(i).getDateMade()%>"/></td>
-                                <td><input type="text" readonly class="transparentBg inputSize" value="<%=ConsumptionReportView.get(i).getPreparedBy()%>"/></td>
-
+                                <td><input type="text" readonly class="transparentBg inputSize" value="<%=ConsumptionReportView.get(i).getPreparedByName()%>"/></td>
+                                <td><input type="text" readonly class="transparentBg inputSize" value="<%=ConsumptionReportView.get(i).getApprovedByName()%>"/></td>
                             </tr> 
                             <%}%>
                         </tbody>
@@ -132,14 +133,15 @@
                         <label for="poNumber">Purchase Order No.</label>
                         <input type="text" class="form-control" readonly name="poNumber" value ="<%=crHeader.get(0).getPoNumber()%>" /><br/>
                         <label for="preparedBy">Prepared By</label>
-                        <input type="text" class="form-control" readonly name="preparedBy" value="<%=crHeader.get(0).getPreparedBy()%>"/><br/>
+                        <input type="text" class="form-control" readonly name="preparedBy" value="<%=crHeader.get(0).getPreparedByName()%>"/><br/>
                         <label for="preparedBy">Received By</label>
                         <input type="hidden" class="form-control " name="receivedBy" value="<%=user.getEmployeeNumber()%>" /><br/>
                         <input type="text" class="form-control " readonly  value="<%=user.getFirstName()%> <%=user.getLastName()%>" /><br/>
                         <label for="deliveryDate">Delivery Date</label>
                         <input type="text" class="form-control " readonly name="deliveryDate" value="<%=crHeader.get(0).getDeliveryDate()%>"/><br/>
                         <label for="supplier">Subcontractor</label>
-                        <input type="text" class="form-control " readonly name="subcon" value="<%=crHeader.get(0).getSubconID()%>"/><br/>
+                        <input type="hidden" class="form-control " readonly name="subcon" value="<%=crHeader.get(0).getSubconID()%>"/><br/>
+                        <input type="text" class="form-control " readonly value="<%=crHeader.get(0).getCompanyName()%>"/><br/>
                         <label for="productionNumber">Production Number</label>
                         <input type="text" class="form-control " readonly name="productionNumber" value="<%=crHeader.get(0).getProductionNumber()%>"/><br/>
                         <label for="productName">Product Name</label>
@@ -148,6 +150,7 @@
                         <input type="text" class="form-control " readonly name="productType" value="<%=crHeader.get(0).getProductType()%>"/><br/>
                         <label for="color">Color</label>
                         <input type="text" class="form-control " readonly name="color" value="<%=crHeader.get(0).getProductColor()%>"/><br/>
+                      
                     </div>
                 </div>
                 <!--End Header-->

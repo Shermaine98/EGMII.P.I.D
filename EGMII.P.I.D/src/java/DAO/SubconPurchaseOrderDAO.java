@@ -126,16 +126,18 @@ public class SubconPurchaseOrderDAO {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
             ArrayList<SubconPurchaseOrderView> poList = new ArrayList<>();
-            String query = "SELECT DISTINCT PO.poNumber,PO.productionNumber, S.companyName,\n"
-                    + "PO.dateMade, PO.deliveryDate, PO.preparedBy, P.productName, P.productType\n"
-                    + "FROM purchase_order PO\n"
-                    + "JOIN ref_subcon S\n"
-                    + "ON PO.subconID = S.subconID\n"
-                    + "JOIN cr_details CRD\n"
-                    + "ON PO.productionNumber = CRD.productionNumber\n"
-                    + "JOIN product P\n"
-                    + "ON P.itemCode = CRD.itemCode\n"
-                    + "WHERE PO.isSupplier = FALSE AND PO.approvedBy IS NULL;";
+            String query = "SELECT DISTINCT PO.poNumber,PO.productionNumber, S.companyName, PO.preparedBy, CONCAT(prep.firstName, \" \", prep.lastName) as 'preparedByName',\n"
+                    + " PO.dateMade, PO.deliveryDate, PO.preparedBy, P.productName, P.productType\n"
+                    + " FROM purchase_order PO\n"
+                    + " JOIN ref_subcon S\n"
+                    + " ON PO.subconID = S.subconID\n"
+                    + " JOIN cr_details CRD\n"
+                    + " ON PO.productionNumber = CRD.productionNumber\n"
+                    + " JOIN product P\n"
+                    + " ON P.itemCode = CRD.itemCode\n"
+                    + " JOIN USER prep \n"
+                    + "ON PO.preparedBy = prep.employeeID \n"
+                    + " WHERE PO.isSupplier = FALSE AND PO.approvedBy IS NULL;";
             PreparedStatement ps = conn.prepareStatement(query);
 
             ResultSet rs = ps.executeQuery();
@@ -149,6 +151,7 @@ public class SubconPurchaseOrderDAO {
                 po.setCompanyName(rs.getString("companyName"));
                 po.setProductName(rs.getString("productName"));
                 po.setProductType(rs.getString("productType"));
+                po.setPreparedByName(rs.getString("preparedByName"));
                 poList.add(po);
             }
             ps.close();
@@ -168,15 +171,20 @@ public class SubconPurchaseOrderDAO {
             Connection conn = myFactory.getConnection();
             ArrayList<SubconPurchaseOrderView> poList = new ArrayList<>();
             String query = "SELECT DISTINCT PO.poNumber,PO.productionNumber, S.companyName,\n"
-                    + "PO.dateMade, PO.deliveryDate, PO.preparedBy, P.productName, P.productType\n"
-                    + "FROM purchase_order PO\n"
-                    + "JOIN ref_subcon S\n"
-                    + "ON PO.subconID = S.subconID\n"
-                    + "JOIN cr_details CRD\n"
-                    + "ON PO.productionNumber = CRD.productionNumber\n"
-                    + "JOIN product P\n"
-                    + "ON P.itemCode = CRD.itemCode\n"
-                    + "WHERE PO.isSupplier = FALSE AND PO.approvedBy IS NOT NULL AND PO.isCompleted = FALSE;";
+                    + "   PO.dateMade, PO.deliveryDate, PO.approvedBy, P.productName, P.productType, CONCAT(appr.firstName, \" \" , appr.lastName) as 'approvedByName',\n"
+                    + " PO.preparedBy, CONCAT(prep.firstName,\" \", prep.lastName) as 'preparedByName'\n"
+                    + "   FROM purchase_order PO\n"
+                    + "   JOIN ref_subcon S\n"
+                    + "   ON PO.subconID = S.subconID\n"
+                    + "   JOIN cr_details CRD\n"
+                    + "   ON PO.productionNumber = CRD.productionNumber\n"
+                    + "   JOIN product P\n"
+                    + "   ON P.itemCode = CRD.itemCode\n"
+                    + "   JOIN USER prep \n"
+                    + "   ON PO.preparedBy = prep.employeeID \n"
+                    + "   JOIN USER appr \n"
+                    + "   ON PO.approvedBy = appr.employeeID \n"
+                    + "   WHERE PO.isSupplier = FALSE AND PO.approvedBy IS NOT NULL AND PO.isCompleted = FALSE;";
             PreparedStatement ps = conn.prepareStatement(query);
 
             ResultSet rs = ps.executeQuery();
@@ -186,6 +194,8 @@ public class SubconPurchaseOrderDAO {
                 po.setProductionNumber(rs.getInt("productionNumber"));
                 po.setPreparedBy(rs.getInt("preparedBy"));
                 po.setDateMade(rs.getDate("dateMade"));
+                po.setApprovedByName(rs.getString("approvedByName"));
+                po.setPreparedByName(rs.getString("preparedByName"));
                 po.setDeliveryDate(rs.getDate("deliveryDate"));
                 po.setCompanyName(rs.getString("companyName"));
                 po.setProductName(rs.getString("productName"));
@@ -288,20 +298,24 @@ public class SubconPurchaseOrderDAO {
             ArrayList<SubconPurchaseOrderView> poList = new ArrayList<>();
 
             String query = "SELECT PO.poNumber, \n"
-                    + "PO.isSupplier, PO.subconID, S.companyName, CR.productionNumber, \n"
-                    + "PO.dateMade, PO.deliveryDate, PO.approvedBy, PO.preparedBy, \n"
-                    + "CRD.itemCode, P.productName, P.productType, P.color, P.size, \n"
-                    + " CRD.qty, CRD.deliveredQty \n"
-                    + "FROM ref_subcon S\n"
-                    + "JOIN purchase_order PO\n"
-                    + "ON PO.subconID = S.subconID\n"
-                    + "JOIN consumption_report CR \n"
-                    + "ON CR.productionNumber = PO.productionNumber\n"
-                    + "JOIN cr_details CRD \n"
-                    + "ON CR.productionNumber = CRD.productionNumber\n"
-                    + "JOIN product P\n"
-                    + "ON CRD.itemCode = P.itemCode\n"
-                    + "WHERE PO.poNumber = ? AND PO.isSupplier = FALSE;";
+                    + " PO.isSupplier, PO.subconID, S.companyName, CR.productionNumber, \n"
+                    + " PO.dateMade, PO.deliveryDate,\n"
+                    + " CRD.itemCode, P.productName, P.productType, P.color, P.size, \n"
+                    + "  CRD.qty, CRD.deliveredQty, PO.approvedBy, CONCAT(appr.firstName, \" \" , appr.lastName) as 'approvedByName',  PO.preparedBy, CONCAT(prep.firstName,\" \", prep.lastName) as 'preparedByName'\n"
+                    + " FROM ref_subcon S\n"
+                    + " JOIN purchase_order PO\n"
+                    + " ON PO.subconID = S.subconID\n"
+                    + " JOIN consumption_report CR \n"
+                    + " ON CR.productionNumber = PO.productionNumber\n"
+                    + " JOIN cr_details CRD \n"
+                    + " ON CR.productionNumber = CRD.productionNumber\n"
+                    + " JOIN product P\n"
+                    + " ON CRD.itemCode = P.itemCode\n"
+                    + " JOIN USER prep \n"
+                    + "ON PO.preparedBy = prep.employeeID"
+                    + "JOIN USER appr \n"
+                    + "ON PO.approvedBy = appr.employeeID \n"
+                    + " WHERE PO.poNumber = ? AND PO.isSupplier = FALSE;";
 
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1, poNumber);
@@ -315,7 +329,7 @@ public class SubconPurchaseOrderDAO {
                 po.setProductionNumber(rs.getInt("productionNumber"));
                 po.setDateMade(rs.getDate("dateMade"));
                 po.setDeliveryDate(rs.getDate("deliveryDate"));
-                po.setApprovedBy(rs.getInt("approvedBy"));
+                po.setPreparedByName(rs.getString("preparedByName"));
                 po.setPreparedBy(rs.getInt("preparedBy"));
                 po.setItemCode(rs.getInt("itemCode"));
                 po.setProductName(rs.getString("productName"));
@@ -372,8 +386,8 @@ public class SubconPurchaseOrderDAO {
             ArrayList<SubconPurchaseOrderView> poList = new ArrayList<>();
 
             String query = "SELECT PO.poNumber,\n"
-                    + "PO.subconID, S.companyName, \n"
-                    + "CR.productionNumber, PO.deliveryDate, PO.preparedBy,\n"
+                    + "PO.subconID, S.companyName,\n"
+                    + "CR.productionNumber, PO.deliveryDate, PO.preparedBy, CONCAT(prep.firstName,\" \" , prep.lastName) as 'preparedByName',\n"
                     + "CRD.itemCode, P.productName, P.productType, P.color\n"
                     + "FROM ref_subcon S\n"
                     + "JOIN purchase_order PO\n"
@@ -384,6 +398,8 @@ public class SubconPurchaseOrderDAO {
                     + "ON CR.productionNumber = CRD.productionNumber\n"
                     + "JOIN product P\n"
                     + "ON CRD.itemCode = P.itemCode\n"
+                    + " JOIN USER prep \n"
+                    + "ON PO.preparedBy = prep.employeeID \n"
                     + "WHERE PO.poNumber = ? AND PO.isSupplier = FALSE;";
 
             PreparedStatement ps = conn.prepareStatement(query);
@@ -398,6 +414,7 @@ public class SubconPurchaseOrderDAO {
                 po.setDeliveryDate(rs.getDate("deliveryDate"));
                 po.setPreparedBy(rs.getInt("preparedBy"));
                 po.setItemCode(rs.getInt("itemCode"));
+                po.setPreparedByName(rs.getString("preparedByName"));
                 po.setProductName(rs.getString("productName"));
                 po.setProductType(rs.getString("productType"));
                 po.setProductColor(rs.getString("color"));
