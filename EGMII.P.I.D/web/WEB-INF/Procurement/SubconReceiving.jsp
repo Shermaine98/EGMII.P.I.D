@@ -80,7 +80,7 @@
             <%            ArrayList<SubconPurchaseOrderView> ConsumptionReportView = (ArrayList<SubconPurchaseOrderView>) request.getAttribute("SubconPOApproved");
             %>
             <div class="container" align="center">
-                <div style="width:70%;">
+                <div style="width:80%;">
                     <table id="dataTable" class="table table-bordered table-hover">
                         <thead>
                             <tr>
@@ -140,7 +140,7 @@
                         <label for="deliveryDate">Delivery Date</label>
                         <input type="text" class="form-control " readonly name="deliveryDate" value="<%=crHeader.get(0).getDeliveryDate()%>"/><br/>
                         <label for="supplier">Subcontractor</label>
-                        <input type="hidden" class="form-control " readonly name="subcon" value="<%=crHeader.get(0).getSubconID()%>"/><br/>
+                        <input type="hidden" class="form-control " name="subcon" value="<%=crHeader.get(0).getSubconID()%>"/><br/>
                         <input type="text" class="form-control " readonly value="<%=crHeader.get(0).getCompanyName()%>"/><br/>
                         <label for="productionNumber">Production Number</label>
                         <input type="text" class="form-control " readonly name="productionNumber" value="<%=crHeader.get(0).getProductionNumber()%>"/><br/>
@@ -182,8 +182,8 @@
                             %>
                             <tr class="trclass">
                                 <td><input name="sizeType" class="transparentBg readonlyWhite inputSize" value="<%=productSizes.get(i).getSize()%>" readonly/></td>
-                                <td class="volumeQty"><%=productSizes.get(i).getVolumeQty()%><input type="hidden" value="<%=productSizes.get(i).getVolumeQty()%>" id="volQty[]" name ="volQty" readonly class="transparentBg" /></td>
-                                <td class="deliveredQty"><%=delQty.get(i).getDeliveredQty()%><input type="hidden" value="<%=delQty.get(i).getDeliveredQty()%>" id="deliveredQty[]" name ="deliveredQty" readonly class="transparentBg" /></td>
+                                <td class="volumeQty"><%=productSizes.get(i).getVolumeQty()%><input type="hidden" value="<%=productSizes.get(i).getVolumeQty()%>" id="volQty[]" name ="volQty" class="transparentBg" /></td>
+                                <td class="deliveredQty"><%=delQty.get(i).getDeliveredQty()%><input type="hidden" value="<%=delQty.get(i).getDeliveredQty()%>" id="deliveredQty[]" name ="deliveredQty" class="transparentBg" /></td>
                                 <td><input type="number" name="receivedqty" id="receivedqty[]" class="numericControl inputSize" min="0" value="0" required title="Please Input getDeliveredQty()%>Received Quantity." /></td>
                                 <input type="text" class="hidden" readonly name="itemCode" value="<%=delQty.get(i).getItemCode()%>"/>
                             </tr>
