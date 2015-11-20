@@ -47,7 +47,8 @@
         </script>
     </head>
     <body>
-        <%            ArrayList<SubconPurchaseOrderView> ConsumptionReportView = (ArrayList<SubconPurchaseOrderView>) request.getAttribute("PurchaseOrderList");
+        <%            int poNumber = 0;
+            ArrayList<SubconPurchaseOrderView> ConsumptionReportView = (ArrayList<SubconPurchaseOrderView>) request.getAttribute("PurchaseOrderList");
         %>
         <form id="form1" method="post" action="SetApprovalSubconPOServlet">
             <div class="container" align="center">
@@ -65,7 +66,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <%for (int i = 0; i < ConsumptionReportView.size(); i++) {%>
+                            <%for (int i = 0; i < ConsumptionReportView.size(); i++) {
+                                    poNumber = ConsumptionReportView.get(i).getPoNumber();%>
                             <tr class="SubconPO">  
                                 <td class="poNumber"><%=ConsumptionReportView.get(i).getPoNumber()%><input type="text" class="transparentBg"/></td>
                                 <td><input type="text" name="productionNumber" class="transparentBg" value="<%=ConsumptionReportView.get(i).getProductionNumber()%>" readonly /></td>
@@ -91,7 +93,7 @@
                 ArrayList<SubconPurchaseOrderView> crHeader = (ArrayList<SubconPurchaseOrderView>) request.getAttribute("CRHeader");
 
         %>
-        <form method="POST" action="ApproveRejectSubconPOServlet">
+        <form method="POST" action="ApproveRejectSubconPOServlet?action=approve">
             <div class="container" align="center">
                 <!--view header-->
                 <div class="panel panel-default col-md-3">
@@ -157,6 +159,12 @@
                 <!--Buttons-->
                 <input type="submit" value="Approve" class="btn btn-danger" />
                 <button class="btn btn-primary">Reject</button><br/><br/>
+            </div>
+        </form>
+        <form method="POST" action="ApproveRejectSubconPOServlet?action=reject">
+            <div align="center">
+                <input type="hidden" name="rPoNumber" value="<%=poNumber%>" /><br/>
+                <button class="btn btn-primary">Reject</button>
             </div>
         </form>
         <div align="center"> 

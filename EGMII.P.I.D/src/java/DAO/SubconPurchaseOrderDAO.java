@@ -93,7 +93,6 @@ public class SubconPurchaseOrderDAO {
      * @return
      * @throws SQLException
      */
-
     public Integer getSubconPurchaseOrderNumber() throws SQLException {
         DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
         Connection conn = myFactory.getConnection();
@@ -122,22 +121,21 @@ public class SubconPurchaseOrderDAO {
      *
      * @return
      */
-
     public ArrayList<SubconPurchaseOrderView> GetAllSubconPurchaseOrderForApproval() {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
             ArrayList<SubconPurchaseOrderView> poList = new ArrayList<>();
-            String query = "SELECT DISTINCT PO.poNumber,PO.productionNumber, S.companyName,\n" +
-                "PO.dateMade, PO.deliveryDate, PO.preparedBy, P.productName, P.productType\n" +
-                "FROM purchase_order PO\n" +
-                "JOIN ref_subcon S\n" +
-                "ON PO.subconID = S.subconID\n" +
-                "JOIN cr_details CRD\n" +
-                "ON PO.productionNumber = CRD.productionNumber\n" +
-                "JOIN product P\n" +
-                "ON P.itemCode = CRD.itemCode\n" +
-                "WHERE PO.isSupplier = FALSE AND PO.approvedBy IS NULL;";
+            String query = "SELECT DISTINCT PO.poNumber,PO.productionNumber, S.companyName,\n"
+                    + "PO.dateMade, PO.deliveryDate, PO.preparedBy, P.productName, P.productType\n"
+                    + "FROM purchase_order PO\n"
+                    + "JOIN ref_subcon S\n"
+                    + "ON PO.subconID = S.subconID\n"
+                    + "JOIN cr_details CRD\n"
+                    + "ON PO.productionNumber = CRD.productionNumber\n"
+                    + "JOIN product P\n"
+                    + "ON P.itemCode = CRD.itemCode\n"
+                    + "WHERE PO.isSupplier = FALSE AND PO.approvedBy IS NULL;";
             PreparedStatement ps = conn.prepareStatement(query);
 
             ResultSet rs = ps.executeQuery();
@@ -163,22 +161,22 @@ public class SubconPurchaseOrderDAO {
         return null;
 
     }
-    
+
     public ArrayList<SubconPurchaseOrderView> GetAllSubconPurchaseOrderApproved() {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
             ArrayList<SubconPurchaseOrderView> poList = new ArrayList<>();
-            String query = "SELECT DISTINCT PO.poNumber,PO.productionNumber, S.companyName,\n" +
-                "PO.dateMade, PO.deliveryDate, PO.preparedBy, P.productName, P.productType\n" +
-                "FROM purchase_order PO\n" +
-                "JOIN ref_subcon S\n" +
-                "ON PO.subconID = S.subconID\n" +
-                "JOIN cr_details CRD\n" +
-                "ON PO.productionNumber = CRD.productionNumber\n" +
-                "JOIN product P\n" +
-                "ON P.itemCode = CRD.itemCode\n" +
-                "WHERE PO.isSupplier = FALSE AND PO.approvedBy IS NOT NULL AND PO.isCompleted = FALSE;";
+            String query = "SELECT DISTINCT PO.poNumber,PO.productionNumber, S.companyName,\n"
+                    + "PO.dateMade, PO.deliveryDate, PO.preparedBy, P.productName, P.productType\n"
+                    + "FROM purchase_order PO\n"
+                    + "JOIN ref_subcon S\n"
+                    + "ON PO.subconID = S.subconID\n"
+                    + "JOIN cr_details CRD\n"
+                    + "ON PO.productionNumber = CRD.productionNumber\n"
+                    + "JOIN product P\n"
+                    + "ON P.itemCode = CRD.itemCode\n"
+                    + "WHERE PO.isSupplier = FALSE AND PO.approvedBy IS NOT NULL AND PO.isCompleted = FALSE;";
             PreparedStatement ps = conn.prepareStatement(query);
 
             ResultSet rs = ps.executeQuery();
@@ -204,7 +202,7 @@ public class SubconPurchaseOrderDAO {
         return null;
 
     }
-    
+
     /**
      *
      * @param newSupplierPurchaseOrder
@@ -234,11 +232,10 @@ public class SubconPurchaseOrderDAO {
         }
         return false;
     }
-    
+
     /**
      *
-     * @return
-     * @throws ParseException
+     * @return @throws ParseException
      */
     public ArrayList<SubconPurchaseOrderView> GetSupplierPurchaseOrderForReceiving() throws ParseException {
 
@@ -278,7 +275,7 @@ public class SubconPurchaseOrderDAO {
         }
         return null;
     }
-    
+
     /**
      *
      * @param poNumber
@@ -290,21 +287,21 @@ public class SubconPurchaseOrderDAO {
             Connection conn = myFactory.getConnection();
             ArrayList<SubconPurchaseOrderView> poList = new ArrayList<>();
 
-            String query = "SELECT PO.poNumber, \n" +
-                "PO.isSupplier, PO.subconID, S.companyName, CR.productionNumber, \n" +
-                "PO.dateMade, PO.deliveryDate, PO.approvedBy, PO.preparedBy, \n" +
-                "CRD.itemCode, P.productName, P.productType, P.color, P.size, \n" +
-                " CRD.qty, CRD.deliveredQty \n" +
-                "FROM ref_subcon S\n" +
-                "JOIN purchase_order PO\n" +
-                "ON PO.subconID = S.subconID\n" +
-                "JOIN consumption_report CR \n" +
-                "ON CR.productionNumber = PO.productionNumber\n" +
-                "JOIN cr_details CRD \n" +
-                "ON CR.productionNumber = CRD.productionNumber\n" +
-                "JOIN product P\n" +
-                "ON CRD.itemCode = P.itemCode\n" +
-                "WHERE PO.poNumber = ? AND PO.isSupplier = FALSE;";
+            String query = "SELECT PO.poNumber, \n"
+                    + "PO.isSupplier, PO.subconID, S.companyName, CR.productionNumber, \n"
+                    + "PO.dateMade, PO.deliveryDate, PO.approvedBy, PO.preparedBy, \n"
+                    + "CRD.itemCode, P.productName, P.productType, P.color, P.size, \n"
+                    + " CRD.qty, CRD.deliveredQty \n"
+                    + "FROM ref_subcon S\n"
+                    + "JOIN purchase_order PO\n"
+                    + "ON PO.subconID = S.subconID\n"
+                    + "JOIN consumption_report CR \n"
+                    + "ON CR.productionNumber = PO.productionNumber\n"
+                    + "JOIN cr_details CRD \n"
+                    + "ON CR.productionNumber = CRD.productionNumber\n"
+                    + "JOIN product P\n"
+                    + "ON CRD.itemCode = P.itemCode\n"
+                    + "WHERE PO.poNumber = ? AND PO.isSupplier = FALSE;";
 
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1, poNumber);
@@ -337,7 +334,7 @@ public class SubconPurchaseOrderDAO {
         }
         return null;
     }
-    
+
     /**
      *
      * @param x
@@ -367,26 +364,27 @@ public class SubconPurchaseOrderDAO {
         }
         return false;
     }
+
     public ArrayList<SubconPurchaseOrderView> getSubconHeader(int poNumber) {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
             ArrayList<SubconPurchaseOrderView> poList = new ArrayList<>();
 
-            String query = "SELECT PO.poNumber,\n" +
-                "PO.subconID, S.companyName, \n" +
-                "CR.productionNumber, PO.deliveryDate, PO.preparedBy,\n" +
-                "CRD.itemCode, P.productName, P.productType, P.color\n" +
-                "FROM ref_subcon S\n" +
-                "JOIN purchase_order PO\n" +
-                "ON PO.subconID = S.subconID\n" +
-                "JOIN consumption_report CR\n" +
-                "ON CR.productionNumber = PO.productionNumber\n" +
-                "JOIN cr_details CRD\n" +
-                "ON CR.productionNumber = CRD.productionNumber\n" +
-                "JOIN product P\n" +
-                "ON CRD.itemCode = P.itemCode\n" +
-                "WHERE PO.poNumber = ? AND PO.isSupplier = FALSE;";
+            String query = "SELECT PO.poNumber,\n"
+                    + "PO.subconID, S.companyName, \n"
+                    + "CR.productionNumber, PO.deliveryDate, PO.preparedBy,\n"
+                    + "CRD.itemCode, P.productName, P.productType, P.color\n"
+                    + "FROM ref_subcon S\n"
+                    + "JOIN purchase_order PO\n"
+                    + "ON PO.subconID = S.subconID\n"
+                    + "JOIN consumption_report CR\n"
+                    + "ON CR.productionNumber = PO.productionNumber\n"
+                    + "JOIN cr_details CRD\n"
+                    + "ON CR.productionNumber = CRD.productionNumber\n"
+                    + "JOIN product P\n"
+                    + "ON CRD.itemCode = P.itemCode\n"
+                    + "WHERE PO.poNumber = ? AND PO.isSupplier = FALSE;";
 
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1, poNumber);
@@ -413,6 +411,26 @@ public class SubconPurchaseOrderDAO {
         }
         return null;
     }
-    
-    
+
+    public boolean rejectSubconPurchaseOrder(int poNumber) {
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+
+            String query = "DELETE FROM purchase_order\n"
+                    + "WHERE poNumber = ?;";
+
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, poNumber);
+
+            int rows = pstmt.executeUpdate();
+            conn.close();
+            pstmt.close();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(SubconPurchaseOrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
 }

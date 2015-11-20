@@ -44,45 +44,67 @@ public class ApproveRejectSubconPOServlet extends BaseServlet {
         InventoryDAO inventoryDAO = new InventoryDAO();
         ArrayList<ConsumptionReportView> CRforRM = new ArrayList<>();
         ArrayList<ConsumptionReportView> CRforProduction = new ArrayList<>();
+        String action = request.getParameter("action");
 
-        int PoNumber = Integer.parseInt(request.getParameter("poNumber"));
-        int employeeNumber = Integer.parseInt(request.getParameter("employeeNumber"));
-        int productionNumber = Integer.parseInt(request.getParameter("productionNumber"));
+        if (action.equalsIgnoreCase("approve")) {
+            int PoNumber = Integer.parseInt(request.getParameter("poNumber"));
+            int employeeNumber = Integer.parseInt(request.getParameter("employeeNumber"));
+            int productionNumber = Integer.parseInt(request.getParameter("productionNumber"));
 
-        purchaseOrder.setApprovedBy(employeeNumber);
-        purchaseOrder.setPoNumber(PoNumber);
-        boolean x = false;
+            purchaseOrder.setApprovedBy(employeeNumber);
+            purchaseOrder.setPoNumber(PoNumber);
+            boolean x = false;
 
-        try {
-            CRforRM = DAO.getCRTotalForUpdate(productionNumber);
-        } catch (ParseException ex) {
-            Logger.getLogger(ApproveRejectSubconPOServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        try {
-            if (PurchaseOrderDAO.updateApproval(purchaseOrder) && DAO.UpdateConsumptionStatus(productionNumber, "ordered")) {
-                x = true;
-                System.out.println("passed approval");
-                for (int i = 0; i < CRforRM.size(); i++) {
-                    x = true;
-                    RawMaterialsInventoryView rm = new RawMaterialsInventoryView();
-                    rm = inventoryDAO.GetAAndPInventorySpecific(CRforRM.get(i).getItemCode());
-                    inventoryDAO.updateInventory(rm.getQty() - CRforRM.get(i).getTotalQty(), rm.getItemCode());
-                }
+            try {
+                CRforRM = DAO.getCRTotalForUpdate(productionNumber);
+            } catch (ParseException ex) {
+                Logger.getLogger(ApproveRejectSubconPOServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (ParseException ex) {
-            Logger.getLogger(ApproveRejectSubconPOServlet.class.getName()).log(Level.SEVERE, null, ex);
+
+            try {
+                if (PurchaseOrderDAO.updateApproval(purchaseOrder) && DAO.UpdateConsumptionStatus(productionNumber, "ordered")) {
+                    x = true;
+                    System.out.println("passed approval");
+                    for (int i = 0; i < CRforRM.size(); i++) {
+                        x = true;
+                        RawMaterialsInventoryView rm = new RawMaterialsInventoryView();
+                        rm = inventoryDAO.GetAAndPInventorySpecific(CRforRM.get(i).getItemCode());
+                        inventoryDAO.updateInventory(rm.getQty() - CRforRM.get(i).getTotalQty(), rm.getItemCode());
+                    }
+                }
+            } catch (ParseException ex) {
+                Logger.getLogger(ApproveRejectSubconPOServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            if (x) {
+                ServletContext context = getServletContext();
+                RequestDispatcher rd = context.getRequestDispatcher("/ApproveSubconPurchaseOrderServlet");
+                request.setAttribute("Approval", "Approved");
+                rd.forward(request, response);
+            } else {
+                ServletContext context = getServletContext();
+                RequestDispatcher rd = context.getRequestDispatcher("/Error.jsp");
+                request.setAttribute("Error", "Error");
+                rd.forward(request, response);
+            }
+
+        } else if (action.equalsIgnoreCase("reject")) {
+            int PoNumber = Integer.parseInt(request.getParameter("rPoNumber"));
+            boolean x = PurchaseOrderDAO.rejectSubconPurchaseOrder(PoNumber);
+
+            if (x) {
+                ServletContext context = getServletContext();
+                RequestDispatcher rd = context.getRequestDispatcher("/ApproveSubconPurchaseOrderServlet");
+                request.setAttribute("Approval", "Approved");
+                rd.forward(request, response);
+            } else {
+                ServletContext context = getServletContext();
+                RequestDispatcher rd = context.getRequestDispatcher("/Error.jsp");
+                request.setAttribute("Error", "Error");
+                rd.forward(request, response);
+            }
+
         }
 
-        if (x) {
-            ServletContext context = getServletContext();
-            RequestDispatcher rd = context.getRequestDispatcher("/ApproveSubconPurchaseOrderServlet");
-            request.setAttribute("Approval", "Approved");
-            rd.forward(request, response);
-        } else {
-            ServletContext context = getServletContext();
-            RequestDispatcher rd = context.getRequestDispatcher("/Accounts/Homepage.jsp");
-            rd.forward(request, response);
-        }
     }
 }
