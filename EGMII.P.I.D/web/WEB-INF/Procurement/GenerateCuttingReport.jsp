@@ -50,7 +50,7 @@
             <% String data = (String) request.getAttribute("data");
                 ArrayList<ConsumptionReportView> ConsumptionReportView = (ArrayList<ConsumptionReportView>) request.getAttribute("CuttingReport");%>
             <div class="container" align="center">
-                <h2>Consumption Report Table</h2><br/>
+                <h2>Supplier Purchase Order</h2><br/>
                 <div style="width:60%;">
                     <table id="dataTable" class="table table-bordered table-hover">
                         <thead>
@@ -97,10 +97,10 @@
                     <label>Production Number</label>
                     <%=ConsumptionReportSpecific.get(0).getProductionNumber()%><br/><br/>
                     <label>Product</label>
-                    <%=ConsumptionReportSpecific.get(0).getProductName() %><br/><br/>
+                    <%=ConsumptionReportSpecific.get(0).getProductName() %>
                     <label>Cutting Master</label>
-                    <input type="text" class="transparentBg inputSize" name="size"  value = " <%= user.getEmployeeNumber()%>"  readonly/><br/>
-                    <input type="text" class="transparentBg inputSize" name="size"  value = " <%= user.getFirstName()%> <%= user.getLastName()%>"  readonly/><br/>
+                    <input type="hidden" class="transparentBg" name="size"  value = " <%= user.getEmployeeNumber()%>"  /><br/>
+                    <input type="text" class="transparentBg" name="size"  value = " <%= user.getFirstName()%> <%= user.getLastName()%>"  readonly/><br/>
                     
                 </div>
             </div>
