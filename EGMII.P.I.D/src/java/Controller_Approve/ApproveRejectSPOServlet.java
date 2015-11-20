@@ -36,26 +36,45 @@ public class ApproveRejectSPOServlet extends BaseServlet {
         SupplierPurchaseOrderDAO PurchaseOrderDAO = new SupplierPurchaseOrderDAO();
         PurchaseOrder purchaseOrder = new PurchaseOrder();
         int PoNumber = Integer.parseInt(request.getParameter("poNumber"));
-        int employeeNumber = Integer.parseInt(request.getParameter("employeeNumber"));
-        purchaseOrder.setApprovedBy(employeeNumber);
-        purchaseOrder.setPoNumber(PoNumber);
-        boolean x = false;
-        try {
-            x = PurchaseOrderDAO.updateApproval(purchaseOrder);
-        } catch (ParseException ex) {
-            Logger.getLogger(ApproveRejectSPOServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        if (x) {
-            ServletContext context = getServletContext();
-            RequestDispatcher rd = context.getRequestDispatcher("/ApproveSupplierPurchaseOrderServlet");
-            request.setAttribute("Approval", "Approved");
-            rd.forward(request, response);
-        } else {
-            ServletContext context = getServletContext();
-            RequestDispatcher rd = context.getRequestDispatcher("/Error.jsp");
-            request.setAttribute("Error", "Error");
-            rd.forward(request, response);
-        }
+        String action = request.getParameter("action");
 
+        if (action.equals("approve")) {
+            int employeeNumber = Integer.parseInt(request.getParameter("employeeNumber"));
+            purchaseOrder.setApprovedBy(employeeNumber);
+            purchaseOrder.setPoNumber(PoNumber);
+            boolean x = false;
+            try {
+                x = PurchaseOrderDAO.updateApproval(purchaseOrder);
+            } catch (ParseException ex) {
+                Logger.getLogger(ApproveRejectSPOServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if (x) {
+                ServletContext context = getServletContext();
+                RequestDispatcher rd = context.getRequestDispatcher("/ApproveSupplierPurchaseOrderServlet");
+                request.setAttribute("Approval", "Approved");
+                rd.forward(request, response);
+            } else {
+                ServletContext context = getServletContext();
+                RequestDispatcher rd = context.getRequestDispatcher("/Error.jsp");
+                request.setAttribute("Error", "Error");
+                rd.forward(request, response);
+            }
+        }
+        else if(action.equals("reject")){
+            boolean x = PurchaseOrderDAO.rejectSupplierDetails(PoNumber);
+            boolean y = PurchaseOrderDAO.rejectSupplierPurchaseOrder(PoNumber);
+            
+            if (x && y) {
+                ServletContext context = getServletContext();
+                RequestDispatcher rd = context.getRequestDispatcher("/ApproveSupplierPurchaseOrderServlet");
+                request.setAttribute("Rejected", "Rejected");
+                rd.forward(request, response);
+            } else {
+                ServletContext context = getServletContext();
+                RequestDispatcher rd = context.getRequestDispatcher("/Error.jsp");
+                request.setAttribute("Error", "Error");
+                rd.forward(request, response);
+            }
+        }
     }
 }

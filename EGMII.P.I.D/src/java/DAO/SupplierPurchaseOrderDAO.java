@@ -482,5 +482,47 @@ public class SupplierPurchaseOrderDAO {
         }
         return false;
     }
+    
+    public boolean rejectSupplierDetails(int poNumber) {
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+
+            String query = "DELETE FROM purchase_order_details\n"
+                    + "WHERE poNumber = ?;";
+
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, poNumber);
+
+            int rows = pstmt.executeUpdate();
+            conn.close();
+            pstmt.close();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(SubconPurchaseOrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    
+    public boolean rejectSupplierPurchaseOrder(int poNumber) {
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+
+            String query = "DELETE FROM purchase_order\n"
+                    + "WHERE poNumber = ?;";
+
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, poNumber);
+
+            int rows = pstmt.executeUpdate();
+            conn.close();
+            pstmt.close();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(SubconPurchaseOrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
 
 }

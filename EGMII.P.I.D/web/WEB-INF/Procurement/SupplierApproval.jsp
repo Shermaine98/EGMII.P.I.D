@@ -63,7 +63,7 @@
         <form id="form1" method="POST" action="SetApprovalSupplierPO">
             <div class="container" align="center">
                 <h2>Approve Supplier Purchase Order</h2><br/>
-                <div style="width: 70%">
+                <div style="width: 80%">
                     <table id="dataTable" class="table table-bordered table-hover">
                         <thead>
                             <tr>
@@ -99,7 +99,7 @@
                 ArrayList<SupplierPurchaseOrderView> PurchaseOrderSpecific = (ArrayList<SupplierPurchaseOrderView>) request.getAttribute("SupplierPurchaseOrderSpecific");
                 if (!PurchaseOrderSpecific.isEmpty()) {
         %>
-        <form method="POST" action="ApproveRejectSPOServlet">
+        <form method="POST" action="ApproveRejectSPOServlet?action=approve">
             <div class="container" align="center">
                 <div class="panel panel-default col-md-3">
                     <div class="panel-heading">
@@ -109,7 +109,7 @@
                         <label for="poNumber">Purchase Order No.</label>
                         <input type="text" class="form-control" readonly name="poNumber" value ="<%=PurchaseOrderSpecific.get(0).getPoNumber()%>" /><br/>
                         <label for="preparedBy">Prepared By</label>
-                        <input type="hidden" class="form-control" readonly value="<%=PurchaseOrderSpecific.get(0).getPreparedBy()%>"/><br/>
+                        <input type="hidden" class="form-control" value="<%=PurchaseOrderSpecific.get(0).getPreparedBy()%>"/><br/>
                         <input type="text" class="form-control" readonly name="preparedBy" value="<%=PurchaseOrderSpecific.get(0).getName()%>"/><br/>
                         <label for="dateMade">Date Made</label>
                         <input type="text" class="form-control " readonly name="dateMade" value="<%=PurchaseOrderSpecific.get(0).getDateMade()%>"/><br/>
@@ -156,13 +156,13 @@
                 <!--Buttons-->
                 <input type="submit" value="Approve" class="btn btn-default" />
             </div>
-        </form> 
-          <form method="POST" action="ApproveRejectSPOSerlvet?action=reject">
+        </form> <br/>
+        <form method="POST" action="ApproveRejectSPOServlet?action=reject">
             <div align="center">
-                <input type="hidden" name="poNumber" value="<%=PurchaseOrderSpecific.get(0).getPoNumber()%>" /><br/>
+                <input type="hidden" name="poNumber" value="<%=PurchaseOrderSpecific.get(0).getPoNumber()%>" />
                 <button class="btn btn-primary">Reject</button>
             </div>
-        </form>
+        </form><br/>
         <div align="center"> 
             <form>
                 <button class="btn btn-default">Print</button>
