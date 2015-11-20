@@ -62,19 +62,6 @@
 
                             </ul>
                         </li>
-
-                        <!--Inventory-->
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Inventory
-                                <span class="caret"></span></a> 
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">Inventory Report</a>
-                                    <ul class="dropdown-menu sub-menu">
-                                        <li><a href="/EGMII.P.I.D/ViewInventoryReportServlet?action=view">View Inventory Report</a></li>
-                                    </ul></li>
-                            </ul>
-                        </li>
-
                         <!--DELIVERY-->
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Delivery
