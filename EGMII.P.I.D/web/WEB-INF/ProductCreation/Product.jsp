@@ -104,7 +104,7 @@
                             <br/>
                             <!--Should be a different js-->
                             <div id="buttonsFabric" style="visibility: hidden">
-                                <input type="button" class="btn btn-primary" value="Delete Row" onclick="deleteRowF('thisTableFabric')" />
+                                <input type="button" class="btn btn-primary" value="Delete Row" onclick="" />
                                 <br/><br/>
                             </div>
                         </div>
