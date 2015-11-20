@@ -69,10 +69,10 @@
                 <tbody>
                     <%for (int i = 0; i < ConsumptionReportView.size(); i++) {%>
                     <tr class="SubconPO">  
-                        <td class="poNumber"><%=ConsumptionReportView.get(i).getPoNumber()%><input type="text" class="transparentBg" readonly /></td>
+                        <td class="poNumber"><%=ConsumptionReportView.get(i).getPoNumber()%><input type="text" class="transparentBg inputSize" readonly /></td>
                         <td><input type="text" name="productionNumber" class="transparentBg" value="<%=ConsumptionReportView.get(i).getProductionNumber()%>" readonly /></td>
                         <td><input type="text" class="transparentBg" value="<%=ConsumptionReportView.get(i).getProductName()%>" readonly /></td>
-                        <td><input type="text" class="transparentBg" value="<%=ConsumptionReportView.get(i).getProductType()%>" readonly /></td>
+                        <td><input type="text" class="transparentBg inputSize" value="<%=ConsumptionReportView.get(i).getProductType()%>" readonly /></td>
                         <td><input type="text" class="transparentBg" value="<%=ConsumptionReportView.get(i).getDateMade()%>" readonly /></td>
                         <td><input type="text" class="transparentBg" value="<%=ConsumptionReportView.get(i).getPreparedByName()%>" readonly /></td>
                         <td><input type="text" class="transparentBg" value="<%=ConsumptionReportView.get(i).getApprovedByName()%>" readonly /></td>
@@ -141,7 +141,7 @@
                             for (int i = 0; i < productSizes.size(); i++) {
 
                         %>
-                        <td><input type="number" readonly class="transparentBg inputSize" name="volumeQty" id="sizeS" value="<%=productSizes.get(i).getVolumeQty()%>" /></td>
+                        <td><input type="text" readonly class="transparentBg inputSize" name="volumeQty" id="sizeS" value="<%=productSizes.get(i).getVolumeQty()%>" /></td>
                             <%
                                     total += productSizes.get(i).getVolumeQty();
                                 }
