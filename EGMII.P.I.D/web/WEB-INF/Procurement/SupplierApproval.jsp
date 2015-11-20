@@ -20,6 +20,7 @@
         <link rel="stylesheet" type="text/css" href="bootstrap/css/jquery.dataTables.min.css">
         <script src="js/searchSupplier.js"></script>
         <script src="js/Validation.js"></script>
+        <script src="js/Print.js"></script>
         <title>Supplier Purchase Order Approval</title>
         <script>
             $(document).ready(function () {
@@ -77,10 +78,10 @@
                         <tbody>
                             <% for (int i = 0; i < PurchaseOrderList.size(); i++) {%>
                             <tr>
-                                <td class="poNumber"><%=PurchaseOrderList.get(i).getPoNumber()%><input type="text" class="transparentBg"/></td>
-                                <td><input type="text" class="transparentBg" value="<%=PurchaseOrderList.get(i).getCompanyName()%>"/></td>
-                                <td><input type="text" class="transparentBg" value="<%=PurchaseOrderList.get(i).getDateMade()%>"/></td>
-                                <td><input type="text" class="transparentBg" value="<%=PurchaseOrderList.get(i).getDeliveryDate()%>"/></td>
+                                <td class="poNumber"><%=PurchaseOrderList.get(i).getPoNumber()%><input type="text" readonly class="transparentBg"/></td>
+                                <td><input type="text" readonly class="transparentBg" value="<%=PurchaseOrderList.get(i).getCompanyName()%>"/></td>
+                                <td><input type="text" readonly class="transparentBg" value="<%=PurchaseOrderList.get(i).getDateMade()%>"/></td>
+                                <td><input type="text" readonly class="transparentBg" value="<%=PurchaseOrderList.get(i).getDeliveryDate()%>"/></td>
                                 <td><input type="hidden" class="transparentBg" value="<%=PurchaseOrderList.get(i).getPreparedBy()%>"/><input type="text" class="transparentBg" value="<%=PurchaseOrderList.get(i).getName()%>"/></td>
                             </tr>
                             <%
@@ -100,7 +101,7 @@
                 if (!PurchaseOrderSpecific.isEmpty()) {
         %>
         <form method="POST" action="ApproveRejectSPOServlet?action=approve">
-            <div class="container" align="center">
+            <div class="container" align="center" id="printableArea">
                 <div class="panel panel-default col-md-3">
                     <div class="panel-heading">
                         <h3 class="panel-title">Supplier Purchase Order</h3>
@@ -142,7 +143,7 @@
                                 <td><input type="text" class="transparentBg inputSize readonlyWhite" readonly value="<%=PurchaseOrderSpecific.get(x).getQty()%>" id="volumeQty[]"/></td>
                                 <td><input type="text" class="transparentBg inputSize readonlyWhite" readonly id="TQP[]"/></td>   
                             </tr>
-                            <% } %>
+                            <% }%>
                         </table>
 
                         <div id="run" class="form-inline pull-right">
@@ -154,7 +155,7 @@
             </div>
             <div id="buttonz" align="center">
                 <!--Buttons-->
-                <input type="submit" value="Approve" class="btn btn-default" />
+                <input type="submit" value="Approve" class="btn btn-danger" />
             </div>
         </form> <br/>
         <form method="POST" action="ApproveRejectSPOServlet?action=reject">
@@ -163,10 +164,8 @@
                 <button class="btn btn-primary">Reject</button>
             </div>
         </form><br/>
-        <div align="center"> 
-            <form>
-                <button class="btn btn-default">Print</button>
-            </form>
+        <div align="center">
+            <button class="btn btn-default" onclick="printDiv('printableArea')">Print</button>
         </div>
 
         <%
