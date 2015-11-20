@@ -23,6 +23,7 @@
         <link rel="stylesheet" type="text/css" href="bootstrap/css/jquery.dataTables.min.css">
         <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
         <script src="js/Validation.js"></script>
+        <script src="js/Print.js"></script>
         <title>Subcontractor Purchase Order Approval</title>
         <script>
             $(document).ready(function () {
@@ -74,7 +75,7 @@
                                 <td><input type="text" class="transparentBg" value="<%=ConsumptionReportView.get(i).getProductName()%>" readonly /></td>
                                 <td><input type="text" class="transparentBg" value="<%=ConsumptionReportView.get(i).getProductType()%>" readonly /></td>
                                 <td><input type="text" class="transparentBg" value="<%=ConsumptionReportView.get(i).getDateMade()%>" readonly /></td>
-                                <td><input type="hidden" class="transparentBg" value="<%=ConsumptionReportView.get(i).getPreparedBy()%>" readonly /><input type="text" class="transparentBg" value="<%=ConsumptionReportView.get(i).getPreparedByName()%>" readonly /></td>
+                                <td><input type="hidden" class="transparentBg" value="<%=ConsumptionReportView.get(i).getPreparedBy()%>" /><input type="text" class="transparentBg" value="<%=ConsumptionReportView.get(i).getPreparedByName()%>" readonly /></td>
 
                             </tr> 
                             <%}%>
@@ -94,7 +95,7 @@
 
         %>
         <form method="POST" action="ApproveRejectSubconPOServlet?action=approve">
-            <div class="container" align="center">
+            <div class="container" align="center" id="printableArea">
                 <!--view header-->
                 <div class="panel panel-default col-md-3">
                     <div class="panel-heading">
@@ -144,7 +145,7 @@
                                     for (int i = 0; i < productSizes.size(); i++) {
 
                                 %>
-                                <td><input type="number" readonly class="transparentBg inputSize" name="volumeQty" id="sizeS" value="<%=productSizes.get(i).getVolumeQty()%>" /></td>
+                                <td><input type="text" readonly class="transparentBg inputSize" name="volumeQty" id="sizeS" value="<%=productSizes.get(i).getVolumeQty()%>" /></td>
                                     <%
                                             total += productSizes.get(i).getVolumeQty();
                                         }
@@ -166,11 +167,9 @@
                 <input type="hidden" name="rPoNumber" value="<%=poNumber%>" /><br/>
                 <button class="btn btn-primary">Reject</button>
             </div>
-        </form>
+        </form><br/>
         <div align="center"> 
-            <form>
-                <button class="btn btn-default">Print</button>
-            </form>
+                <button class="btn btn-default" onclick="printDiv('printableArea')">Print</button>
         </div>
         <% }%>
     </body>
