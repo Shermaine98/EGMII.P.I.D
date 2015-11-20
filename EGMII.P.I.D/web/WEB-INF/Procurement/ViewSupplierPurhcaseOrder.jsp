@@ -34,27 +34,10 @@
                     document.getElementById("form1").submit();
                 }));
 
-                $(".trclass").each(function () {
-                    var $this = $(this);
-                    var unitPrice = parseFloat($this.find('[id="unitPrice\\[\\]"]').val());
-                    var volumeQty = parseFloat($this.find('[id="volumeQty\\[\\]"]').val());
-                    var STotal = unitPrice * volumeQty;
-                    $this.find('[id="TQP\\[\\]"]').val(STotal);
-                    SolveTotal();
-                });
-                return false;
+              
             });
 
-            function SolveTotal() {
-                var STotal = 0;
-                $(".trclass").each(function () {
-                    var $this = $(this);
-                    var TQP = parseFloat($this.find('[id="TQP\\[\\]"]').val());
-                    STotal = STotal + TQP;
-                    document.getElementById('total').value = STotal;
-                });
-                return false;
-            }
+            
         </script>
         <style>
             label{
@@ -114,6 +97,7 @@
         if (data.equalsIgnoreCase("SupplierPurchaseOrderSpecific")) {
             ArrayList<SupplierPurchaseOrderView> spo1 = (ArrayList<SupplierPurchaseOrderView>) request.getAttribute("SupplierPurchaseOrderSpecific");
             if (!spo1.isEmpty()) {
+                double total=0;
     %>
     <!--Consumption Report View From Encode of Bill of Materials-->
     <div id="printableArea">
@@ -158,14 +142,19 @@
                             <td><%=spo1.get(x).getItemName()%></td>
                             <td><input type="text" class="transparentBg inputSize readonlyWhite" readonly value ="<%=spo1.get(x).getUnitPrice()%>" id="unitPrice[]"/></td>
                             <td><input type="text" class="transparentBg inputSize readonlyWhite" readonly value="<%=spo1.get(x).getQty()%>" id="volumeQty[]"/></td>
-                            <td><input type="text" class="transparentBg inputSize readonlyWhite" readonly id="TQP[]"/></td>   
+                            <td><input type="text" class="transparentBg inputSize readonlyWhite" value="<%=spo1.get(x).getQty() * spo1.get(x).getUnitPrice()%>" readonly id="TQP[]"/>
+                            <% 
+                            
+                                total = spo1.get(x).getQty() * spo1.get(x).getUnitPrice(); 
+                            
+                            %>
                         </tr>
                         <% } %>
                     </table>
 
                     <div id="run" class="form-inline pull-right">
                         <label for="total">Total:</label>
-                        <input type="number" class="form-control readonlyWhite" name="total" id="total" readonly /> 
+                        <input type="number" class="form-control readonlyWhite" name="total" value="<%=total%>" id="total" readonly /> 
                     </div>
                 </div>
             </div>
