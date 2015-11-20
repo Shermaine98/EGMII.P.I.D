@@ -155,9 +155,14 @@
             <div id="buttonz" align="center">
                 <!--Buttons-->
                 <input type="submit" value="Approve" class="btn btn-default" />
-                <button class="btn btn-primary">Reject</button><br/><br/>
             </div>
         </form> 
+          <form method="POST" action="ApproveRejectSPOSerlvet?action=reject">
+            <div align="center">
+                <input type="hidden" name="poNumber" value="<%=PurchaseOrderSpecific.get(0).getPoNumber()%>" /><br/>
+                <button class="btn btn-primary">Reject</button>
+            </div>
+        </form>
         <div align="center"> 
             <form>
                 <button class="btn btn-default">Print</button>

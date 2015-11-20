@@ -40,23 +40,23 @@ public class InventoryReportDAO {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(""
-                    + "SELECT IR.reportID ,L.branchName,\n" +
-                    "IR.promo, IR.dateMade, \n" +
-                    "P.productName, \n" +
-                    "P.color, P.size, RI.qty, \n" +
-                    "IRD.pulledOutQty, IRD.soldQty\n" +
-                    "FROM inventory_report_details IRD\n" +
-                    "JOIN inventory_report IR\n" +
-                    "ON IRD.reportID = IR.reportID\n" +
-                    "JOIN product P\n" +
-                    "ON IRD.itemCode = P.itemCode\n" +
-                    "JOIN retail_inventory RI\n" +
-                    "ON IR.location = RI.locationID AND IRD.itemCode = RI.itemCode\n" +
-                    "JOIN ref_location L\n" +
-                    "ON RI.locationID = L.locationID\n" +
-                    "JOIN user U\n" +
-                    "ON IR.promo = U.employeeID\n" +
-                    "WHERE IR.promo = ?");
+                    + "SELECT IR.reportID ,L.branchName,\n"
+                    + "IR.promo, IR.dateMade, \n"
+                    + "P.productName, \n"
+                    + "P.color, P.size, RI.qty, \n"
+                    + "IRD.pulledOutQty, IRD.soldQty,  CONCAT(u.firstName,\" \",u.lastName) as 'name'\n"
+                    + "FROM inventory_report_details IRD\n"
+                    + "JOIN inventory_report IR\n"
+                    + "ON IRD.reportID = IR.reportID\n"
+                    + "JOIN product P\n"
+                    + "ON IRD.itemCode = P.itemCode\n"
+                    + "JOIN retail_inventory RI\n"
+                    + "ON IR.location = RI.locationID AND IRD.itemCode = RI.itemCode\n"
+                    + "JOIN ref_location L\n"
+                    + "ON RI.locationID = L.locationID\n"
+                    + "JOIN user U\n"
+                    + "ON IR.promo = U.employeeID\n"
+                    + "WHERE IR.promo = ?");
 
             pstmt.setInt(1, empNum);
             ResultSet rs = pstmt.executeQuery();
@@ -72,6 +72,7 @@ public class InventoryReportDAO {
                 newInventoryReport.setColor(rs.getString("color"));
                 newInventoryReport.setSize(rs.getString("size"));
                 newInventoryReport.setQty(rs.getDouble("qty"));
+                newInventoryReport.setPromoName(rs.getString("name"));
                 newInventoryReport.setPulledOutQty(rs.getDouble("pulledOutQty"));
                 newInventoryReport.setSoldQty(rs.getDouble("soldQty"));
                 InventoryReport.add(newInventoryReport);
@@ -148,14 +149,15 @@ public class InventoryReportDAO {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(""
-                    + "SELECT r.reportID, r.promo, "
-                    + "r.location, r.dateMade, "
-                    + "rf.branchName, rf.address\n"
-                    + "FROM inventory_report r \n"
-                    + "JOIN ref_location rf\n"
-                    + "on r.location = rf.locationID \n"
-                    + "group by r.reportID;");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT r.reportID, r.promo, CONCAT(prep.firstName,\" \", prep.lastName) as \"promterName\",\n"
+                    + " r.location, r.dateMade, \n"
+                    + " rf.branchName, rf.address\n"
+                    + " FROM inventory_report r \n"
+                    + " JOIN ref_location rf\n"
+                    + " on r.location = rf.locationID \n"
+                    + " JOIN USER prep \n"
+                    + "ON r.promo = prep.employeeID \n"
+                    + " group by r.reportID;");
             ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) {
@@ -164,6 +166,7 @@ public class InventoryReportDAO {
                 newInventoryReport.setReportID(rs.getInt("reportID"));
                 newInventoryReport.setBranchName(rs.getString("branchName"));
                 newInventoryReport.setPromo(rs.getInt("promo"));
+                newInventoryReport.setPromoName(rs.getString("promterName"));
                 newInventoryReport.setDateMade(rs.getDate("DateMade"));
                 newInventoryReport.setAddress(rs.getString("address"));
                 InventoryReportView.add(newInventoryReport);
@@ -281,23 +284,23 @@ public class InventoryReportDAO {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(""
-                    + "SELECT IR.reportID, L.locationID, L.branchName, L.address,\n" +
-                    "IR.reportID, IR.promo, IR.dateMade, \n" +
-                    "IRD.itemCode, P.productName,\n" +
-                    "IRD.soldQty, IRD.pulledOutQty, RI.qty as 'currentQty',\n" +
-                    "P.size, P.color, Concat(u.firstName,\" \",u.lastName) as 'name'\n" +
-                    "FROM inventory_report_details IRD\n" +
-                    "JOIN inventory_report IR\n" +
-                    "ON IRD.reportID = IR.reportID\n" +
-                    "JOIN product P \n" +
-                    "ON IRD.itemCode = P.itemCode\n" +
-                    "JOIN retail_inventory RI\n" +
-                    "ON IR.location = RI.locationID AND IRD.itemCode = RI.itemCode\n" +
-                    "JOIN ref_location L \n" +
-                    "ON RI.locationID = L.locationID\n" +
-                    "JOIN user U \n" +
-                    "ON IR.promo = U.employeeID\n" +
-                    "WHERE IR.reportID = ?;");
+                    + "SELECT IR.reportID, L.locationID, L.branchName, L.address,\n"
+                    + "IR.reportID, IR.promo, IR.dateMade, \n"
+                    + "IRD.itemCode, P.productName,\n"
+                    + "IRD.soldQty, IRD.pulledOutQty, RI.qty as 'currentQty',\n"
+                    + "P.size, P.color, Concat(u.firstName,\" \",u.lastName) as 'name'\n"
+                    + "FROM inventory_report_details IRD\n"
+                    + "JOIN inventory_report IR\n"
+                    + "ON IRD.reportID = IR.reportID\n"
+                    + "JOIN product P \n"
+                    + "ON IRD.itemCode = P.itemCode\n"
+                    + "JOIN retail_inventory RI\n"
+                    + "ON IR.location = RI.locationID AND IRD.itemCode = RI.itemCode\n"
+                    + "JOIN ref_location L \n"
+                    + "ON RI.locationID = L.locationID\n"
+                    + "JOIN user U \n"
+                    + "ON IR.promo = U.employeeID\n"
+                    + "WHERE IR.reportID = ?;");
             pstmt.setString(1, Reportid);
             ResultSet rs = pstmt.executeQuery();
 

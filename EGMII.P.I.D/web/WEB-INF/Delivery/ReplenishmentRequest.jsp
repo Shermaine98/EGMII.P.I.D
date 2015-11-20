@@ -108,7 +108,7 @@
                                 <tr class="repView">
                                     <td class="reportID"><%=InventoryReport.get(i).getReportID()%><input type="text" class="transparentBg inputSize" readonly /></td>
                                     <td><input type="text" class="transparentBg" value="<%=InventoryReport.get(i).getBranchName()%>"readonly /></td>
-                                    <td><input type="text" class="transparentBg inputSize" value="<%=InventoryReport.get(i).getPromo()%>"readonly /></td>
+                                    <td><input type="hidden" class="transparentBg inputSize" value="<%=InventoryReport.get(i).getPromo()%>"readonly /><input type="text" class="transparentBg inputSize" value="<%=InventoryReport.get(i).getPromoName()%>"readonly /></td>
                                     <td><input type="text" class="transparentBg" value="<%=InventoryReport.get(i).getDateMade()%>"readonly /></td>
                                 </tr>
                                 <%

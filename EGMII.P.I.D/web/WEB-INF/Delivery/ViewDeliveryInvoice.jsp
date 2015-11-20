@@ -43,7 +43,7 @@
         %>
         <form id="form1" method="POST" action="ViewDeliveryInvoiceServlet?action=viewSpcific">
             <div class="container" align="center">
-                <h2>Inventory Reports</h2><br/>
+                <h2>View Delivery Invoice</h2><br/>
                 <div style="width:70%;">
                     <table id="Replenish" class="table table-bordered table-hover">
                         <thead>
@@ -51,6 +51,7 @@
                                 <th>Delivery Invoice Number</th>
                                 <th>Branch Name</th>
                                 <th>Made by</th>
+                                <th>Approved by</th>
                                 <th>Delivery Date</th>
                                 <th>Date Made</th>
                             </tr>
@@ -60,7 +61,8 @@
                             <tr class="repView">
                                 <td class="diNumber"><%=DeliveryInvoiceView.get(i).getDiNumber()%></td>
                                 <td><input type="text" class="transparentBg" value="<%=DeliveryInvoiceView.get(i).getBranchName()%>"></td>
-                                <td><input type="text" class="transparentBg inputSize" value="<%=DeliveryInvoiceView.get(i).getMadeBy()%>"</td>
+                                <td><input type="text" class="transparentBg inputSize" value="<%=DeliveryInvoiceView.get(i).getName()%>"</td>
+                                 <td><input type="text" class="transparentBg inputSize" value="<%=DeliveryInvoiceView.get(i).getApprovedName()%>"</td>
                                 <td><input type="text" class="transparentBg" value="<%=DeliveryInvoiceView.get(i).getDeliveryDate()%>"</td>
                                 <td><input type="text" class="transparentBg" value="<%=DeliveryInvoiceView.get(i).getDateMade()%>"</td>
                             </tr>
@@ -91,9 +93,7 @@
                         <input type="text" class="form-control" readonly name="date" value="<%=DeliveryInvoiceS.get(0).getDateMade()%>" /><br/>
                         <label for="deliveryDate">Delivery Date</label>
                         <input type="text" class="form-control" readonly  name="deliveryDate" value="<%=DeliveryInvoiceS.get(0).getDeliveryDate()%>" /><br/>
-                        <label for="promo">Promo</label>
-                        <input type="text" class="form-control " readonly name="promo" value="" /><br/>
-                        <label for="branch">Branch</label>
+                         <label for="branch">Branch</label>
                         <input type="text" class="form-control" readonly name="outlet" value="<%=DeliveryInvoiceS.get(0).getBranchName()%>" />
                         <label for="address">Address</label>
                         <input type="text" class="form-control" readonly name="outlet" value="<%=DeliveryInvoiceS.get(0).getAddress()%>" />

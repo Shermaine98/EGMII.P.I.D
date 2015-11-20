@@ -30,6 +30,7 @@ public class DeliveryInvoiceView {
     private String productType;
     private int productID;
     private int locationID;
+    private String approvedName;
 
     
     
@@ -300,6 +301,20 @@ public class DeliveryInvoiceView {
      */
     public void setLocationID(int locationID) {
         this.locationID = locationID;
+    }
+
+    /**
+     * @return the approvedName
+     */
+    public String getApprovedName() {
+        return approvedName;
+    }
+
+    /**
+     * @param approvedName the approvedName to set
+     */
+    public void setApprovedName(String approvedName) {
+        this.approvedName = approvedName;
     }
     
 }

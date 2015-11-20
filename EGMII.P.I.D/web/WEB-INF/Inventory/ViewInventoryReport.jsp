@@ -42,7 +42,7 @@
                         </tr>
                         <tr>
                             <td><%=InventoryReportView.get(0).getBranchName()%></td>
-                            <td><%=InventoryReportView.get(0).getPromo()%></td>
+                            <td><%=InventoryReportView.get(0).getPromoName()%></td>
                             <td><%=InventoryReportView.get(0).getDateMade()%></td>
                         </tr>
                     </table>

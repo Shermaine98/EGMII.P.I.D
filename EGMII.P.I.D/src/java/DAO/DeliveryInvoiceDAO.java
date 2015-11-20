@@ -80,17 +80,19 @@ public class DeliveryInvoiceDAO {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             ArrayList<DeliveryInvoiceView> DeliveryInvoiceView = new ArrayList<DeliveryInvoiceView>();
             Connection conn = myFactory.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement("SELECT di.diNumber, di.approvedBy, \n"
-                    + "di.dateMade, di.deliveryDate, CONCAT(U.firstName,\" \",U.lastName) as 'name', l.branchName, l.address\n"
-                    + "FROM delivery_invoice di \n"
-                    + "JOIN delivery_invoice_details did\n"
-                    + " ON di.diNumber = did.diNumber\n"
-                    + " JOIN USER U ON\n"
-                    + "	U.employeeID = di.madeby"
-                    + " JOIN ref_location l \n"
-                    + " ON l.locationID = di.location \n"
-                    + " WHERE di.approvedBy IS NOT NULL GROUP BY di.diNumber \n"
-                    + " ORDER BY di.deliveryDate;");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT di.diNumber, di.approvedBy, CONCAT(approv.firstName,\" \",approv.lastName) as 'approveName',\n"
+                    + " di.dateMade, di.deliveryDate, CONCAT(U.firstName,\" \",U.lastName) as 'prepname', l.branchName, l.address\n"
+                    + " FROM delivery_invoice di \n"
+                    + " JOIN delivery_invoice_details did\n"
+                    + "  ON di.diNumber = did.diNumber\n"
+                    + "  JOIN USER U ON\n"
+                    + "	U.employeeID = di.madeby\n"
+                    + "    JOIN USER approv ON\n"
+                    + "	di.approvedBy = approv.employeeID\n"
+                    + "  JOIN ref_location l \n"
+                    + "  ON l.locationID = di.location \n"
+                    + "  WHERE di.approvedBy IS NOT NULL GROUP BY di.diNumber \n"
+                    + "  ORDER BY di.deliveryDate;");
             ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) {
@@ -99,7 +101,8 @@ public class DeliveryInvoiceDAO {
                 temp.setBranchName(rs.getString("branchName"));
                 temp.setDateMade(rs.getDate("dateMade"));
                 temp.setAddress(rs.getString("address"));
-                temp.setName(rs.getString("name"));
+                temp.setName(rs.getString("prepname"));
+                temp.setApprovedName(rs.getString("approveName"));
                 temp.setApprovedBy(rs.getInt("approvedBy"));
                 temp.setDeliveryDate(rs.getDate("deliveryDate"));
                 DeliveryInvoiceView.add(temp);

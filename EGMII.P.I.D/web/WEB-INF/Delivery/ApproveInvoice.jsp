@@ -47,7 +47,7 @@
         %>
         <form id="form1" method="POST" action="ViewDeliveryInvoiceServlet?action=viewSpecificApprove">
             <div class="container" align="center">
-                <h2>Inventory Reports</h2><br/>
+                <h2>Choose Delivery Invoice To Approve</h2><br/>
                 <div style="width:80%;">
                     <table id="Replenish" class="table table-bordered table-hover">
                         <thead>
@@ -109,7 +109,7 @@
                 </div>
                 <div class="panel panel-default col-md-7">
                     <div>
-                        <h2>Replenishment Request</h2><br/>
+                        <h2>Delivery Invoice</h2><br/>
                         <table id="data" class="table table-bordered" >
                             <thead>
                                 <tr>

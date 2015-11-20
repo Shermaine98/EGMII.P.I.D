@@ -53,16 +53,16 @@
         %>
         <form id="form1" method="POST" action="ViewReplenishmentServlet?action=viewSpecific">
         <div class="container" align="center">
-            <h2>Inventory Reports</h2><br/>
+            <h2>Replenishment Request</h2><br/>
             <div style="width:60%;">
                 <table id="Replenish" class="table table-bordered table-hover">
                     <thead>
                         <tr>
                             <th>Report ID</th>
                             <th>Branch Name</th>
-                            <th>Promoter</th>
-                            <th>Date Made</th>
-
+                             <th>Date Made</th>
+                            <th>Prepared By</th>
+                            
                         </tr>
                     </thead>
                     <tbody>
@@ -71,7 +71,7 @@
                             <td class="reportID"><%=RepRequestView.get(i).getRepID()%></td>
                             <td><input type="text" class="transparentBg " value="<%=RepRequestView.get(i).getBranchName()%>" readonly /></td>
                             <td><input type="text" class="transparentBg " value="<%=RepRequestView.get(i).getDateMade()%>" readonly /></td>
-                            <td><input type="text" class="transparentBg inputSize" value="<%=RepRequestView.get(i).getSupervisor()%>" readonly /></td>
+                            <td><input type="text" class="transparentBg inputSize" value="<%=RepRequestView.get(i).getSupervisorName()%>" readonly /></td>
                         </tr>
                         <%
                                 }
@@ -102,8 +102,9 @@
                         <input type="text" class="form-control" readonly name="date" value="<%=RepRequestViewSpecific.get(0).getDateMade()%>" /><br/>
                         <label for="repID">Replenishment ID</label>
                         <input type="text" class="form-control" readonly name="repID" value="<%=RepRequestViewSpecific.get(0).getRepID()%>" /><br/>
-                        <label for="repID">Supervisor</label>
-                        <input type="hidden" class="form-control" readonly name="supervisor" value="<%=user.getEmployeeNumber()%>" /><br/>
+                        <label for="Supervisor">Supervisor</label>
+                        <input type="text" class="form-control" readonly name="supervisor" value="<%=RepRequestViewSpecific.get(0).getSupervisorName()%>" /><br/>
+                        
                     </div>
                 </div>
 
