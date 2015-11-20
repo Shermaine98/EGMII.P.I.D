@@ -44,7 +44,7 @@ public class InventoryReportDAO {
                     + "IR.promo, IR.dateMade, \n"
                     + "P.productName, \n"
                     + "P.color, P.size, RI.qty, \n"
-                    + "IRD.pulledOutQty, IRD.soldQty\n"
+                    + "IRD.pulledOutQty, IRD.soldQty,  CONCAT(u.firstName,\" \",u.lastName) as 'name'\n"
                     + "FROM inventory_report_details IRD\n"
                     + "JOIN inventory_report IR\n"
                     + "ON IRD.reportID = IR.reportID\n"
@@ -72,6 +72,7 @@ public class InventoryReportDAO {
                 newInventoryReport.setColor(rs.getString("color"));
                 newInventoryReport.setSize(rs.getString("size"));
                 newInventoryReport.setQty(rs.getDouble("qty"));
+                newInventoryReport.setPromoName(rs.getString("name"));
                 newInventoryReport.setPulledOutQty(rs.getDouble("pulledOutQty"));
                 newInventoryReport.setSoldQty(rs.getDouble("soldQty"));
                 InventoryReport.add(newInventoryReport);
