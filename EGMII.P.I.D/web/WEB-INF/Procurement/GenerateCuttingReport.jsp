@@ -50,7 +50,7 @@
             <% String data = (String) request.getAttribute("data");
                 ArrayList<ConsumptionReportView> ConsumptionReportView = (ArrayList<ConsumptionReportView>) request.getAttribute("CuttingReport");%>
             <div class="container" align="center">
-                <h2>Supplier Purchase Order</h2><br/>
+                <h2>Consumption Report Table</h2><br/>
                 <div style="width:60%;">
                     <table id="dataTable" class="table table-bordered table-hover">
                         <thead>

@@ -34,7 +34,7 @@ public class UserDAO {
             Connection conn = myFactory.getConnection();
             String query = "insert into user"
                     + "(employeeID,lastName,firstName,email,position,birthDate,leftDate,entryDate,password) "
-                    + "values (?,?,?,?,?,?,?,?,?)";
+                    + "values (?,?,?,?,?,?,?,?,password(?))";
             PreparedStatement pstmt = conn.prepareStatement(query);
 
             pstmt.setInt(1, newUser.getEmployeeNumber());
@@ -69,7 +69,7 @@ public class UserDAO {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
 
-            String query = "select * from user where email = ? and password = ?";
+            String query = "select * from user where email = ? and password = password(?)";
             PreparedStatement pstmt = conn.prepareStatement(query);
 
             pstmt.setString(1, User.getEmail());
@@ -99,7 +99,7 @@ public class UserDAO {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
-            String query = "update user set password = ? where email = ?";
+            String query = "update user set password = password(?) where email = ?";
             PreparedStatement pstmt = conn.prepareStatement(query);
 
             pstmt.setString(1, password);
@@ -157,7 +157,7 @@ public class UserDAO {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement("select * from user where email= ? and password= ?");
+            PreparedStatement pstmt = conn.prepareStatement("select * from user where email= ? and password= password(?)");
             pstmt.setString(1, username);
             pstmt.setString(2, password);
             ResultSet rs = pstmt.executeQuery();
