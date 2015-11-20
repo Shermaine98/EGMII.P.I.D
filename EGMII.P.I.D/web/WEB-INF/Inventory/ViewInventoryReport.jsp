@@ -49,7 +49,10 @@
                 </div>
             </div>
 
-            <div class="panel panel-collapse col-md-6" style="padding-bottom: 10px; margin-top:20px;">
+            <div class="panel panel-default col-md-6" style="padding-bottom: 10px; margin-top:20px;">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Details</h3>
+                </div>
                 <div class="panel-body">
                     <table class="table table-bordered">
                         <colgroup>
@@ -92,10 +95,7 @@
                 <input type="hidden" value="<%=user.getEmployeeNumber()%>" name="employeeNumber" />
                 <input type="submit" class="btn btn-danger" value="Save"  />
             </div>
-        </form><br/>
-        <div id="buttonz" align="center">
-            <button class="btn btn-danger" style="width:130px">Create Request</button>
-        </div>
+        </form>
         <%}%>
     </body>
 </html>
