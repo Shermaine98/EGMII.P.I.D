@@ -59,7 +59,7 @@
                                         <li><a href="/EGMII.P.I.D.P.I.DMI/SearchProductsSubconServlet">Encode Subcontractor Purchase Order</a></li>
                                         <li><a href="/EGMII.P.I.D/SetSPONumberServlet">Receive Subcontractor Purchase Order</a></li></ul></li>
 
-                                <li><a href="/EGMII.P.I.D/GetDRForCuttingReportServlet">Generate Cutting Report</a></li>
+                               <li><a href="/EGMII.P.I.D/GenerateCuttingReportServlet">Generate Cutting Report</a></li>
                             </ul>
                         </li>
                     </ul>
