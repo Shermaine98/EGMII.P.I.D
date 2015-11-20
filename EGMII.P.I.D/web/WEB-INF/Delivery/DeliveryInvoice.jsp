@@ -87,7 +87,7 @@
                 <div class="panel panel-default col-md-3">
                     <div class="panel-body">
                         <label for="deliveryDate">Delivery Date</label>
-                        <input type="text" class="form-control" id="datepicker"  name="deliveryDate" /><br/>
+                        <input type="text" name="deliveryDate" placeholder="yyyy-mm-dd" class="form-control" id="datepicker" pattern=".{1,}" required title="Please Input Delivery Date" /><br/>
                         <label for="invoiceNum">Invoice No.</label>
                         <input type="text" class="form-control " readonly name="dirNum" value="<%=dirNumber%>" /><br/>
                         <label for="repID">Replenishment ID</label>
