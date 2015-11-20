@@ -116,7 +116,6 @@
                                 <th>Size</th>
                                 <th>Item Code</th>
                                 <th>Item Name</th>
-                                
                                 <th>Consumption Per Unit</th>
                                 <th>Total Consumption</th>
                                 <th>Expected Cut Quantity</th>
@@ -128,12 +127,12 @@
                                 for (int i = 0; i < ConsumptionReportSpecific.size(); i++) {
                             %>
                             <tr>
-                                <td><input type="text" class="transparentBg inputSize" name="size"  value = "<%=ConsumptionReportSpecific.get(i).getSize()%>"  readonly/></td>
+                                <td><input type="text" class="transparentBg" name="size" style="width: 30px;"  value = "<%=ConsumptionReportSpecific.get(i).getSize()%>"  readonly/></td>
                                 <td><input type="text" class="transparentBg" style="width:85px" name="itemCode"  value = "<%=ConsumptionReportSpecific.get(i).getItemCodeRM()%>"  readonly/></td>
                                 <td><input type="text" class="transparentBg" name="itemName"  value = "<%=ConsumptionReportSpecific.get(i).getItemName()%>"  readonly/></td>
-                                <td><input type="number" class="transparentBg inputSize" name="consumption" value="<%=ConsumptionReportSpecific.get(i).getConsumptionQty()%>"  readonly /></td>
-                                <td><input type="number" class="transparentBg inputSize" name="expectedQty" value="<%=ConsumptionReportSpecific.get(i).getTotalQty()%>"  readonly /></td>
-                                <td><input type="number" class="transparentBg inputSize" name="quantity" value="<%=ConsumptionReportSpecific.get(i).getVolumeQty()%>"  readonly /></td>
+                                <td><input type="text" class="transparentBg inputSize" name="consumption" value="<%=ConsumptionReportSpecific.get(i).getConsumptionQty()%>"  readonly /></td>
+                                <td><input type="text" class="transparentBg inputSize" name="expectedQty" value="<%=ConsumptionReportSpecific.get(i).getTotalQty()%>"  readonly /></td>
+                                <td><input type="text" class="transparentBg inputSize" name="quantity" value="<%=ConsumptionReportSpecific.get(i).getVolumeQty()%>"  readonly /></td>
                             </tr> 
                             <%
                                 }
