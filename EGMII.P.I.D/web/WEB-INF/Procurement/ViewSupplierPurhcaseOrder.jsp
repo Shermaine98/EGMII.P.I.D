@@ -145,7 +145,7 @@
                             <td><input type="text" class="transparentBg inputSize readonlyWhite" value="<%=spo1.get(x).getQty() * spo1.get(x).getUnitPrice()%>" readonly id="TQP[]"/>
                             <% 
                             
-                                total = spo1.get(x).getQty() * spo1.get(x).getUnitPrice(); 
+                                total += spo1.get(x).getQty() * spo1.get(x).getUnitPrice(); 
                             
                             %>
                         </tr>

@@ -35,27 +35,9 @@
                     document.getElementById("form1").submit();
                 }));
 
-                $(".trclass").each(function () {
-                    var $this = $(this);
-                    var unitPrice = parseFloat($this.find('[id="unitPrice\\[\\]"]').val());
-                    var volumeQty = parseFloat($this.find('[id="volumeQty\\[\\]"]').val());
-                    var STotal = unitPrice * volumeQty;
-                    $this.find('[id="TQP\\[\\]"]').val(STotal);
-                    SolveTotal();
-                });
-                return false;
             });
 
-            function SolveTotal() {
-                var STotal = 0;
-                $(".trclass").each(function () {
-                    var $this = $(this);
-                    var TQP = parseFloat($this.find('[id="TQP\\[\\]"]').val());
-                    STotal = STotal + TQP;
-                    document.getElementById('total').value = STotal;
-                });
-                return false;
-            }
+            
         </script>
     </head>
     <%        ArrayList<SupplierPurchaseOrderView> PurchaseOrderList = (ArrayList<SupplierPurchaseOrderView>) request.getAttribute("SupplierPurchaseOrderList");
@@ -99,6 +81,7 @@
             if (data.equalsIgnoreCase("supplier")) {
                 ArrayList<SupplierPurchaseOrderView> PurchaseOrderSpecific = (ArrayList<SupplierPurchaseOrderView>) request.getAttribute("SupplierPurchaseOrderSpecific");
                 if (!PurchaseOrderSpecific.isEmpty()) {
+                    double total = 0;
         %>
         <form method="POST" action="ApproveRejectSPOServlet?action=approve">
             <div class="container" align="center" id="printableArea">
@@ -141,14 +124,17 @@
                                 <td><%=PurchaseOrderSpecific.get(x).getItemName()%></td>
                                 <td><input type="text" class="transparentBg inputSize readonlyWhite" readonly value ="<%=PurchaseOrderSpecific.get(x).getUnitPrice()%>" id="unitPrice[]"/></td>
                                 <td><input type="text" class="transparentBg inputSize readonlyWhite" readonly value="<%=PurchaseOrderSpecific.get(x).getQty()%>" id="volumeQty[]"/></td>
-                                <td><input type="text" class="transparentBg inputSize readonlyWhite" readonly id="TQP[]"/></td>   
+                                <td><input type="text" class="transparentBg inputSize readonlyWhite" readonly value="<%=PurchaseOrderSpecific.get(x).getQty() * PurchaseOrderSpecific.get(x).getUnitPrice()%>"id="TQP[]"/></td>   
                             </tr>
-                            <% }%>
+                            <%
+                               total += PurchaseOrderSpecific.get(x).getQty() * PurchaseOrderSpecific.get(x).getUnitPrice();
+
+                            }%>
                         </table>
 
                         <div id="run" class="form-inline pull-right">
                             <label for="total">Total:</label>
-                            <input type="number" class="form-control readonlyWhite" name="total" id="total" readonly /> 
+                            <input type="number" class="form-control readonlyWhite" name="total" value="<%= total%>" id="total" readonly /> 
                         </div>
                     </div>
                 </div>
