@@ -232,8 +232,7 @@ public class User {
      */
     public void setLeftDate(String LeftDate) throws ParseException {
         @SuppressWarnings("deprecation")
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-        java.util.Date hDate = formatter.parse(df.format(LeftDate));
+        java.util.Date hDate = formatter.parse(LeftDate);
         java.sql.Date sqlLeftDate = new java.sql.Date(hDate.getTime());
         this.leftDate = sqlLeftDate;
     }
