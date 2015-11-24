@@ -31,7 +31,7 @@
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li> <a href="/EGMI/Login?action=goToHome">Home</a></li>
+                        <li> <a href="/EGMII.P.I.D/Account?action=goToHome">Home</a></li>
                         
                         <!--Product Creation-->
                         <li class="dropdown">
@@ -61,7 +61,7 @@
                                     <ul class="dropdown-menu sub-menu" style="margin-top: 35px;">
                                         <li><a href="/EGMII.P.I.D/SetSubconNumberServlet">Encode Subcontractor Purchase Order</a></li>
                                         <li><a href="/EGMII.P.I.D/ViewSubconPurchaseOrderServlet?action=view">View Subcontractor Purchase Order</a></li>
-                                        <li><a href="/EGMII.P.I.D/SetSPONumberServlet">Receive Subcontractor Purchase Order</a></li></ul></li>
+                                        <li><a href="/EGMII.P.I.D/SetSubconPOReceivingServlet?action=view">Receive Subcontractor Purchase Order</a></li></ul></li>
                                         
 
                                <li><a href="/EGMII.P.I.D/GenerateCuttingReportServlet">Generate Cutting Report</a></li>
