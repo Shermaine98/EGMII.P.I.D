@@ -43,9 +43,10 @@ public class SignUp extends BaseServlet {
             String birthDate = request.getParameter("birthDate");
             String email = request.getParameter("email");
             String password = request.getParameter("newPassword");
-            String verification = request.getParameter("verCode");
+          //  String verification = request.getParameter("verCode");
             String entryDate = request.getParameter("entryDate");
             String position = request.getParameter("position");
+            String gender = request.getParameter("gender");
 
             newUser.setEmployeeNumber(userDAO.getLastEmpNumber() + 1);
             newUser.setFirstName(firstName);
@@ -54,19 +55,18 @@ public class SignUp extends BaseServlet {
            // if (verification.equals("8213")) {
              //   newUser.setPosition("generalmanager");
             //} else if (verification.equals("2344")) {
-              newUser.setPosition("position");
+              newUser.setPosition(position);
             //}
-
+            newUser.setGender(gender);
             newUser.setBirthDate(birthDate);
             newUser.setUserName(email);
             newUser.setPassword(password);
 
             //ENTRY & LEFT DATE; temporary
-             newUser.setEntryDate("entryDate");
+             newUser.setEntryDate(entryDate);
              newUser.setLeftDate("9999-99-99");
 
             if (userDAO.register(newUser)) {
-
                 ServletContext context = getServletContext();
                 RequestDispatcher rd = context.getRequestDispatcher("/index.jsp");
                 rd.forward(request, response);
@@ -74,7 +74,6 @@ public class SignUp extends BaseServlet {
                 ServletContext context = getServletContext();
                 RequestDispatcher rd = context.getRequestDispatcher("/sign_up.jsp");
                 rd.forward(request, response);
-
             }
         } catch (ParseException ex) {
             Logger.getLogger(SignUp.class.getName()).log(Level.SEVERE, null, ex);

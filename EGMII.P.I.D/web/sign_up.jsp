@@ -55,7 +55,7 @@
             $(function () {
                 $("#datepicker").datepicker({
                     minDate: new Date(1900, 1 - 1, 1), maxDate: '-18Y',
-                   dateFormat: 'yy-mm-dd',
+                    dateFormat: 'yy-mm-dd',
                     defaultDate: new Date(1970, 1 - 1, 1),
                     changeMonth: true,
                     changeYear: true,
@@ -75,6 +75,9 @@
                     document.getElementById("form").submit();
                 } else if(ver === "E102"){
                      document.getElementById('position').value = "delivery manager";
+                    document.getElementById("form").submit();
+                }else if(ver === "E103"){
+                     document.getElementById('position').value = "production manager";
                     document.getElementById("form").submit();
                 }else {
                     window.alert("Wrong Verification Code, Please talk with the administrator");
@@ -127,6 +130,11 @@
                     <input type="text" name="firstName" placeholder="First Name" class="form-control" pattern=".{3,}" required title="Please Input First Name."/><br/><br/>
                     <label for="lastName">Last Name: </label>
                     <input type="text" name="lastName" placeholder="Last Name" class="form-control" pattern=".{3,}" required title="Please Input Last Name." /><br/><br/>
+                     <label for="gender">gender</label>
+                    <select name="gender" class="form-control">
+                                <option value="f">Female</option>
+                                 <option value="m">Male</option>
+                            </select>
                     <label for="email">Email:   </label>
                     <input type="text" name="email" placeholder="Email Address" class="form-control" pattern=".{3,}" required title="Please Input Last Name."/><br/><br/>
                     <label for="password">Password: </label>

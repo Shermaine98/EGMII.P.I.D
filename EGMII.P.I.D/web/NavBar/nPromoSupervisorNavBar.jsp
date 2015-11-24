@@ -4,6 +4,7 @@
     Author     : shermainesy
 --%>
 
+<%@page import="Model.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -17,6 +18,7 @@
         <link rel="stylesheet" href="bootstrap/css/sub-menu.css">
         <link rel="stylesheet" href="bootstrap/css/jquery-ui-datePicker.css">
         <link href="bootstrap/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" type="text/css" href="bootstrap/css/searchStyle.css">
         <!--JQUERY LIBRARIES-->
         <script type="text/javascript" src="bootstrap/js/jquery.js"></script>
         <script type="text/javascript" src="bootstrap/js/jquery-ui.js"></script>
@@ -52,7 +54,7 @@
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="">Supplier Purchase Order</a>
                                     <ul class="dropdown-menu sub-menu">
-                                         <li><a href="/EGMII.P.I.D/SetSPONumberServlet">Encode Supplier Purchase Order</a></li>
+                                        <li><a href="/EGMII.P.I.D/SetSPONumberServlet">Encode Supplier Purchase Order</a></li>
                                         <li><a href="/EGMII.P.I.D/ViewSupplierPurchaseOrderServlet">View Supplier Purchase Order</a></li>
                                         <li><a href="/EGMII.P.I.D/SetSupplierReceivingServlet">Receive Supplier Purchase Order</a></li></ul></li>
 
@@ -85,7 +87,8 @@
 
                     </ul>
 
-
+                    <%  User user = (User) session.getAttribute("login");
+                        String position = user.getPosition().toLowerCase().trim();%> 
                     <!--MAIL-->
                     <ul class="nav navbar-nav navbar-right">
                         <li>Today is <input type="text" class="transparentBg" name="dateMade" id="dateMade" readonly 
@@ -95,7 +98,7 @@
                         <!--ACCOUNT DETAILS-->
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <span class="glyphicon glyphicon-user"></span>
+                                <span class="glyphicon glyphicon-user"></span> <%= user.getFirstName()%> <%=user.getLastName()%>
                                 <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="/EGMII.P.I.D/Account?action=viewAccounts">View Account</a></li>

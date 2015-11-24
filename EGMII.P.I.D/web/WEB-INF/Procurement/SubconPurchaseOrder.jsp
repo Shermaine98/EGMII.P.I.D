@@ -37,6 +37,7 @@
                 $("#datepicker").datepicker({minDate: 1, maxDate: "+4M +10D", dateFormat: 'yy-mm-dd'});
 
                 var x = document.getElementById('trigger').value;
+                console.log(x);
                 if (x === "true") {
                     $('input[type="submit').prop('disabled', true);
                 }
@@ -106,7 +107,7 @@
                         <label class="" for="preparedBy">Prepared By</label>
                         <input type="hidden" name="preparedBy" class="form-control "   value="<%=user.getEmployeeNumber()%>"/><br/>
                         <input type="text" class="form-control " readonly  value="<%=user.getFirstName()%> <%=user.getLastName()%>"/><br/>
-                        
+
                         <label class="" for="productionNumber">Production Number</label>
                         <input type="text" name="productionNumber" id="productionNumber" class="form-control" readonly value=<%=PurchaseOrderSpecific.get(0).getProductionNumber()%>  /><br/>
                         <label class="" for="productName">Product Name</label>
@@ -126,7 +127,7 @@
                         <h3 class="panel-title">Subcontractor Purchase Order</h3>
                     </div>
                     <div class="panel-body table-responsive">
-                        <table id="dataTable3" class="table table-bordered table-hover">
+                        <table id="dataTable3" class="table table-bordered">
                             <colgroup>
                                 <col style="width: 60%" />
                                 <col style="width: 40%" />
@@ -138,24 +139,46 @@
                                 </tr>
                             </thead>
                             <tbody> 
-                                <%for (int i = 0; i < rmwi.size(); i++) {
+                                <%
+                                    boolean x = false;
+
+                                    ArrayList<RawMaterialsInventoryView> arrEnough = new ArrayList<RawMaterialsInventoryView>();
+                                    ArrayList<RawMaterialsInventoryView> arrNotEnough = new ArrayList<RawMaterialsInventoryView>();
+                                    for (int i = 0; i < rmwi.size(); i++) {
+
                                         if (rmwi.get(i).getQtyNeeded() < 0) {
+                                            arrNotEnough.add(rmwi.get(i));
+
+                                        } else {
+
+                                            arrEnough.add(rmwi.get(i));
+
+                                        }
+                                    }
+
+                                    for (int i = 0; i < arrNotEnough.size(); i++) {
                                 %>
                                 <tr style="background-color: #B20000;
                                     color: #FFF;"> 
-                                    <td><input onload="disabled()" type="text" value="<%=rmwi.get(i).getItemName()%>" class="transparentBg" readonly/> 
-                                    <td><input type="hidden" id="trigger" value="true"/><input type="text" value="<%=rmwi.get(i).getQtyNeeded()%>" class="transparentBg" readonly/> 
+                                    <td><input onload="disabled()" type="text" value="<%=arrNotEnough.get(i).getItemName()%>" class="transparentBg" readonly/> 
+                                        <%
+                                            x = true;
+                                        %>
+                                    <td><input type="hidden" id="trigger" value="<%=x%>"/><input type="text" value="<%=arrNotEnough.get(i).getQtyNeeded()%>" class="transparentBg" readonly/> 
                                 </tr> 
                                 <%
-                                } else {
+                                    }
+
+                                    for (int i = 0; i < arrEnough.size(); i++) {
+
                                 %>   
                                 <tr> 
-                                    <td><input type="text" value="<%=rmwi.get(i).getItemName()%>" class="transparentBg" readonly/> 
-                                    <td><input type="hidden" id="trigger" value=""/><input type="text" value="<%=rmwi.get(i).getQtyNeeded()%>" class="transparentBg" readonly/> 
+                                    <td><input type="text" value="<%=arrEnough.get(i).getItemName()%>" class="transparentBg" readonly/> 
+                                    <td><input type="hidden" id="trigger" value="<%=x%>"/><input type="text" value="<%=arrEnough.get(i).getQtyNeeded()%>" class="transparentBg" readonly/> 
                                 </tr> 
                                 <%
-                                        }
-                                    }%>
+                                    }
+                                %>
                             </tbody>
                         </table>
                     </div>

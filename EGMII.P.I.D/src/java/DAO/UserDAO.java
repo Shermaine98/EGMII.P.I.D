@@ -33,8 +33,8 @@ public class UserDAO {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
             String query = "insert into user"
-                    + "(employeeID,lastName,firstName,email,position,birthDate,leftDate,entryDate,password) "
-                    + "values (?,?,?,?,?,?,?,?,password(?))";
+                    + "(employeeID,lastName,firstName,email,position,gender,birthDate,leftDate,entryDate,password) "
+                    + "values (?,?,?,?,?,?,?,?,?,password(?))";
             PreparedStatement pstmt = conn.prepareStatement(query);
 
             pstmt.setInt(1, newUser.getEmployeeNumber());
@@ -42,10 +42,11 @@ public class UserDAO {
             pstmt.setString(3, newUser.getFirstName());
             pstmt.setString(4, newUser.getEmail());
             pstmt.setString(5, newUser.getPosition());
-            pstmt.setDate(6, newUser.getBirthDate());
-            pstmt.setDate(7, newUser.getLeftDate());
-            pstmt.setDate(8, newUser.getEntryDate());
-            pstmt.setString(9, newUser.getPassword());
+            pstmt.setString(6, newUser.getPosition());
+            pstmt.setDate(7, newUser.getBirthDate());
+            pstmt.setDate(8, newUser.getLeftDate());
+            pstmt.setDate(9, newUser.getEntryDate());
+            pstmt.setString(10, newUser.getPassword());
 
             int rows = pstmt.executeUpdate();
             conn.close();
