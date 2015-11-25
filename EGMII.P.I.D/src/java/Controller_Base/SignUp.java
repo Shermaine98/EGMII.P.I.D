@@ -51,7 +51,6 @@ try {
             String birthDate = request.getParameter("birthDate");
             String email = request.getParameter("email");
             String password = request.getParameter("newPassword");
-            String verification = request.getParameter("verCode");
             String entryDate = request.getParameter("entryDate");
             String position = request.getParameter("position");
             String gender = request.getParameter("gender");
@@ -59,10 +58,7 @@ try {
             newUser.setEmployeeNumber(userDAO.getLastEmpNumber() + 1);
             newUser.setFirstName(firstName);
             newUser.setLastName(lastName);
-
-            if (verification.equals("E102")) {
-              newUser.setPosition("Production Manager");
-            }
+            newUser.setPosition(position);
             newUser.setGender(gender);
             newUser.setBirthDate(birthDate);
             newUser.setUserName(email);
