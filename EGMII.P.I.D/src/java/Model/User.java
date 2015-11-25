@@ -3,6 +3,9 @@ package Model;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -13,7 +16,6 @@ import java.text.SimpleDateFormat;
  * @author Dimaandal
  *
  */
-
 public class User {
 
     private int employeeNumber;
@@ -46,7 +48,7 @@ public class User {
     public void setLocationID(int locationID) {
         this.locationID = locationID;
     }
-    
+
     /**
      * @return the employeeNumber
      */
@@ -200,7 +202,7 @@ public class User {
      */
     public void setEntryDate(String EntryDate) throws ParseException {
         @SuppressWarnings("deprecation")
-         java.util.Date hEntryDate = formatter.parse(EntryDate);
+        java.util.Date hEntryDate = formatter.parse(EntryDate);
         java.sql.Date entryDate = new java.sql.Date(hEntryDate.getTime());
         this.entryDate = entryDate;
     }
@@ -235,6 +237,18 @@ public class User {
         java.util.Date hDate = formatter.parse(LeftDate);
         java.sql.Date sqlLeftDate = new java.sql.Date(hDate.getTime());
         this.leftDate = sqlLeftDate;
+    }
+
+    public void setLeftDateRegister() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-dd-mm");
+        java.util.Date d = new Date();
+        try {
+            d = sdf.parse("9999-99-99");
+        } catch (ParseException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        java.sql.Date sql = new java.sql.Date(d.getTime());
+        this.leftDate = sql;
     }
 
     /**

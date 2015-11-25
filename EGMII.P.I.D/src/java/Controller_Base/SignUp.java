@@ -51,7 +51,7 @@ try {
             String birthDate = request.getParameter("birthDate");
             String email = request.getParameter("email");
             String password = request.getParameter("newPassword");
-          //  String verification = request.getParameter("verCode");
+            String verification = request.getParameter("verCode");
             String entryDate = request.getParameter("entryDate");
             String position = request.getParameter("position");
             String gender = request.getParameter("gender");
@@ -60,11 +60,9 @@ try {
             newUser.setFirstName(firstName);
             newUser.setLastName(lastName);
 
-           // if (verification.equals("8213")) {
-             //   newUser.setPosition("generalmanager");
-            //} else if (verification.equals("2344")) {
-              newUser.setPosition(position);
-            //}
+            if (verification.equals("E102")) {
+              newUser.setPosition("Production Manager");
+            }
             newUser.setGender(gender);
             newUser.setBirthDate(birthDate);
             newUser.setUserName(email);
@@ -72,7 +70,7 @@ try {
 
             //ENTRY & LEFT DATE; temporary
              newUser.setEntryDate(entryDate);
-             newUser.setLeftDate("9999-99-99");
+             newUser.setLeftDateRegister();
 
             if (userDAO.register(newUser)) {
                 ServletContext context = getServletContext();

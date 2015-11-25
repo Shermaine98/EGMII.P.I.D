@@ -28,6 +28,10 @@ footer{
     width:40%; background-color: #000; opacity: 0.85; margin-top: 5%; margin-bottom:auto; padding: 20px;
     border-radius: 25px;
 }
+.Absolute-Center2{
+    width:40%; background-color: #000; opacity: 0.85; margin-top: 1%; margin-bottom:auto; padding: 20px;
+    border-radius: 25px;
+}
 
 p{
     color: #FFF;
