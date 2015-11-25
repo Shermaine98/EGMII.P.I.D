@@ -66,10 +66,10 @@
                             <% for (int i = 0; i < ConsumptionReportView.size(); i++) {%>
                             <tr class="cuttingReport">
                                 <td class="poNumber"><%=ConsumptionReportView.get(i).getProductionNumber()%><input type="text" class="transparentBg inputSize"/></td>
-                                <td><input type="text" class="transparentBg" value="<%=ConsumptionReportView.get(i).getProductName()%>"/></td>
-                                <td><input type="text" class="transparentBg" value="<%=ConsumptionReportView.get(i).getDateMade()%>"/></td>
-                                <td><input type="text" class="transparentBg inputSize" value="<%=ConsumptionReportView.get(i).getColor()%>"/></td>
-                                <td><input type="text" class="transparentBg inputSize" value="<%=ConsumptionReportView.get(i).getName()%>"/></td>
+                                <td><input type="text" class="transparentBg" value="<%=ConsumptionReportView.get(i).getProductName()%>" readonly /></td>
+                                <td><input type="text" class="transparentBg" value="<%=ConsumptionReportView.get(i).getDateMade()%>" readonly /></td>
+                                <td><input type="text" class="transparentBg inputSize" value="<%=ConsumptionReportView.get(i).getColor()%>" readonly /></td>
+                                <td><input type="text" class="transparentBg inputSize" value="<%=ConsumptionReportView.get(i).getName()%>" readonly /></td>
                             </tr>
                             <%
                                 }
@@ -85,23 +85,56 @@
                 ArrayList<ConsumptionReportView> ConsumptionReportSpecific = (ArrayList<ConsumptionReportView>) request.getAttribute("CRforCutting");
 
         %>                    
-
-        <div id="printableArea" align="center" class="container">
+        <div  id="printableArea" style="display: none; visibility:hidden; margin-left: 50px; margin-right:50px;">
+            <h2 align="center">Cutting Report</h2><br/>
+            <h4>Production Number: <%=ConsumptionReportSpecific.get(0).getProductionNumber()%><br/>
+                Product: <%=ConsumptionReportSpecific.get(0).getProductName()%><br/>
+                Cutting Master: <%= user.getFirstName()%> <%= user.getLastName()%><br/></h4><br/>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Size</th>
+                        <th>Item Code</th>
+                        <th>Item Name</th>
+                        <th>Consumption Per Unit</th>
+                        <th>Total Consumption</th>
+                        <th>Expected Cut Quantity</th>
+                    </tr>
+                </thead>
+                <tbody >
+                    <%
+                        for (int i = 0; i < ConsumptionReportSpecific.size(); i++) {
+                    %>
+                    <tr>
+                        <td><input type="text" class="transparentBg inputSize" style="width: 30px;"  value = "<%=ConsumptionReportSpecific.get(i).getSize()%>"  readonly/></td>
+                        <td><input type="text" class="transparentBg inputSize" style="width:85px" value = "<%=ConsumptionReportSpecific.get(i).getItemCodeRM()%>"  readonly/></td>
+                        <td><input type="text" class="transparentBg" value = "<%=ConsumptionReportSpecific.get(i).getItemName()%>"  readonly/></td>
+                        <td><input type="text" class="transparentBg inputSize" value="<%=ConsumptionReportSpecific.get(i).getConsumptionQty()%>"  readonly /></td>
+                        <td><input type="text" class="transparentBg inputSize" value="<%=ConsumptionReportSpecific.get(i).getTotalQty()%>"  readonly /></td>
+                        <td><input type="text" class="transparentBg inputSize" value="<%=ConsumptionReportSpecific.get(i).getVolumeQty()%>"  readonly /></td>
+                    </tr> 
+                    <%
+                        }
+                    %>
+                </tbody>
+            </table>
+        </div>
+        <div align="center" class="container">
             <h2>View Cutting Report</h2><br/>
 
-            <div class="panel-heading">
-                <h3 class="panel-title">Cutting Report</h3>
-            </div>
             <div class="panel panel-default col-md-3">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Cutting Report</h3>
+                </div>
                 <div class="panel-body h5" align="left">
                     <label>Production Number</label>
                     <%=ConsumptionReportSpecific.get(0).getProductionNumber()%><br/><br/>
                     <label>Product</label>
-                    <%=ConsumptionReportSpecific.get(0).getProductName() %><br/><br/>
+                    <%=ConsumptionReportSpecific.get(0).getProductName()%><br/><br/>
                     <label>Cutting Master</label>
                     <input type="text" class="transparentBg" name="size"  value = " <%= user.getFirstName()%> <%= user.getLastName()%>"  readonly/><br/>
                     <input type="hidden" class="transparentBg" name="size"  value = " <%= user.getEmployeeNumber()%>"  />
-                    
+
                 </div>
             </div>
 
@@ -119,7 +152,7 @@
                                 <th>Consumption Per Unit</th>
                                 <th>Total Consumption</th>
                                 <th>Expected Cut Quantity</th>
-                               
+
                             </tr>
                         </thead>
                         <tbody >
