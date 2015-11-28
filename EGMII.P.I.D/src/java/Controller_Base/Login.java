@@ -51,7 +51,7 @@ public class Login extends HttpServlet {
             if (successful) {
                 user = UserDAO.getUser(user.getEmail(), user.getPassword());
                 ServletContext context = getServletContext();
-                RequestDispatcher rd = context.getRequestDispatcher("/Accounts/Homepage.jsp");
+                RequestDispatcher rd = context.getRequestDispatcher("/Home");
                 HttpSession session = request.getSession();
                 request.setAttribute("message", "Success");
                 session.setAttribute("login", user);

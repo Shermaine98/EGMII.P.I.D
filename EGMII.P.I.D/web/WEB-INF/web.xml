@@ -272,6 +272,10 @@
         <servlet-name>SignUp</servlet-name>
         <servlet-class>Controller_Base.SignUp</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Home</servlet-name>
+        <servlet-class>Controller_Base.Home</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SearchProductServlet</servlet-name>
         <url-pattern>/SearchProductServlet</url-pattern>
@@ -543,6 +547,10 @@
     <servlet-mapping>
         <servlet-name>SignUp</servlet-name>
         <url-pattern>/SignUp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Home</servlet-name>
+        <url-pattern>/Home</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

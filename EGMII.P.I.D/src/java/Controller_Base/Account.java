@@ -43,7 +43,7 @@ public class Account extends HttpServlet {
 
              if (action.equals("goToHome")) {
                 ServletContext context = getServletContext();
-                RequestDispatcher rd = context.getRequestDispatcher("/Accounts/Homepage.jsp");
+                RequestDispatcher rd = context.getRequestDispatcher("/Home");
                 rd.forward(request, response);
             } else if (action.equals("viewAccounts")) {
                 ServletContext context = getServletContext();

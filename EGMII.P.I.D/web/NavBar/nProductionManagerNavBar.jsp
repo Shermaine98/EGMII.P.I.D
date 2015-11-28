@@ -70,7 +70,7 @@
                                 <span class="caret"></span></a> 
                             <ul class="dropdown-menu" role="menu">
                                  <li><a href="">Subcontractor Purchase Order</a>
-                                    <ul class="dropdown-menu sub-menu" style="margin-top: 35px;">
+                                    <ul class="dropdown-menu sub-menu">
                                         <li><a href="/EGMII.P.I.D/SetSubconNumberServlet?action=create">Encode Subcontractor Purchase Order</a></li>
                                         <li><a href="/EGMII.P.I.D/ViewSubconPurchaseOrderServlet?action=view">View Subcontractor Purchase Order</a></li>
                                         <li><a href="/EGMII.P.I.D/SetSubconPOReceivingServlet?action=view">Receive Subcontractor Purchase Order</a></li></ul></li>
