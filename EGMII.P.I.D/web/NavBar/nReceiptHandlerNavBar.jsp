@@ -45,28 +45,17 @@
                                     <a href="/EGMII.P.I.D/SetProductIDServlet">Bill Of Materials</a>
                                 </li>
 
-                            </ul>
-                        </li>
-
-                        <!--Procurement-->
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Procurement
-                                <span class="caret"></span></a> 
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="">Supplier Purchase Order</a>
-                                    <ul class="dropdown-menu sub-menu">
-                                        <li><a href="/EGMII.P.I.D/SetSPONumberServlet">Encode Supplier Purchase Order</a></li>
-                                        <li><a href="/EGMII.P.I.D/SetSPONumberServlet">Receive Supplier Purchase Order</a></li></ul></li>
-
-                                <li><a href="">Subcontractor Purchase Order</a>
+                                <!--SUB-MENU OF CONSUMPTION REPORT-->
+                                <li><a href="">Consumption Report</a>
                                     <ul class="dropdown-menu sub-menu" style="margin-top: 35px;">
-                                        <li><a href="/EGMII.P.I.D.P.I.DMI/SearchProductsSubconServlet">Encode Subcontractor Purchase Order</a></li>
-                                        <li><a href="/EGMII.P.I.D/SetSPONumberServlet">Receive Subcontractor Purchase Order</a></li></ul></li>
+                                        <li><a href="/EGMII.P.I.D/SearchProductServlet?action=Encode">Encode Consumption Report</a></li>
+                                        <li><a href="/EGMII.P.I.D/ViewConsumptionReportServlet?goToC=View">View Consumption Report</a></li></ul>
+                                </li>
 
                             </ul>
                         </li>
 
-
+                        
                         <!--DELIVERY-->
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Delivery

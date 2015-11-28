@@ -69,26 +69,27 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Procurement
                                 <span class="caret"></span></a> 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="">Supplier Purchase Order</a>
-                                    <ul class="dropdown-menu sub-menu">
-                                        <li><a href="/EGMII.P.I.D/SetSPONumberServlet">Encode Supplier Purchase Order</a></li>
-                                        <li><a href="/EGMII.P.I.D/SetSPONumberServlet">Receive Supplier Purchase Order</a></li></ul></li>
-
-                                <li><a href="">Subcontractor Purchase Order</a>
+                                 <li><a href="">Subcontractor Purchase Order</a>
                                     <ul class="dropdown-menu sub-menu" style="margin-top: 35px;">
-                                       <li><a href="/EGMII.P.I.D/SetSubconNumberServlet">Encode Subcontractor Purchase Order</a></li>
-                                        <li><a href="/EGMII.P.I.D/ApproveSubconPurchaseOrderServlet">Approve Subcontractor Purchase Order</a></li>
+                                        <li><a href="/EGMII.P.I.D/SetSubconNumberServlet?action=create">Encode Subcontractor Purchase Order</a></li>
                                         <li><a href="/EGMII.P.I.D/ViewSubconPurchaseOrderServlet?action=view">View Subcontractor Purchase Order</a></li>
                                         <li><a href="/EGMII.P.I.D/SetSubconPOReceivingServlet?action=view">Receive Subcontractor Purchase Order</a></li></ul></li>
+
                             </ul>
                         </li>
 
 
                         <!--Inventory-->
                         <li class="dropdown">
-                          
-                              <li><a href="/EGMII.P.I.D/ViewAllInventoryServlet">Inventory</a></li>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Inventory
+                                <span class="caret"></span></a> 
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="/EGMII.P.I.D/ViewAccessoriesInventoryServlet">Accessories Inventory</a></li>
+                                <li><a href="/EGMII.P.I.D/ViewProductionInventoryServlet">Production Inventory</a></li>
+
+                            </ul>
                         </li>
+
 
                     </ul>
 
