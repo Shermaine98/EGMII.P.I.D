@@ -57,7 +57,9 @@ public class SetSubconPOReceivingServlet extends BaseServlet {
         if (action.equalsIgnoreCase("view")) {
             request.setAttribute("SubconPOApproved", SubconPOApproved);
             request.setAttribute("data", "null");
+            request.setAttribute("info", "none");
         } else if (action.equalsIgnoreCase("viewSpecific")) {
+             request.setAttribute("info", "none");
             String poNumber = request.getParameter("hiddenValue");
             String productionNumber = request.getParameter("productionNumber");
 
@@ -75,6 +77,15 @@ public class SetSubconPOReceivingServlet extends BaseServlet {
             request.setAttribute("CRHeaderA", CRHeaderA);
             request.setAttribute("CRdelivered", CRdelivered);
             request.setAttribute("data", "subconApproval");
+        }else{
+            request.setAttribute("SubconPOApproved", SubconPOApproved);
+            request.setAttribute("data", "null");
+            String info = (String) request.getAttribute("info");
+            if (info.equalsIgnoreCase("success")) {
+                request.setAttribute("info", "success");
+            } else if (info.equalsIgnoreCase("error")) {
+                request.setAttribute("info", "error");
+            } 
         }
         ServletContext context = getServletContext();
         RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Procurement/SubconReceiving.jsp");

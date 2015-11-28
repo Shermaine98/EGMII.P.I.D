@@ -69,8 +69,8 @@
 
                                 <li><a href="">Subcontractor Purchase Order</a>
                                     <ul class="dropdown-menu sub-menu" style="margin-top: 35px;">
-                                        <li><a href="/EGMII.P.I.D/SetSubconNumberServlet">Encode Subcontractor Purchase Order</a></li>
-                                        <li><a href="/EGMII.P.I.D/ApproveSubconPurchaseOrderServlet">Approve Subcontractor Purchase Order</a></li>
+                                        <li><a href="/EGMII.P.I.D/SetSubconNumberServlet?action=create">Encode Subcontractor Purchase Order</a></li>
+                                        <li><a href="/EGMII.P.I.D/ApproveSubconPurchaseOrderServlet?action=approve">Approve Subcontractor Purchase Order</a></li>
                                         <li><a href="/EGMII.P.I.D/ViewSubconPurchaseOrderServlet?action=view">View Subcontractor Purchase Order</a></li>
                                         <li><a href="/EGMII.P.I.D/SetSubconPOReceivingServlet?action=view">Receive Subcontractor Purchase Order</a></li></ul></li>
 

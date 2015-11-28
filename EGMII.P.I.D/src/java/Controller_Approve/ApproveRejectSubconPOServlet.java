@@ -78,13 +78,13 @@ public class ApproveRejectSubconPOServlet extends BaseServlet {
 
             if (x) {
                 ServletContext context = getServletContext();
-                RequestDispatcher rd = context.getRequestDispatcher("/ApproveSubconPurchaseOrderServlet");
-                request.setAttribute("Approval", "Approved");
+                RequestDispatcher rd = context.getRequestDispatcher("/ApproveSubconPurchaseOrderServlet?action=approved");
+                request.setAttribute("info", "Success");
                 rd.forward(request, response);
             } else {
                 ServletContext context = getServletContext();
-                RequestDispatcher rd = context.getRequestDispatcher("/Error.jsp");
-                request.setAttribute("Error", "Error");
+                RequestDispatcher rd = context.getRequestDispatcher("/ApproveSubconPurchaseOrderServlet?action=approved");
+                request.setAttribute("info", "Error");
                 rd.forward(request, response);
             }
 
@@ -94,13 +94,13 @@ public class ApproveRejectSubconPOServlet extends BaseServlet {
 
             if (x) {
                 ServletContext context = getServletContext();
-                RequestDispatcher rd = context.getRequestDispatcher("/ApproveSubconPurchaseOrderServlet");
-                request.setAttribute("Approval", "Approved");
+                RequestDispatcher rd = context.getRequestDispatcher("/ApproveSubconPurchaseOrderServlet?action=rejected");
+                request.setAttribute("info", "Rejected");
                 rd.forward(request, response);
             } else {
                 ServletContext context = getServletContext();
-                RequestDispatcher rd = context.getRequestDispatcher("/Error.jsp");
-                request.setAttribute("Error", "Error");
+                RequestDispatcher rd = context.getRequestDispatcher("/ApproveSubconPurchaseOrderServlet?action=rejected");
+                request.setAttribute("info", "Error");
                 rd.forward(request, response);
             }
 

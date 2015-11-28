@@ -51,6 +51,24 @@
     </head>
     <body>
         <br/>
+        
+        <!--Alert-->
+        <%
+            String info = (String) request.getAttribute("info");
+            if (info.equalsIgnoreCase("success")) {
+        %>
+        <div class="alert alert-success" style="margin-left : 140px; margin-right: 140px">
+            <strong>Success!</strong> The  Subcontractor Purchase Order is created!
+        </div>
+        <%
+        } else if (info.equalsIgnoreCase("error")) {
+        %>
+        <div class="alert alert-danger" style="margin-left : 140px; margin-right: 140px">
+            <strong>Oops!</strong> The  Subcontractor Purchase Order is not created! Kindly  screen shot this screen and email/contact the maintenance team and or the developers.
+        </div>
+        <%
+        }%>
+       
         <% ArrayList<ConsumptionReportView> ConsumptionReportView = (ArrayList<ConsumptionReportView>) request.getAttribute("ConsumptionList");%>
         <form id="form1" method="post" action="SetSubconPOSpecificSerlvet">
             <div class="container" align="center">

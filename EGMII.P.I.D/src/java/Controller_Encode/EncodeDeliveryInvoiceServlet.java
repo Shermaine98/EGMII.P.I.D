@@ -90,13 +90,13 @@ public class EncodeDeliveryInvoiceServlet extends BaseServlet {
 
         if (x) {
             ServletContext context = getServletContext();
-            RequestDispatcher rd = context.getRequestDispatcher("/ViewDeliveryInvoiceServlet?action=create");
-            request.setAttribute("success", "success");
+            RequestDispatcher rd = context.getRequestDispatcher("/ViewDeliveryInvoiceServlet?action=created");
+            request.setAttribute("info", "success");
             rd.forward(request, response);
         } else {
             ServletContext context = getServletContext();
-            RequestDispatcher rd = context.getRequestDispatcher("/Error.jsp");
-            request.setAttribute("Error", "Error");
+            RequestDispatcher rd = context.getRequestDispatcher("/ViewDeliveryInvoiceServlet?action=created");
+            request.setAttribute("info", "Error");
             rd.forward(request, response);
         }
 

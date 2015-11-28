@@ -34,12 +34,23 @@ public class ApproveSubconPurchaseOrderServlet extends BaseServlet {
     public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         SubconPurchaseOrderDAO PurchaseOrderDAO = new SubconPurchaseOrderDAO();
         ArrayList<SubconPurchaseOrderView> PurchaseOrderList = new ArrayList<>();
-        
+        String action = request.getParameter("action");
         PurchaseOrderList = PurchaseOrderDAO.GetAllSubconPurchaseOrderForApproval();
         ServletContext context = getServletContext();
         RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Procurement/SubconApproval.jsp");
         request.setAttribute("data", "null");
         request.setAttribute("PurchaseOrderList", PurchaseOrderList);
-        rd.forward(request, response);
+         if (action.equalsIgnoreCase("approve")) {
+            request.setAttribute("info", "none");
+            rd.forward(request, response);
+        } else {
+            String info = (String) request.getAttribute("info");
+            if (info.equalsIgnoreCase("success")) {
+                request.setAttribute("info", "success");
+            } else if (info.equalsIgnoreCase("error")) {
+                request.setAttribute("info", "error");
+            } 
+            rd.forward(request, response);
+        }
     }
 }

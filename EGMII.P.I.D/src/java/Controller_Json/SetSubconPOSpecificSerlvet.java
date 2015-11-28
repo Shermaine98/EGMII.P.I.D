@@ -87,7 +87,7 @@ public class SetSubconPOSpecificSerlvet extends BaseServlet {
         } catch (ParseException ex) {
             Logger.getLogger(SetSubconPOSpecificSerlvet.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        request.setAttribute("info", "none");
         request.setAttribute("rmwInventory", rmwInventory);
         request.setAttribute("crListSpecific", crListSpecific);
         request.setAttribute("CRforFabric", CRforFabric);

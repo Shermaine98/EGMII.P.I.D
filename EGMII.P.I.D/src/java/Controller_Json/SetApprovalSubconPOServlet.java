@@ -61,7 +61,7 @@ public class SetApprovalSubconPOServlet extends BaseServlet {
 
         ServletContext context = getServletContext();
         RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Procurement/SubconApproval.jsp");
-
+         request.setAttribute("info", "none");
         request.setAttribute("PurchaseOrderList", PurchaseOrderList);
         request.setAttribute("data", "subconApproval");
         request.setAttribute("SubconPurchaseOrderSpecific", SubconPurchaseOrderSpecific);

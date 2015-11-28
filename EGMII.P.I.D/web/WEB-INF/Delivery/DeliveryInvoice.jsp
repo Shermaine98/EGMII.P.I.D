@@ -38,7 +38,23 @@
         </script>
     </head>
     <body>
-
+        <!--Alert-->
+        <%  
+            String info = (String) request.getAttribute("info");
+            if (info.equalsIgnoreCase("success")) {
+        %>
+        <div class="alert alert-success" style="margin-left : 140px; margin-right: 140px">
+            <strong>Success!</strong> The  Delivery Invoice is created!
+        </div>
+        <%
+        } else if (info.equalsIgnoreCase("error")) {
+        %>
+        <div class="alert alert-danger" style="margin-left : 140px; margin-right: 140px">
+            <strong>Oops!</strong> Something went wrong! Kindly  screen shot this screen and email/contact the maintenance team and or the developers.
+        </div>
+        <%
+        }
+        %>
         <%             ArrayList<RepRequestView> RepRequestView = (ArrayList<RepRequestView>) request.getAttribute("RepRequestView");
             if (RepRequestView.size() > 0) {
         %>

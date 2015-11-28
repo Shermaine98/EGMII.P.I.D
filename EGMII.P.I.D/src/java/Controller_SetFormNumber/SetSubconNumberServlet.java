@@ -36,7 +36,7 @@ public class SetSubconNumberServlet extends BaseServlet {
     public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ConsumptionReportDAO ConsumptionReportDAO = new ConsumptionReportDAO();
         ArrayList<ConsumptionReportView> ConsumptionReportView = new ArrayList<>();
-
+         String action = request.getParameter("action");
         try {
             ConsumptionReportView = ConsumptionReportDAO.GetAllConsumptionReportGroupBy();
         } catch (ParseException ex) {
@@ -46,7 +46,20 @@ public class SetSubconNumberServlet extends BaseServlet {
         RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Procurement/SubconPurchaseOrder.jsp");
         request.setAttribute("subconData", "null");
         request.setAttribute("ConsumptionList", ConsumptionReportView);
-        rd.forward(request, response);
+       if (action.equalsIgnoreCase("create")) {
+            request.setAttribute("info", "none");
+            rd.forward(request, response);
+
+        } else {
+
+            String info = (String) request.getAttribute("info");
+            if (info.equalsIgnoreCase("success")) {
+                request.setAttribute("info", "success");
+            } else if (info.equalsIgnoreCase("error")) {
+                request.setAttribute("info", "error");
+            } 
+            rd.forward(request, response);
+        }
 
     }
 }

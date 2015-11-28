@@ -80,12 +80,13 @@ public class EncodeSubconPurchaseOrderServlet extends BaseServlet {
 
         if (x == true) {
             ServletContext context = getServletContext();
-            RequestDispatcher rd = context.getRequestDispatcher("/SetSubconNumberServlet");
+            RequestDispatcher rd = context.getRequestDispatcher("/SetSubconNumberServlet?action=created");
+            request.setAttribute("info", "success");
             rd.forward(request, response);
         } else {
             ServletContext context = getServletContext();
-            RequestDispatcher rd = context.getRequestDispatcher("/Error.jsp");
-            request.setAttribute("Error", "Error");
+            RequestDispatcher rd = context.getRequestDispatcher("/SetSubconNumberServlet?action=created");
+            request.setAttribute("info", "Error");
             rd.forward(request, response);
         }
 

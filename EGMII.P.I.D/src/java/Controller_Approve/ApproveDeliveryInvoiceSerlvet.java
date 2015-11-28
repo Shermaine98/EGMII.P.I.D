@@ -97,13 +97,13 @@ public class ApproveDeliveryInvoiceSerlvet extends BaseServlet {
 
             if (x) {
                 ServletContext context = getServletContext();
-                RequestDispatcher rd = context.getRequestDispatcher("/ViewDeliveryInvoiceServlet?action=view");
-                request.setAttribute("Approval", "Approved");
+                RequestDispatcher rd = context.getRequestDispatcher("/ViewDeliveryInvoiceServlet?action=preapprove");
+                request.setAttribute("info", "success");
                 rd.forward(request, response);
             } else {
                 ServletContext context = getServletContext();
-                RequestDispatcher rd = context.getRequestDispatcher("/Error.jsp");
-                request.setAttribute("Error", "Error");
+                RequestDispatcher rd = context.getRequestDispatcher("/ViewDeliveryInvoiceServlet?action=preapprove");
+                request.setAttribute("info", "Error");
                 rd.forward(request, response);
             }
         } else if (action.equals("reject")) {
@@ -111,14 +111,14 @@ public class ApproveDeliveryInvoiceSerlvet extends BaseServlet {
             boolean y = DeliveryInvoiceDAO.rejectDeliveryInvoice(diNumber);
             if (x && y) {
                 ServletContext context = getServletContext();
-                RequestDispatcher rd = context.getRequestDispatcher("/ViewDeliveryInvoiceServlet?action=view");
-                request.setAttribute("Rejected", "Rejected");
+                RequestDispatcher rd = context.getRequestDispatcher("/ViewDeliveryInvoiceServlet?action=preapprove");
+                request.setAttribute("info", "Rejected");
                 rd.forward(request, response);
             } 
             else {
                 ServletContext context = getServletContext();
-                RequestDispatcher rd = context.getRequestDispatcher("/Error.jsp");
-                request.setAttribute("Error", "Error");
+                RequestDispatcher rd = context.getRequestDispatcher("/ViewDeliveryInvoiceServlet?action=preapprove");
+                request.setAttribute("info", "Error");
                 rd.forward(request, response);
             }
         }

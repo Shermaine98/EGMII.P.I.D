@@ -40,7 +40,26 @@
         </script>
     </head>
     <body>
-
+        <!--Alert-->
+        <%            String info = (String) request.getAttribute("info");
+            if (info.equalsIgnoreCase("success")) {
+        %>
+        <div class="alert alert-success" style="margin-left : 140px; margin-right: 140px">
+            <strong>Success!</strong> The  Delivery Invoice is approved!
+        </div>
+        <%
+        } else if (info.equalsIgnoreCase("error")) {
+        %>
+        <div class="alert alert-danger" style="margin-left : 140px; margin-right: 140px">
+            <strong>Oops!</strong> The  Delivery Invoice is not approve nor rejected! Kindly  screen shot this screen and email/contact the maintenance team and or the developers.
+        </div>
+        <%
+        } else if (info.equalsIgnoreCase("Rejected")) {
+        %>
+        <div class="alert alert-warning" style="margin-left : 140px; margin-right: 140px">
+            <strong>Rejected!</strong> The Delivery Invoice is  rejected!
+        </div>
+        <%}%>
         <%  int dNum = 0;
             ArrayList<DeliveryInvoiceView> DeliveryInvoiceView = (ArrayList<DeliveryInvoiceView>) request.getAttribute("DeliveryInvoiceViewA");
             if (DeliveryInvoiceView.size() > 0) {
