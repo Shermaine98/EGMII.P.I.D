@@ -87,13 +87,13 @@ public class EncodeReplenishmentRequestServlet extends BaseServlet {
         }
         if (x) {
             ServletContext context = getServletContext();
-            RequestDispatcher rd = context.getRequestDispatcher("/ViewReplenishmentServlet?action=create");
-            request.setAttribute("Success", "Success");
+            RequestDispatcher rd = context.getRequestDispatcher("/ViewReplenishmentServlet?action=created");
+            request.setAttribute("info", "Success");
             rd.forward(request, response);
         } else {
             ServletContext context = getServletContext();
-            RequestDispatcher rd = context.getRequestDispatcher("/Error.jsp");
-            request.setAttribute("Error", "Error");
+            RequestDispatcher rd = context.getRequestDispatcher("/ViewReplenishmentServlet?action=created");
+            request.setAttribute("info", "Error");
             rd.forward(request, response);
         }
 

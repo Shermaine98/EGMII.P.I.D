@@ -63,18 +63,36 @@
                         var color = $(this).closest("tr").find(".color").text();
                         var size = $(this).closest("tr").find(".size").text();
                         var Qty = $(this).closest("tr").find(".Qty").text();
-                        $('#data').append('<tr id="rowNum' + index + '">\n\
+                        $('#data').append('<tr class="trclass" id="rowNum' + index + '">\n\
                                       <td><input type="hidden" name="itemCode" value="' + itemCode + '"/>\n\
                                            <input type="text" class="transparentBg" readonly value="' + productName + '"/></td>\n\
                                       <td><input type="text"  class="transparentBg inputSize" readonly value="' + color + '"/></td>\n\
                                       <td><input type="text" class="transparentBg inputSize" readonly value="' + size + '"/></td>\n\\n\
-                                      <td><input type="text" class="transparentBg inputSize" readonly value="' + Qty + '"/></td>\n\\n\
-                                      <td><input type="number" class="numericControl inputSize" name="qty" value="0"/></td>\n\
+                                      <td class="currQty"><input type="text" class="transparentBg inputSize" readonly value="' + Qty + '"/></td>\n\\n\
+                                      <td><input type="number" class="numericControl inputSize" name="qty" id="qty" value="0"/></td>\n\
                                     </tr>');
                     } else {
                         $('#data').find("#rowNum" + index).remove();
                     }
                 });
+                
+                $(".trclass").on("keyup", (function () {
+                    var volumeQty = parseInt($(this).closest("tr").find(".currQty").text());
+                    var qty = parseInt($(this).closest("tr").find('[id="qty\\[\\]"]').val());
+
+                    if (qty !== 0) {
+                        
+                       
+                        if (volumeQty < qty) {
+                            window.alert("Quantity exceeds possible receiving quantity");
+                            $(this).closest("tr").find('[id="qty\\[\\]"]').val(0);
+                        } /* else if (remainingTotal <= receivedQty) {
+                            window.alert("WRONG");
+                            $(this).closest("tr").find('[id="receivedqty\\[\\]"]').val(0);
+                        } */
+                    }
+
+                }));
             });
 
 
@@ -85,6 +103,23 @@
         <div class="container" align="center">
             <h2>Replenishment Request</h2>
             <!--Click Inventory Reports-->
+            
+             <!--Alert-->
+        <%
+            String info = (String) request.getAttribute("info");
+            if (info.equalsIgnoreCase("success")) {
+        %>
+        <div class="alert alert-success" style="margin-left : 140px; margin-right: 140px">
+            <strong>Success!</strong> The  Replenishment Report  is created!
+        </div>
+        <%
+        } else if (info.equalsIgnoreCase("error")) {
+        %>
+        <div class="alert alert-danger" style="margin-left : 140px; margin-right: 140px">
+            <strong>Oops!</strong> The  Replenishment Report  is not created! Kindly  screen shot this screen and email/contact the maintenance team and or the developers.
+        </div>
+        <%
+        }%>
             <%        ArrayList<InventoryReportView> InventoryReport = (ArrayList<InventoryReportView>) request.getAttribute("inventoryReports");
                 if (InventoryReport.size() > 0) {
             %>

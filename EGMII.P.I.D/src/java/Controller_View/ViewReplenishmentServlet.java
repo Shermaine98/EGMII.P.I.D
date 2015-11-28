@@ -58,6 +58,20 @@ public class ViewReplenishmentServlet extends BaseServlet {
             RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Delivery/ReplenishmentRequest.jsp");
             request.setAttribute("inventoryReports", irv);
             request.setAttribute("data", "null");
+             request.setAttribute("info", "none");
+            rd.forward(request, response);
+
+        }else if (action.equalsIgnoreCase("created")) {
+            RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Delivery/ReplenishmentRequest.jsp");
+            request.setAttribute("inventoryReports", irv);
+            request.setAttribute("data", "null");
+            
+            String info = (String) request.getAttribute("info");
+            if (info.equalsIgnoreCase("success")) {
+                request.setAttribute("info", "success");
+            } else if (info.equalsIgnoreCase("error")) {
+                request.setAttribute("info", "error");
+            }
             rd.forward(request, response);
 
         } else if (action.equalsIgnoreCase("specific")) {
@@ -82,6 +96,7 @@ public class ViewReplenishmentServlet extends BaseServlet {
             }
 
             RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Delivery/ReplenishmentRequest.jsp");
+            request.setAttribute("info", "none");
             request.setAttribute("data", "specific");
             request.setAttribute("inventoryReports", irv);
             request.setAttribute("InventoryReportCom", inventoryCom);
