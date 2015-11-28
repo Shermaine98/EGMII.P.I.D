@@ -135,10 +135,7 @@
                     <br>
                 </div>
             </div>
-            <!--Buttons-->
-            <div id="buttonz" align="center">
-                <button class="btn btn-default" onclick="printDiv('printableArea')">Print</button>
-            </div>
+          
 
 
             <%
@@ -147,6 +144,10 @@
             %>
 
         </form>
+              <!--Buttons-->
+            <div id="buttonz" align="center">
+                <button class="btn btn-default" onclick="printDiv('printableArea')">Print</button>
+            </div>
         <script>
 
 

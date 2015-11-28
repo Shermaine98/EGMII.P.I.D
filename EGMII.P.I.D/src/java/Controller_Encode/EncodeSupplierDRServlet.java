@@ -123,13 +123,13 @@ public class EncodeSupplierDRServlet extends BaseServlet {
 
         if (x) {
             ServletContext context = getServletContext();
-            RequestDispatcher rd = context.getRequestDispatcher("/SetSupplierReceivingServlet");
-            request.setAttribute("success", "success");
+            RequestDispatcher rd = context.getRequestDispatcher("/SetSupplierReceivingServlet?action=re");
+            request.setAttribute("info", "success");
             rd.forward(request, response);
         } else {
             ServletContext context = getServletContext();
-            RequestDispatcher rd = context.getRequestDispatcher("/Error.jsp");
-            request.setAttribute("Error", "Error");
+            RequestDispatcher rd = context.getRequestDispatcher("/SetSupplierReceivingServlet?action=re");
+            request.setAttribute("info", "Error");
             rd.forward(request, response);
         }
 

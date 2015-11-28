@@ -48,6 +48,29 @@
         </script>
     </head>
     <body>
+        
+        <!--Alert-->
+        <%
+            String info = (String) request.getAttribute("info");
+            if (info.equalsIgnoreCase("success")) {
+        %>
+        <div class="alert alert-success" style="margin-left : 140px; margin-right: 140px">
+            <strong>Success!</strong> The  Supplier Purchase Order is approved!
+        </div>
+        <%
+        } else if (info.equalsIgnoreCase("error")) {
+        %>
+        <div class="alert alert-danger" style="margin-left : 140px; margin-right: 140px">
+            <strong>Oops!</strong> The  Supplier Purchase Order is not approve nor rejected! Kindly  screen shot this screen and email/contact the maintenance team and or the developers.
+        </div>
+        <%
+        } else if (info.equalsIgnoreCase("Rejected")) {
+        %>
+        <div class="alert alert-warning" style="margin-left : 140px; margin-right: 140px">
+            <strong>Rejected!</strong> The Supplier Purchase Order is  rejected!
+        </div>
+        <%}%>
+        
         <%            int poNumber = 0;
             ArrayList<SubconPurchaseOrderView> ConsumptionReportView = (ArrayList<SubconPurchaseOrderView>) request.getAttribute("PurchaseOrderList");
         %>

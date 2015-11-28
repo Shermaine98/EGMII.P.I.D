@@ -37,12 +37,34 @@
 
             });
 
-            
+
         </script>
     </head>
     <%        ArrayList<SupplierPurchaseOrderView> PurchaseOrderList = (ArrayList<SupplierPurchaseOrderView>) request.getAttribute("SupplierPurchaseOrderList");
     %>
     <body>
+
+        <!--Alert-->
+        <%
+            String info = (String) request.getAttribute("info");
+            if (info.equalsIgnoreCase("success")) {
+        %>
+        <div class="alert alert-success" style="margin-left : 140px; margin-right: 140px">
+            <strong>Success!</strong> The  Supplier Purchase Order is approved!
+        </div>
+        <%
+        } else if (info.equalsIgnoreCase("error")) {
+        %>
+        <div class="alert alert-danger" style="margin-left : 140px; margin-right: 140px">
+            <strong>Oops!</strong> The  Supplier Purchase Order is not approve nor rejected! Kindly  screen shot this screen and email/contact the maintenance team and or the developers.
+        </div>
+        <%
+        } else if (info.equalsIgnoreCase("Rejected")) {
+        %>
+        <div class="alert alert-warning" style="margin-left : 140px; margin-right: 140px">
+            <strong>Rejected!</strong> The Supplier Purchase Order is  rejected!
+        </div>
+        <%}%>
         <form id="form1" method="POST" action="SetApprovalSupplierPO">
             <div class="container" align="center">
                 <h2>Approve Supplier Purchase Order</h2><br/>
@@ -127,9 +149,9 @@
                                 <td><input type="text" class="transparentBg inputSize readonlyWhite" readonly value="<%=PurchaseOrderSpecific.get(x).getQty() * PurchaseOrderSpecific.get(x).getUnitPrice()%>"id="TQP[]"/></td>   
                             </tr>
                             <%
-                               total += PurchaseOrderSpecific.get(x).getQty() * PurchaseOrderSpecific.get(x).getUnitPrice();
+                                    total += PurchaseOrderSpecific.get(x).getQty() * PurchaseOrderSpecific.get(x).getUnitPrice();
 
-                            }%>
+                                }%>
                         </table>
 
                         <div id="run" class="form-inline pull-right">

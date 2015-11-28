@@ -43,7 +43,23 @@
             if (!productAll.isEmpty()) {
         %>
         <!--IF STATEMENT HERE-->
-
+  <!--Alert-->
+        <%
+           String info = (String) request.getAttribute("info");
+           if(info.equalsIgnoreCase("success")){
+        %>
+        <div class="alert alert-success" style="margin-left : 140px; margin-right: 140px">
+            <strong>Success!</strong> The new Bill of Materials is created!
+        </div>
+        <%
+           }else if(info.equalsIgnoreCase("error")){
+        %>
+        <div class="alert alert-danger" style="margin-left : 140px; margin-right: 140px">
+            <strong>Oops!</strong> The new Bill of Materials is not created! Kindly contact screen shot this screen and email the maintenance team and or the developers.
+        </div>
+        <%
+           }
+        %>
 
         <form method="POST" action="EncodeConsumptionReportServlet">
             <div align="center" class="container">

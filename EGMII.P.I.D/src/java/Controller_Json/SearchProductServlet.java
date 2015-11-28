@@ -50,6 +50,9 @@ public class SearchProductServlet extends BaseServlet {
             if (action.equalsIgnoreCase("specific")) {
                 String productNameSpecific = (String) request.getAttribute("productNameSpecific");
                 productName1 = productNameSpecific;
+                request.setAttribute("info", "Success");
+            } else {
+                request.setAttribute("info", "none");
             }
             ServletContext context = getServletContext();
             try {

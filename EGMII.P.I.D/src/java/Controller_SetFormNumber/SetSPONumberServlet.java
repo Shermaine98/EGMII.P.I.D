@@ -35,19 +35,32 @@ public class SetSPONumberServlet extends BaseServlet {
 
         SupplierPurchaseOrderDAO DAO = new SupplierPurchaseOrderDAO();
         Integer SupplierpurchaseOrder = 0;
+        String action = request.getParameter("action");
+
         try {
             SupplierpurchaseOrder = DAO.getSupplierPurchaseOrderNumber();
 
         } catch (SQLException ex) {
             Logger.getLogger(SetSPONumberServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         ServletContext context = getServletContext();
-
         RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Procurement/SupplierPurchaseOrder.jsp");
         request.setAttribute("SPONumber", SupplierpurchaseOrder);
 
-        rd.forward(request, response);
+        if (action.equalsIgnoreCase("create")) {
+            request.setAttribute("info", "none");
+            rd.forward(request, response);
+
+        } else {
+
+            String info = (String) request.getAttribute("info");
+            if (info.equalsIgnoreCase("success")) {
+                request.setAttribute("info", "success");
+            } else if (info.equalsIgnoreCase("error")) {
+                request.setAttribute("info", "error");
+            } 
+            rd.forward(request, response);
+        }
 
     }
 }

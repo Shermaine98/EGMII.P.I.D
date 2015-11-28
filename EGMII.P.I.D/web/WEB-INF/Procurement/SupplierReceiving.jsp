@@ -28,8 +28,8 @@
                     "info": true
                 });
 
-                 $("#dataTable tbody").on("click", 'input[type="text"]', (function () {
-                     var purchaseOrderNum = $(this).closest("tr").find(".poNumber").text();
+                $("#dataTable tbody").on("click", 'input[type="text"]', (function () {
+                    var purchaseOrderNum = $(this).closest("tr").find(".poNumber").text();
                     document.getElementById('hiddenValue').value = purchaseOrderNum;
                     document.getElementById("form1").submit();
                 }));
@@ -40,15 +40,15 @@
                     var receivedQty = parseInt($(this).closest("tr").find('[id="receivedqty\\[\\]"]').val());
 
                     if (receivedQty !== 0) {
-                        
+
                         var remainingTotal = volumeQty - deliveredQty;
                         if (remainingTotal < receivedQty) {
                             window.alert("Quantity exceeds possible receiving quantity");
                             $(this).closest("tr").find('[id="receivedqty\\[\\]"]').val(0);
                         } /* else if (remainingTotal <= receivedQty) {
-                            window.alert("WRONG");
-                            $(this).closest("tr").find('[id="receivedqty\\[\\]"]').val(0);
-                        } */
+                         window.alert("WRONG");
+                         $(this).closest("tr").find('[id="receivedqty\\[\\]"]').val(0);
+                         } */
                     }
 
                 }));
@@ -56,6 +56,27 @@
 
         </script>
     </head>
+
+    <!--Alert-->
+    <%           
+    String info = (String) request.getAttribute("info");
+        if (info.equalsIgnoreCase("success")) {
+    %>
+    <div class="alert alert-success" style="margin-left : 140px; margin-right: 140px">
+        <strong>Success!</strong> Received!
+    </div>
+    <%
+    } else if (info.equalsIgnoreCase("error")) {
+    %>
+    <div class="alert alert-danger" style="margin-left : 140px; margin-right: 140px">
+        <strong>Oops!</strong> The  something went wrong! Kindly  screen shot this screen and email/contact the maintenance team and or the developers.
+    </div>
+    <%
+        }
+    %>
+
+
+
     <% ArrayList<SupplierPurchaseOrderView> PurchaseOrderList = (ArrayList<SupplierPurchaseOrderView>) request.getAttribute("Receiving");%>
     <body>
         <form method="post" action="SetSupplierSpecificReceivingServlet" id="form1">

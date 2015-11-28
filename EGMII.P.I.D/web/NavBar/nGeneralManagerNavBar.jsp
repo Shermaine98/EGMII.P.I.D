@@ -62,10 +62,10 @@
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="">Supplier Purchase Order</a>
                                     <ul class="dropdown-menu sub-menu">
-                                        <li><a href="/EGMII.P.I.D/SetSPONumberServlet">Encode Supplier Purchase Order</a></li>
-                                        <li><a href="/EGMII.P.I.D/ApproveSupplierPurchaseOrderServlet">Approve Supplier Purchase Order</a></li>
+                                          <li><a href="/EGMII.P.I.D/SetSPONumberServlet?action=create">Encode Supplier Purchase Order</a></li>
+                                        <li><a href="/EGMII.P.I.D/ApproveSupplierPurchaseOrderServlet?action=approve">Approve Supplier Purchase Order</a></li>
                                         <li><a href="/EGMII.P.I.D/ViewSupplierPurchaseOrderServlet">View Supplier Purchase Order</a></li>
-                                        <li><a href="/EGMII.P.I.D/SetSupplierReceivingServlet">Receive Supplier Purchase Order</a></li></ul></li>
+                                        <li><a href="/EGMII.P.I.D/SetSupplierReceivingServlet?action=receive">Receive Supplier Purchase Order</a></li></ul></li>
 
                                 <li><a href="">Subcontractor Purchase Order</a>
                                     <ul class="dropdown-menu sub-menu" style="margin-top: 35px;">

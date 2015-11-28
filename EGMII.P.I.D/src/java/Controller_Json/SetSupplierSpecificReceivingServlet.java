@@ -55,7 +55,7 @@ public class SetSupplierSpecificReceivingServlet extends BaseServlet {
         request.setAttribute("Receiving", PurchaseOrderList);
         request.setAttribute("receivingData", "receiving");
         request.setAttribute("SupplierPurchaseOrderReceiving", SupplierPurchaseOrderList);
-
+        request.setAttribute("info", "none");
         rd.forward(request, response);
 
     }

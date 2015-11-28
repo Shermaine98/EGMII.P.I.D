@@ -50,13 +50,13 @@ public class ApproveRejectSPOServlet extends BaseServlet {
             }
             if (x) {
                 ServletContext context = getServletContext();
-                RequestDispatcher rd = context.getRequestDispatcher("/ApproveSupplierPurchaseOrderServlet");
-                request.setAttribute("Approval", "Approved");
+                RequestDispatcher rd = context.getRequestDispatcher("/ApproveSupplierPurchaseOrderServlet?action=preapprove");
+                request.setAttribute("info", "success");
                 rd.forward(request, response);
             } else {
                 ServletContext context = getServletContext();
-                RequestDispatcher rd = context.getRequestDispatcher("/Error.jsp");
-                request.setAttribute("Error", "Error");
+                RequestDispatcher rd = context.getRequestDispatcher("/ApproveSupplierPurchaseOrderServlet?action=error");
+                request.setAttribute("info", "Error");
                 rd.forward(request, response);
             }
         }
@@ -66,13 +66,13 @@ public class ApproveRejectSPOServlet extends BaseServlet {
             
             if (x && y) {
                 ServletContext context = getServletContext();
-                RequestDispatcher rd = context.getRequestDispatcher("/ApproveSupplierPurchaseOrderServlet");
-                request.setAttribute("Rejected", "Rejected");
+                RequestDispatcher rd = context.getRequestDispatcher("/ApproveSupplierPurchaseOrderServlet?action=rejected");
+                request.setAttribute("info", "Rejected");
                 rd.forward(request, response);
             } else {
                 ServletContext context = getServletContext();
-                RequestDispatcher rd = context.getRequestDispatcher("/Error.jsp");
-                request.setAttribute("Error", "Error");
+                RequestDispatcher rd = context.getRequestDispatcher("/ApproveSupplierPurchaseOrderServlet?action=error");
+                request.setAttribute("info", "Error");
                 rd.forward(request, response);
             }
         }

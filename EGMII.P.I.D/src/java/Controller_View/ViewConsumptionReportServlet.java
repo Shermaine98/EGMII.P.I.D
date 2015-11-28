@@ -52,6 +52,9 @@ public class ViewConsumptionReportServlet extends BaseServlet {
             if (goToC.equalsIgnoreCase("ViewSpecific")) {
                 Integer consumptionReportNumber = (Integer) request.getAttribute("consumptionReportNumber");
                 productionNumber = String.valueOf(consumptionReportNumber);
+                request.setAttribute("frProduct", "true");
+            } else {
+                request.setAttribute("frProduct", "none");
             }
 
             ArrayList<ConsumptionReportView> crListSpecific = new ArrayList();
@@ -73,6 +76,7 @@ public class ViewConsumptionReportServlet extends BaseServlet {
             request.setAttribute("CRforFabric", CRforFabric);
             request.setAttribute("CRforSizes", CRforSizes);
             request.setAttribute("crList", crList);
+
             rd.forward(request, response);
 
         } else {

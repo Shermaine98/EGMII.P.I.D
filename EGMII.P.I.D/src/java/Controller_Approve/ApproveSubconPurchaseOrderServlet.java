@@ -34,7 +34,7 @@ public class ApproveSubconPurchaseOrderServlet extends BaseServlet {
     public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         SubconPurchaseOrderDAO PurchaseOrderDAO = new SubconPurchaseOrderDAO();
         ArrayList<SubconPurchaseOrderView> PurchaseOrderList = new ArrayList<>();
-
+        
         PurchaseOrderList = PurchaseOrderDAO.GetAllSubconPurchaseOrderForApproval();
         ServletContext context = getServletContext();
         RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Procurement/SubconApproval.jsp");

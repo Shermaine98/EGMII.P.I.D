@@ -146,7 +146,7 @@ public class EncodeProductServlet extends BaseServlet {
         } else {
             ServletContext context = getServletContext();
             RequestDispatcher rd = context.getRequestDispatcher("/Error.jsp");
-            request.setAttribute("Error", "Error");
+            request.setAttribute("info", "Error");
             rd.forward(request, response);
         }
 

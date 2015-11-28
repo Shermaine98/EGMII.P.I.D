@@ -36,7 +36,7 @@ public class SetSupplierReceivingServlet extends BaseServlet {
     public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         SupplierPurchaseOrderDAO SupplierPurchaseOrderDAO = new SupplierPurchaseOrderDAO();
         ArrayList<SupplierPurchaseOrderView> SupplierPurchaseOrderView = new ArrayList<>();
-
+        String action = request.getParameter("action");
         try {
             SupplierPurchaseOrderView = SupplierPurchaseOrderDAO.GetSupplierPurchaseOrderForReceiving();
         } catch (ParseException ex) {
@@ -45,7 +45,23 @@ public class SetSupplierReceivingServlet extends BaseServlet {
         ServletContext context = getServletContext();
         RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Procurement/SupplierReceiving.jsp");
         request.setAttribute("receivingData", "null");
+      
         request.setAttribute("Receiving", SupplierPurchaseOrderView);
-        rd.forward(request, response);
+        
+        if(action.equalsIgnoreCase("receive")){
+         request.setAttribute("info", "none");
+         rd.forward(request, response);
+        
+        }else{
+              String info = (String) request.getAttribute("info");
+            if (info.equalsIgnoreCase("success")) {
+                request.setAttribute("info", "success");
+            } else if (info.equalsIgnoreCase("error")) {
+                request.setAttribute("info", "error");
+            } 
+            rd.forward(request, response);
+        
+        }
+       
     }
 }

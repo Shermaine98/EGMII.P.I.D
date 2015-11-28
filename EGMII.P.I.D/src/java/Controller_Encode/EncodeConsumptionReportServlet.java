@@ -46,20 +46,15 @@ public class EncodeConsumptionReportServlet extends BaseServlet {
         ConsumptionReportDAO consumptionReportDAO = new ConsumptionReportDAO();
 
         ArrayList<ConsumptionReportDetails> ConsumptionReportDetailsArr = new ArrayList<>();
-        // ArrayList<Integer> itemCode1 = new ArrayList<>();
+       
         // get purpose
         String productName = request.getParameter("productName");
         String color = request.getParameter("color");
         //Header
         String ProductionNumber = request.getParameter("productionNumber");
         String preparedBy = request.getParameter("preparedBy");
-        //String dateMade = request.getParameter("dateMade");
-        //status = created
-        //details
-
-        //   String[] size = request.getParameterValues("size");
         String[] qty = request.getParameterValues("volumeQty");
-       //delvieryqty = 0
+
 
         //header encode
         try {
@@ -108,11 +103,12 @@ public class EncodeConsumptionReportServlet extends BaseServlet {
             ServletContext context = getServletContext();
             RequestDispatcher rd = context.getRequestDispatcher("/ViewConsumptionReportServlet?goToC=ViewSpecific");
             request.setAttribute("consumptionReportNumber", consumptionReport.getProductionNumber());
+            request.setAttribute("info", "Success");
             rd.forward(request, response);
         } else {
             ServletContext context = getServletContext();
             RequestDispatcher rd = context.getRequestDispatcher("/Error.jsp");
-            request.setAttribute("Error", "Error");
+            request.setAttribute("info", "Error");
             rd.forward(request, response);
         }
     }

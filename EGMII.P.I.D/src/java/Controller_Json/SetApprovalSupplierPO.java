@@ -44,6 +44,7 @@ public class SetApprovalSupplierPO extends BaseServlet {
         RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/Procurement/SupplierApproval.jsp");
         request.setAttribute("SupplierPurchaseOrderList", PurchaseOrderList);
         request.setAttribute("data", "supplier");
+        request.setAttribute("info", "none");
         request.setAttribute("SupplierPurchaseOrderSpecific", SupplierPurchaseOrderList);
         rd.forward(request, response);
 

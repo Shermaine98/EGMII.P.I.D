@@ -104,12 +104,13 @@ public class EncodeSupplierPurchaseOrderServlet extends BaseServlet {
 
         if (x) {
             ServletContext context = getServletContext();
-            RequestDispatcher rd = context.getRequestDispatcher("/SetSPONumberServlet");
+            RequestDispatcher rd = context.getRequestDispatcher("/SetSPONumberServlet?action=another");
+             request.setAttribute("info", "success");
             rd.forward(request, response);
         } else {
             ServletContext context = getServletContext();
             RequestDispatcher rd = context.getRequestDispatcher("/Error.jsp");
-            request.setAttribute("Error", "Error");
+            request.setAttribute("info", "Error");
             rd.forward(request, response);
         }
 

@@ -87,9 +87,29 @@
             </div>
         </form> 
         <br/><br/>
+        
         <%
             if (data.equalsIgnoreCase("ViewConsumptionReportSpecific")) {
                 ArrayList<ConsumptionReportView> cr1 = (ArrayList<ConsumptionReportView>) request.getAttribute("crListSpecific");
+                
+        %>
+        
+         <!--Alert-->
+        <%
+           String alert = (String) request.getAttribute("frProduct");
+           if(alert.equalsIgnoreCase("true")){
+        %>
+        <div class="alert alert-success" style="margin-left : 140px; margin-right: 140px">
+            <strong>Success!</strong> A new Consumption Report is created!
+        </div>
+        <%
+           }else if(alert.equalsIgnoreCase("Error")){
+        %>
+       <div class="alert alert-success" style="margin-left : 140px; margin-right: 140px">
+          <strong>Oops!</strong> The new Bill of Materials is not created! Kindly contact screen shot this screen and email the maintenance team and or the developers.
+        </div>
+        <%
+           }
         %>
         <!-- To get the Click row-->
         <div class="container">

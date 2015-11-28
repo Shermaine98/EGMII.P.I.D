@@ -32,13 +32,29 @@
         <div align="center" class="container">
             <h2>Encode Supplier Purchase Order</h2><br/>
             <form method="POST" action="EncodeSupplierPurchaseOrderServlet">
-
+                <!--Alert-->
+                <%            
+                String info = (String) request.getAttribute("info");
+                    if (info.equalsIgnoreCase("success")) {
+                %>
+                <div class="alert alert-success" style="margin-left : 140px; margin-right: 140px">
+                    <strong>Success!</strong> The new Supplier Purchase Order is created!
+                </div>
+                <%
+                } else if (info.equalsIgnoreCase("error")) {
+                %>
+                <div class="alert alert-danger" style="margin-left : 140px; margin-right: 140px">
+                    <strong>Oops!</strong> The new Supplier Purchase Order is not created! Kindly  screen shot this screen and email/contact the maintenance team and or the developers.
+                </div>
+                <%
+                    }
+                %>
                 <div class="panel panel-default col-md-3">
                     <div class="panel-heading">
                         <h3 class="panel-title">Supplier Purchase Order</h3>
                     </div>
                     <div class="panel-body">
-                         <label class="" for="supplier">Supplier</label>
+                        <label class="" for="supplier">Supplier</label>
                         <input type="text" name="supplier" class="form-control" id="supplierName" onkeypress="autoCompleteSupplier()" placeholder="Search Supplier" /><br/>
                         <label class="" for="deliveryDate">Delivery Date</label>
                         <input type="text" name="deliveryDate" placeholder="yyyy-mm-dd" class="form-control" id="datepicker" pattern=".{1,}" required title="Please Input Delivery Date" /><br/>
@@ -47,7 +63,7 @@
                         <label class="" for="preparedBy">Prepared By</label>
                         <input type="hidden" name="preparedBy" class="readonlyWhite" id="preparedBy" value="<%=user.getEmployeeNumber()%>" />
                         <input type="text" class="form-control" readonly value="<%= user.getFirstName()%> <%= user.getLastName()%>" /><br/>
-                        
+
                     </div>
                 </div>
 
@@ -95,7 +111,7 @@
             $(function () {
                 $("#datepicker").datepicker({minDate: 1, maxDate: "+4M +10D", dateFormat: 'yy-mm-dd'});
             });
-            
+
             $(document).ready(function () {
                 var spoNumber = '${SPONumber}';
                 document.getElementById('poNumber').value = spoNumber;
